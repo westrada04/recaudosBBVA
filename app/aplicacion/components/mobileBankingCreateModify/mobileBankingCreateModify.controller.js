@@ -301,7 +301,6 @@
                         return MobileBankingCreateModifyService.createReferences(requestReference);
                     }).then(function (response) {
                         angular.forEach(response, function (value, key) {
-                            console.log('aca x3');
                             if (value.state == 'fulfilled') {
                                 MobileBankingCreateModifyService.setIdReference(value.value.data.data.referenceId);
                                 toastr.info('Referencia: ' + value.value.data.data.referenceId + ' almacenada Exitosamente.', 'Informacion!');
