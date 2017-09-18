@@ -1,0 +1,85 @@
+<ol class="breadcrumb">
+    <li><a ui-sref="templateAuth.home">Administrador de Solicitudes</a></li>
+    <li class="active">Modificación de solicitud</li>
+</ol>
+
+<div class="row father-center">
+    <button type="submit" class="btn btn-primary son-center" ng-click="vm.createRequest()">
+        Alta de Solicitud
+    </button>
+    <button type="submit" class="btn btn-primary son-center" ng-click="vm.editRequest()">
+        Modificación Solicitud - Convenio
+    </button>
+    <button type="submit" class="btn btn-primary son-center" ng-click="vm.consultRequest()">
+        Consulta Solicitud - Convenio
+    </button>
+</div>
+
+<br>
+<div class="row">
+    <div class="col-md-7">
+        <p class="lead">Información de Convenio {{ vm.idAgreement }}</p>
+    </div>
+    <div class="col-md-4">
+        <div class="row">
+            <div class="col-md-5">
+                <span>Porcentaje: {{vm.progress}}%</span>
+            </div>
+            <div class="col-md-7">
+                <div class="progress progress-striped active">
+                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{vm.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{vm.progress}}%">
+                        <span class="sr-only">45% completado</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-11">
+        <div ng-show="vm.state1">
+
+            <general-data-edit></general-data-edit>
+            <base-data-edit></base-data-edit>
+            <output-file-edit></output-file-edit>
+            <reference-information-edit></reference-information-edit>
+            <capture-type-edit></capture-type-edit>
+            <pin-generation-edit></pin-generation-edit>
+            <accounts-receivable-edit></accounts-receivable-edit>
+
+            <!-- impuestos -->
+            <div ng-show="vm.isTax">
+                <tax-dispersion-accounts-edit></tax-dispersion-accounts-edit>
+                <special-tax-parameters-edit></special-tax-parameters-edit>
+                <recaudo-products-tax-edit></recaudo-products-tax-edit>
+            </div>
+
+            <div class="row" ng-hide="vm.state3">
+                <button type="button" ng-click="vm.next1()" class="btn btn-primary center-block">Siguiente</button>
+            </div>
+        </div>
+
+        <div ng-show="vm.state2">
+            <financial-terminal-edit></financial-terminal-edit>
+            <bbva-net-bbva-cash-edit></bbva-net-bbva-cash-edit>
+            <atm-edit></atm-edit>
+            <mobile-banking-edit></mobile-banking-edit>
+            <pay-time-edit></pay-time-edit>
+            <bank-correspondent-edit></bank-correspondent-edit>
+            <payments-pse-edit></payments-pse-edit>
+            <annex-documents-edit></annex-documents-edit>
+            <div class="row father-center" ng-hide="vm.state3">
+                <button type="button" ng-click="vm.after1()" class="btn btn-primary son-center">Anterior</button>
+                <button type="button" ng-click="vm.next2()" class="btn btn-primary son-center">Siguiente</button>
+            </div>
+        </div>
+        <div class="row father-center" ng-show="vm.state3">
+            <button type="button" ng-click="vm.after2()" class="btn btn-primary son-center">Anterior</button>
+            <button type="button" ng-click="vm.print()" class="btn btn-primary son-center">Imprimir</button>
+            <button type="button" ng-click="vm.save()" class="btn btn-primary son-center">Guardar</button>
+        </div>
+    </div>
+</div>
+
+<br>

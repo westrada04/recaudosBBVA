@@ -1,0 +1,73 @@
+<v-accordion class="vAccordion--default" multiple>
+
+    <v-pane>
+        <v-pane-header>
+            Parámetros Subproductos Rec. de Impuestos
+        </v-pane-header>
+
+        <v-pane-content>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <form class="form-horizontal" name="generalData" role="form">
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-6 control-label">
+                                        <p class="text-left">Tipo de Recaudo</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <input name="typeCollection" type="text" class="form-control" maxlength="7" ng-model="vm.typeCollection" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-3 control-label">
+                                        <p class="text-left">Clase</p>
+                                    </label>
+                                    <div class="col-md-9">
+                                        <select name="class" class="form-control" ng-model="vm.class" disabled>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.classes" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-3 control-label">
+                                        <p class="text-left">Producto</p>
+                                    </label>
+                                    <div class="col-md-9">
+                                        <select name="product" ng-change="vm.changeProduct()" class="form-control" ng-model="vm.product" disabled>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.products" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" ng-show="vm.statusSubproduct">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-3 control-label">
+                                        <p class="text-left">{{vm.nameSubproduct}}</p>
+                                    </label>
+                                    <div class="col-md-9">
+                                        <select name="subproduct" class="form-control" ng-model="vm.subproduct" disabled>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.subproducts" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </v-pane-content>
+    </v-pane>
+
+</v-accordion>

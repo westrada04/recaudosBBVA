@@ -1,0 +1,85 @@
+<ol class="breadcrumb">
+    <li><a ui-sref="templateAuth.home">Administrador de Solicitudes</a></li>
+    <li class="active">Creación de solicitud en base a una solicitud</li>
+</ol>
+
+<div class="row father-center">
+    <button type="submit" class="btn btn-primary son-center" ng-click="vm.createRequest()">
+        Alta de Solicitud
+    </button>
+    <button type="submit" class="btn btn-primary son-center" ng-click="vm.editRequest()">
+        Modificación Solicitud - Convenio
+    </button>
+    <button type="submit" class="btn btn-primary son-center" ng-click="vm.consultRequest()">
+        Consulta Solicitud - Convenio
+    </button>
+</div>
+
+<br>
+<div class="row">
+    <div class="col-md-7">
+        <p class="lead">Información de Convenio {{ vm.idAgreement }}</p>
+    </div>
+    <div class="col-md-4">
+        <div class="row">
+            <div class="col-md-5">
+                <span>Porcentaje: {{vm.progress}}%</span>
+            </div>
+            <div class="col-md-7">
+                <div class="progress progress-striped active">
+                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{vm.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{vm.progress}}%">
+                        <span class="sr-only">45% completado</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-11">
+        <div ng-show="vm.state1">
+
+            <general-data-create-modify></general-data-create-modify>
+            <base-data-create-modify></base-data-create-modify>
+            <output-file-create-modify></output-file-create-modify>
+            <reference-information-create-modify></reference-information-create-modify>
+            <capture-type-create-modify></capture-type-create-modify>
+            <pin-generation-create-modify></pin-generation-create-modify>
+            <accounts-receivable-create-modify></accounts-receivable-create-modify>
+
+            <!-- impuestos -->
+            <div ng-show="vm.isTax">
+                <tax-dispersion-accounts-create-modify></tax-dispersion-accounts-create-modify>
+                <special-tax-parameters-create-modify></special-tax-parameters-create-modify>
+                <recaudo-products-tax-create-modify></recaudo-products-tax-create-modify>
+            </div>
+
+            <div class="row" ng-hide="vm.state3">
+                <button type="button" ng-click="vm.next1()" class="btn btn-primary center-block">Siguiente</button>
+            </div>
+        </div>
+
+        <div ng-show="vm.state2">
+            <financial-terminal-create-modify></financial-terminal-create-modify>
+            <bbva-net-bbva-cash-create-modify></bbva-net-bbva-cash-create-modify>
+            <atm-create-modify></atm-create-modify>
+            <mobile-banking-create-modify></mobile-banking-create-modify>
+            <pay-time-create-modify></pay-time-create-modify>
+            <bank-correspondent-create-modify></bank-correspondent-create-modify>
+            <payments-pse-create-modify></payments-pse-create-modify>
+            <annex-documents-create-modify></annex-documents-create-modify>
+            <div class="row father-center" ng-hide="vm.state3">
+                <button type="button" ng-click="vm.after1()" class="btn btn-primary son-center">Anterior</button>
+                <button type="button" ng-click="vm.next2()" class="btn btn-primary son-center">Siguiente</button>
+            </div>
+        </div>
+        <div class="row father-center" ng-show="vm.state3">
+            <button type="button" ng-click="vm.after2()" class="btn btn-primary son-center">Anterior</button>
+            <button type="button" ng-click="vm.print()" class="btn btn-primary son-center">Imprimir</button>
+            <button type="button" ng-click="vm.save()" class="btn btn-primary son-center">Guardar</button>
+        </div>
+    </div>
+</div>
+
+<br>

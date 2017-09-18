@@ -1,0 +1,30 @@
+<v-accordion class="vAccordion--default" multiple>
+
+    <v-pane>
+        <v-pane-header>
+            Anexo de Documentos
+        </v-pane-header>
+
+        <v-pane-content>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <form class="form-horizontal" name="generalData" role="form">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-2 control-label">
+                                        <p class="text-left">Anexo</p>
+                                    </label>
+                                    <div class="col-md-10">
+                                        <input name="annexed" type="file" class="form-control" maxlength="15" ng-model="vm.annexed" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </v-pane-content>
+    </v-pane>
+
+</v-accordion>

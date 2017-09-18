@@ -1,0 +1,67 @@
+<ol class="breadcrumb">
+    <li><a ui-sref="templateAuth.home">Administrador de Solicitudes</a></li>
+    <li class="active">Alta de solicitudes</li>
+</ol>
+
+<form class="form-horizontal" name="createRequest" role="form">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label for="tipo_solicitud" class="col-md-4 control-label">Tipo de solicitud</label>
+                <div class="col-md-8">
+                    <select name="typeRequest" class="form-control" ng-change="vm.changeTypeRequest()" ng-model="vm.typeRequest" required>
+                        <option value="">Seleccione una opción</option>
+                        <option ng-repeat="x in vm.typeRequests" value="{{x.value}}">{{x.nombre}}</option>
+                    </select>
+                    <span class="control-label error-mensaje" ng-show="!createRequest.$pristine && createRequest.typeRequest.$error.required">Debe selecionar un tipo de solicitud</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="solicitud_realizar" class="col-md-4 control-label">Solicitud a realizar</label>
+                <div class="col-md-8">
+                    <select name="requestToMade" class="form-control" ng-change="vm.changeRequestToMade()" ng-model="vm.requestToMade" required>
+                        <option value="">Seleccione una opción</option>
+                        <option ng-repeat="x in vm.requestToMades" value="{{x.value}}">{{x.nombre}}</option>
+                    </select>
+                    <span class="control-label error-mensaje" ng-show="!createRequest.$pristine && createRequest.requestToMade.$error.required">Debe selecionar una solicitud a realizar</span>
+                </div>
+            </div>
+
+            <div ng-show="vm.editAgreement">
+                <div class="form-group">
+                    <label for="tipo_convenio" class="col-md-4 control-label">Tipo de Convenio a Modificar</label>
+                    <div class="col-md-8">
+                        <select name="typeAgreement" class="form-control" ng-change="vm.changeTypeAgreement()" ng-model="vm.typeAgreement" ng-required="vm.editAgreement">
+                            <option value="">Seleccione una opción</option>
+                            <option ng-repeat="x in vm.typeAgreements" value="{{x.value}}">{{x.nombre}}</option>
+                        </select>
+                        <span class="control-label error-mensaje" ng-show="!createRequest.$pristine && createRequest.typeAgreement.$error.required">Debe selecionar una tipo de convenio a modificar</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="convenio_modificar" class="col-md-4 control-label">Código Convenio a Modificar</label>
+                    <div class="col-md-8">
+                        <input name="agreementCode" type="text" class="form-control" ng-model="vm.agreementCode" ng-required="vm.editAgreement" maxlength="7" >
+                        <span class="control-label error-mensaje" ng-show="!createRequest.$pristine && createRequest.agreementCode.$error.required">Debe registrar un codigo de convenio a modificar</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="clase_convenio_modificar" class="col-md-4 control-label">Clase Convenio a Modificar</label>
+                    <div class="col-md-8">
+                        <select name="classAgreement" class="form-control" ng-model="vm.classAgreement" ng-required="vm.editAgreement">
+                            <option value="">Seleccione una opción</option>
+                            <option ng-repeat="x in vm.classAgreements" value="{{x.value}}">{{x.nombre}}</option>
+                        </select>
+                        <span class="control-label error-mensaje" ng-show="!createRequest.$pristine && createRequest.classAgreement.$error.required">Debe selecionar una clase de convenio a modificar</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <button type="submit" ng-click="vm.continuar()" ng-disabled="!createRequest.$valid" class="btn btn-primary">Continuar</button>
+            </div>
+        </div>
+    </div>
+</form>

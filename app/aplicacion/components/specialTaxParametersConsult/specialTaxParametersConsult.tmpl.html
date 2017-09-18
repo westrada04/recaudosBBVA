@@ -1,0 +1,280 @@
+<v-accordion class="vAccordion--default" multiple>
+
+    <v-pane>
+        <v-pane-header>
+            Parámetros Especiales de Impuestos
+        </v-pane-header>
+
+        <v-pane-content>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <form class="form-horizontal" name="generalData" role="form">
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-5 control-label">
+                                        <p class="text-left">Valor Adicional</p>
+                                    </label>
+                                    <div class="col-md-7">
+                                        <select name="additionalValue" class="form-control" ng-model="vm.additionalValue" disabled>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.additionalValues" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-4 control-label">
+                                        <p class="text-left">Autoadhesivo</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="autoadhesive" class="form-control" ng-model="vm.autoadhesive" disabled>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.autoadhesives" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-6 control-label">
+                                        <p class="text-left">Tamaño Formato Autoadhesivo</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <select name="formatAutoadhesive" class="form-control" ng-model="vm.formatAutoadhesive" disabled>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.formatAutoadhesives" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-5 control-label">
+                                        <p class="text-left">Reciprocidad</p>
+                                    </label>
+                                    <div class="col-md-7">
+                                        <label class="radio-inline">
+                                            <input name="reciprocity" type="radio" ng-model="vm.reciprocity" ng-value=true disabled>Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="reciprocity" type="radio" ng-model="vm.reciprocity" ng-value=false disabled>No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-5 control-label">
+                                        <p class="text-left">Tipo de Derrama</p>
+                                    </label>
+                                    <div class="col-md-7">
+                                        <select name="contributionType" class="form-control" ng-model="vm.contributionType" disabled>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.contributionTypes" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-4 control-label">
+                                        <p class="text-left">Dispersión</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <label class="radio-inline">
+                                            <input name="dispersion" type="radio" ng-model="vm.dispersion" ng-value=true disabled>Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="dispersion" type="radio" ng-model="vm.dispersion" ng-value=false disabled>No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div>
+                                    <p class="text-center title-speciel">Dias de Reciprocidad</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="numero_identificacion" class="col-md-6 control-label">
+                                        <p class="text-left">Departamento</p>
+                                    </label>
+                                    <div class="col-md-5">
+                                        <input name="departmentReciprocity" type="text" class="form-control" maxlength="3" ng-model="vm.departmentReciprocity" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="numero_identificacion" class="col-md-6 control-label">
+                                        <p class="text-left">Municipio</p>
+                                    </label>
+                                    <div class="col-md-5">
+                                        <input name="municipalityReciprocity" type="text" class="form-control" maxlength="3" ng-model="vm.municipalityReciprocity" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="numero_identificacion" class="col-md-7 control-label">
+                                        <p class="text-left">Conv. Asociado</p>
+                                    </label>
+                                    <div class="col-md-5">
+                                        <input name="reciprocityAssociatedAgreement" type="text" class="form-control" maxlength="15" ng-model="vm.reciprocityAssociatedAgreement" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div>
+                                    <p class="text-center title-speciel">Tipo de Días</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="numero_identificacion" class="col-md-4 control-label">
+                                        <p class="text-left">Departamento</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="departmentTypeDays" class="form-control" ng-model="vm.departmentTypeDays" disabled>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.departmentTypesDays" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="numero_identificacion" class="col-md-4 control-label">
+                                        <p class="text-left">Municipio</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="municipalityTypeDay" class="form-control" ng-model="vm.municipalityTypeDay" disabled>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.municipalityTypesDay" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="numero_identificacion" class="col-md-4 control-label">
+                                        <p class="text-left">Conv. Asociado</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="associatedAgreementsTypeDays" class="form-control" ng-model="vm.associatedAgreementsTypeDays" disabled>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.associatedAgreementsTypesDays" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div>
+                                    <p class="text-center title-speciel">Porcentajes de Dispersión</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="numero_identificacion" class="col-md-6 control-label">
+                                        <p class="text-left">Departamento</p>
+                                    </label>
+                                    <div class="col-md-5">
+                                        <input name="departmentPercentage" type="text" class="form-control" maxlength="3" ng-model="vm.departmentPercentage" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="numero_identificacion" class="col-md-6 control-label">
+                                        <p class="text-left">Municipio</p>
+                                    </label>
+                                    <div class="col-md-5">
+                                        <input name="municipalityPercentage" type="text" class="form-control" maxlength="3" ng-model="vm.municipalityPercentage" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="numero_identificacion" class="col-md-7 control-label">
+                                        <p class="text-left">Conv. Asociado</p>
+                                    </label>
+                                    <div class="col-md-5">
+                                        <input name="PercentageAssociatedAgreement" type="text" class="form-control" maxlength="15" ng-model="vm.PercentageAssociatedAgreement" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div>
+                                    <p class="text-center title-speciel">Cuentas de Espera</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-5 control-label">
+                                        <p class="text-left">Departamento</p>
+                                    </label>
+                                    <div class="col-md-7">
+                                        <label class="radio-inline">
+                                            <input name="waitingAccountsDepartment" type="radio" ng-model="vm.waitingAccountsDepartment" ng-value=true disabled>Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="waitingAccountsDepartment" type="radio" ng-model="vm.waitingAccountsDepartment" ng-value=false disabled>No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-5 control-label">
+                                        <p class="text-left">Municipio</p>
+                                    </label>
+                                    <div class="col-md-7">
+                                        <label class="radio-inline">
+                                            <input name="municipalityWaitingAccounts" type="radio" ng-model="vm.municipalityWaitingAccounts" ng-value=true disabled>Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="municipalityWaitingAccounts" type="radio" ng-model="vm.municipalityWaitingAccounts" ng-value=false disabled>No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </v-pane-content>
+    </v-pane>
+
+</v-accordion>

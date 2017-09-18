@@ -1,0 +1,115 @@
+<v-accordion class="vAccordion--default" multiple>
+
+    <v-pane>
+        <v-pane-header>
+            Cuentas de recaudo para recaudo dirigido a más de una cuenta
+        </v-pane-header>
+
+        <v-pane-content>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <form class="form-horizontal" name="generalData" role="form">
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-10">
+                                <div ng-repeat="account in vm.collectionAccounts">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            <p class="text-left">Cuenta de Recaudo {{$index + 1 }}</p>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="tipo_identificacion" class="col-md-6 control-label">
+                                                            <p class="text-left">Tipo de Cuenta</p>
+                                                        </label>
+                                                        <div class="col-md-6">
+                                                            <select name="type{{$index}}" class="form-control" ng-model="account.type" disabled>
+                                                                <option value="">Seleccione una opción</option>
+                                                                <option ng-repeat="x in vm.types" value="{{x.value}}">{{x.nombre}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="tipo_identificacion" class="col-md-4 control-label">
+                                                            <p class="text-left">Número Cuenta</p>
+                                                        </label>
+                                                        <div class="col-md-8">
+                                                            <input name="accountNumber{{$index}}" type="text" maxlength="18" class="form-control" ng-model="account.accountNumber" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="tipo_identificacion" class="col-md-8 control-label">
+                                                            <p class="text-left">Porcentaje de Recaudo</p>
+                                                        </label>
+                                                        <div class="col-md-4">
+                                                            <input name="percentageAgrement{{$index}}" type="text" class="form-control" ng-model="account.percentageAgrement" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="tipo_identificacion" class="col-md-6 control-label">
+                                                            <p class="text-left">Tipo de Identificación</p>
+                                                        </label>
+                                                        <div class="col-md-6">
+                                                            <select name="idType{{$index}}" class="form-control" ng-model="account.idType" disabled>
+                                                                <option value="">Seleccione una opción</option>
+                                                                <option ng-repeat="x in vm.idTypes" value="{{x.value}}">{{x.nombre}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="tipo_identificacion" class="col-md-4 control-label">
+                                                            <p class="text-left">Número Identificación</p>
+                                                        </label>
+                                                        <div class="col-md-8">
+                                                            <input name="identificationNumber{{$index}}" type="text" class="form-control" maxlength="15" ng-model="account.identificationNumber" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="tipo_identificacion" class="col-md-8 control-label">
+                                                            <p class="text-left">Digito de Verificación</p>
+                                                        </label>
+                                                        <div class="col-md-4">
+                                                            <input name="identificationDigit{{$index}}" type="text" class="form-control" maxlength="15" ng-model="account.identificationDigit" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-8 control-label">
+                                        <p class="text-center">Porcentaje % Total del Conv. De Recaudo. La suma del porcentaje dirigido a las cuentas debe ser igual a 100% incluyendo la cuenta principal.</p>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input name="PercentageCollection" type="text" class="form-control" maxlength="15" ng-model="vm.PercentageCollection" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </v-pane-content>
+    </v-pane>
+
+</v-accordion>

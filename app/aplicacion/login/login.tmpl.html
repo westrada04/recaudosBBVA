@@ -1,0 +1,42 @@
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title text-center">Acceso a Usuarios</h3>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" name="login" role="form">
+                    <div class="form-group">
+                        <label for="usuario" class="col-md-3 control-label">Usuario:</label>
+                        <div class="col-md-9">
+                            <input type="text" ng-model="vm.loginForm.user" name="user" class="form-control" id="usuario" placeholder="" onkeyup="this.value=this.value.toUpperCase();" required>
+                            <span class="control-label error-mensaje" ng-show="!login.$pristine && login.user.$error.required">Debe ingresar un usuario</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="col-md-3 control-label">Contraseña:</label>
+                        <div class="col-md-9">
+                            <input type="password" ng-model="vm.loginForm.password" name="password" class="form-control" id="password" placeholder="" required>
+                            <span class="control-label error-mensaje" ng-show="!login.$pristine && login.password.$error.required">Debe ingresar una contraseña</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <div class="checkbox">
+                                <p class="text-left">
+                                    <b>Nota:</b> Es indistinto utilizar mayúsculas o minúsculas en el usuario y contraseña.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" ng-click="vm.login()" ng-disabled="!login.$valid" class="btn btn-primary boton-entrar center-block">
+                            Entrar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div cg-busy="vm.myPromise"></div>

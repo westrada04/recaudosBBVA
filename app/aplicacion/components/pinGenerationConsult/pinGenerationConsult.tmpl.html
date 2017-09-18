@@ -1,0 +1,136 @@
+<v-accordion class="vAccordion--default" multiple>
+
+    <v-pane>
+        <v-pane-header>
+            Generación Pin
+        </v-pane-header>
+
+        <v-pane-content>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <form class="form-horizontal" name="generalData" role="form">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-3 control-label">
+                                        <p class="text-left">Tipo de Pin</p>
+                                    </label>
+                                    <div class="col-md-9">
+                                        <select name="typePin" class="form-control" ng-change="vm.changeTypePin()" ng-model="vm.typePin" disabled>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.typePins" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6" ng-hide="vm.stateNumeric">
+                                <div class="form-group">
+                                    <label for="numero_identificacion" class="col-md-4 control-label none-padding-right">
+                                        <p class="text-left">Algoritmo</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <label class="radio-inline">
+                                            <input name="algorythm" type="radio" ng-model="vm.algorythm" ng-value='B10' disabled>Base 10
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="algorythm" type="radio" ng-model="vm.algorythm" ng-value='B08' disabled>Base 8
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="algorythm" type="radio" ng-model="vm.algorythm" ng-value='B06' disabled>Base 6
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" ng-show="vm.stateFixedData">
+                            <div ng-repeat="x in vm.fixedDatas">
+                                <div class="col-md-offset-1 col-md-10">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            <p class="text-left">Dato Fijo {{$index + 1}}</p>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="tipo_identificacion" class="col-md-6 control-label">
+                                                            <p class="text-left">Campo Fijo</p>
+                                                        </label>
+                                                        <div class="col-md-6">
+                                                            <input name="fixedField{{$index}}" type="text" class="form-control" ng-model="x.fixedField" disabled>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="tipo_identificacion" class="col-md-6 control-label">
+                                                        <p class="text-left">Descripción</p>
+                                                    </label>
+                                                        <div class="col-md-6">
+                                                            <input name="description{{$index}}" type="text" class="form-control" ng-model="x.description" disabled>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="tipo_identificacion" class="col-md-6 control-label">
+                                                            <p class="text-left">Importe Mínimo</p>
+                                                        </label>
+                                                        <div class="col-md-6">
+                                                            <input name="minAmount{{$index}}" type="text" class="form-control" ng-model="x.minAmount" disabled>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="tipo_identificacion" class="col-md-6 control-label">
+                                                            <p class="text-left">Importe Máximo</p>
+                                                        </label>
+                                                        <div class="col-md-6">
+                                                            <input name="maxAmount{{$index}}" type="text" class="form-control" ng-model="x.maxAmount" disabled>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" ng-show="vm.stateNumeric">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-6 control-label">
+                                        <p class="text-left">Numérico / Alfanumérico</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <select name="numericAlphanumeric" class="form-control" ng-model="vm.numericAlphanumeric" disabled>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.numericAlphanumerics" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-6 control-label">
+                                        <p class="text-left">Número de Dígitos</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <input name="NumberDigits" type="text" class="form-control" ng-model="vm.NumberDigits" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </v-pane-content>
+    </v-pane>
+
+</v-accordion>

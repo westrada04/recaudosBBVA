@@ -1,0 +1,344 @@
+<v-accordion class="vAccordion--default" multiple>
+
+    <v-pane>
+        <v-pane-header>
+            Paga Tiempo
+        </v-pane-header>
+
+        <v-pane-content>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <form class="form-horizontal" name="payTime" role="form">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="serviceType" class="col-md-4 control-label">
+                                        <p class="text-left">Tipo de Servicio</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="serviceType" class="form-control" ng-model="vm.serviceType" required>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.serviceTypes" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                        <span class="control-label error-mensaje" ng-show="!payTime.$pristine && payTime.serviceType.$error.required">
+                                            Debe selecionar un tipo de servicio
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="service" class="col-md-4 control-label">
+                                        <p class="text-left">Servicio</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input name="service" type="text" class="form-control" maxlength="2" ng-model="vm.service" required>
+                                        <span class="control-label error-mensaje" ng-show="!payTime.$pristine && payTime.service.$error.required">
+                                            Debe especificar un servicio
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="subService" class="col-md-4 control-label">
+                                        <p class="text-left">Subservicio</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input name="subService" type="text" class="form-control" maxlength="8" ng-model="vm.subService" required>
+                                        <span class="control-label error-mensaje" ng-show="!payTime.$pristine && payTime.subService.$error.required">
+                                            Debe especificar un Subservicio
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="serviceStatus" class="col-md-4 control-label">
+                                        <p class="text-left">Estado del Servicio</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="serviceStatus" class="form-control" ng-model="vm.serviceStatus" required>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.servicesStatus" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                        <span class="control-label error-mensaje" ng-show="!payTime.$pristine && payTime.serviceStatus.$error.required">
+                                            Debe selecionar un estado del servicio
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="dateStatus" class="col-md-5 control-label">
+                                        <p class="text-left">Fecha Estado</p>
+                                    </label>
+                                    <div class="col-md-7">
+                                        <input ng-model="vm.dateStatus" name="dateStatus" class="form-control" datetime-picker date-format="yyyy-MM-dd" date-only required/>
+                                        <span class="control-label error-mensaje" ng-show="!payTime.$pristine && payTime.dateStatus.$error.required">
+                                            Debe especificar una fecha de estado
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="facturationType" class="col-md-4 control-label">
+                                        <p class="text-left">Tipo Facturación</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="facturationType" class="form-control" ng-model="vm.facturationType" required>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.facturationTypes" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                        <span class="control-label error-mensaje" ng-show="!payTime.$pristine && payTime.facturationType.$error.required">
+                                            Debe selecionar un tipo de facturación
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="frequencyReceipt" class="col-md-4 control-label">
+                                        <p class="text-left">Periodicidad Recibo</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="frequencyReceipt" class="form-control" ng-model="vm.frequencyReceipt" required>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.frequencyReceipts" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                        <span class="control-label error-mensaje" ng-show="!payTime.$pristine && payTime.frequencyReceipt.$error.required">
+                                            Debe selecionar Periodicidad Recibo
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="posFixedReference" class="col-md-4 control-label">
+                                        <p class="text-left">Ubic. Ref Fija</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="posFixedReference" class="form-control" ng-model="vm.posFixedReference" required>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.posFixedReferences" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                        <span class="control-label error-mensaje" ng-show="!payTime.$pristine && payTime.posFixedReference.$error.required">
+                                            Debe selecionar Ubic. Ref Fija
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="BdValidation" class="col-md-6 control-label">
+                                        <p class="text-left">Validación BD</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <label class="radio-inline">
+                                            <input name="BdValidation" type="radio" ng-model="vm.BdValidation" ng-value=true required>Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="BdValidation" type="radio" ng-model="vm.BdValidation" ng-value=false required>No
+                                        </label>
+                                        <span class="control-label error-mensaje" ng-show="!payTime.$pristine && payTime.BdValidation.$error.required">
+                                            Debe selecionar una validacion bd
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="numberDaysInvoiceBd" class="col-md-6 control-label">
+                                        <p class="text-left">No. Días Factura BD</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <input name="numberDaysInvoiceBd" type="text" class="form-control" maxlength="3" ng-model="vm.numberDaysInvoiceBd" required>
+                                        <span class="control-label error-mensaje" ng-show="!payTime.$pristine && payTime.numberDaysInvoiceBd.$error.required">
+                                            Debe especificar No. Días Factura BD
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="typeIndicatorRetry" class="col-md-4 control-label">
+                                        <p class="text-left">Ind. Tipo Reintento</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <label class="radio-inline">
+                                            <input name="typeIndicatorRetry" type="radio" ng-model="vm.typeIndicatorRetry" ng-value=true required>Diaria
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="typeIndicatorRetry" type="radio" ng-model="vm.typeIndicatorRetry" ng-value=false required>No tiene
+                                        </label>
+                                        <span class="control-label error-mensaje" ng-show="!payTime.$pristine && payTime.typeIndicatorRetry.$error.required">
+                                            Debe especificaf Ind. Tipo Reintento
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="maximumRetry" class="col-md-4 control-label">
+                                        <p class="text-left">Max Reintentos</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="maximumRetry" class="form-control" ng-model="vm.maximumRetry" required>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.maximumRetries" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                        <span class="control-label error-mensaje" ng-show="!payTime.$pristine && payTime.maximumRetry.$error.required">
+                                            Debe selecionar Max Reintentos
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="namePaymentReference" class="col-md-6 control-label">
+                                        <p class="text-left">Nombre de Referencia Pago</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <input name="namePaymentReference" type="text" class="form-control" maxlength="30" ng-model="vm.namePaymentReference" required>
+                                        <span class="control-label error-mensaje" ng-show="!payTime.$pristine && payTime.namePaymentReference.$error.required">
+                                            Debe especificar Nombre de Referencia Pago
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="indRetryType" class="col-md-6 control-label">
+                                        <p class="text-left">Ind. Cobro Vencido</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <label class="radio-inline">
+                                            <input name="indRetryType" type="radio" ng-model="vm.indRetryType" ng-value=true required>Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="indRetryType" type="radio" ng-model="vm.indRetryType" ng-value=false required>No
+                                        </label>
+                                        <span class="control-label error-mensaje" ng-show="!payTime.$pristine && payTime.indRetryType.$error.required">
+                                            Debe selecionar Ind. Cobro Vencido
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="partialCollectionIndicator" class="col-md-6 control-label">
+                                        <p class="text-left">Indicador Cobro Parcial</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <label class="radio-inline">
+                                            <input name="partialCollectionIndicator" type="radio" ng-model="vm.partialCollectionIndicator" ng-value=true required>Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="partialCollectionIndicator" type="radio" ng-model="vm.partialCollectionIndicator" ng-value=false required>No
+                                        </label>
+                                        <span class="control-label error-mensaje" ng-show="!payTime.$pristine && payTime.partialCollectionIndicator.$error.required">
+                                            Debe selecionar Indicador Cobro Parcial
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="maxChargeProducts" class="col-md-4 control-label">
+                                        <p class="text-left">No. Max Asuntos Cargo</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="maxChargeProducts" class="form-control" ng-model="vm.maxChargeProducts" required>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.maxChargesProducts" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                        <span class="control-label error-mensaje" ng-show="!payTime.$pristine && payTime.maxChargeProducts.$error.required">
+                                            Debe selecionar No. Max Asuntos Cargo
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="accountabilityIndicator" class="col-md-6 control-label">
+                                        <p class="text-left">Indicador Cargo Cuentas</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <label class="radio-inline">
+                                            <input name="accountabilityIndicator" type="radio" ng-model="vm.accountabilityIndicator" ng-value=true required>Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="accountabilityIndicator" type="radio" ng-model="vm.accountabilityIndicator" ng-value=false required>No
+                                        </label>
+                                        <span class="control-label error-mensaje" ng-show="!payTime.$pristine && payTime.accountabilityIndicator.$error.required">
+                                            Debe selecionar Indicador Cargo Cuentas
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="indicatorCargoTCredit" class="col-md-6 control-label">
+                                        <p class="text-left">Indicador Cargo T Crédito</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <label class="radio-inline">
+                                            <input name="indicatorCargoTCredit" type="radio" ng-model="vm.indicatorCargoTCredit" ng-value=true required>Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="indicatorCargoTCredit" type="radio" ng-model="vm.indicatorCargoTCredit" ng-value=false required>No
+                                        </label>
+                                        <span class="control-label error-mensaje" ng-show="!payTime.$pristine && payTime.indicatorCargoTCredit.$error.required">
+                                            Debe selecionar Indicador Cargo T Crédito
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="maxChargeProductsDifer" class="col-md-4 control-label">
+                                        <p class="text-left">No. Cuotas Max Difer.</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="maxChargeProductsDifer" class="form-control" ng-model="vm.maxChargeProductsDifer" required>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.maxChargeProductsDifers" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                        <span class="control-label error-mensaje" ng-show="!payTime.$pristine && payTime.maxChargeProductsDifer.$error.required">
+                                            Debe selecionar No. Cuotas Max Difer.
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <button type="button" ng-click="vm.save()" ng-disabled="!payTime.$valid" class="btn btn-primary center-block">Guardar</button>
+                        </div>
+                    </form>
+                    <div cg-busy="vm.myPromise"></div>
+                </div>
+            </div>
+        </v-pane-content>
+    </v-pane>
+
+</v-accordion>

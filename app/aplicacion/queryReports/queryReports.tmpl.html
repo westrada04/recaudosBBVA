@@ -1,0 +1,839 @@
+<ol class="breadcrumb">
+    <li><a ui-sref="templateAuth.generateReports">Administrador de Informes</a></li>
+    <li class="active">Generar Informes</li>
+</ol>
+
+<p class="text-center lead">Informes de Contratación de Convenios</p>
+
+<div style="background-color: #337ab7;color: white; padding-top: 10px;padding-bottom: 1px;">
+    <p class="text-center">CONSULTE LOS INFORMES DISPONIBLES</p>
+</div>
+
+<br>
+
+<div class="row">
+    <div class="col-md-11">
+        <form class="form-horizontal" name="" role="form">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label for="reportType" class="col-md-4 control-label">
+                            <p class="text-left">Seleccione el informe</p>
+                        </label>
+                        <div class="col-md-8">
+                            <select name="reportType" class="form-control" ng-change="vm.changeReportType()" ng-model="vm.reportType">
+                                <option value="">Seleccione una opción</option>
+                                <option ng-repeat="x in vm.reportTypes" value="{{x.value}}">{{x.nombre}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div ng-show="vm.satusAudit">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div style="background-color: #337ab7;color: white; padding-top: 10px;padding-bottom: 1px;">
+                <p class="text-center">Informe de Auditoría</p>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <div class="row">
+        <div class="col-md-11">
+            <form class="form-horizontal" name="" role="form">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="typeAgreement" class="col-md-4 control-label">
+                                <p class="text-left">Tipo del Convenio</p>
+                            </label>
+                            <div class="col-md-8">
+                                <select name="typeAgreement" class="form-control" ng-model="vm.formAudit.typeAgreement">
+                                    <option value="">Seleccione una opción</option>
+                                    <option ng-repeat="x in vm.typeAgreements" value="{{x.value}}">{{x.nombre}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="agreementCode" class="col-md-4 control-label">
+                                <p class="text-left">Código Convenio</p>
+                            </label>
+                            <div class="col-md-8">
+                                <select name="agreementCode" class="form-control" ng-model="vm.formAudit.agreementCode">
+                                    <option value="">Seleccione una opción</option>
+                                    <option ng-repeat="x in vm.agreementCodes" value="{{x.value}}">{{x.nombre}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="agreementClass" class="col-md-4 control-label">
+                                <p class="text-left">Clase Convenio</p>
+                            </label>
+                            <div class="col-md-8">
+                                <select name="agreementClass" class="form-control" ng-model="vm.formAudit.agreementClass">
+                                    <option value="">Seleccione una opción</option>
+                                    <option ng-repeat="x in vm.agreementClases" value="{{x.value}}">{{x.nombre}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="numberRequest" class="col-md-6 control-label">
+                                <p class="text-left">Número de Solicitud</p>
+                            </label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" ng-model="vm.formAudit.numberRequest" maxlength="7">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="identificationNumber" class="col-md-6 control-label">
+                                <p class="text-left">Número de Identificación</p>
+                            </label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" ng-model="vm.formAudit.identificationNumber" maxlength="20">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="startDate" class="col-md-6 control-label">
+                                <p class="text-left">Fecha de Inicio</p>
+                            </label>
+                            <div class="col-md-6">
+                                <input name="startDate" ng-model="vm.formAudit.startDate" class="form-control" datetime-picker date-format="yyyy-MM-dd" date-only>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="finalDate" class="col-md-6 control-label">
+                                <p class="text-left">Fecha Fin</p>
+                             </label>
+                            <div class="col-md-6">
+                                <input name="finalDate" ng-model="vm.formAudit.finalDate" class="form-control" datetime-picker date-format="yyyy-MM-dd" date-only>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-primary">Generar Archivo</button>
+                        <button type="button" class="btn btn-primary">Limpiar</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<div ng-show="vm.satusStatistical">
+    <div class="row">
+        <div class="col-md-12">
+            <div style="background-color: #337ab7;color: white; padding-top: 10px;padding-bottom: 1px;">
+                <p class="text-center">Informe Estadístico de Convenios</p>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <div class="row">
+        <div class="col-md-11">
+            <form class="form-horizontal" name="" role="form">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="typeAgreement" class="col-md-4 control-label">
+                                <p class="text-left">Tipo del Convenio</p>
+                            </label>
+                            <div class="col-md-8">
+                                <select name="typeAgreement" class="form-control" ng-change="vm.changeFormStatisticalTypeAgreement()" ng-model="vm.formStatistical.typeAgreement">
+                                    <option value="">Seleccione una opción</option>
+                                    <option ng-repeat="x in vm.formStatistical.typeAgreements" value="{{x.value}}">{{x.nombre}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="agreementCode" class="col-md-4 control-label">
+                                <p class="text-left">Código Convenio</p>
+                            </label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" ng-model="vm.formStatistical.codeAgreement" maxlength="7">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="agreementClass" class="col-md-4 control-label">
+                                <p class="text-left">Clase Convenio</p>
+                            </label>
+                            <div class="col-md-8">
+                                <select name="agreementClass" class="form-control" ng-model="vm.formStatistical.agreementClass">
+                                    <option value="">Seleccione una opción</option>
+                                    <option ng-repeat="x in vm.formStatistical.agreementClases" value="{{x.value}}">{{x.nombre}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="numberRequest" class="col-md-6 control-label">
+                                <p class="text-left">Número de Solicitud</p>
+                            </label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" ng-model="vm.formStatistical.numberRequest" maxlength="7">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="identificationNumber" class="col-md-6 control-label">
+                                <p class="text-left">Número de Identificación</p>
+                            </label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" ng-model="vm.formStatistical.identificationNumber" maxlength="20">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="startDate" class="col-md-6 control-label">
+                                <p class="text-left">Fecha de Inicio</p>
+                            </label>
+                            <div class="col-md-6">
+                                <input name="startDate" ng-model="vm.formStatistical.startDate" class="form-control" datetime-picker date-format="yyyy-MM-dd" date-only>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="finalDate" class="col-md-6 control-label">
+                                <p class="text-left">Fecha Fin</p>
+                             </label>
+                            <div class="col-md-6">
+                                <input name="finalDate" ng-model="vm.formStatistical.finalDate" class="form-control" datetime-picker date-format="yyyy-MM-dd" date-only>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="pull-right">
+                        <button type="button" ng-click="vm.generateStatistical()" class="btn btn-primary">Generar Archivo</button>
+                        <button type="button" ng-click="vm.clearStatistical()" class="btn btn-primary">Limpiar</button>
+                    </div>
+                </div>
+
+            </form>
+            <div cg-busy="vm.myPromise"></div>
+        </div>
+    </div>
+</div>
+
+<br>
+
+<div ng-show="vm.tableStatistical">
+    <div class="row">
+        <div class="col-md-11">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">INFORME ESTADÍSTICO DE CONVENIOS</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table st-table="vm.requests" st-safe-src="vm.rowCollection" class="table table-striped table-bordered table-hover table-condensed">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" st-sort="agreementType.type.name" st-sort-default="true">Tipo de Convenio</th>
+                                    <th class="text-center" st-sort="agreementNum">No. Convenio</th>
+                                    <th class="text-center" st-sort="agreementNum">Clase de Convenio</th>
+                                    <th class="text-center" st-sort="relatedParticipants[0].participantId">Numero de Identificación</th>
+                                    <th class="text-center" st-sort="agreementDescription">Fecha recaudo</th>
+                                    <th class="text-center" st-sort="agreementDescription">Nombre Convenio</th>
+                                    <th class="text-center" st-sort="agreementDescription">Canal</th>
+                                    <th class="text-center" st-sort="agreementDescription">No. TX por Canal</th>
+                                    <th class="text-center" st-sort="agreementDescription">Valor Recaudo</th>
+                                    <th class="text-center" st-sort="agreementDescription">Valor Comisión por Cana</th>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <input st-search="idAgreement" placeholder="" class="input-sm form-control" type="search" />
+                                    </th>
+                                    <th colspan="9">
+                                        <input st-search placeholder="Busquedad General" class="input-sm form-control" type="search" />
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="text-center" st-select-row="row" ng-repeat="row in vm.requests">
+                                    <td>{{row.Agreement.type.name}}</td>
+                                    <td>{{row.Agreement.id | limitTo : 7 : 3 }}</td>
+                                    <td>{{row.Agreement.id | limitTo : -3 }}</td>
+                                    <td>{{row.participant.participantId}}</td>
+                                    <td>{{row.currentDate | date:'MM/dd/yyyy' }}</td>
+                                    <td>{{row.description}}</td>
+                                    <td>{{row.channel.channelId}}</td>
+                                    <td>{{row.Transaction.id}}</td>
+                                    <td>{{row.valueCollect.amount | number : 2}}</td>
+                                    <td>{{row.channel.valueCommission.amount | number : 2}}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="10" class="text-center">
+                                        <div st-pagination="" st-items-by-page="vm.itemsByPage" st-displayed-pages="vm.numberPages"></div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div ng-show="vm.satusExisting">
+    <div class="row">
+        <div class="col-md-12">
+            <div style="background-color: #337ab7;color: white; padding-top: 10px;padding-bottom: 1px;">
+                <p class="text-center">Informe de Convenios Existentes</p>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <div class="row">
+        <div class="col-md-11">
+            <form class="form-horizontal" name="" role="form">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="typeAgreement" class="col-md-4 control-label">
+                                <p class="text-left">Tipo del Convenio</p>
+                            </label>
+                            <div class="col-md-8">
+                                <select name="typeAgreement" class="form-control" ng-model="vm.formExisting.typeAgreement">
+                                    <option value="">Seleccione una opción</option>
+                                    <option ng-repeat="x in vm.typeAgreements" value="{{x.value}}">{{x.nombre}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="agreementCode" class="col-md-4 control-label">
+                                <p class="text-left">Código Convenio</p>
+                            </label>
+                            <div class="col-md-8">
+                                <select name="agreementCode" class="form-control" ng-model="vm.formExisting.agreementCode">
+                                    <option value="">Seleccione una opción</option>
+                                    <option ng-repeat="x in vm.agreementCodes" value="{{x.value}}">{{x.nombre}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="agreementClass" class="col-md-4 control-label">
+                                <p class="text-left">Clase Convenio</p>
+                            </label>
+                            <div class="col-md-8">
+                                <select name="agreementClass" class="form-control" ng-model="vm.formExisting.agreementClass">
+                                    <option value="">Seleccione una opción</option>
+                                    <option ng-repeat="x in vm.agreementClases" value="{{x.value}}">{{x.nombre}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="numberRequest" class="col-md-6 control-label">
+                                <p class="text-left">Número de Solicitud</p>
+                            </label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" ng-model="vm.formExisting.numberRequest" maxlength="7">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="identificationNumber" class="col-md-6 control-label">
+                                <p class="text-left">Número de Identificación</p>
+                            </label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" ng-model="vm.formExisting.identificationNumber" maxlength="20">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="startDate" class="col-md-6 control-label">
+                                <p class="text-left">Fecha de Inicio</p>
+                            </label>
+                            <div class="col-md-6">
+                                <input name="startDate" ng-model="vm.formExisting.startDate" class="form-control" datetime-picker date-format="yyyy-MM-dd" date-only>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="finalDate" class="col-md-6 control-label">
+                                <p class="text-left">Fecha Fin</p>
+                             </label>
+                            <div class="col-md-6">
+                                <input name="finalDate" ng-model="vm.formExisting.finalDate" class="form-control" datetime-picker date-format="yyyy-MM-dd" date-only>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-primary">Generar Archivo</button>
+                        <button type="button" class="btn btn-primary">Limpiar</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<div ng-show="vm.statusCard">
+    <div class="row">
+        <div class="col-md-12">
+            <div style="background-color: #337ab7;color: white; padding-top: 10px;padding-bottom: 1px;">
+                <p class="text-center">Informe Tarjetas de Recaudo</p>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <div class="row">
+        <div class="col-md-11">
+            <form class="form-horizontal" name="" role="form">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="typeAgreement" class="col-md-4 control-label">
+                                <p class="text-left">Tipo del Convenio</p>
+                            </label>
+                            <div class="col-md-8">
+                                <select name="typeAgreement" class="form-control" ng-model="vm.formCard.typeAgreement">
+                                    <option value="">Seleccione una opción</option>
+                                    <option ng-repeat="x in vm.typeAgreements" value="{{x.value}}">{{x.nombre}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="agreementCode" class="col-md-4 control-label">
+                                <p class="text-left">Código Convenio</p>
+                            </label>
+                            <div class="col-md-8">
+                                <select name="agreementCode" class="form-control" ng-model="vm.formCard.agreementCode">
+                                    <option value="">Seleccione una opción</option>
+                                    <option ng-repeat="x in vm.agreementCodes" value="{{x.value}}">{{x.nombre}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="agreementClass" class="col-md-4 control-label">
+                                <p class="text-left">Clase Convenio</p>
+                            </label>
+                            <div class="col-md-8">
+                                <select name="agreementClass" class="form-control" ng-model="vm.formCard.agreementClass">
+                                    <option value="">Seleccione una opción</option>
+                                    <option ng-repeat="x in vm.agreementClases" value="{{x.value}}">{{x.nombre}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="numberRequest" class="col-md-6 control-label">
+                                <p class="text-left">Número de Solicitud</p>
+                            </label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" ng-model="vm.formCard.numberRequest" maxlength="7">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="identificationNumber" class="col-md-6 control-label">
+                                <p class="text-left">Número de Identificación</p>
+                            </label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" ng-model="vm.formCard.identificationNumber" maxlength="20">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="startDate" class="col-md-6 control-label">
+                                <p class="text-left">Fecha de Inicio</p>
+                            </label>
+                            <div class="col-md-6">
+                                <input name="startDate" ng-model="vm.formCard.startDate" class="form-control" datetime-picker date-format="yyyy-MM-dd" date-only>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="finalDate" class="col-md-6 control-label">
+                                <p class="text-left">Fecha Fin</p>
+                             </label>
+                            <div class="col-md-6">
+                                <input name="finalDate" ng-model="vm.formCard.finalDate" class="form-control" datetime-picker date-format="yyyy-MM-dd" date-only>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-primary">Generar Archivo</button>
+                        <button type="button" class="btn btn-primary">Limpiar</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div ng-show="vm.statusParametric">
+    <div class="row">
+        <div class="col-md-12">
+            <div style="background-color: #337ab7;color: white; padding-top: 10px;padding-bottom: 1px;">
+                <p class="text-center">Informe de Parametría del Convenio</p>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <div class="row">
+        <div class="col-md-11">
+            <form class="form-horizontal" name="" role="form">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="typeAgreement" class="col-md-4 control-label">
+                                <p class="text-left">Tipo del Convenio</p>
+                            </label>
+                            <div class="col-md-8">
+                                <select name="typeAgreement" class="form-control" ng-model="vm.formParametric.typeAgreement">
+                                    <option value="">Seleccione una opción</option>
+                                    <option ng-repeat="x in vm.typeAgreements" value="{{x.value}}">{{x.nombre}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="agreementCode" class="col-md-4 control-label">
+                                <p class="text-left">Código Convenio</p>
+                            </label>
+                            <div class="col-md-8">
+                                <select name="agreementCode" class="form-control" ng-model="vm.formParametric.agreementCode">
+                                    <option value="">Seleccione una opción</option>
+                                    <option ng-repeat="x in vm.agreementCodes" value="{{x.value}}">{{x.nombre}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="agreementClass" class="col-md-4 control-label">
+                                <p class="text-left">Clase Convenio</p>
+                            </label>
+                            <div class="col-md-8">
+                                <select name="agreementClass" class="form-control" ng-model="vm.formParametric.agreementClass">
+                                    <option value="">Seleccione una opción</option>
+                                    <option ng-repeat="x in vm.agreementClases" value="{{x.value}}">{{x.nombre}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="numberRequest" class="col-md-6 control-label">
+                                <p class="text-left">Nombre del Convenio</p>
+                            </label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" ng-model="vm.formParametric.nameRequest" maxlength="7">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="identificationNumber" class="col-md-6 control-label">
+                                <p class="text-left">Número de Identificación</p>
+                            </label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" ng-model="vm.formParametric.identificationNumber" maxlength="20">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="creationDate" class="col-md-6 control-label">
+                                <p class="text-left">Fecha de Creación</p>
+                            </label>
+                            <div class="col-md-6">
+                                <input name="creationDate" ng-model="vm.formParametric.creationDate" class="form-control" datetime-picker date-format="yyyy-MM-dd" date-only>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="channel" class="col-md-4 control-label">
+                                <p class="text-left">Canal</p>
+                            </label>
+                            <div class="col-md-8">
+                                <select name="channel" class="form-control" ng-model="vm.formParametric.channel">
+                                    <option value="">Seleccione una opción</option>
+                                    <option ng-repeat="x in vm.channels" value="{{x.value}}">{{x.nombre}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-primary">Generar Archivo</button>
+                        <button type="button" class="btn btn-primary">Limpiar</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<div ng-show="vm.statusRequest">
+    <div class="row">
+        <div class="col-md-12">
+            <div style="background-color: #337ab7;color: white; padding-top: 10px;padding-bottom: 1px;">
+                <p class="text-center">Informe de Solicitudes</p>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <div class="row">
+        <div class="col-md-11">
+            <form class="form-horizontal" name="" role="form">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="typeAgreement" class="col-md-4 control-label">
+                                <p class="text-left">Ejecutivo</p>
+                            </label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" ng-model="vm.formRequest.executive" maxlength="20">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="state" class="col-md-4 control-label">
+                                <p class="text-left">Estado de la Solicitud</p>
+                            </label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" ng-model="vm.formRequest.state" maxlength="20">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="agreementClass" class="col-md-4 control-label">
+                                <p class="text-left">Número de Identificación</p>
+                            </label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" ng-model="vm.formRequest.identificationNumber" maxlength="20">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="creationDate" class="col-md-6 control-label">
+                                <p class="text-left">Fecha de Creación</p>
+                            </label>
+                            <div class="col-md-6">
+                                <input name="creationDate" ng-model="vm.formRequest.creationDate" class="form-control" datetime-picker date-format="yyyy-MM-dd" date-only>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="endDate" class="col-md-6 control-label">
+                                <p class="text-left">Fecha Final</p>
+                            </label>
+                            <div class="col-md-6">
+                                <input name="endDate" ng-model="vm.formRequest.endDate" class="form-control" datetime-picker date-format="yyyy-MM-dd" date-only>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="pull-right">
+                        <button type="button" ng-click="vm.generateRequest()" class="btn btn-primary">Generar Archivo</button>
+                        <button type="button" ng-click="vm.cleanRequest()" class="btn btn-primary">Limpiar</button>
+                    </div>
+                </div>
+
+            </form>
+            <div cg-busy="vm.myPromise"></div>
+        </div>
+    </div>
+</div>
+
+<br>
+
+<div ng-show="vm.tableRequest">
+    <div class="row">
+        <div class="col-md-11">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Informe de Solicitudes</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table st-table="vm.requests" st-safe-src="vm.rowCollection" class="table table-striped table-bordered table-hover table-condensed">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" st-sort="agreementNum">No. Solicitud</th>
+                                    <th class="text-center" st-sort="agreementNum">Código de Usuario</th>
+                                    <th class="text-center" st-sort="relatedParticipants[0].participantId">Nombre</th>
+                                    <th class="text-center" st-sort="agreementDescription">Fecha de Solicitud</th>
+                                    <th class="text-center" st-sort="agreementDescription">Fecha de Atención</th>
+                                    <th class="text-center" st-sort="agreementDescription">No. Convenio</th>
+                                    <th class="text-center" st-sort="agreementDescription">Nombre Convenio</th>
+                                    <th class="text-center" st-sort="agreementDescription">No. Identificación</th>
+                                    <th class="text-center" st-sort="agreementDescription">Estado Solicitud</th>
+                                    <th class="text-center" st-sort="agreementDescription">Estado del convenio</th>
+                                    <th class="text-center" st-sort="agreementDescription">Usuario que Autorizo</th>
+                                    <th class="text-center" st-sort="agreementDescription">Filtros</th>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <input st-search="idAgreement" placeholder="" class="input-sm form-control" type="search" />
+                                    </th>
+                                    <th colspan="9">
+                                        <input st-search placeholder="Busquedad General" class="input-sm form-control" type="search" />
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="text-center" st-select-row="row" ng-repeat="row in vm.requests">
+                                    <td>{{row.idAgreement}}</td>
+                                    <td>{{row.userCode}}</td>
+                                    <td>{{row.userName }}</td>
+                                    <td>{{row.status.dateState | date:'MM/dd/yyyy'}}</td>
+                                    <td>{{row.status.dateState | date:'MM/dd/yyyy'}}</td>
+                                    <td>{{row.idAgreement}}</td>
+                                    <td>{{row.name}}</td>
+                                    <td>{{row.relatedParticipants[0].participantId}}</td>
+                                    <td>{{row.status.id}}</td>
+                                    <td>{{row.status.id}}</td>
+                                    <td>{{row.authorizingUser}}</td>
+                                    <td>{{row.agreementClass.name}}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="12" class="text-center">
+                                        <div st-pagination="" st-items-by-page="vm.itemsByPage" st-displayed-pages="vm.numberPages"></div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row father-center">
+    <button type="submit" class="btn btn-primary son-center" ng-click="">
+        Exportar a CSV <span class="glyphicon glyphicon-list-alt"></span>
+    </button>
+    <button type="submit" class="btn btn-primary son-center" ng-click="">
+        Exportar a Excel <span class="glyphicon glyphicon-list-alt"></span>
+    </button>
+    <button type="submit" class="btn btn-primary son-center" ng-click="">
+        Imprimir <span class="glyphicon glyphicon-print"></span>
+    </button>
+</div>

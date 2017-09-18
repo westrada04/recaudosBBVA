@@ -1,0 +1,60 @@
+<v-accordion class="vAccordion--default" multiple>
+
+    <v-pane>
+        <v-pane-header>
+            Pagos PSE
+        </v-pane-header>
+
+        <v-pane-content>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <form class="form-horizontal" name="paymentPse" role="form">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="pseAgreement" class="col-md-6 control-label">
+                                        <p class="text-left">Convenio PSE</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <label class="radio-inline">
+                                            <input name="pseAgreement" type="radio" ng-model="vm.pseAgreement" ng-value=true required>Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="pseAgreement" type="radio" ng-model="vm.pseAgreement" ng-value=false required>No
+                                        </label>
+                                        <span class="control-label error-mensaje" ng-show="!paymentPse.$pristine && paymentPse.pseAgreement.$error.required">
+                                            Debe selecionar si posee un convenio Pse
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="coupon" class="col-md-6 control-label">
+                                        <p class="text-left">Cupón</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <label class="radio-inline">
+                                            <input name="coupon" type="radio" ng-model="vm.coupon" ng-value=true required>Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="coupon" type="radio" ng-model="vm.coupon" ng-value=false required>No
+                                        </label>
+                                        <span class="control-label error-mensaje" ng-show="!paymentPse.$pristine && paymentPse.coupon.$error.required">
+                                            Debe selecionar si posee un cupon
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <button type="button" ng-click="vm.save()" ng-disabled="!paymentPse.$valid" class="btn btn-primary center-block">Guardar</button>
+                        </div>
+                        <div cg-busy="vm.myPromise"></div>
+                    </form>
+                </div>
+            </div>
+        </v-pane-content>
+    </v-pane>
+
+</v-accordion>

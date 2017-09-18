@@ -1,0 +1,84 @@
+<ol class="breadcrumb">
+    <li><a ui-sref="templateAuth.home">Administrador de Solicitudes</a></li>
+    <li class="active">Consulta de solicitud</li>
+</ol>
+
+<div class="row father-center">
+    <button type="submit" class="btn btn-primary son-center" ng-click="vm.createRequest()">
+        Alta de Solicitud
+    </button>
+    <button type="submit" class="btn btn-primary son-center" ng-click="vm.editRequest()">
+        Modificación Solicitud - Convenio
+    </button>
+    <button type="submit" class="btn btn-primary son-center" ng-click="vm.consultRequest()">
+        Consulta Solicitud - Convenio
+    </button>
+</div>
+
+<br>
+<div class="row">
+    <div class="col-md-7">
+        <p class="lead">Información de Convenio {{ vm.idAgreement }}</p>
+    </div>
+    <div class="col-md-4">
+        <div class="row">
+            <div class="col-md-5">
+                <span>Porcentaje: {{vm.progress}}%</span>
+            </div>
+            <div class="col-md-7">
+                <div class="progress progress-striped active">
+                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{vm.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{vm.progress}}%">
+                        <span class="sr-only">45% completado</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-11">
+        <div ng-show="vm.state1">
+
+            <general-data-consult></general-data-consult>
+            <base-data-consult></base-data-consult>
+            <output-file-consult></output-file-consult>
+            <reference-information-consult></reference-information-consult>
+            <capture-type-consult></capture-type-consult>
+            <pin-generation-consult></pin-generation-consult>
+            <accounts-receivable-consult></accounts-receivable-consult>
+
+            <!-- impuestos -->
+            <div ng-show="vm.isTax">
+                <tax-dispersion-accounts-consult></tax-dispersion-accounts-consult>
+                <special-tax-parameters-consult></special-tax-parameters-consult>
+                <recaudo-products-tax-consult></recaudo-products-tax-consult>
+            </div>
+
+            <div class="row" ng-hide="vm.state3">
+                <button type="button" ng-click="vm.next1()" class="btn btn-primary center-block">Siguiente</button>
+            </div>
+        </div>
+
+        <div ng-show="vm.state2">
+            <financial-terminal-consult></financial-terminal-consult>
+            <bbva-net-bbva-cash-consult></bbva-net-bbva-cash-consult>
+            <atm-consult></atm-consult>
+            <mobile-banking-consult></mobile-banking-consult>
+            <pay-time-consult></pay-time-consult>
+            <bank-correspondent-consult></bank-correspondent-consult>
+            <payments-pse-consult></payments-pse-consult>
+            <annex-documents-consult></annex-documents-consult>
+            <div class="row father-center" ng-hide="vm.state3">
+                <button type="button" ng-click="vm.after1()" class="btn btn-primary son-center">Anterior</button>
+                <button type="button" ng-click="vm.next2()" class="btn btn-primary son-center">Siguiente</button>
+            </div>
+        </div>
+        <div class="row father-center" ng-show="vm.state3">
+            <button type="button" ng-click="vm.after2()" class="btn btn-primary son-center">Anterior</button>
+            <button type="button" ng-click="vm.print()" class="btn btn-primary son-center">Imprimir</button>
+        </div>
+    </div>
+</div>
+
+<br>

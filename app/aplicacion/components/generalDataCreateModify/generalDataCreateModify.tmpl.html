@@ -1,0 +1,603 @@
+<v-accordion class="vAccordion--default" multiple>
+
+    <v-pane>
+        <v-pane-header>
+            Datos Generales
+        </v-pane-header>
+
+        <v-pane-content>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <form class="form-horizontal" name="generalData" role="form" novalidate>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="identificationType" class="col-md-4 control-label">
+                                        <p class="text-left">Tipo de Identificación</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="identificationType" class="form-control" ng-change="vm.changeIdentificationType()" ng-model="vm.identificationType" required>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.identificationTypes" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                        <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.identificationType.$error.required">
+                                            Debe selecionar un tipo de Identificación
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="identificationNumber" class="col-md-4 control-label">
+                                        <p class="text-left">Número de Identificación</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input name="identificationNumber" type="text" ng-keypress="vm.validar()" class="form-control" maxlength="15" ng-model="vm.identificationNumber" required>
+                                        <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.identificationNumber.$error.required">
+                                            Debe especificar un numero de identificación
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group" ng-show="vm.stateVer">
+                                    <label for="ver" class="col-md-4 control-label">
+                                        <p class="text-left">Digito de verificación</p>    
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input name="ver" type="text" class="form-control" maxlength="1" ng-model="vm.ver" ng-required="vm.stateVer">
+                                        <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.ver.$error.required">
+                                            Debe especificar un digito de verificación
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="accountType" class="col-md-4 control-label">
+                                        <p class="text-left">Tipo de Cuenta</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="accountType" class="form-control" ng-model="vm.accountType" required>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.accountTypes" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                        <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.accountType.$error.required">
+                                            Debe especificar un digito de verificación
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="accountNumber" class="col-md-4 control-label">
+                                        <p class="text-left">Número de Cuenta</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input name="accountNumber" type="text" ng-keypress="vm.validar()" class="form-control" maxlength="18" ng-model="vm.accountNumber" required>
+                                        <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.accountNumber.$error.required">
+                                            Debe especificar un digito de verificación
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="typeAgreement" class="col-md-4 control-label"><p class="text-left">Tipo de Convenio</p></label>
+                                    <div class="col-md-8">
+                                        <select name="typeAgreement" class="form-control" ng-model="vm.typeAgreement" ng-change="vm.changeTypeAgreement()" disabled>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.typeAgreements" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                        <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.typeAgreement.$error.required">
+                                            Debe especificar un digito de verificación
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6" ng-show="vm.isTaxAndAdditional">
+                                <div class="form-group">
+                                    <label for="classAgreement" class="col-md-4 control-label"><p class="text-left">Clase de Convenio</p></label>
+                                    <div class="col-md-8">
+                                        <select name="classAgreement" class="form-control" ng-model="vm.classAgreement" disabled>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.classAgreements" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                        <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.classAgreement.$error.required">
+                                            Debe especificar un digito de verificación
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="manager" class="col-md-4 control-label">
+                                        <p class="text-left">Gestor</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input name="manager" type="text" class="form-control" ng-model="vm.manager" required>
+                                        <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.manager.$error.required">
+                                            Debe especificar un Gestor
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="managerEmail" class="col-md-5 control-label">
+                                        <p class="text-left">Email Gestor</p>
+                                    </label>
+                                    <div class="col-md-7">
+                                        <input name="managerEmail" type="email" class="form-control" ng-model="vm.managerEmail" required>
+                                        <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.managerEmail.$error.required">
+                                            Debe especificar un email de gestor
+                                        </span>
+                                        <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.managerEmail.$error.email">
+                                            Debe especificar un email valido
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="banking" class="col-md-4 control-label">
+                                        <p class="text-left">Banca</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input name="banking" type="text" class="form-control" maxlength="18" ng-model="vm.banking" required>
+                                        <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.banking.$error.required">
+                                            Debe especificar una banca
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="agreementNumber" class="col-md-5 control-label">
+                                        <p class="text-left">Número de Convenio</p>
+                                    </label>
+                                    <div class="col-md-7">
+                                        <input name="agreementNumber" type="text" class="form-control" maxlength="13" ng-model="vm.agreementNumber" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="agreementName" class="col-md-4 control-label">
+                                        <p class="text-left">Nombre del Convenio</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input name="agreementName" type="text" class="form-control" maxlength="30" ng-model="vm.agreementName" onkeyup="this.value=this.value.toUpperCase();" required>
+                                        <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.agreementName.$error.required">
+                                            Debe especificar un nombre del convenio
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="description" class="col-md-3 control-label">
+                                        <p class="text-left">Descripción</p>
+                                    </label>
+                                    <div class="col-md-9">
+                                        <select name="description" class="form-control" ng-model="vm.description" required>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.descriptions" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                        <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.description.$error.required">
+                                            Debe especificar una descripción
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="agreementDescription" class="col-md-3 control-label">
+                                        <p class="text-left">Descripción</p>
+                                    </label>
+                                    <div class="col-md-9">
+                                        <textarea name="agreementDescription" class="form-control" rows="2" ng-model="vm.agreementDescription" onkeyup="this.value=this.value.toUpperCase();"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="paymentMethod" class="col-md-4 control-label">
+                                        <p class="text-left">Forma de Pago</p>
+                                    </label>
+                                    <div class="col-md-5">
+                                        <select name="paymentMethod" class="form-control" ng-model="vm.paymentMethod" ng-required="vm.statusPaymentMethod">
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.paymentMethods" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                        <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.paymentMethod.$error.required">
+                                            Debe especificar una forma de pago
+                                        </span>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <button type="button" ng-click="vm.addPaymentMethod()" class="btn btn-primary">Añadir</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="expirationDate" class="col-md-5 control-label">
+                                        <p class="text-left">Fecha de Vencimiento</p>
+                                    </label>
+                                    <div class="col-md-7">
+                                        <input name="expirationDate" ng-model="vm.expirationDate" class="form-control" datetime-picker date-format="yyyy-MM-dd" date-only required>
+                                        <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.expirationDate.$error.required">
+                                            Debe especificar una fecha de vencimiento
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-10">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover table-condensed">
+                                        <thead>
+                                            <tr class="warning">
+                                                <th class="text-center">Tipos de pagos</th>
+                                                <th class="text-center">Acción</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody ng-repeat="item in vm.paymentMethodsSelected">
+                                            <tr>
+                                                <td class="text-center">{{item.nombre}}</td>
+                                                <td class="text-center" ng-click="vm.deletePaymentMethodSelected(item)"><a>Eliminar</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="subscriptionFormat" class="col-md-6 control-label">
+                                        <p class="text-left">Forma de Abono del Extracto</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <select name="subscriptionFormat" class="form-control" ng-change="vm.changeSubscriptionFormat()" ng-model="vm.subscriptionFormat" required>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.subscriptionFormats" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                        <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.subscriptionFormat.$error.required">
+                                            Debe especificar una forma de abono del extracto
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group" ng-show="vm.statusSubscriptionFormat">
+                                    <label for="waitingAccountNumber" class="col-md-7 control-label">
+                                        <p class="text-left">Número de Cuenta de Espera</p>
+                                    </label>
+                                    <div class="col-md-5">
+                                        <input name="waitingAccountNumber" type="text" ng-keypress="vm.validar()" class="form-control" maxlength="18" ng-model="vm.waitingAccountNumber" ng-required="vm.statusSubscriptionFormat">
+                                        <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.waitingAccountNumber.$error.required">
+                                            Debe especificar un numero de cuenta de espera
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group" ng-show="vm.statusSubscriptionFormat">
+                                    <label for="taxOffice" class="col-md-8 control-label">
+                                        <p class="text-left">Oficina Recaudadora</p>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input name="taxOffice" type="text" class="form-control" maxlength="4" ng-model="vm.taxOffice" ng-required="vm.statusSubscriptionFormat">
+                                        <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.taxOffice.$error.required">
+                                            Debe especificar una oficina recaudadora
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" ng-show="vm.isTaxAndAdditional">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="numero_identificacion" class="col-md-4 control-label">
+                                        <p class="text-left">Tipo de Impuesto</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="typeTax" class="form-control" ng-model="vm.typeTax" ng-required="vm.isTaxAndAdditional">
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.typeTaxs" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                        <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.typeTax.$error.required">
+                                            Debe especificar un tipo de impuestos
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="tax0044" class="col-md-7 control-label">
+                                        <p class="text-left">Impto. Cuenta de Espera OF. 0044</p>
+                                    </label>
+                                    <div class="col-md-5">
+                                        <input name="tax0044" type="text" class="form-control" maxlength="18" ng-model="vm.tax0044" ng-required="vm.isTaxAndAdditional">
+                                        <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.tax0044.$error.required">
+                                            Debe especificar Impto. Cuenta de Espera OF. 0044
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label for="stateContract" class="col-md-5 control-label">
+                                        <p class="text-left">Estado Contrato</p>
+                                    </label>
+                                    <div class="col-md-7">
+                                        <select name="stateContract" class="form-control" ng-model="vm.stateContract" required>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.stateContracts" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                        <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.stateContract.$error.required">
+                                            Debe especificar un estado de contrato
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3" ng-show="vm.isCollection">
+                                <div class="form-group">
+                                    <label for="inhouse" class="col-md-4 control-label">
+                                        <p class="text-left">Inhouse</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <label class="radio-inline">
+                                            <input name="inhouse" type="radio" ng-model="vm.inhouse" ng-value=true ng-required="vm.isCollection">Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="inhouse" type="radio" ng-model="vm.inhouse" ng-value=false ng-required="vm.isCollection">No
+                                        </label>
+                                        <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.inhouse.$error.required">
+                                            Debe especificar inhouse
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4" ng-show="vm.isCollection">
+                                <div class="form-group">
+                                    <label for="massiveActive" class="col-md-6 control-label">
+                                        <p class="text-left">Activa Masiva</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <label class="radio-inline">
+                                            <input name="massiveActive" type="radio" ng-model="vm.massiveActive" ng-value=true ng-required="vm.isCollection">Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="massiveActive" type="radio" ng-model="vm.massiveActive" ng-value=false ng-required="vm.isCollection">No
+                                        </label>
+                                        <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.massiveActive.$error.required">
+                                            Debe especificar Activa Masiva
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" ng-show="vm.isCollection">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="multilote" class="col-md-3 control-label">
+                                        <p class="text-left">Multilote</p>
+                                    </label>
+                                    <div class="col-md-9">
+                                        <label class="radio-inline">
+                                            <input name="multilote" type="radio" ng-model="vm.multilote" ng-value=true ng-required="vm.isCollection">Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="multilote" type="radio" ng-model="vm.multilote" ng-value=false ng-required="vm.isCollection">No
+                                        </label>
+                                        <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.multilote.$error.required">
+                                            Debe especificar Multilote
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="consecutive" class="col-md-4 control-label">
+                                        <p class="text-left">Consecutivo</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <label class="radio-inline">
+                                            <input name="consecutive" type="radio" ng-model="vm.consecutive" ng-value=true ng-required="vm.isCollection">Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="consecutive" type="radio" ng-model="vm.consecutive" ng-value=false ng-required="vm.isCollection">No
+                                        </label>
+                                        <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.consecutive.$error.required">
+                                            Debe especificar consecutive
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-md-12 control-label">
+                                        <p class="text-left">Rango de Horas Inhabilitadas en Recaudo.</p>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="startTime" class="col-md-5 control-label">
+                                        <p class="text-left">Hora Inicial</p>
+                                    </label>
+                                    <div class="col-md-7">
+                                        <input type="time" name="startTime" class="form-control" ng-model="vm.startTime" max="23:59:59" min="00:00:00" required>
+                                        <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.startTime.$error.required">
+                                            Debe especificar hors inicial
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="finalHour" class="col-md-5 control-label">
+                                        <p class="text-left">Hora Final</p>
+                                    </label>
+                                    <div class="col-md-7">
+                                        <input type="time" name="finalHour" class="form-control" ng-model="vm.finalHour" required>
+                                        <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.finalHour.$error.required">
+                                            Debe especificar hora final
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="col-md-12 control-label">
+                                        <p class="text-left">Empresa Alterna</p>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="alternateCompany" class="col-md-5 control-label">
+                                        <p class="text-left">Tipo</p>
+                                    </label>
+                                    <div class="col-md-7">
+                                        <input type="text" name="alternateCompany" ng-keypress="vm.validar()" class="form-control" ng-model="vm.alternateCompany" maxlength="1" required>
+                                        <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.alternateCompany.$error.required">
+                                            Debe especificar tipo
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="codeAlternateCompany" class="col-md-5 control-label">
+                                        <p class="text-left">Código</p>
+                                    </label>
+                                    <div class="col-md-7">
+                                        <input type="text" name="codeAlternateCompany" class="form-control" ng-keypress="vm.validar()" ng-model="vm.codeAlternateCompany" maxlength="7" required>
+                                        <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.codeAlternateCompany.$error.required">
+                                            Debe especificar codigo
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="classAlternateCompany" class="col-md-5 control-label">
+                                        <p class="text-left">Clase</p>
+                                    </label>
+                                    <div class="col-md-7">
+                                        <input type="text" name="classAlternateCompany" ng-keypress="vm.validar()" class="form-control" ng-model="vm.classAlternateCompany" maxlength="3" required>
+                                        <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.classAlternateCompany.$error.required">
+                                            Debe especificar clase
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="documentTraffic" class="col-md-6 control-label">
+                                        <p class="text-left">Tráfico de Documentos</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <label class="radio-inline">
+                                            <input name="documentTraffic" type="radio" ng-model="vm.documentTraffic" ng-value=true required>Si
+                                            <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.documentTraffic.$error.required">
+                                                Debe especificar clase
+                                            </span>
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="documentTraffic" type="radio" ng-model="vm.documentTraffic" ng-value=false required>No
+                                            <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.documentTraffic.$error.required">
+                                                Debe especificar clase
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="ucw" class="col-md-7 control-label">
+                                        <p class="text-left">Unificación Convenio Webservices</p>
+                                    </label>
+                                    <div class="col-md-5">
+                                        <label class="radio-inline">
+                                            <input name="ucw" type="radio" ng-model="vm.ucw" ng-value=true required>Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="ucw" type="radio" ng-model="vm.ucw" ng-value=false required>No
+                                        </label>
+                                        <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.ucw.$error.required">
+                                            Debe especificar Unificación Convenio Webservices
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group" ng-show="vm.statusUcw">
+                                    <label for="ucwCode" class="col-md-2 control-label">
+                                        <p class="text-left">Codigo</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input type="text" name="ucwCode" maxlength="7" class="form-control" ng-model="vm.ucwCode" ng-required="vm.statusUcw">
+                                        <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.ucw.$error.required">
+                                            Debe especificar codigo de Unificación Convenio Webservices
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <button type="button" ng-click="vm.save()" ng-disabled="!generalData.$valid" class="btn btn-primary center-block">
+                                Guardar
+                            </button>
+                        </div>
+
+                    </form>
+                    <div cg-busy="vm.myPromise"></div>
+                </div>
+            </div>
+        </v-pane-content>
+    </v-pane>
+
+</v-accordion>

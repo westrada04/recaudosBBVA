@@ -1,0 +1,142 @@
+<div class="container-fluid">
+    <div class="header">
+        <div class="row">
+            <div class="col-md-2">
+                <img src="imagenes/logoBBBVA.png" alt="logo-BBVA">
+            </div>
+            <div class="col-md-5">
+                <h5 class="titulo-header">
+                    MÓDULO DE CONTRATACIÓN DE CONVENIOS DE RECAUDO E IMPUESTOS
+                </h5>
+            </div>
+            <div class="col-md-5">
+                <div class="row">
+                    <div class="top-user">
+                        <div class="col-md-8">
+                            <b>Usuario:</b><span class="user-text"> {{vm.user.nombres}} {{vm.user.apellidos}}</span>
+                            <p><b>Perfil:</b> <span class="user-text"> {{vm.user.rol}} </span></p>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" ng-click="vm.logout()" class="btn btn-danger">Desconectar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    <div class="row">
+        <div class="col-md-2">
+            <nav class="navbar navbar-default sidebar" role="navigation">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li class="active">
+                                <a ui-sref="templateAuth.home">
+                                    Home
+                                    <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span>
+                                </a>
+                            </li>
+                            <li class="dropdown" permission permission-only="'manageApplications'">
+                                <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                                    Administrador de Solicitudes 
+                                    <span class="caret"></span>
+                                    <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-folder-open"></span>
+                                </a>
+                                <ul class="dropdown-menu forAnimate" role="menu">
+                                    <li permission permission-only="'createRequest'">
+                                        <a ui-sref="templateAuth.createRequest">Alta de Solicitudes</a>
+                                    </li>
+                                    <li permission permission-only="'editRequest'" class="divider"></li>
+                                    <li permission permission-only="'editRequest'">
+                                        <a ui-sref="templateAuth.editRequest">Modificación de Solicitud</a>
+                                    </li>
+                                    <li permission permission-only="'viewRequest'" class="divider"></li>
+                                    <li permission permission-only="'viewRequest'">
+                                        <a ui-sref="templateAuth.consultRequest">Consulta de Solicitud</a>
+                                    </li>
+                                    <li permission permission-only="'viewRequestRejected'" class="divider"></li>
+                                    <li permission permission-only="'viewRequestRejected'">
+                                        <a ui-sref="templateAuth.consultRequestRejected">Solicitudes Rechazadas</a>
+                                    </li>
+                                    <li permission permission-only="'viewRequestApproved'" class="divider"></li>
+                                    <li permission permission-only="'viewRequestApproved'">
+                                        <a ui-sref="templateAuth.consultRequestApproved">Solicitudes Aprobadas</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown" permission permission-only="'administerAgreements'">
+                                <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                                    Autorizador de <br> Convenios
+                                    <span class="caret"></span>
+                                    <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-tags"></span>
+                                </a>
+                                <ul class="dropdown-menu forAnimate" role="menu">
+                                    <li permission permission-only="'viewPendingAgreements'">
+                                        <a ui-sref="templateAuth.consultRequestPending">Solicitudes Pendientes</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li permission permission-only="'viewRejectedAgreements'">
+                                        <a ui-sref="templateAuth.consultRequestRejected">Solicitudes Rechazadas</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li permission permission-only="'viewApprovedAgreements'">
+                                        <a ui-sref="templateAuth.consultRequestApproved">Solicitudes Aprobadas</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown" permission permission-only="'manageUsers'">
+                                <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                                    Autorizador de <br>Usuarios
+                                    <span class="caret"></span>
+                                    <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span>
+                                </a>
+                                <ul class="dropdown-menu forAnimate" role="menu">
+                                    <li permission permission-only="'createUser'"><a href="">Alta de Usuarios</a></li>
+                                    <li class="divider"></li>
+                                    <li permission permission-only="'editUser'"><a href="">Modificación de Usarios</a></li>
+                                    <li class="divider"></li>
+                                    <li permission permission-only="'viewUser'"><a href="">Consulta de Usuarios</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown" permission permission-only="'manageProfiles'">
+                                <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                                    Administrador de <br>perfiles
+                                    <span class="caret"></span>
+                                    <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span>
+                                </a>
+                                <ul class="dropdown-menu forAnimate" role="menu" permission permission-only="'createProfile'">
+                                    <li><a href="">Alta de perfiles</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown" permission permission-only="'manageReports'">
+                                <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                                    Administrador de <br> Informes
+                                    <span class="caret"></span>
+                                    <span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-list-alt"></span>
+                                </a>
+                                <ul permission permission-only="'generateReports'" class="dropdown-menu forAnimate" role="menu">
+                                    <li>
+                                        <a ui-sref="templateAuth.generateReports">Generar Informes</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="col-md-10">
+            <div ui-view="contenido"></div>
+        </div>
+    </div>
+</div>

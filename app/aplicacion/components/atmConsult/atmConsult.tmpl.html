@@ -1,0 +1,63 @@
+<v-accordion class="vAccordion--default" multiple>
+
+    <v-pane>
+        <v-pane-header>
+            ATM
+        </v-pane-header>
+
+        <v-pane-content>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <form class="form-horizontal" name="generalData" role="form">
+                        <div class="row">
+                            <p class="text-center titulo-atm">Referencia única</p>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-4 control-label">
+                                        <p class="text-left">Acción</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="typex" class="form-control" ng-model="vm.action" disabled>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.actions" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-4 control-label">
+                                        <p class="text-left">Categoría</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="category" class="form-control" ng-model="vm.category" disabled>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.categories" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-4 control-label">
+                                        <p class="text-left">Subcategoría</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="subcategory" class="form-control" ng-model="vm.subcategory" disabled>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.subcategories" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </v-pane-content>
+    </v-pane>
+
+</v-accordion>

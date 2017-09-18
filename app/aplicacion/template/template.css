@@ -1,0 +1,15 @@
+.header{
+    height: 100px;
+    padding-top: 10px;
+}
+
+.titulo-header{
+    margin-top: 45px;
+    color: #0078d2;
+}
+
+hr {
+    background-color: #0078d2; 
+    height: 3px; 
+    border: 0; 
+}

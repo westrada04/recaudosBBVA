@@ -1,0 +1,196 @@
+<v-accordion class="vAccordion--default" multiple>
+
+    <v-pane>
+        <v-pane-header>
+            BBVA NET y BBVA NET CASH
+        </v-pane-header>
+
+        <v-pane-content>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <form class="form-horizontal" name="bbvaNetCash" role="form">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="btn-group pull-right">
+                                    <button type="button" ng-click="vm.activate()" class="btn btn-primary" ng-disabled="!vm.status">
+                                        Activar
+                                    </button>
+                                    <button type="button" ng-click="vm.deactivate()" class="btn btn-primary" ng-disabled="vm.status">
+                                        Inactivar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="category" class="col-md-6 control-label">
+                                        <p class="text-left">Categoría</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <select name="category" class="form-control" ng-model="vm.category" ng-disabled="vm.status" ng-required="!vm.status">
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.categories" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                        <span class="control-label error-mensaje" ng-show="!bbvaNetCash.$pristine && bbvaNetCash.category.$error.required">
+                                            Debe selecionar una categoria
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="subcategory" class="col-md-6 control-label">
+                                        <p class="text-left">Subcategoría</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <select name="subcategory" class="form-control" ng-model="vm.subcategory" ng-disabled="vm.status" ng-required="!vm.status">
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.subcategories" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                        <span class="control-label error-mensaje" ng-show="!bbvaNetCash.$pristine && bbvaNetCash.subcategory.$error.required">
+                                            Debe selecionar una cobertura del servicio
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="format" class="col-md-6 control-label">
+                                        <p class="text-left">Formato</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <select name="format" class="form-control" ng-model="vm.format" ng-disabled="vm.status" ng-required="!vm.status">
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.formats" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                        <span class="control-label error-mensaje" ng-show="!bbvaNetCash.$pristine && bbvaNetCash.format.$error.required">
+                                            Debe selecionar un formato
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="imageFormat" class="col-md-4 control-label">
+                                        <p class="text-left">Formato Imagen</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <label class="radio-inline">
+                                            <input name="imageFormat" type="text" ng-model="vm.imageFormat" class="form-control" ng-disabled="vm.status" ng-required="!vm.status">
+                                        </label>
+                                        <span class="control-label error-mensaje" ng-show="!bbvaNetCash.$pristine && bbvaNetCash.imageFormat.$error.required">
+                                            Debe especificar un formato de imagen
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="fixedValue" class="col-md-4 control-label">
+                                        <p class="text-left">Valor Fijo</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <label class="radio-inline">
+                                            <input name="fixedValue" type="radio" ng-model="vm.fixedValue" ng-value=true ng-disabled="vm.status" ng-required="!vm.status">Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="fixedValue" type="radio" ng-model="vm.fixedValue" ng-value=false ng-disabled="vm.status" ng-required="!vm.status">no
+                                        </label>
+                                        <span class="control-label error-mensaje" ng-show="!bbvaNetCash.$pristine && bbvaNetCash.fixedValue.$error.required">
+                                            Debe especificar valor fijo
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="domicileIndicator" class="col-md-6 control-label">
+                                        <p class="text-left">Indicador de Domiciliación</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <label class="radio-inline">
+                                            <input name="domicileIndicator" type="radio" ng-model="vm.domicileIndicator" ng-value=true ng-disabled="vm.status" ng-required="!vm.status">Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="domicileIndicator" type="radio" ng-model="vm.domicileIndicator" ng-value=false ng-disabled="vm.status" ng-required="!vm.status">no
+                                        </label>
+                                        <span class="control-label error-mensaje" ng-show="!bbvaNetCash.$pristine && bbvaNetCash.domicileIndicator.$error.required">
+                                            Debe especificar Indicador de Domiciliación
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <p class="text-center title-references">Referencias</p>
+                        </div>
+                        <div ng-repeat="reference in vm.references">
+                            <ng-form name="formReference">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label for="fieldType" class="col-md-6 control-label">
+                                                <p class="text-left">Tipo de Campo</p>
+                                            </label>
+                                            <div class="col-md-6">
+                                                <select name="fieldType" class="form-control" ng-model="reference.fieldType" ng-disabled="vm.status" ng-required="!vm.status">
+                                                    <option value="">Seleccione una opción</option>
+                                                    <option ng-repeat="x in vm.fieldTypes" value="{{x.value}}">{{x.nombre}}</option>
+                                                </select>
+                                                <span class="control-label error-mensaje" ng-show="!formReference.$pristine && formReference.fieldType.$error.required">
+                                                    Debe selecionar un tipo de campo
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label for="referenceDescription" class="col-md-4 control-label">
+                                                <p class="text-left">Descripción de Referencia</p>
+                                            </label>
+                                            <div class="col-md-8">
+                                                <textarea name="referenceDescription" class="form-control" rows="3" ng-model="reference.referenceDescription" ng-disabled="vm.status" ng-required="!vm.status"></textarea>
+                                                <span class="control-label error-mensaje" ng-show="!formReference.$pristine && formReference.referenceDescription.$error.required">
+                                                    Debe especificar una descripcion de referencia
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button type="button" ng-click="vm.deleteReference($index)" ng-disabled="vm.status" class="btn btn-primary center-block">
+                                            Eliminar
+                                        </button>
+                                    </div>
+                                </div>
+                            </ng-form>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button type="button" ng-click="vm.addReference()" ng-disabled="vm.status" class="btn btn-primary center-block">
+                                    Añadir
+                                </button>
+                            </div>
+                        </div>
+                        <br>
+
+                        <div class="row">
+                            <button type="button" ng-click="vm.save()" ng-disabled="!bbvaNetCash.$valid" class="btn btn-primary center-block">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </v-pane-content>
+    </v-pane>
+
+</v-accordion>

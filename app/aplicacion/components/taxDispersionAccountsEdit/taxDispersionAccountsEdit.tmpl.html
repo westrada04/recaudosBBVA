@@ -1,0 +1,227 @@
+<v-accordion class="vAccordion--default" multiple>
+
+    <v-pane>
+        <v-pane-header>
+            Cuentas dispersión de impuestos
+        </v-pane-header>
+
+        <v-pane-content>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <form class="form-horizontal" name="taxDispersionAccount" role="form">
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-10">
+                                <div ng-repeat="account in vm.collectionAccounts">
+                                    <ng-form name="formAccount">
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading">
+                                                <p class="text-left">Cuenta de Dispersión {{$index + 1 }}</p>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="code" class="col-md-4 control-label">
+                                                                <p class="text-left">Código</p>
+                                                            </label>
+                                                            <div class="col-md-8">
+                                                                <input name="code" type="text" class="form-control" maxlength="7" ng-model="account.code" required>
+                                                                <span class="control-label error-mensaje" ng-show="!formAccount.$pristine && formAccount.code.$error.required">
+                                                                    Debe selecionar un tipo de cuenta recaudo
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="type" class="col-md-3 control-label">
+                                                                <p class="text-left">Tipo</p>
+                                                            </label>
+                                                            <div class="col-md-9">
+                                                                <select name="type" class="form-control" ng-model="account.type" required>
+                                                                    <option value="">Seleccione una opción</option>
+                                                                    <option ng-repeat="x in vm.types" value="{{x.value}}">{{x.nombre}}</option>
+                                                                </select>
+                                                                <span class="control-label error-mensaje" ng-show="!formAccount.$pristine && formAccount.type.$error.required">
+                                                                    Debe especificar el numero de cuenta
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="idType" class="col-md-6 control-label">
+                                                                <p class="text-left">Tipo de Identificación</p>
+                                                            </label>
+                                                            <div class="col-md-6">
+                                                                <select name="idType" class="form-control" ng-model="account.idType" required>
+                                                                    <option value="">Seleccione una opción</option>
+                                                                    <option ng-repeat="x in vm.idTypes" value="{{x.value}}">{{x.nombre}}</option>
+                                                                </select>
+                                                                <span class="control-label error-mensaje" ng-show="!formAccount.$pristine && formAccount.idType.$error.required">
+                                                                    Debe selecionar un tipo de identificación
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="identificationNumber" class="col-md-6 control-label">
+                                                                <p class="text-left">Número de Identificación</p>
+                                                            </label>
+                                                            <div class="col-md-6">
+                                                                <input name="identificationNumber" type="text" class="form-control" maxlength="15" ng-model="account.identificationNumber" required>
+                                                                <span class="control-label error-mensaje" ng-show="!formAccount.$pristine && formAccount.identificationNumber.$error.required">
+                                                                    Debe especificar el numero de identificación
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="identificationDigit" class="col-md-6 control-label">
+                                                                <p class="text-left">Digito de Verificación</p>
+                                                            </label>
+                                                            <div class="col-md-6">
+                                                                <input name="identificationDigit" type="text" class="form-control" maxlength="15" ng-model="account.identificationDigit" required>
+                                                                <span class="control-label error-mensaje" ng-show="!formAccount.$pristine && formAccount.identificationDigit.$error.required">
+                                                                    Debe especificar el digito de verificación
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="bankCode" class="col-md-6 control-label">
+                                                                <p class="text-left">Código Banco</p>
+                                                            </label>
+                                                            <div class="col-md-6">
+                                                                <input name="bankCode" type="text" class="form-control" maxlength="4" ng-model="account.bankCode" required>
+                                                                <span class="control-label error-mensaje" ng-show="!formAccount.$pristine && formAccount.bankCode.$error.required">
+                                                                    Debe especificar un banco
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="account" class="col-md-4 control-label">
+                                                                <p class="text-left">Cuenta</p>
+                                                            </label>
+                                                            <div class="col-md-8">
+                                                                <input name="account" type="text" class="form-control" maxlength="16" ng-model="account.account" required>
+                                                                <span class="control-label error-mensaje" ng-show="!formAccount.$pristine && formAccount.account.$error.required">
+                                                                    Debe especificar el numero de identificación
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="accountType" class="col-md-6 control-label">
+                                                                <p class="text-left">Tipo de Cuenta</p>
+                                                            </label>
+                                                            <div class="col-md-6">
+                                                                <select name="accountType" class="form-control" ng-model="account.accountType" required>
+                                                                    <option value="">Seleccione una opción</option>
+                                                                    <option ng-repeat="x in vm.typeAccounts" value="{{x.value}}">{{x.nombre}}</option>
+                                                                </select>
+                                                                <span class="control-label error-mensaje" ng-show="!formAccount.$pristine && formAccount.accountType.$error.required">
+                                                                    Debe especificar un tipo de cuenta
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="telephoneContact" class="col-md-6 control-label">
+                                                                <p class="text-left">Teléfono contacto</p>
+                                                            </label>
+                                                            <div class="col-md-6">
+                                                                <input name="telephoneContact" type="text" maxlength="10" class="form-control" ng-model="account.telephoneContact" required>
+                                                                <span class="control-label error-mensaje" ng-show="!formAccount.$pristine && formAccount.telephoneContact.$error.required">
+                                                                    Debe especificar un Teléfono contacto
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="nameContact" class="col-md-4 control-label">
+                                                                <p class="text-left">Nombre Contacto</p>
+                                                            </label>
+                                                            <div class="col-md-8">
+                                                                <input name="nameContact" type="text" class="form-control" ng-model="account.nameContact" required>
+                                                                <span class="control-label error-mensaje" ng-show="!formAccount.$pristine && formAccount.nameContact.$error.required">
+                                                                    Debe especificar el numero de identificación
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="returnDispersion" class="col-md-6 control-label">
+                                                                <p class="text-left">Devolución Dispersión</p>
+                                                            </label>
+                                                            <div class="col-md-6">
+                                                                <input name="returnDispersion" type="text" class="form-control" ng-model="account.returnDispersion" required>
+                                                                <span class="control-label error-mensaje" ng-show="!formAccount.$pristine && formAccount.returnDispersion.$error.required">
+                                                                    Debe especificar un tipo de cuenta
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="father-center">
+                                                        <button type="button" ng-click="vm.addAccount()" class="btn btn-primary center-block son-center">
+                                                            Agregar
+                                                        </button>
+                                                        <button type="button" ng-click="vm.deleteAccount($index)" class="btn btn-primary center-block son-center">
+                                                            Eliminar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="file" class="col-md-3 control-label">
+                                        <p class="text-left">Cargar Archivo de Municipios</p>
+                                    </label>
+                                    <div class="col-md-9">
+                                        <input name="file" id="file" type="file" class="form-control" ng-model="vm.file">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div cg-busy="vm.myPromise"></div>
+                    <div class="row">
+                        <button type="button" ng-click="vm.save()" ng-disabled="!taxDispersionAccount.$valid" class="btn btn-primary center-block">
+                            Guardar
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </v-pane-content>
+    </v-pane>
+
+</v-accordion>

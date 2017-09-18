@@ -1,0 +1,288 @@
+<v-accordion class="vAccordion--default" multiple>
+
+    <v-pane>
+        <v-pane-header>
+            Paga Tiempo
+        </v-pane-header>
+
+        <v-pane-content>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <form class="form-horizontal" name="generalData" role="form">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-4 control-label">
+                                        <p class="text-left">Tipo de Servicio</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="serviceType" class="form-control" ng-model="vm.serviceType" disabled>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.serviceTypes" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-4 control-label">
+                                        <p class="text-left">Nombre de Referencia Pago</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input name="namePaymentReference" type="text" class="form-control" maxlength="30" ng-model="vm.namePaymentReference" readonly>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-4 control-label">
+                                        <p class="text-left">Servicio</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input name="service" type="text" class="form-control" maxlength="2" ng-model="vm.service">
+                                        <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.service.$error.required">
+                                            Debe especificar un servicio
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-4 control-label">
+                                        <p class="text-left">Subservicio</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input name="subService" type="text" class="form-control" maxlength="8" ng-model="vm.subService">
+                                        <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.subService.$error.required">
+                                            Debe especificar un Subservicio
+                                        </span>
+                                    </div>
+                                </div>
+                            </div-->
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-4 control-label">
+                                        <p class="text-left">Estado del Servicio</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="serviceStatus" class="form-control" ng-model="vm.serviceStatus" disabled>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.servicesStatus" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="numero_identificacion" class="col-md-5 control-label">
+                                        <p class="text-left">Fecha Estado</p>
+                                    </label>
+                                    <div class="col-md-7">
+                                        <input ng-model="vm.dateStatus" name="dateStatus" class="form-control" datetime-picker date-format="yyyy-MM-dd" date-only/ readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-4 control-label">
+                                        <p class="text-left">Tipo Facturación</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="facturationType" class="form-control" ng-model="vm.facturationType" disabled>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.facturationTypes" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-4 control-label">
+                                        <p class="text-left">Periodicidad Recibo</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="frequencyReceipt" class="form-control" ng-model="vm.frequencyReceipt" disabled>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.frequencyReceipts" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-4 control-label">
+                                        <p class="text-left">Ubic. Ref Fija</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="posFixedReference" class="form-control" ng-model="vm.posFixedReference" disabled>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.posFixedReferences" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-6 control-label">
+                                        <p class="text-left">Validación BD</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <label class="radio-inline">
+                                            <input name="BdValidation" type="radio" ng-model="vm.BdValidation" ng-value=true disabled>Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="BdValidation" type="radio" ng-model="vm.BdValidation" ng-value=false disabled>No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-6 control-label">
+                                        <p class="text-left">No. Días Factura BD</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <input name="numberDaysInvoiceBd" type="text" class="form-control" maxlength="3" ng-model="vm.numberDaysInvoiceBd" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-4 control-label">
+                                        <p class="text-left">Ind. Tipo Reintento</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <label class="radio-inline">
+                                            <input name="typeIndicatorRetry" type="radio" ng-model="vm.typeIndicatorRetry" ng-value=true disabled>Diaria
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="typeIndicatorRetry" type="radio" ng-model="vm.typeIndicatorRetry" ng-value=false disabled>No tiene
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-4 control-label">
+                                        <p class="text-left">Max Reintentos</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="maximumRetry" class="form-control" ng-model="vm.maximumRetry" disabled>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.maximumRetries" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-6 control-label">
+                                        <p class="text-left">Ind. Cobro Vencido</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <label class="radio-inline">
+                                            <input name="indRetryType" type="radio" ng-model="vm.indRetryType" ng-value=true disabled>Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="indRetryType" type="radio" ng-model="vm.indRetryType" ng-value=false disabled>No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-6 control-label">
+                                        <p class="text-left">Indicador Cobro Parcial</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <label class="radio-inline">
+                                            <input name="partialCollectionIndicator" type="radio" ng-model="vm.partialCollectionIndicator" ng-value=true disabled>Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="partialCollectionIndicator" type="radio" ng-model="vm.partialCollectionIndicator" ng-value=false disabled>No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-4 control-label">
+                                        <p class="text-left">No. Max Asuntos Cargo</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="maxChargeProducts" class="form-control" ng-model="vm.maxChargeProducts" disabled>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.maxChargesProducts" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-6 control-label">
+                                        <p class="text-left">Indicador Cargo Cuentas</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <label class="radio-inline">
+                                            <input name="accountabilityIndicator" type="radio" ng-model="vm.accountabilityIndicator" ng-value=true disabled>Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="accountabilityIndicator" type="radio" ng-model="vm.accountabilityIndicator" ng-value=false disabled>No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-6 control-label">
+                                        <p class="text-left">Indicador Cargo T Crédito</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <label class="radio-inline">
+                                            <input name="indicatorCargoTCredit" type="radio" ng-model="vm.indicatorCargoTCredit" ng-value=true disabled>Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="indicatorCargoTCredit" type="radio" ng-model="vm.indicatorCargoTCredit" ng-value=false disabled>No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-4 control-label">
+                                        <p class="text-left">No. Cuotas Max Difer.</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="maxChargeProductsDifer" class="form-control" ng-model="vm.maxChargeProductsDifer" disabled>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.maxChargeProductsDifers" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </v-pane-content>
+    </v-pane>
+
+</v-accordion>

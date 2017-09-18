@@ -1,0 +1,467 @@
+<v-accordion class="vAccordion--default" multiple>
+
+    <v-pane>
+        <v-pane-header>
+            Datos Generales
+        </v-pane-header>
+
+        <v-pane-content>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <form class="form-horizontal" name="generalData" role="form" novalidate>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="identificationType" class="col-md-4 control-label">
+                                        <p class="text-left">Tipo de Identificación</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="identificationType" class="form-control" ng-model="vm.identificationType" disabled>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.identificationTypes" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="identificationNumber" class="col-md-4 control-label">
+                                        <p class="text-left">Número de Identificación</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input name="identificationNumber" type="text" class="form-control" ng-model="vm.identificationNumber" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group" ng-show="vm.stateVer">
+                                    <label for="ver" class="col-md-4 control-label">
+                                        <p class="text-left">Digito de verificación</p>    
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input name="ver" type="text" class="form-control" ng-model="vm.ver" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="accountType" class="col-md-4 control-label">
+                                        <p class="text-left">Tipo de Cuenta</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="accountType" class="form-control" ng-model="vm.accountType" disabled>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.accountTypes" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="accountNumber" class="col-md-4 control-label">
+                                        <p class="text-left">Número de Cuenta</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input name="accountNumber" type="text" class="form-control" ng-model="vm.accountNumber" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="typeAgreement" class="col-md-4 control-label">
+                                        <p class="text-left">Tipo de Convenio</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="typeAgreement" class="form-control" ng-model="vm.typeAgreement" disabled>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.typeAgreements" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6" ng-show="vm.isTaxAndAdditional">
+                                <div class="form-group">
+                                    <label for="classAgreement" class="col-md-4 control-label">
+                                        <p class="text-left">Clase de Convenio</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="classAgreement" class="form-control" ng-model="vm.classAgreement" disabled>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.classAgreements" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="manager" class="col-md-4 control-label">
+                                        <p class="text-left">Gestor</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input name="manager" type="text" class="form-control" ng-model="vm.manager" readonly>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="managerEmail" class="col-md-5 control-label">
+                                        <p class="text-left">Email Gestor</p>
+                                    </label>
+                                    <div class="col-md-7">
+                                        <input name="managerEmail" type="email" class="form-control" ng-model="vm.managerEmail" readonly>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="banking" class="col-md-4 control-label">
+                                        <p class="text-left">Banca</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input name="banking" type="text" class="form-control" maxlength="18" ng-model="vm.banking" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="agreementNumber" class="col-md-5 control-label">
+                                        <p class="text-left">Número de Convenio</p>
+                                    </label>
+                                    <div class="col-md-7">
+                                        <input name="agreementNumber" type="text" class="form-control" ng-model="vm.agreementNumber" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="agreementName" class="col-md-4 control-label">
+                                        <p class="text-left">Nombre del Convenio</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <input name="agreementName" type="text" class="form-control" maxlength="30" ng-model="vm.agreementName" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="agreementDescription" class="col-md-3 control-label">
+                                        <p class="text-left">Descripción</p>
+                                    </label>
+                                    <div class="col-md-9">
+                                        <textarea name="agreementDescription" class="form-control" rows="2" ng-model="vm.agreementDescription" readonly></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="expirationDate" class="col-md-5 control-label">
+                                        <p class="text-left">Fecha de Vencimiento</p>
+                                    </label>
+                                    <div class="col-md-7">
+                                        <input name="expirationDate" ng-model="vm.expirationDate" class="form-control" datetime-picker date-format="yyyy-MM-dd" date-only disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-10">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover table-condensed">
+                                        <thead>
+                                            <tr class="warning">
+                                                <th class="text-center">Tipos de pagos</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody ng-repeat="item in vm.paymentMethodsSelected">
+                                            <tr>
+                                                <td class="text-center">{{item.nombre}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="subscriptionFormat" class="col-md-6 control-label">
+                                        <p class="text-left">Forma de Abono del Extracto</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <select name="subscriptionFormat" class="form-control" ng-model="vm.subscriptionFormat" disabled>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.subscriptionFormats" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group" ng-show="vm.statusSubscriptionFormat">
+                                    <label for="waitingAccountNumber" class="col-md-7 control-label">
+                                        <p class="text-left">Número de Cuenta de Espera</p>
+                                    </label>
+                                    <div class="col-md-5">
+                                        <input name="waitingAccountNumber" type="text" class="form-control" ng-model="vm.waitingAccountNumber" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group" ng-show="vm.statusSubscriptionFormat">
+                                    <label for="taxOffice" class="col-md-8 control-label">
+                                        <p class="text-left">Oficina Recaudadora</p>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input name="taxOffice" type="text" class="form-control" ng-model="vm.taxOffice" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" ng-show="vm.isTaxAndAdditional">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="numero_identificacion" class="col-md-4 control-label">
+                                        <p class="text-left">Tipo de Impuesto</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="typeTax" class="form-control" ng-model="vm.typeTax" disabled>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.typeTaxs" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="tax0044" class="col-md-7 control-label">
+                                        <p class="text-left">Impto. Cuenta de Espera OF. 0044</p>
+                                    </label>
+                                    <div class="col-md-5">
+                                        <input name="tax0044" type="text" class="form-control" maxlength="18" ng-model="vm.tax0044" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label for="stateContract" class="col-md-5 control-label">
+                                        <p class="text-left">Estado Contrato</p>
+                                    </label>
+                                    <div class="col-md-7">
+                                        <select name="stateContract" class="form-control" ng-model="vm.stateContract" disabled>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.stateContracts" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3" ng-show="vm.isCollection">
+                                <div class="form-group">
+                                    <label for="inhouse" class="col-md-4 control-label">
+                                        <p class="text-left">Inhouse</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <label class="radio-inline">
+                                            <input name="inhouse" type="radio" ng-model="vm.inhouse" ng-value=true disabled>Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="inhouse" type="radio" ng-model="vm.inhouse" ng-value=false disabled>No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4" ng-show="vm.isCollection">
+                                <div class="form-group">
+                                    <label for="massiveActive" class="col-md-6 control-label">
+                                        <p class="text-left">Activa Masiva</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <label class="radio-inline">
+                                            <input name="massiveActive" type="radio" ng-model="vm.massiveActive" ng-value=true disabled>Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="massiveActive" type="radio" ng-model="vm.massiveActive" ng-value=false disabled>No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" ng-show="vm.isCollection">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="multilote" class="col-md-3 control-label">
+                                        <p class="text-left">Multilote</p>
+                                    </label>
+                                    <div class="col-md-9">
+                                        <label class="radio-inline">
+                                            <input name="multilote" type="radio" ng-model="vm.multilote" ng-value=true disabled>Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="multilote" type="radio" ng-model="vm.multilote" ng-value=false disabled>No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="consecutive" class="col-md-4 control-label">
+                                        <p class="text-left">Consecutivo</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <label class="radio-inline">
+                                            <input name="consecutive" type="radio" ng-model="vm.consecutive" ng-value=true disabled>Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="consecutive" type="radio" ng-model="vm.consecutive" ng-value=false disabled>No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-md-12 control-label">
+                                        <p class="text-left">Rango de Horas Inhabilitadas en Recaudo.</p>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="startTime" class="col-md-5 control-label">
+                                        <p class="text-left">Hora Inicial</p>
+                                    </label>
+                                    <div class="col-md-7">
+                                        <input type="time" name="startTime" class="form-control" ng-model="vm.startTime" max="23:59:59" min="00:00:00" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="finalHour" class="col-md-5 control-label">
+                                        <p class="text-left">Hora Final</p>
+                                    </label>
+                                    <div class="col-md-7">
+                                        <input type="time" name="finalHour" class="form-control" ng-model="vm.finalHour" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="col-md-12 control-label">
+                                        <p class="text-left">Empresa Alterna</p>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="alternateCompany" class="col-md-5 control-label">
+                                        <p class="text-left">Tipo</p>
+                                    </label>
+                                    <div class="col-md-7">
+                                        <input type="text" name="alternateCompany" class="form-control" ng-model="vm.alternateCompany" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="codeAlternateCompany" class="col-md-5 control-label">
+                                        <p class="text-left">Código</p>
+                                    </label>
+                                    <div class="col-md-7">
+                                        <input type="text" name="codeAlternateCompany" class="form-control" ng-model="vm.codeAlternateCompany" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="classAlternateCompany" class="col-md-5 control-label">
+                                        <p class="text-left">Clase</p>
+                                    </label>
+                                    <div class="col-md-7">
+                                        <input type="text" name="classAlternateCompany" class="form-control" ng-model="vm.classAlternateCompany" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="documentTraffic" class="col-md-7 control-label">
+                                        <p class="text-left">Tráfico de Documentos</p>
+                                    </label>
+                                    <div class="col-md-5">
+                                        <label class="radio-inline">
+                                            <input name="documentTraffic" type="radio" ng-model="vm.documentTraffic" ng-value=true disabled>Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="documentTraffic" type="radio" ng-model="vm.documentTraffic" ng-value=false disabled>No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="ucw" class="col-md-7 control-label">
+                                        <p class="text-left">Unificación Convenio Webservices</p>
+                                    </label>
+                                    <div class="col-md-5">
+                                        <label class="radio-inline">
+                                            <input name="ucw" type="radio" ng-model="vm.ucw" ng-value=true disabled>Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="ucw" type="radio" ng-model="vm.ucw" ng-value=false disabled>No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group" ng-show="vm.statusUcw">
+                                    <label for="ucwCode" class="col-md-3 control-label">
+                                        <p class="text-left">Codigo</p>
+                                    </label>
+                                    <div class="col-md-7">
+                                        <input type="text" name="ucwCode" maxlength="7" class="form-control" ng-model="vm.ucwCode" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </v-pane-content>
+    </v-pane>
+
+</v-accordion>

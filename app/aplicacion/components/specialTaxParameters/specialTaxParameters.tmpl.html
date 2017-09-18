@@ -1,0 +1,335 @@
+<v-accordion class="vAccordion--default" multiple>
+
+    <v-pane>
+        <v-pane-header>
+            Parámetros Especiales de Impuestos
+        </v-pane-header>
+
+        <v-pane-content>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <form class="form-horizontal" name="specialTaxParameters" role="form">
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="additionalValue" class="col-md-5 control-label">
+                                        <p class="text-left">Valor Adicional</p>
+                                    </label>
+                                    <div class="col-md-7">
+                                        <select name="additionalValue" class="form-control" ng-model="vm.additionalValue" required>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.additionalValues" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                        <span class="control-label error-mensaje" ng-show="!specialTaxParameters.$pristine && specialTaxParameters.additionalValue.$error.required">
+                                            Debe especificar Valor Adicional
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="autoadhesive" class="col-md-4 control-label">
+                                        <p class="text-left">Autoadhesivo</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="autoadhesive" class="form-control" ng-model="vm.autoadhesive" required>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.autoadhesives" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                        <span class="control-label error-mensaje" ng-show="!specialTaxParameters.$pristine && specialTaxParameters.autoadhesive.$error.required">
+                                            Debe especificar Autoadhesivo
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="formatAutoadhesive" class="col-md-6 control-label">
+                                        <p class="text-left">Tamaño Formato Autoadhesivo</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <select name="formatAutoadhesive" class="form-control" ng-model="vm.formatAutoadhesive" required>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.formatAutoadhesives" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                        <span class="control-label error-mensaje" ng-show="!specialTaxParameters.$pristine && specialTaxParameters.formatAutoadhesive.$error.required">
+                                            Debe especificar Tamaño Formato Autoadhesivo
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="reciprocity" class="col-md-5 control-label">
+                                        <p class="text-left">Reciprocidad</p>
+                                    </label>
+                                    <div class="col-md-7">
+                                        <label class="radio-inline">
+                                            <input name="reciprocity" type="radio" ng-model="vm.reciprocity" ng-value=true required>Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="reciprocity" type="radio" ng-model="vm.reciprocity" ng-value=false required>No
+                                        </label>
+                                        <span class="control-label error-mensaje" ng-show="!specialTaxParameters.$pristine && specialTaxParameters.reciprocity.$error.required">
+                                            Debe especificar Reciprocidad
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label for="contributionType" class="col-md-5 control-label">
+                                        <p class="text-left">Tipo de Derrama</p>
+                                    </label>
+                                    <div class="col-md-7">
+                                        <select name="contributionType" class="form-control" ng-model="vm.contributionType" required>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.contributionTypes" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                        <span class="control-label error-mensaje" ng-show="!specialTaxParameters.$pristine && specialTaxParameters.contributionType.$error.required">
+                                            Debe especificar Tipo de Derrama
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="dispersion" class="col-md-4 control-label">
+                                        <p class="text-left">Dispersión</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <label class="radio-inline">
+                                            <input name="dispersion" type="radio" ng-model="vm.dispersion" ng-value=true required>Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="dispersion" type="radio" ng-model="vm.dispersion" ng-value=false required>No
+                                        </label>
+                                        <span class="control-label error-mensaje" ng-show="!specialTaxParameters.$pristine && specialTaxParameters.dispersion.$error.required">
+                                            Debe especificar dispersion
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div>
+                                    <p class="text-center title-speciel">Dias de Reciprocidad</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="departmentReciprocity" class="col-md-6 control-label">
+                                        <p class="text-left">Departamento</p>
+                                    </label>
+                                    <div class="col-md-5">
+                                        <input name="departmentReciprocity" type="text" class="form-control" maxlength="3" ng-model="vm.departmentReciprocity" required>
+                                        <span class="control-label error-mensaje" ng-show="!specialTaxParameters.$pristine && specialTaxParameters.departmentReciprocity.$error.required">
+                                            Debe especificar dias de Reciprocidad para el Departamento 
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="municipalityReciprocity" class="col-md-6 control-label">
+                                        <p class="text-left">Municipio</p>
+                                    </label>
+                                    <div class="col-md-5">
+                                        <input name="municipalityReciprocity" type="text" class="form-control" maxlength="3" ng-model="vm.municipalityReciprocity" required>
+                                        <span class="control-label error-mensaje" ng-show="!specialTaxParameters.$pristine && specialTaxParameters.municipalityReciprocity.$error.required">
+                                            Debe especificar un Municipio de Reciprocidad
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="reciprocityAssociatedAgreement" class="col-md-7 control-label">
+                                        <p class="text-left">Conv. Asociado</p>
+                                    </label>
+                                    <div class="col-md-5">
+                                        <input name="reciprocityAssociatedAgreement" type="text" class="form-control" maxlength="15" ng-model="vm.reciprocityAssociatedAgreement" required>
+                                        <span class="control-label error-mensaje" ng-show="!specialTaxParameters.$pristine && specialTaxParameters.reciprocityAssociatedAgreement.$error.required">
+                                            Debe especificar un Conv. Asociado Reciprocidad
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div>
+                                    <p class="text-center title-speciel">Tipo de Días</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="departmentTypeDays" class="col-md-4 control-label">
+                                        <p class="text-left">Departamento</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="departmentTypeDays" class="form-control" ng-model="vm.departmentTypeDays" required>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.departmentTypesDays" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                        <span class="control-label error-mensaje" ng-show="!specialTaxParameters.$pristine && specialTaxParameters.departmentTypeDays.$error.required">
+                                            Debe especificar un Departamento 
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="municipalityTypeDay" class="col-md-4 control-label">
+                                        <p class="text-left">Municipio</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="municipalityTypeDay" class="form-control" ng-model="vm.municipalityTypeDay" required>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.municipalityTypesDay" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                        <span class="control-label error-mensaje" ng-show="!specialTaxParameters.$pristine && specialTaxParameters.municipalityTypeDay.$error.required">
+                                            Debe especificar un Municipio de Reciprocidad
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="associatedAgreementsTypeDays" class="col-md-4 control-label">
+                                        <p class="text-left">Conv. Asociado</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="associatedAgreementsTypeDays" class="form-control" ng-model="vm.associatedAgreementsTypeDays" required>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.associatedAgreementsTypesDays" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                        <span class="control-label error-mensaje" ng-show="!specialTaxParameters.$pristine && specialTaxParameters.associatedAgreementsTypeDays.$error.required">
+                                            Debe especificar un Conv. Asociado Reciprocidad
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div>
+                                    <p class="text-center title-speciel">Porcentajes de Dispersión</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="departmentPercentage" class="col-md-6 control-label">
+                                        <p class="text-left">Departamento</p>
+                                    </label>
+                                    <div class="col-md-5">
+                                        <input name="departmentPercentage" type="text" class="form-control" maxlength="3" ng-model="vm.departmentPercentage" required>
+                                        <span class="control-label error-mensaje" ng-show="!specialTaxParameters.$pristine && specialTaxParameters.departmentPercentage.$error.required">
+                                            Debe especificar un porcentaje en Departamento
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="municipalityPercentage" class="col-md-6 control-label">
+                                        <p class="text-left">Municipio</p>
+                                    </label>
+                                    <div class="col-md-5">
+                                        <input name="municipalityPercentage" type="text" class="form-control" maxlength="3" ng-model="vm.municipalityPercentage" required>
+                                        <span class="control-label error-mensaje" ng-show="!specialTaxParameters.$pristine && specialTaxParameters.municipalityPercentage.$error.required">
+                                            Debe especificar un Municipio
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="percentageAssociatedAgreement" class="col-md-7 control-label">
+                                        <p class="text-left">Conv. Asociado</p>
+                                    </label>
+                                    <div class="col-md-5">
+                                        <input name="percentageAssociatedAgreement" type="text" class="form-control" maxlength="15" ng-model="vm.percentageAssociatedAgreement" required>
+                                        <span class="control-label error-mensaje" ng-show="!specialTaxParameters.$pristine && specialTaxParameters.percentageAssociatedAgreement.$error.required">
+                                            Debe especificar un Conv. Asociado
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div>
+                                    <p class="text-center title-speciel">Cuentas de Espera</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="waitingAccountsDepartment" class="col-md-5 control-label">
+                                        <p class="text-left">Departamento</p>
+                                    </label>
+                                    <div class="col-md-7">
+                                        <label class="radio-inline">
+                                            <input name="waitingAccountsDepartment" type="radio" ng-model="vm.waitingAccountsDepartment" ng-value=true required>Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="waitingAccountsDepartment" type="radio" ng-model="vm.waitingAccountsDepartment" ng-value=false required>No
+                                        </label>
+                                        <span class="control-label error-mensaje" ng-show="!specialTaxParameters.$pristine && specialTaxParameters.waitingAccountsDepartment.$error.required">
+                                            Debe especificar Departamento
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="municipalityWaitingAccounts" class="col-md-5 control-label">
+                                        <p class="text-left">Municipio</p>
+                                    </label>
+                                    <div class="col-md-7">
+                                        <label class="radio-inline">
+                                            <input name="municipalityWaitingAccounts" type="radio" ng-model="vm.municipalityWaitingAccounts" ng-value=true required>Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="municipalityWaitingAccounts" type="radio" ng-model="vm.municipalityWaitingAccounts" ng-value=false required>No
+                                        </label>
+                                        <span class="control-label error-mensaje" ng-show="!specialTaxParameters.$pristine && specialTaxParameters.municipalityWaitingAccounts.$error.required">
+                                            Debe especificar Municipio
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <button type="button" ng-click="vm.save()" ng-disabled="!specialTaxParameters.$valid" class="btn btn-primary center-block">Guardar</button>
+                        </div>
+                        <div cg-busy="vm.myPromise"></div>
+                    </form>
+                </div>
+            </div>
+        </v-pane-content>
+    </v-pane>
+
+</v-accordion>

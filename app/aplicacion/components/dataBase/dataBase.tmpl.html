@@ -1,0 +1,283 @@
+<v-accordion class="vAccordion--default" multiple>
+
+    <v-pane>
+        <v-pane-header>
+            Base de Datos
+        </v-pane-header>
+
+        <v-pane-content>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <form class="form-horizontal" name="dataBase" role="form" novalidate>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="databaseType" class="col-md-6 control-label">
+                                        <p class="text-left">Tipo de Base de Datos</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <select name="databaseType" class="form-control" ng-change="vm.changeDatabaseType()" ng-model="vm.databaseType" required>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.databaseTypes" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                        <span class="control-label error-mensaje" ng-show="!dataBase.$pristine && dataBase.databaseType.$error.required">
+                                            Debe selecionar un tipo de base de datos
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="updateCycle" class="col-md-6 control-label">
+                                        <p class="text-left">Tipo Actualización BD</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <select name="updateCycle" class="form-control" ng-model="vm.updateCycle" ng-disabled="vm.disable" required>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.updateCycles" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                        <span class="control-label error-mensaje" ng-show="!dataBase.$pristine && dataBase.updateCycle.$error.required && !vm.success">
+                                            Debe selecionar tipo de actualización
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="referencePosition" class="col-md-5 control-label">
+                                        <p class="text-left">Posición de Referencia</p>
+                                    </label>
+                                    <div class="col-md-7">
+                                        <input name="referencePosition" type="text" class="form-control" ng-model="vm.referencePosition" ng-disabled="vm.disable" required>
+                                        <span class="control-label error-mensaje" ng-show="!dataBase.$pristine && dataBase.referencePosition.$error.required && !vm.success">
+                                            Debe especificar una posicion de referencia
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="valor1" class="col-md-6 control-label none-padding-right">
+                                        <p class="text-left">Valida Valor 1</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <label class="radio-inline">
+                                            <input name="valor1" type="radio" ng-model="vm.valor1" ng-value=true ng-disabled="vm.disable" required>Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="valor1" type="radio" ng-model="vm.valor1" ng-value=false ng-disabled="vm.disable" required>No
+                                        </label>
+                                        <span class="control-label error-mensaje" ng-show="!dataBase.$pristine && dataBase.valor1.$error.required && !vm.success">
+                                            Debe selecionar Valida Valor 1
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="date1" class="col-md-6 control-label none-padding-right">
+                                        <p class="text-left">Valida Fecha 1</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <label class="radio-inline">
+                                            <input name="date1" type="radio" ng-model="vm.date1" ng-value=true ng-disabled="vm.disable" required>Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="date1" type="radio" ng-model="vm.date1" ng-value=false ng-disabled="vm.disable" required>No
+                                        </label>
+                                        <span class="control-label error-mensaje" ng-show="!dataBase.$pristine && dataBase.date1.$error.required && !vm.success">
+                                            Debe selecionar Valida Fecha 1
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="valor2" class="col-md-6 control-label none-padding-right">
+                                        <p class="text-left">Valida Valor 2</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <label class="radio-inline">
+                                            <input name="valor2" type="radio" ng-model="vm.valor2" ng-value=true ng-disabled="vm.disable" required>Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="valor2" type="radio" ng-model="vm.valor2" ng-value=false ng-disabled="vm.disable" required>No
+                                        </label>
+                                        <span class="control-label error-mensaje" ng-show="!dataBase.$pristine && dataBase.valor2.$error.required && !vm.success">
+                                            Debe selecionar Valida Valor 2
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="date2" class="col-md-6 control-label none-padding-right">
+                                        <p class="text-left">Valida Fecha 2</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <label class="radio-inline">
+                                            <input name="date2" type="radio" ng-model="vm.date2" ng-value=true ng-disabled="vm.disable" required>Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="date2" type="radio" ng-model="vm.date2" ng-value=false ng-disabled="vm.disable" required>No
+                                        </label>
+                                        <span class="control-label error-mensaje" ng-show="!dataBase.$pristine && dataBase.date2.$error.required && !vm.success">
+                                            Debe selecionar Valida Fecha 1
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="deliveryPeriod" class="col-md-7 control-label">
+                                        <p class="text-left">Periodo de Entrega</p>
+                                    </label>
+                                    <div class="col-md-5">
+                                        <select name="deliveryPeriod" class="form-control" ng-model="vm.deliveryPeriod" ng-disabled="vm.disable" required>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.deliveryPeriods" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                        <span class="control-label error-mensaje" ng-show="!dataBase.$pristine && dataBase.deliveryPeriod.$error.required && !vm.success">
+                                            Debe selecionar un Periodo de Entrega
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="numberCycles" class="col-md-6 control-label">
+                                        <p class="text-left">Numero de Ciclos</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <input name="numberCycles" type="text" maxlength="5" class="form-control" ng-model="vm.numberCycles" ng-disabled="vm.disable" required>
+                                        <span class="control-label error-mensaje" ng-show="!dataBase.$pristine && dataBase.numberCycles.$error.required && !vm.success">
+                                            Debe especificar un numero de ciclos
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="loadKey" class="col-md-5 control-label">
+                                        <p class="text-left">Llave de Carga</p>
+                                    </label>
+                                    <div class="col-md-7">
+                                        <select name="loadKey" class="form-control" ng-model="vm.loadKey" ng-disabled="vm.disable" required>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.loadKeys" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                        <span class="control-label error-mensaje" ng-show="!dataBase.$pristine && dataBase.loadKey.$error.required && !vm.success">
+                                            Debe selecionar una llave de carga
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="dueDate" class="col-md-6 control-label">
+                                        <p class="text-left">Días de Borrado Fecha de Vencimiento</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <input name="dueDate" type="text" maxlength="3" class="form-control" ng-model="vm.dueDate" ng-disabled="vm.disable" required>
+                                        <span class="control-label error-mensaje" ng-show="!dataBase.$pristine && dataBase.dueDate.$error.required && !vm.success">
+                                            Debe especificar los dias de borrado
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="dateDet1" class="col-md-5 control-label">
+                                        <p class="text-left">Valida Fecha Det 1</p>
+                                    </label>
+                                    <div class="col-md-7">
+                                        <label class="radio-inline">
+                                            <input name="dateDet1" type="radio" ng-model="vm.dateDet1" ng-value=true ng-disabled="vm.disable" required>Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="dateDet1" type="radio" ng-model="vm.dateDet1" ng-value=false ng-disabled="vm.disable" required>No
+                                        </label>
+                                        <span class="control-label error-mensaje" ng-show="!dataBase.$pristine && dataBase.dateDet1.$error.required && !vm.success">
+                                            Debe selecionar Valida Fecha Det 1
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="dateEncab" class="col-md-7 control-label">
+                                        <p class="text-left">Valida Fecha Encab</p>
+                                    </label>
+                                    <div class="col-md-5">
+                                        <label class="radio-inline">
+                                            <input name="dateEncab" type="radio" ng-model="vm.dateEncab" ng-value=true ng-disabled="vm.disable" required>Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="dateEncab" type="radio" ng-model="vm.dateEncab" ng-value=false ng-disabled="vm.disable" required>No
+                                        </label>
+                                        <span class="control-label error-mensaje" ng-show="!dataBase.$pristine && dataBase.dateEncab.$error.required && !vm.success">
+                                            Debe selecionar Valida Fecha Encab 
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label for="morePayment" class="col-md-6 control-label">
+                                        <p class="text-left">Recibe más de un pago</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <label class="radio-inline">
+                                            <input name="morePayment" type="radio" ng-model="vm.morePayment" ng-value=true ng-disabled="vm.disable" required>Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="morePayment" type="radio" ng-model="vm.morePayment" ng-value=false ng-disabled="vm.disable" required>No
+                                        </label>
+                                        <span class="control-label error-mensaje" ng-show="!dataBase.$pristine && dataBase.morePayment.$error.required && !vm.success">
+                                            Debe selecionar si recibe mas de un pago
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3" ng-show="vm.statusNetworkCode">
+                                <div class="form-group">
+                                    <label for="networkCode" class="col-md-7 control-label">
+                                        <p class="text-left">Código de Red</p>
+                                    </label>
+                                    <div class="col-md-5">
+                                        <input name="networkCode" type="text" class="form-control" ng-model="vm.networkCode" ng-disabled="vm.disable" ng-required="vm.statusNetworkCode">
+                                        <span class="control-label error-mensaje" ng-show="!dataBase.$pristine && dataBase.networkCode.$error.required && !vm.success">
+                                            Debe especificar el codigo de Red
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <button type="button" ng-click="vm.save()" ng-disabled="vm.checkSave(dataBase)" class="btn btn-primary center-block">
+                                Guardar
+                            </button>
+                        </div>
+
+                    </form>
+                    <div cg-busy="vm.myPromise"></div>
+                </div>
+            </div>
+        </v-pane-content>
+    </v-pane>
+
+</v-accordion>

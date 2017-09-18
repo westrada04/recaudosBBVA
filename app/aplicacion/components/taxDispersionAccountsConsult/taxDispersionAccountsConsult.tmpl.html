@@ -1,0 +1,162 @@
+<v-accordion class="vAccordion--default" multiple>
+
+    <v-pane>
+        <v-pane-header>
+            Cuentas dispersión de impuestos
+        </v-pane-header>
+
+        <v-pane-content>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <form class="form-horizontal" name="generalData" role="form">
+                        <div class="row">
+                            <div class="col-md-offset-1 col-md-10">
+                                <div ng-repeat="account in vm.collectionAccounts">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            <p class="text-left">Cuenta de Dispersión {{$index + 1 }}</p>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="tipo_identificacion" class="col-md-4 control-label">
+                                                            <p class="text-left">Código</p>
+                                                        </label>
+                                                        <div class="col-md-8">
+                                                            <input name="code{{$index}}" type="text" class="form-control" maxlength="7" ng-model="account.collectType" disabled>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="tipo_identificacion" class="col-md-3 control-label">
+                                                            <p class="text-left">Tipo</p>
+                                                        </label>
+                                                        <div class="col-md-9">
+                                                            <select name="type{{$index}}" class="form-control" ng-model="account.type" disabled>
+                                                                <option value="">Seleccione una opción</option>
+                                                                <option ng-repeat="x in vm.types" value="{{x.value}}">{{x.nombre}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="tipo_identificacion" class="col-md-6 control-label">
+                                                            <p class="text-left">Tipo de Identificación</p>
+                                                        </label>
+                                                        <div class="col-md-6">
+                                                            <select name="idType{{$index}}" class="form-control" ng-model="account.idType" disabled>
+                                                                <option value="">Seleccione una opción</option>
+                                                                <option ng-repeat="x in vm.idTypes" value="{{x.value}}">{{x.nombre}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="tipo_identificacion" class="col-md-4 control-label">
+                                                            <p class="text-left">Número Identificación</p>
+                                                        </label>
+                                                        <div class="col-md-8">
+                                                            <input name="identificationNumber{{$index}}" type="text" class="form-control" maxlength="15" ng-model="account.identificationNumber" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="tipo_identificacion" class="col-md-6 control-label">
+                                                            <p class="text-left">Digito de Verificación</p>
+                                                        </label>
+                                                        <div class="col-md-6">
+                                                            <input name="identificationDigit{{$index}}" type="text" class="form-control" maxlength="15" ng-model="account.identificationDigit" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="tipo_identificacion" class="col-md-6 control-label">
+                                                            <p class="text-left">Código Banco</p>
+                                                        </label>
+                                                        <div class="col-md-6">
+                                                            <input name="bankCode{{$index}}" type="text" class="form-control" maxlength="4" ng-model="account.bankCode" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="tipo_identificacion" class="col-md-4 control-label">
+                                                            <p class="text-left">Cuenta</p>
+                                                        </label>
+                                                        <div class="col-md-8">
+                                                            <input name="account{{$index}}" type="text" class="form-control" maxlength="16" ng-model="account.account" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="tipo_identificacion" class="col-md-6 control-label">
+                                                            <p class="text-left">Tipo de Cuenta</p>
+                                                        </label>
+                                                        <div class="col-md-6">
+                                                            <select name="accountType{{$index}}" class="form-control" ng-model="account.accountType" disabled>
+                                                                <option value="">Seleccione una opción</option>
+                                                                <option ng-repeat="x in vm.typeAccounts" value="{{x.value}}">{{x.nombre}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="tipo_identificacion" class="col-md-6 control-label">
+                                                            <p class="text-left">Teléfono contacto</p>
+                                                        </label>
+                                                        <div class="col-md-6">
+                                                            <input name="telephoneContact{{$index}}" type="text" maxlength="10" class="form-control" ng-model="account.telephoneContact" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="tipo_identificacion" class="col-md-4 control-label">
+                                                            <p class="text-left">Nombre Contacto</p>
+                                                        </label>
+                                                        <div class="col-md-8">
+                                                            <input name="nameContact{{$index}}" type="text" class="form-control" ng-model="account.nameContact" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="tipo_identificacion" class="col-md-6 control-label">
+                                                            <p class="text-left">Devolución Dispersión</p>
+                                                        </label>
+                                                        <div class="col-md-6">
+                                                            <input name="returnDispersion{{$index}}" type="text" class="form-control" ng-model="account.returnDispersion" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </v-pane-content>
+    </v-pane>
+
+</v-accordion>

@@ -1,0 +1,92 @@
+<v-accordion class="vAccordion--default" multiple>
+
+    <v-pane>
+        <v-pane-header>
+            Parámetros Subproductos Rec. de Impuestos
+        </v-pane-header>
+
+        <v-pane-content>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <form class="form-horizontal" name="recaudoProductsTax" role="form">
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="typeCollection" class="col-md-6 control-label">
+                                        <p class="text-left">Tipo de Recaudo</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <input name="typeCollection" type="text" class="form-control" maxlength="7" ng-model="vm.typeCollection" required>
+                                        <span class="control-label error-mensaje" ng-show="!recaudoProductsTax.$pristine && recaudoProductsTax.typeCollection.$error.required">
+                                            Debe selecionar un tipo de recaudo
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="class" class="col-md-3 control-label">
+                                        <p class="text-left">Clase</p>
+                                    </label>
+                                    <div class="col-md-9">
+                                        <select name="class" class="form-control" ng-model="vm.class" required>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.classes" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                        <span class="control-label error-mensaje" ng-show="!recaudoProductsTax.$pristine && recaudoProductsTax.class.$error.required">
+                                            Debe especificar una clase
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="product" class="col-md-3 control-label">
+                                        <p class="text-left">Producto</p>
+                                    </label>
+                                    <div class="col-md-9">
+                                        <select name="product" ng-change="vm.changeProduct()" class="form-control" ng-model="vm.product" required>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.products" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                        <span class="control-label error-mensaje" ng-show="!recaudoProductsTax.$pristine && recaudoProductsTax.product.$error.required">
+                                            Debe especificar un producto
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" ng-show="vm.statusSubproduct">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="subproduct" class="col-md-3 control-label">
+                                        <p class="text-left">{{vm.nameSubproduct}}</p>
+                                    </label>
+                                    <div class="col-md-9">
+                                        <select name="subproduct" class="form-control" ng-model="vm.subproduct" ng-required="vm.statusSubproduct">
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.subproducts" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                        <span class="control-label error-mensaje" ng-show="!recaudoProductsTax.$pristine && recaudoProductsTax.subproduct.$error.required">
+                                            Debe especificar un subproducto
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <button type="button" ng-click="vm.save()" ng-disabled="!recaudoProductsTax.$valid" class="btn btn-primary center-block">
+                                Guardar
+                            </button>
+                        </div>
+                        <div cg-busy="vm.myPromise"></div>
+                    </form>
+                </div>
+            </div>
+        </v-pane-content>
+    </v-pane>
+
+</v-accordion>

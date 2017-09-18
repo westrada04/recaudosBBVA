@@ -1,0 +1,65 @@
+<v-accordion class="vAccordion--default" multiple>
+
+    <v-pane>
+        <v-pane-header>
+            Terminal Financiero
+        </v-pane-header>
+
+        <v-pane-content>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <form class="form-horizontal" name="generalData" role="form">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-6 control-label">
+                                        <p class="text-left">Cobertura del Servicio</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <select name="type" ng-change="vm.changeType()" class="form-control" ng-model="vm.type" disabled>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.types" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="numero_identificacion" class="col-md-4 control-label">
+                                        <p class="text-left">Todas las Oficinas</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input name="allOffices" type="checkbox" ng-model="vm.allOffices" ng-value=true disabled>
+                                                Si
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-show="vm.statusOffice">
+                            <div ng-repeat="code in vm.offices">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="numero_identificacion" class="col-md-6 control-label">
+                                                <p class="text-left">Oficina</p>
+                                            </label>
+                                            <div class="col-md-6">
+                                                <input name="officeCode" type="text" maxlength="4" ng-model="code.officeCode" class="form-control" disabled/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </v-pane-content>
+    </v-pane>
+
+</v-accordion>

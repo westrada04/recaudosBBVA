@@ -1,0 +1,341 @@
+<v-accordion class="vAccordion--default" multiple>
+
+    <v-pane>
+        <v-pane-header>
+            Corresponsal Bancario
+        </v-pane-header>
+
+        <v-pane-content>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <form class="form-horizontal" name="bankCorrespondent" role="form">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="type" class="col-md-4 control-label">
+                                        <p class="text-left">Tipo de Corresponsal</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="type" class="form-control" ng-change="vm.changeType()" ng-model="vm.type" required>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.types" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                        <span class="control-label error-mensaje" ng-show="!bankCorrespondent.$pristine && bankCorrespondent.type.$error.required">
+                                            Debe selecionar un tipo de campo
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-show="vm.statusWC">
+
+                            <div class="row">
+                                <p class="text-center title-type">{{ vm.titleType }} </p>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="agreementNumber" class="col-md-6 control-label">
+                                            <p class="text-left">Código de Convenio</p>
+                                        </label>
+                                        <div class="col-md-6">
+                                            <input name="agreementNumber" type="text" class="form-control" ng-model="vm.agreementNumber" ng-required="vm.statusWC">
+                                            <span class="control-label error-mensaje" ng-show="!bankCorrespondent.$pristine && bankCorrespondent.agreementNumber.$error.required">
+                                                Debe especificar un codigo de convenio 
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="eanCode" class="col-md-6 control-label">
+                                            <p class="text-left">Código EAN</p>
+                                        </label>
+                                        <div class="col-md-6">
+                                            <input name="eanCode" type="text" class="form-control" ng-model="vm.eanCode" ng-required="vm.statusWC">
+                                            <span class="control-label error-mensaje" ng-show="!bankCorrespondent.$pristine && bankCorrespondent.eanCode.$error.required">
+                                                Debe especificar un codigo ean
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="contractStatus" class="col-md-4 control-label">
+                                            <p class="text-left">Estado Contrato</p>
+                                        </label>
+                                        <div class="col-md-8">
+                                            <select name="contractStatus" class="form-control" ng-model="vm.contractStatus" ng-required="vm.statusWC">
+                                                <option value="">Seleccione una opción</option>
+                                                <option ng-repeat="x in vm.contractsStatus" value="{{x.value}}">{{x.nombre}}</option>
+                                            </select>
+                                            <span class="control-label error-mensaje" ng-show="!bankCorrespondent.$pristine && bankCorrespondent.contractStatus.$error.required">
+                                                Debe selecionar un estado de contrato
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="tipo_identificacion" class="col-md-6 control-label">
+                                            <p class="text-left">Nombre Largo</p>
+                                        </label>
+                                        <div class="col-md-6">
+                                            <input name="longName" type="text" class="form-control" ng-model="vm.longName" ng-required="vm.statusWC">
+                                            <span class="control-label error-mensaje" ng-show="!bankCorrespondent.$pristine && bankCorrespondent.longName.$error.required">
+                                                Debe especificar un nombre largo
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="shortName" class="col-md-6 control-label">
+                                            <p class="text-left">Nombre Corto</p>
+                                        </label>
+                                        <div class="col-md-6">
+                                            <input name="shortName" type="text" class="form-control" ng-model="vm.shortName" ng-required="vm.statusWC">
+                                            <span class="control-label error-mensaje" ng-show="!bankCorrespondent.$pristine && bankCorrespondent.shortName.$error.required">
+                                                Debe especificar un nombre corto
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="requestDate" class="col-md-6 control-label">
+                                            <p class="text-left">Fecha de Solicitud</p>
+                                        </label>
+                                        <div class="col-md-6">
+                                            <input name="requestDate" ng-model="vm.requestDate" class="form-control" datetime-picker date-format="yyyy-MM-dd" date-only ng-required="vm.statusWC" />
+                                            <span class="control-label error-mensaje" ng-show="!bankCorrespondent.$pristine && bankCorrespondent.requestDate.$error.required">
+                                                Debe especificar una fecha de solicitud
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="registrationDate" class="col-md-6 control-label">
+                                            <p class="text-left">Fecha de Alta</p>
+                                        </label>
+                                        <div class="col-md-6">
+                                            <input name="registrationDate" ng-model="vm.registrationDate" class="form-control" datetime-picker date-format="yyyy-MM-dd" date-only ng-required="vm.statusWC" />
+                                            <span class="control-label error-mensaje" ng-show="!bankCorrespondent.$pristine && bankCorrespondent.registrationDate.$error.required">
+                                                Debe especificar una fecha de alta
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="effectiveDate" class="col-md-6 control-label">
+                                            <p class="text-left">Fecha Vigencia</p>
+                                        </label>
+                                        <div class="col-md-6">
+                                            <input name="effectiveDate" ng-model="vm.effectiveDate" class="form-control" datetime-picker date-format="yyyy-MM-dd" date-only ng-required="vm.statusWC" />
+                                            <span class="control-label error-mensaje" ng-show="!bankCorrespondent.$pristine && bankCorrespondent.effectiveDate.$error.required">
+                                                Debe especificar una fecha de alta
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="multifacture" class="col-md-6 control-label">
+                                            <p class="text-left">Multifactura</p>
+                                        </label>
+                                        <div class="col-md-6">
+                                            <label class="radio-inline">
+                                                <input name="multifacture" type="radio" ng-model="vm.multifacture" ng-value=true ng-required="vm.statusWC">Si
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input name="multifacture" type="radio" ng-model="vm.multifacture" ng-value=false ng-required="vm.statusWC">No
+                                            </label>
+                                            <span class="control-label error-mensaje" ng-show="!bankCorrespondent.$pristine && bankCorrespondent.multifacture.$error.required">
+                                                Debe especificar Multifactura
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="agreementType" class="col-md-4 control-label">
+                                            <p class="text-left">Tipo de convenio</p>
+                                        </label>
+                                        <div class="col-md-8">
+                                            <select name="agreementType" class="form-control" ng-model="vm.agreementType" ng-required="vm.statusWC">
+                                                <option value="">Seleccione una opción</option>
+                                                <option ng-repeat="x in vm.agreementTypes" value="{{x.value}}">{{x.nombre}}</option>
+                                            </select>
+                                            <span class="control-label error-mensaje" ng-show="!bankCorrespondent.$pristine && bankCorrespondent.agreementType.$error.required">
+                                                Debe selecionar un tipo de convenio
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="validateDatabase" class="col-md-6 control-label">
+                                            <p class="text-left">Valida Base de Datos</p>
+                                        </label>
+                                        <div class="col-md-6">
+                                            <label class="radio-inline">
+                                                <input name="validateDatabase" type="radio" ng-model="vm.validateDatabase" ng-value=true ng-required="vm.statusWC">Si
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input name="validateDatabase" type="radio" ng-model="vm.validateDatabase" ng-value=false ng-required="vm.statusWC">No
+                                            </label>
+                                            <span class="control-label error-mensaje" ng-show="!bankCorrespondent.$pristine && bankCorrespondent.validateDatabase.$error.required">
+                                                Debe especificar si valida base de datos
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="collectConcept" class="col-md-6 control-label">
+                                            <p class="text-left">Concepto que se recauda</p>
+                                        </label>
+                                        <div class="col-md-6">
+                                            <input type="text" name="collectConcept" ng-model="vm.collectConcept" class="form-control" ng-required="vm.statusWC" />
+                                            <span class="control-label error-mensaje" ng-show="!bankCorrespondent.$pristine && bankCorrespondent.collectConcept.$error.required">
+                                                Debe especificar el concepto que se recauda
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="partialPayment" class="col-md-6 control-label">
+                                            <p class="text-left">Pago Parcial</p>
+                                        </label>
+                                        <div class="col-md-6">
+                                            <label class="radio-inline">
+                                                <input name="partialPayment" type="radio" ng-model="vm.partialPayment" ng-value=true ng-required="vm.statusWC">Si
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input name="partialPayment" type="radio" ng-model="vm.partialPayment" ng-value=false ng-required="vm.statusWC">No
+                                            </label>
+                                            <span class="control-label error-mensaje" ng-show="!bankCorrespondent.$pristine && bankCorrespondent.partialPayment.$error.required">
+                                                Debe especificar pago parcial
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="collectionCode" class="col-md-6 control-label">
+                                            <p class="text-left">Código de Recaudo</p>
+                                        </label>
+                                        <div class="col-md-6">
+                                            <input type="text" name="collectionCode" ng-model="vm.collectionCode" class="form-control" ng-required="vm.statusWC" />
+                                            <span class="control-label error-mensaje" ng-show="!bankCorrespondent.$pristine && bankCorrespondent.collectionCode.$error.required">
+                                                Debe especificar el codigo de recaudo
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="paymentMethod" class="col-md-4 control-label">
+                                            <p class="text-left">Forma de Pago</p>
+                                        </label>
+                                        <div class="col-md-8">
+                                            <select name="paymentMethod" class="form-control" ng-model="vm.paymentMethod" ng-required="vm.statusWC">
+                                                <option value="">Seleccione una opción</option>
+                                                <option ng-repeat="x in vm.paymentMethods" value="{{x.value}}">{{x.nombre}}</option>
+                                            </select>
+                                            <span class="control-label error-mensaje" ng-show="!bankCorrespondent.$pristine && bankCorrespondent.paymentMethod.$error.required">
+                                                Debe selecionar una forma de pago
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="referenceCode" class="col-md-6 control-label">
+                                            <p class="text-left">Código de Referencia</p>
+                                        </label>
+                                        <div class="col-md-6">
+                                            <input type="text" name="referenceCode" ng-model="vm.referenceCode" class="form-control" ng-required="vm.statusWC" />
+                                            <span class="control-label error-mensaje" ng-show="!bankCorrespondent.$pristine && bankCorrespondent.referenceCode.$error.required">
+                                                Debe especificar el codigo de referencia
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="codeIdCorrespondent" class="col-md-6 control-label">
+                                            <p class="text-left">Código ID Corresponsal</p>
+                                        </label>
+                                        <div class="col-md-6">
+                                            <input type="text" name="codeIdCorrespondent" maxlength="2" ng-model="vm.codeIdCorrespondent" class="form-control" ng-required="vm.statusWC" />
+                                            <span class="control-label error-mensaje" ng-show="!bankCorrespondent.$pristine && bankCorrespondent.codeIdCorrespondent.$error.required">
+                                                Debe especificar el codigo id corresponsal
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="LimitAgreement" class="col-md-6 control-label">
+                                            <p class="text-left">Limite por TX Convenio</p>
+                                        </label>
+                                        <div class="col-md-6">
+                                            <input type="text" name="LimitAgreement" maxlength="2" ng-model="vm.LimitAgreement" class="form-control" ng-required="vm.statusWC" />
+                                            <span class="control-label error-mensaje" ng-show="!bankCorrespondent.$pristine && bankCorrespondent.LimitAgreement.$error.required">
+                                                Debe especificar el limite tx convenio
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="webserviceCode" class="col-md-5 control-label">
+                                            <p class="text-left">Código Webservice</p>
+                                        </label>
+                                        <div class="col-md-7">
+                                            <input type="text" name="webserviceCode" maxlength="2" ng-model="vm.webserviceCode" class="form-control" ng-required="vm.statusWC" />
+                                            <span class="control-label error-mensaje" ng-show="!bankCorrespondent.$pristine && bankCorrespondent.webserviceCode.$error.required">
+                                                Debe especificar código webservice
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <button type="button" ng-click="vm.save()" ng-disabled="!bankCorrespondent.$valid" class="btn btn-primary center-block">
+                                Guardar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </v-pane-content>
+    </v-pane>
+
+</v-accordion>

@@ -1,0 +1,271 @@
+<v-accordion class="vAccordion--default" multiple>
+
+    <v-pane>
+        <v-pane-header>
+            Archivo de Salida
+        </v-pane-header>
+
+        <v-pane-content>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <form class="form-horizontal" name="outputFile" role="form" novalidate>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="fileGeneration" class="col-md-7 control-label none-padding-right">
+                                        <p class="text-left">Generación de Archivo</p>
+                                    </label>
+                                    <div class="col-md-5">
+                                        <label class="radio-inline">
+                                            <input name="fileGeneration" type="radio" ng-model="vm.fileGeneration" ng-value=true disabled>Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="fileGeneration" type="radio" ng-model="vm.fileGeneration" ng-value=false disabled>No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="outputFileType" class="col-md-4 control-label">
+                                        <p class="text-left">Tipo Archivo Salida </p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="outputFileType" class="form-control" ng-model="vm.outputFileType" ng-disabled="vm.disable" required>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.outputFileTypes" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="formatType" class="col-md-6 control-label">
+                                        <p class="text-left">Tipo de Formato</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <select name="formatType" class="form-control" ng-model="vm.formatType" ng-disabled="vm.disable" required>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.formatTypes" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="periodicityReport" class="col-md-7 control-label">
+                                        <p class="text-left">Periodicidad Informe</p>
+                                    </label>
+                                    <div class="col-md-5">
+                                        <select name="periodicityReport" class="form-control" ng-model="vm.periodicityReport" ng-disabled="vm.disable" required>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.periodicityReports" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="periodicityFile" class="col-md-7 control-label">
+                                        <p class="text-left">Periodicidad Archivo</p>
+                                    </label>
+                                    <div class="col-md-5">
+                                        <select name="periodicityFile" class="form-control" ng-model="vm.periodicityFile" ng-disabled="vm.disable" required>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.periodicityFiles" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="destination" class="col-md-4 control-label">
+                                        <p class="text-left">Destino</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="destination" class="form-control" ng-model="vm.destination" ng-disabled="vm.disable" required>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.destinations" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4" ng-show="vm.isCollection">
+                                <div class="form-group">
+                                    <label for="partialTransfer" class="col-md-4 control-label">
+                                        <p class="text-left">Transferencia Parcial</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="partialTransfer" class="form-control" ng-model="vm.partialTransfer" ng-disabled="vm.disable" ng-required="vm.isCollection">
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.partialTransfers" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="inputPositionBd" class="col-md-7 control-label">
+                                        <p class="text-left">Posición Entrada BD</p>
+                                    </label>
+                                    <div class="col-md-5">
+                                        <label class="radio-inline">
+                                            <input name="inputPositionBd" type="radio" ng-model="vm.inputPositionBd" ng-value=true ng-disabled="vm.disable" required>Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="inputPositionBd" type="radio" ng-model="vm.inputPositionBd" ng-value=false ng-disabled="vm.disable" required>No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4" ng-show="vm.statusInputPositionBd">
+                                <div class="form-group">
+                                    <label for="longitud" class="col-md-4 control-label">
+                                        <p class="text-left">Longitud</p>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <input name="longitudeInit" type="text" maxlength="2" class="form-control" ng-model="vm.longitudeInit" ng-disabled="vm.disable" ng-required="vm.statusInputPositionBd">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input name="longitudeEnd" type="text" maxlength="2" class="form-control" ng-model="vm.longitudeEnd" ng-disabled="vm.disable" ng-required="vm.statusInputPositionBd">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="specialAgreement" class="col-md-7 control-label">
+                                        <p class="text-left">Convenio Especial</p>
+                                    </label>
+                                    <div class="col-md-5">
+                                        <label class="radio-inline">
+                                            <input name="specialAgreement" type="radio" ng-model="vm.specialAgreement" ng-value=true ng-disabled="vm.disable" required>Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="specialAgreement" type="radio" ng-model="vm.specialAgreement" ng-value=false ng-disabled="vm.disable" required>No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-show="vm.statusSpecialAgreement">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="channelReport" class="col-md-6 control-label">
+                                            <p class="text-left">Informe por Canal</p>
+                                        </label>
+                                        <div class="col-md-6">
+                                            <input name="channelReport" type="text" class="form-control" ng-model="vm.channelReport" ng-disabled="vm.disable" ng-required="vm.statusSpecialAgreement">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="minPeriodicity" class="col-md-6 control-label">
+                                            <p class="text-left">Periodicidad Mín</p>
+                                        </label>
+                                        <div class="col-md-6">
+                                            <input name="minPeriodicity" type="text" maxlength="3" class="form-control" ng-model="vm.minPeriodicity" ng-disabled="vm.disable" ng-required="vm.statusSpecialAgreement">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="autoSendFile" class="col-md-6 control-label">
+                                        <p class="text-left">Envío archivo automático</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <label class="radio-inline">
+                                            <input name="autoSendFile" type="radio" ng-model="vm.autoSendFile" ng-value=true ng-disabled="vm.disable" required>Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="autoSendFile" type="radio" ng-model="vm.autoSendFile" ng-value=false ng-disabled="vm.disable" required>No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-show="vm.statusAutoSendFile">
+                            <div ng-repeat="x in vm.automaticFiles">
+                                <ng-form name="formAutomaticFile">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="email" class="col-md-4 control-label">
+                                                            <p class="text-left">Email</p>
+                                                        </label>
+                                                        <div class="col-md-8">
+                                                            <input name="email" type="email" class="form-control" ng-model="x.email" ng-disabled="vm.disable" ng-required="vm.statusAutoSendFile">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="secureEmail" class="col-md-6 control-label">
+                                                            <p class="text-left">Email Seguro</p>
+                                                        </label>
+                                                        <div class="col-md-6">
+                                                            <label class="radio-inline">
+                                                                <input name="secureEmail" type="radio" ng-model="x.secureEmail" ng-value=true ng-disabled="vm.disable" ng-required="vm.statusAutoSendFile">Si
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input name="secureEmail" type="radio" ng-model="x.secureEmail" ng-value=false ng-disabled="vm.disable" ng-required="vm.statusAutoSendFile">No
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="compressedType" class="col-md-6 control-label">
+                                                            <p class="text-left">Tipo Comprimido</p>
+                                                        </label>
+                                                        <div class="col-md-6">
+                                                            <label class="radio-inline">
+                                                                <input name="compressedType" type="radio" ng-model="x.compressedType" ng-value=true ng-disabled="vm.disable" ng-required="vm.statusAutoSendFile">Si
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input name="compressedType" type="radio" ng-model="x.compressedType" ng-value=false ng-disabled="vm.disable" ng-required="vm.statusAutoSendFile">No
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div-->
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="emailNotification" class="col-md-5 control-label">
+                                                            <p class="text-left">Notificacion Emails</p>
+                                                        </label>
+                                                        <div class="col-md-7">
+                                                            <input name="emailNotification" type="text" class="form-control" ng-model="x.emailNotification" ng-disabled="vm.disable" ng-required="vm.statusAutoSendFile">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-form>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </v-pane-content>
+    </v-pane>
+
+</v-accordion>

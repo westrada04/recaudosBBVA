@@ -1,0 +1,40 @@
+<v-accordion class="vAccordion--default" multiple>
+
+    <v-pane>
+        <v-pane-header>
+            Anexo de Documentos
+        </v-pane-header>
+
+        <v-pane-content>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <form class="form-horizontal" name="generalData" role="form">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-2 control-label">
+                                        <p class="text-left">Anexo</p>
+                                    </label>
+                                    <div class="col-md-10">
+                                        <input name="annexed" type="file" class="form-control" maxlength="15" ng-model="vm.annexed">
+                                        <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.annexed.$error.required">
+                                            Debe especificar un anexo
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-primary center-block">Cargar Anexo</button>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <button type="button" ng-click="vm.save()" class="btn btn-primary center-block">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </v-pane-content>
+    </v-pane>
+
+</v-accordion>
