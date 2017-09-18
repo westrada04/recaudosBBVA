@@ -5,15 +5,15 @@
         .module('app.aplicacion.consultRequestPending')
         .controller('ConsultRequestPendingController', ConsultRequestPendingController);
 
-    function ConsultRequestPendingController(pendingRequests) {
+    function ConsultRequestPendingController(pendingRequests, $timeout ,$state) {
         var vm = this;
-        
+
         if (pendingRequests.data == undefined) {
             pendingRequests.data = [];
         }
 
         vm.authorize = authorize;
-        
+
         vm.pendingRequests = pendingRequests.data;
         vm.itemsByPage = 5;
         vm.numberPages = 0;
@@ -26,9 +26,13 @@
                 vm.numberPages = Math.trunc(numberPages) + 1;
             }
         }
-        
-        function authorize(idAgreement){
-            console.log('idAgreement', idAgreement);
+
+        function authorize(idAgreement) {
+            $timeout(function () {
+                $state.go('templateAuth.authorizeAgreement', {
+                    idAgreement: idAgreement
+                });
+            });
         }
     }
 })();

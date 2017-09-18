@@ -20,6 +20,7 @@
             'app.aplicacion.consultRequestApproved',
             'app.aplicacion.consultRequestRejected',
             'app.aplicacion.consultRequestPending',
+            'app.aplicacion.authorizeAgreement',
             'app.aplicacion.generateReports',
             'app.aplicacion.queryReports',
             'app.aplicacion.components'
