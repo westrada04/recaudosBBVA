@@ -24,9 +24,8 @@
             var idAgreement = EditAgreementService.getIdAgreement();
 
             var promises = requests.map(function (request) {
-                console.log('request.referenceId', request.referenceId);
                 if (request.referenceId == '99000') {
-                    return $http.post(API_BACKEND.url + "/agreements/V01/" + idAgreement + '/references/' + request.referenceId, request, UserService.getTsec())
+                    return $http.post(API_BACKEND.url + "/agreements/V01/" + idAgreement + '/references', request, UserService.getTsec())
                 } else {
                     return $http.put(API_BACKEND.url + "/agreements/V01/" + idAgreement + '/references/' + request.referenceId, request, UserService.getTsec())
                 }
