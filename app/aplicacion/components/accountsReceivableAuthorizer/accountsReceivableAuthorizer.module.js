@@ -2,6 +2,6 @@
     'use strict';
 
     angular
-        .module('app.aplicacion.components.accountsReceivableEdit', [
+        .module('app.aplicacion.components.accountsReceivableAuthorizer', [
         ]);
 })();

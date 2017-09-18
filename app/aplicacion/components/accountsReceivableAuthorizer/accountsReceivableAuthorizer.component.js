@@ -2,10 +2,10 @@
     'use strict';
 
     angular
-        .module('app.aplicacion.components.accountsReceivableEdit')
-        .component("accountsReceivableEdit", {
-            templateUrl: "app/aplicacion/components/accountsReceivableEdit/accountsReceivableEdit.tmpl.html",
-            controller: 'AccountsReceivableEditController',
+        .module('app.aplicacion.components.accountsReceivableAuthorizer')
+        .component("accountsReceivableAuthorizer", {
+            templateUrl: "app/aplicacion/components/accountsReceivableAuthorizer/accountsReceivableAuthorizer.tmpl.html",
+            controller: 'AccountsReceivableAuthorizerController',
             controllerAs: 'vm'
         });
 })();

@@ -2,6 +2,6 @@
     'use strict';
 
     angular
-        .module('app.aplicacion.components.taxDispersionAccountsEdit', [
+        .module('app.aplicacion.components.taxDispersionAccountsAuthorizer', [
         ]);
 })();

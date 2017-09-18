@@ -2,10 +2,10 @@
     'use strict';
 
     angular
-        .module('app.aplicacion.components.specialTaxParametersEdit')
-        .factory('SpecialTaxParametersEditService', SpecialTaxParametersEditService);
+        .module('app.aplicacion.components.specialTaxParametersAuthorizer')
+        .factory('SpecialTaxParametersAuthorizerService', SpecialTaxParametersAuthorizerService);
 
-    function SpecialTaxParametersEditService($q, $http, API_BACKEND, $sessionStorage, UserService, EditAgreementService) {
+    function SpecialTaxParametersAuthorizerService($q, $http, API_BACKEND, $sessionStorage, UserService, EditAgreementService) {
 
         var service = {
             createIndicatorGen: createIndicatorGen

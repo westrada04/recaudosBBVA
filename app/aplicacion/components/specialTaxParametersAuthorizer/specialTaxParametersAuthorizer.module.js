@@ -2,6 +2,6 @@
     'use strict';
 
     angular
-        .module('app.aplicacion.components.specialTaxParametersEdit', [
+        .module('app.aplicacion.components.specialTaxParametersAuthorizer', [
         ]);
 })();

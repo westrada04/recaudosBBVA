@@ -2,10 +2,10 @@
     'use strict';
 
     angular
-        .module('app.aplicacion.components.accountsReceivableEdit')
-        .controller('AccountsReceivableEditController', AccountsReceivableEditController);
+        .module('app.aplicacion.components.accountsReceivableAuthorizer')
+        .controller('AccountsReceivableAuthorizerController', AccountsReceivableAuthorizerController);
 
-    function AccountsReceivableEditController(ConsultAgreementService, GeneralDataEditService, AccountsReceivableEditService, toastr) {
+    function AccountsReceivableAuthorizerController(ConsultAgreementService, GeneralDataEditService, AccountsReceivableEditService, toastr) {
         var vm = this;
         vm.collectionAccounts = [];
 

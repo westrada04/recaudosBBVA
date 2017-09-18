@@ -2,10 +2,10 @@
     'use strict';
 
     angular
-        .module('app.aplicacion.components.accountsReceivableEdit')
-        .factory('AccountsReceivableEditService', AccountsReceivableEditService);
+        .module('app.aplicacion.components.accountsReceivableAuthorizer')
+        .factory('AccountsReceivableAuthorizerService', AccountsReceivableAuthorizerService);
 
-    function AccountsReceivableEditService($q, $http, API_BACKEND, UserService, EditAgreementService) {
+    function AccountsReceivableAuthorizerService($q, $http, API_BACKEND, UserService, EditAgreementService) {
 
         var service = {
             createAgreement: createAgreement

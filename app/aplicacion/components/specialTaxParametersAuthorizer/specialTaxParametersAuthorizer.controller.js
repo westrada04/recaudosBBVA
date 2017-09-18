@@ -2,10 +2,10 @@
     'use strict';
 
     angular
-        .module('app.aplicacion.components.specialTaxParametersEdit')
-        .controller('SpecialTaxParametersEditController', SpecialTaxParametersEditController);
+        .module('app.aplicacion.components.specialTaxParametersAuthorizer')
+        .controller('SpecialTaxParametersAuthorizerController', SpecialTaxParametersAuthorizerController);
 
-    function SpecialTaxParametersEditController(SpecialTaxParametersEditService, ConsultAgreementService, GeneralDataEditService, toastr) {
+    function SpecialTaxParametersAuthorizerController(SpecialTaxParametersEditService, ConsultAgreementService, GeneralDataEditService, toastr) {
         var vm = this;
         var request = ConsultAgreementService.getSpecialTaxParameters();
         vm.additionalValue = request.additionalValue;

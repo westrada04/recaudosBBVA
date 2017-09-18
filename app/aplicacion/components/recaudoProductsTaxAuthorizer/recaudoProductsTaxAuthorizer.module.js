@@ -2,6 +2,6 @@
     'use strict';
 
     angular
-        .module('app.aplicacion.components.recaudoProductsTaxEdit', [
+        .module('app.aplicacion.components.recaudoProductsTaxAuthorizer', [
         ]);
 })();

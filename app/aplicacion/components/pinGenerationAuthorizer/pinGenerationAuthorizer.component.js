@@ -2,10 +2,10 @@
     'use strict';
 
     angular
-        .module('app.aplicacion.components.pinGenerationEdit')
-        .component("pinGenerationEdit", {
-            templateUrl: "app/aplicacion/components/pinGenerationEdit/pinGenerationEdit.tmpl.html",
-            controller: 'PinGenerationEditController',
+        .module('app.aplicacion.components.pinGenerationAuthorizer')
+        .component("pinGenerationAuthorizer", {
+            templateUrl: "app/aplicacion/components/pinGenerationAuthorizer/pinGenerationAuthorizer.tmpl.html",
+            controller: 'PinGenerationAuthorizerController',
             controllerAs: 'vm'
         });
 })();

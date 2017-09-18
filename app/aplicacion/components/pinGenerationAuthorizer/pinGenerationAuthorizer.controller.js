@@ -2,10 +2,10 @@
     'use strict';
 
     angular
-        .module('app.aplicacion.components.pinGenerationEdit')
-        .controller('PinGenerationEditController', PinGenerationEditController);
+        .module('app.aplicacion.components.pinGenerationAuthorizer')
+        .controller('PinGenerationAuthorizerController', PinGenerationAuthorizerController);
 
-    function PinGenerationEditController(GeneralDataEditService, PinGenerationEditService, toastr) {
+    function PinGenerationAuthorizerController(GeneralDataEditService, PinGenerationEditService, toastr) {
         var vm = this;
 
         //obtener datos no se obtienen hasta el momento 

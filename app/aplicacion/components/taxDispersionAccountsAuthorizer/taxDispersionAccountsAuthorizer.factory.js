@@ -2,10 +2,10 @@
     'use strict';
 
     angular
-        .module('app.aplicacion.components.taxDispersionAccountsEdit')
-        .factory('TaxDispersionAccountsEditService', TaxDispersionAccountsEditService);
+        .module('app.aplicacion.components.taxDispersionAccountsAuthorizer')
+        .factory('TaxDispersionAccountsAuthorizerService', TaxDispersionAccountsAuthorizerService);
 
-    function TaxDispersionAccountsEditService($q, $http, API_BACKEND, UserService, EditAgreementService) {
+    function TaxDispersionAccountsAuthorizerService($q, $http, API_BACKEND, UserService, EditAgreementService) {
 
         var service = {
             createAgreement: createAgreement

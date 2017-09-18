@@ -2,10 +2,10 @@
     'use strict';
 
     angular
-        .module('app.aplicacion.components.taxDispersionAccountsEdit')
-        .controller('TaxDispersionAccountsEditController', TaxDispersionAccountsEditController);
+        .module('app.aplicacion.components.taxDispersionAccountsAuthorizer')
+        .controller('TaxDispersionAccountsAuthorizerController', TaxDispersionAccountsAuthorizerController);
 
-    function TaxDispersionAccountsEditController(TaxDispersionAccountsEditService, GeneralDataEditService, toastr, ConsultAgreementService) {
+    function TaxDispersionAccountsAuthorizerController(TaxDispersionAccountsEditService, GeneralDataEditService, toastr, ConsultAgreementService) {
         var vm = this;
         vm.collectionAccounts = [];
 

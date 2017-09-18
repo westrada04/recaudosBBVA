@@ -2,6 +2,6 @@
     'use strict';
 
     angular
-        .module('app.aplicacion.components.pinGenerationEdit', [
+        .module('app.aplicacion.components.pinGenerationAuthorizer', [
         ]);
 })();

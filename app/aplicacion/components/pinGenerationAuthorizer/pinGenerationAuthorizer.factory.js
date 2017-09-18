@@ -2,10 +2,10 @@
     'use strict';
 
     angular
-        .module('app.aplicacion.components.pinGenerationEdit')
-        .factory('PinGenerationEditService', PinGenerationEditService);
+        .module('app.aplicacion.components.pinGenerationAuthorizer')
+        .factory('PinGenerationAuthorizerService', PinGenerationAuthorizerService);
 
-    function PinGenerationEditService($q, $http, API_BACKEND, UserService, EditAgreementService) {
+    function PinGenerationAuthorizerService($q, $http, API_BACKEND, UserService, EditAgreementService) {
 
         var service = {
             createAgreement: createAgreement

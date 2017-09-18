@@ -2,10 +2,10 @@
     'use strict';
 
     angular
-        .module('app.aplicacion.components.recaudoProductsTaxEdit')
-        .controller('RecaudoProductsTaxEditController', RecaudoProductsTaxEditController);
+        .module('app.aplicacion.components.recaudoProductsTaxAuthorizer')
+        .controller('RecaudoProductsTaxAuthorizerController', RecaudoProductsTaxAuthorizerController);
 
-    function RecaudoProductsTaxEditController(RecaudoProductsTaxEditService, GeneralDataEditService, toastr) {
+    function RecaudoProductsTaxAuthorizerController(RecaudoProductsTaxEditService, GeneralDataEditService, toastr) {
         var vm = this;
 
         //no esta realizada la consulta

@@ -2,10 +2,10 @@
     'use strict';
 
     angular
-        .module('app.aplicacion.components.specialTaxParametersEdit')
-        .component("specialTaxParametersEdit", {
-            templateUrl: "app/aplicacion/components/specialTaxParametersEdit/specialTaxParametersEdit.tmpl.html",
-            controller: 'SpecialTaxParametersEditController',
+        .module('app.aplicacion.components.specialTaxParametersAuthorizer')
+        .component("specialTaxParametersAuthorizer", {
+            templateUrl: "app/aplicacion/components/specialTaxParametersAuthorizer/specialTaxParametersAuthorizer.tmpl.html",
+            controller: 'SpecialTaxParametersAuthorizerController',
             controllerAs: 'vm'
         });
 })();

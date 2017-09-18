@@ -2,10 +2,10 @@
     'use strict';
 
     angular
-        .module('app.aplicacion.components.recaudoProductsTaxEdit')
-        .factory('RecaudoProductsTaxEditService', RecaudoProductsTaxEditService);
+        .module('app.aplicacion.components.recaudoProductsTaxAuthorizer')
+        .factory('RecaudoProductsTaxAuthorizerService', RecaudoProductsTaxAuthorizerService);
 
-    function RecaudoProductsTaxEditService($q, $http, API_BACKEND, $sessionStorage, UserService, EditAgreementService) {
+    function RecaudoProductsTaxAuthorizerService($q, $http, API_BACKEND, $sessionStorage, UserService, EditAgreementService) {
 
         var service = {
             createIndicatorGen: createIndicatorGen
