@@ -8,6 +8,7 @@
     function ReferenceInformationEditService($q, $http, API_BACKEND, $sessionStorage, UserService, EditAgreementService) {
 
         var references = [];
+        
         var service = {
             getReferences: getReferences,
             setReferences: setReferences,
@@ -126,11 +127,11 @@
         }
 
         function getReferences() {
-            return this.references;
+            return references;
         }
 
-        function setReferences(references) {
-            this.references = references;
+        function setReferences(referencias) {
+            references = referencias;
         }
 
     }

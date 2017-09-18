@@ -8,6 +8,7 @@
     function ReferenceInformationService($q, $http, API_BACKEND, $sessionStorage, UserService, CreateAgreementService) {
 
         var references = [];
+        
         var service = {
             getReferences: getReferences,
             setReferences: setReferences,
