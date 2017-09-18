@@ -21,7 +21,7 @@
         //////////////////////////////////////
 
         function createReferences(requests) {
-            var idAgreement = CreateAgreementService.getIdAgreement();
+            var idAgreement = CreateModifyAgreementService.getIdAgreement();
             var promises = requests.map(function (request) {
                 if (request.referenceId == '99000') {
                     return $http.post(API_BACKEND.url + "/agreements/V01/" + idAgreement + '/references', request, UserService.getTsec())

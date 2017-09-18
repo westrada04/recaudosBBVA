@@ -126,11 +126,11 @@
         }
 
         function getReferences() {
-            return this.references;
+            return references;
         }
 
-        function setReferences(references) {
-            this.references = references;
+        function setReferences(referencias) {
+            references = referencias;
         }
 
     }
