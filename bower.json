@@ -1,0 +1,34 @@
+{
+  "name": "recaudos",
+  "authors": [
+    "Wilmer Omar Estrada Diaz <westrada04@gmail.com>"
+  ],
+  "description": "modulo de contratacion de convenios de recaudo e impuestos",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.5",
+    "angular-ui-router": "^1.0.5",
+    "angular-animate": "^1.6.5",
+    "angular-toastr": "^2.1.1",
+    "bootstrap": "^3.3.7",
+    "angular-smart-table": "^2.1.8",
+    "angular-permission": "^5.3.2",
+    "ngstorage": "^0.3.11",
+    "angular-busy": "^4.1.4",
+    "jquery": "^3.2.1",
+    "angular-sanitize": "^1.6.5",
+    "v-accordion": "^1.6.0",
+    "angularjs-datetime-picker": "^0.1.20",
+    "angular-promise-extras": "^0.1.8"
+  }
+}

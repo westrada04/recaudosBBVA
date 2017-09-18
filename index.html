@@ -1,0 +1,487 @@
+<!doctype html>
+<html ng-app="app">
+
+<head>
+    <meta charset="utf-8">
+    <title>módulo de Contratación de Convenios de Recaudo e Impuestos</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
+
+    <!-- libraries -->
+    <link rel="stylesheet" href="libraries/components/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="libraries/components/bootstrap/dist/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="libraries/components/angular-toastr/dist/angular-toastr.min.css" />
+    <link rel="stylesheet" href="libraries/components/angular-busy/dist/angular-busy.min.css" />
+    <link rel="stylesheet" href="libraries/components/v-accordion/dist/v-accordion.min.css" />
+    <link rel="stylesheet" href="libraries/components/angularjs-datetime-picker/angularjs-datetime-picker.css" />
+
+    <!-- Business logic -->
+    <link rel="stylesheet" href="app/aplicacion/template/template.css" />
+    <link rel="stylesheet" href="app/aplicacion/templateAuth/templateAuth.css" />
+    <link rel="stylesheet" href="app/aplicacion/login/login.css" />
+    <link rel="stylesheet" href="app/aplicacion/home/home.css" />
+
+    <!-- componentes -->
+    <link rel="stylesheet" href="app/aplicacion/components/generalData/generalData.css" />
+    <link rel="stylesheet" href="app/aplicacion/components/atm/atm.css" />
+    <link rel="stylesheet" href="app/aplicacion/components/bankCorrespondent/bankCorrespondent.css" />
+    <link rel="stylesheet" href="app/aplicacion/components/mobileBanking/mobileBanking.css" />
+    <link rel="stylesheet" href="app/aplicacion/components/bbvaNetBbvaCash/bbvaNetBbvaCash.css" />
+    <link rel="stylesheet" href="app/aplicacion/components/specialTaxParameters/specialTaxParameters.css" />
+    <link rel="stylesheet" href="app/aplicacion/consultRequestForm/consultRequestForm.css" />
+</head>
+
+<body>
+
+    <div ui-view="root"></div>
+
+    <!-- libraries -->
+    <script src="libraries/components/jquery/dist/jquery.js"></script>
+    <script src="libraries/components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="libraries/components/angular/angular.min.js"></script>
+    <script src="libraries/components/angular-animate/angular-animate.min.js"></script>
+    <script src="libraries/components/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="libraries/components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="libraries/components/angular-toastr/dist/angular-toastr.min.js"></script>
+    <script src="libraries/components/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
+    <script src="libraries/components/ngstorage/ngStorage.min.js"></script>
+    <script src="libraries/components/angular-busy/dist/angular-busy.min.js"></script>
+    <script src="libraries/components/angular-permission/dist/angular-permission.min.js"></script>
+    <script src="libraries/components/angular-permission/dist/angular-permission-ui.min.js"></script>
+    <script src="libraries/components/angular-smart-table/dist/smart-table.min.js"></script>
+    <script src="libraries/components/v-accordion/dist/v-accordion.min.js"></script>
+    <script src="libraries/components/angularjs-datetime-picker/angularjs-datetime-picker.min.js"></script>
+    <script src="libraries/components/angular-promise-extras/angular-promise-extras.js"></script>
+
+    <!-- Business logic -->
+    <script src="app/aplicacion/template/template.module.js"></script>
+    <script src="app/aplicacion/template/template.config.js"></script>
+    <script src="app/aplicacion/template/template.controller.js"></script>
+    <script src="app/aplicacion/templateAuth/templateAuth.module.js"></script>
+    <script src="app/aplicacion/templateAuth/templateAuth.config.js"></script>
+    <script src="app/aplicacion/templateAuth/templateAuth.controller.js"></script>
+
+    <script src="app/aplicacion/permission/permission.module.js"></script>
+    <script src="app/aplicacion/permission/permission.run.js"></script>
+    <script src="app/aplicacion/permission/permission.factory.js"></script>
+
+    <script src="app/aplicacion/login/login.module.js"></script>
+    <script src="app/aplicacion/login/login.config.js"></script>
+    <script src="app/aplicacion/login/login.controller.js"></script>
+    <script src="app/aplicacion/login/user.factory.js"></script>
+
+    <script src="app/aplicacion/home/home.module.js"></script>
+    <script src="app/aplicacion/home/home.config.js"></script>
+    <script src="app/aplicacion/home/home.controller.js"></script>
+
+    <script src="app/aplicacion/consultRequest/consultRequest.module.js"></script>
+    <script src="app/aplicacion/consultRequest/consultRequest.config.js"></script>
+    <script src="app/aplicacion/consultRequest/consultRequest.controller.js"></script>
+
+    <script src="app/aplicacion/consultRequestForm/consultRequestForm.module.js"></script>
+    <script src="app/aplicacion/consultRequestForm/consultRequestForm.config.js"></script>
+    <script src="app/aplicacion/consultRequestForm/consultRequestForm.controller.js"></script>
+    <script src="app/aplicacion/consultRequestForm/consultRequestForm.factory.js"></script>
+
+    <script src="app/aplicacion/consultRequestApproved/consultRequestApproved.module.js"></script>
+    <script src="app/aplicacion/consultRequestApproved/consultRequestApproved.config.js"></script>
+    <script src="app/aplicacion/consultRequestApproved/consultRequestApproved.controller.js"></script>
+    <script src="app/aplicacion/consultRequestApproved/requestApproved.factory.js"></script>
+
+    <script src="app/aplicacion/consultRequestRejected/consultRequestRejected.module.js"></script>
+    <script src="app/aplicacion/consultRequestRejected/consultRequestRejected.config.js"></script>
+    <script src="app/aplicacion/consultRequestRejected/consultRequestRejected.controller.js"></script>
+    <script src="app/aplicacion/consultRequestRejected/requestRejected.factory.js"></script>
+
+    <script src="app/aplicacion/consultRequestPending/consultRequestPending.module.js"></script>
+    <script src="app/aplicacion/consultRequestPending/consultRequestPending.config.js"></script>
+    <script src="app/aplicacion/consultRequestPending/consultRequestPending.controller.js"></script>
+    <script src="app/aplicacion/consultRequestPending/consultRequestPending.factory.js"></script>
+
+    <script src="app/aplicacion/createRequest/createRequest.module.js"></script>
+    <script src="app/aplicacion/createRequest/createRequest.config.js"></script>
+    <script src="app/aplicacion/createRequest/createRequest.controller.js"></script>
+
+    <script src="app/aplicacion/editRequest/editRequest.module.js"></script>
+    <script src="app/aplicacion/editRequest/editRequest.config.js"></script>
+    <script src="app/aplicacion/editRequest/editRequest.controller.js"></script>
+
+    <script src="app/aplicacion/editRequestForm/editRequestForm.module.js"></script>
+    <script src="app/aplicacion/editRequestForm/editRequestForm.config.js"></script>
+    <script src="app/aplicacion/editRequestForm/editRequestForm.controller.js"></script>
+    <script src="app/aplicacion/editRequestForm/editRequestForm.factory.js"></script>
+
+    <script src="app/aplicacion/generateReports/generateReports.module.js"></script>
+    <script src="app/aplicacion/generateReports/generateReports.config.js"></script>
+    <script src="app/aplicacion/generateReports/generateReports.controller.js"></script>
+
+    <script src="app/aplicacion/queryReports/queryReports.module.js"></script>
+    <script src="app/aplicacion/queryReports/queryReports.config.js"></script>
+    <script src="app/aplicacion/queryReports/queryReports.controller.js"></script>
+    <script src="app/aplicacion/queryReports/queryReports.factory.js"></script>
+
+    <script src="app/aplicacion/createAgreement/createAgreement.module.js"></script>
+    <script src="app/aplicacion/createAgreement/createAgreement.config.js"></script>
+    <script src="app/aplicacion/createAgreement/createAgreement.controller.js"></script>
+    <script src="app/aplicacion/createAgreement/createAgreement.factory.js"></script>
+
+    <script src="app/aplicacion/createModifyAgreement/createModifyAgreement.module.js"></script>
+    <script src="app/aplicacion/createModifyAgreement/createModifyAgreement.config.js"></script>
+    <script src="app/aplicacion/createModifyAgreement/createModifyAgreement.controller.js"></script>
+    <script src="app/aplicacion/createModifyAgreement/createModifyAgreement.factory.js"></script>
+
+    <script src="app/aplicacion/consultAgreement/consultAgreement.module.js"></script>
+    <script src="app/aplicacion/consultAgreement/consultAgreement.config.js"></script>
+    <script src="app/aplicacion/consultAgreement/consultAgreement.controller.js"></script>
+    <script src="app/aplicacion/consultAgreement/consultAgreement.factory.js"></script>
+
+    <script src="app/aplicacion/editAgreement/editAgreement.module.js"></script>
+    <script src="app/aplicacion/editAgreement/editAgreement.config.js"></script>
+    <script src="app/aplicacion/editAgreement/editAgreement.controller.js"></script>
+    <script src="app/aplicacion/editAgreement/editAgreement.factory.js"></script>
+
+    <!-- componentes -->
+    <script src="app/aplicacion/components/generalData/generalData.module.js"></script>
+    <script src="app/aplicacion/components/generalData/generalData.component.js"></script>
+    <script src="app/aplicacion/components/generalData/generalData.controller.js"></script>
+    <script src="app/aplicacion/components/generalData/generalData.factory.js"></script>
+
+    <script src="app/aplicacion/components/generalDataConsult/generalDataConsult.module.js"></script>
+    <script src="app/aplicacion/components/generalDataConsult/generalDataConsult.component.js"></script>
+    <script src="app/aplicacion/components/generalDataConsult/generalDataConsult.controller.js"></script>
+
+    <script src="app/aplicacion/components/generalDataEdit/generalDataEdit.module.js"></script>
+    <script src="app/aplicacion/components/generalDataEdit/generalDataEdit.component.js"></script>
+    <script src="app/aplicacion/components/generalDataEdit/generalDataEdit.controller.js"></script>
+    <script src="app/aplicacion/components/generalDataEdit/generalDataEdit.factory.js"></script>
+
+    <script src="app/aplicacion/components/GeneralDataCreateModify/GeneralDataCreateModify.module.js"></script>
+    <script src="app/aplicacion/components/GeneralDataCreateModify/GeneralDataCreateModify.component.js"></script>
+    <script src="app/aplicacion/components/GeneralDataCreateModify/GeneralDataCreateModify.controller.js"></script>
+    <script src="app/aplicacion/components/GeneralDataCreateModify/GeneralDataCreateModify.factory.js"></script>
+
+    <script src="app/aplicacion/components/dataBase/dataBase.module.js"></script>
+    <script src="app/aplicacion/components/dataBase/dataBase.component.js"></script>
+    <script src="app/aplicacion/components/dataBase/dataBase.controller.js"></script>
+    <script src="app/aplicacion/components/dataBase/dataBase.factory.js"></script>
+
+    <script src="app/aplicacion/components/dataBaseConsult/dataBaseConsult.module.js"></script>
+    <script src="app/aplicacion/components/dataBaseConsult/dataBaseConsult.component.js"></script>
+    <script src="app/aplicacion/components/dataBaseConsult/dataBaseConsult.controller.js"></script>
+
+    <script src="app/aplicacion/components/dataBaseEdit/dataBaseEdit.module.js"></script>
+    <script src="app/aplicacion/components/dataBaseEdit/dataBaseEdit.component.js"></script>
+    <script src="app/aplicacion/components/dataBaseEdit/dataBaseEdit.controller.js"></script>
+    <script src="app/aplicacion/components/dataBaseEdit/dataBaseEdit.factory.js"></script>
+
+    <script src="app/aplicacion/components/dataBaseCreateModify/dataBaseCreateModify.module.js"></script>
+    <script src="app/aplicacion/components/dataBaseCreateModify/dataBaseCreateModify.component.js"></script>
+    <script src="app/aplicacion/components/dataBaseCreateModify/dataBaseCreateModify.controller.js"></script>
+    <script src="app/aplicacion/components/dataBaseCreateModify/dataBaseCreateModify.factory.js"></script>
+
+    <script src="app/aplicacion/components/outputFile/outputFile.module.js"></script>
+    <script src="app/aplicacion/components/outputFile/outputFile.component.js"></script>
+    <script src="app/aplicacion/components/outputFile/outputFile.controller.js"></script>
+    <script src="app/aplicacion/components/outputFile/outputFile.factory.js"></script>
+
+    <script src="app/aplicacion/components/outputFileConsult/outputFileConsult.module.js"></script>
+    <script src="app/aplicacion/components/outputFileConsult/outputFileConsult.component.js"></script>
+    <script src="app/aplicacion/components/outputFileConsult/outputFileConsult.controller.js"></script>
+
+    <script src="app/aplicacion/components/outputFileEdit/outputFileEdit.module.js"></script>
+    <script src="app/aplicacion/components/outputFileEdit/outputFileEdit.component.js"></script>
+    <script src="app/aplicacion/components/outputFileEdit/outputFileEdit.controller.js"></script>
+    <script src="app/aplicacion/components/outputFileEdit/outputFileEdit.factory.js"></script>
+
+    <script src="app/aplicacion/components/outputFileCreateModify/outputFileCreateModify.module.js"></script>
+    <script src="app/aplicacion/components/outputFileCreateModify/outputFileCreateModify.component.js"></script>
+    <script src="app/aplicacion/components/outputFileCreateModify/outputFileCreateModify.controller.js"></script>
+    <script src="app/aplicacion/components/outputFileCreateModify/outputFileCreateModify.factory.js"></script>
+
+    <script src="app/aplicacion/components/referenceInformation/referenceInformation.module.js"></script>
+    <script src="app/aplicacion/components/referenceInformation/referenceInformation.component.js"></script>
+    <script src="app/aplicacion/components/referenceInformation/referenceInformation.controller.js"></script>
+    <script src="app/aplicacion/components/referenceInformation/referenceInformation.factory.js"></script>
+
+    <script src="app/aplicacion/components/referenceInformationConsult/referenceInformationConsult.module.js"></script>
+    <script src="app/aplicacion/components/referenceInformationConsult/referenceInformationConsult.component.js"></script>
+    <script src="app/aplicacion/components/referenceInformationConsult/referenceInformationConsult.controller.js"></script>
+
+    <script src="app/aplicacion/components/referenceInformationEdit/referenceInformationEdit.module.js"></script>
+    <script src="app/aplicacion/components/referenceInformationEdit/referenceInformationEdit.component.js"></script>
+    <script src="app/aplicacion/components/referenceInformationEdit/referenceInformationEdit.controller.js"></script>
+    <script src="app/aplicacion/components/referenceInformationEdit/referenceInformationEdit.factory.js"></script>
+
+    <script src="app/aplicacion/components/referenceInformationCreateModify/referenceInformationCreateModify.module.js"></script>
+    <script src="app/aplicacion/components/referenceInformationCreateModify/referenceInformationCreateModify.component.js"></script>
+    <script src="app/aplicacion/components/referenceInformationCreateModify/referenceInformationCreateModify.controller.js"></script>
+    <script src="app/aplicacion/components/referenceInformationCreateModify/referenceInformationCreateModify.factory.js"></script>
+
+    <script src="app/aplicacion/components/captureType/captureType.module.js"></script>
+    <script src="app/aplicacion/components/captureType/captureType.component.js"></script>
+    <script src="app/aplicacion/components/captureType/captureType.controller.js"></script>
+    <script src="app/aplicacion/components/captureType/captureType.factory.js"></script>
+
+    <script src="app/aplicacion/components/captureTypeConsult/captureTypeConsult.module.js"></script>
+    <script src="app/aplicacion/components/captureTypeConsult/captureTypeConsult.component.js"></script>
+    <script src="app/aplicacion/components/captureTypeConsult/captureTypeConsult.controller.js"></script>
+
+    <script src="app/aplicacion/components/captureTypeEdit/captureTypeEdit.module.js"></script>
+    <script src="app/aplicacion/components/captureTypeEdit/captureTypeEdit.component.js"></script>
+    <script src="app/aplicacion/components/captureTypeEdit/captureTypeEdit.controller.js"></script>
+    <script src="app/aplicacion/components/captureTypeEdit/captureTypeEdit.factory.js"></script>
+
+    <script src="app/aplicacion/components/captureTypeCreateModify/captureTypeCreateModify.module.js"></script>
+    <script src="app/aplicacion/components/captureTypeCreateModify/captureTypeCreateModify.component.js"></script>
+    <script src="app/aplicacion/components/captureTypeCreateModify/captureTypeCreateModify.controller.js"></script>
+    <script src="app/aplicacion/components/captureTypeCreateModify/captureTypeCreateModify.factory.js"></script>
+
+    <script src="app/aplicacion/components/pinGeneration/pinGeneration.module.js"></script>
+    <script src="app/aplicacion/components/pinGeneration/pinGeneration.component.js"></script>
+    <script src="app/aplicacion/components/pinGeneration/pinGeneration.controller.js"></script>
+    <script src="app/aplicacion/components/pinGeneration/pinGeneration.factory.js"></script>
+
+    <script src="app/aplicacion/components/pinGenerationConsult/pinGenerationConsult.module.js"></script>
+    <script src="app/aplicacion/components/pinGenerationConsult/pinGenerationConsult.component.js"></script>
+    <script src="app/aplicacion/components/pinGenerationConsult/pinGenerationConsult.controller.js"></script>
+
+    <script src="app/aplicacion/components/pinGenerationEdit/pinGenerationEdit.module.js"></script>
+    <script src="app/aplicacion/components/pinGenerationEdit/pinGenerationEdit.component.js"></script>
+    <script src="app/aplicacion/components/pinGenerationEdit/pinGenerationEdit.controller.js"></script>
+    <script src="app/aplicacion/components/pinGenerationEdit/pinGenerationEdit.factory.js"></script>
+
+    <script src="app/aplicacion/components/pinGenerationCreateModify/pinGenerationCreateModify.module.js"></script>
+    <script src="app/aplicacion/components/pinGenerationCreateModify/pinGenerationCreateModify.component.js"></script>
+    <script src="app/aplicacion/components/pinGenerationCreateModify/pinGenerationCreateModify.controller.js"></script>
+    <script src="app/aplicacion/components/pinGenerationCreateModify/pinGenerationCreateModify.factory.js"></script>
+
+    <script src="app/aplicacion/components/accountsReceivable/accountsReceivable.module.js"></script>
+    <script src="app/aplicacion/components/accountsReceivable/accountsReceivable.component.js"></script>
+    <script src="app/aplicacion/components/accountsReceivable/accountsReceivable.controller.js"></script>
+    <script src="app/aplicacion/components/accountsReceivable/accountsReceivable.factory.js"></script>
+
+    <script src="app/aplicacion/components/accountsReceivableConsult/accountsReceivableConsult.module.js"></script>
+    <script src="app/aplicacion/components/accountsReceivableConsult/accountsReceivableConsult.component.js"></script>
+    <script src="app/aplicacion/components/accountsReceivableConsult/accountsReceivableConsult.controller.js"></script>
+
+    <script src="app/aplicacion/components/accountsReceivableEdit/accountsReceivableEdit.module.js"></script>
+    <script src="app/aplicacion/components/accountsReceivableEdit/accountsReceivableEdit.component.js"></script>
+    <script src="app/aplicacion/components/accountsReceivableEdit/accountsReceivableEdit.controller.js"></script>
+    <script src="app/aplicacion/components/accountsReceivableEdit/accountsReceivableEdit.factory.js"></script>
+
+    <script src="app/aplicacion/components/accountsReceivableCreateModify/accountsReceivableCreateModify.module.js"></script>
+    <script src="app/aplicacion/components/accountsReceivableCreateModify/accountsReceivableCreateModify.component.js"></script>
+    <script src="app/aplicacion/components/accountsReceivableCreateModify/accountsReceivableCreateModify.controller.js"></script>
+    <script src="app/aplicacion/components/accountsReceivableCreateModify/accountsReceivableCreateModify.factory.js"></script>
+
+    <script src="app/aplicacion/components/taxDispersionAccounts/taxDispersionAccounts.module.js"></script>
+    <script src="app/aplicacion/components/taxDispersionAccounts/taxDispersionAccounts.component.js"></script>
+    <script src="app/aplicacion/components/taxDispersionAccounts/taxDispersionAccounts.controller.js"></script>
+    <script src="app/aplicacion/components/taxDispersionAccounts/taxDispersionAccounts.factory.js"></script>
+
+    <script src="app/aplicacion/components/taxDispersionAccountsConsult/taxDispersionAccountsConsult.module.js"></script>
+    <script src="app/aplicacion/components/taxDispersionAccountsConsult/taxDispersionAccountsConsult.component.js"></script>
+    <script src="app/aplicacion/components/taxDispersionAccountsConsult/taxDispersionAccountsConsult.controller.js"></script>
+
+    <script src="app/aplicacion/components/taxDispersionAccountsEdit/taxDispersionAccountsEdit.module.js"></script>
+    <script src="app/aplicacion/components/taxDispersionAccountsEdit/taxDispersionAccountsEdit.component.js"></script>
+    <script src="app/aplicacion/components/taxDispersionAccountsEdit/taxDispersionAccountsEdit.controller.js"></script>
+    <script src="app/aplicacion/components/taxDispersionAccountsEdit/taxDispersionAccountsEdit.factory.js"></script>
+
+    <script src="app/aplicacion/components/taxDispersionAccountsCreateModify/taxDispersionAccountsCreateModify.module.js"></script>
+    <script src="app/aplicacion/components/taxDispersionAccountsCreateModify/taxDispersionAccountsCreateModify.component.js"></script>
+    <script src="app/aplicacion/components/taxDispersionAccountsCreateModify/taxDispersionAccountsCreateModify.controller.js"></script>
+    <script src="app/aplicacion/components/taxDispersionAccountsCreateModify/taxDispersionAccountsCreateModify.factory.js"></script>
+
+    <script src="app/aplicacion/components/specialTaxParameters/specialTaxParameters.module.js"></script>
+    <script src="app/aplicacion/components/specialTaxParameters/specialTaxParameters.component.js"></script>
+    <script src="app/aplicacion/components/specialTaxParameters/specialTaxParameters.controller.js"></script>
+    <script src="app/aplicacion/components/specialTaxParameters/specialTaxParameters.factory.js"></script>
+
+    <script src="app/aplicacion/components/specialTaxParametersConsult/specialTaxParametersConsult.module.js"></script>
+    <script src="app/aplicacion/components/specialTaxParametersConsult/specialTaxParametersConsult.component.js"></script>
+    <script src="app/aplicacion/components/specialTaxParametersConsult/specialTaxParametersConsult.controller.js"></script>
+
+    <script src="app/aplicacion/components/specialTaxParametersEdit/specialTaxParametersEdit.module.js"></script>
+    <script src="app/aplicacion/components/specialTaxParametersEdit/specialTaxParametersEdit.component.js"></script>
+    <script src="app/aplicacion/components/specialTaxParametersEdit/specialTaxParametersEdit.controller.js"></script>
+    <script src="app/aplicacion/components/specialTaxParametersEdit/specialTaxParametersEdit.factory.js"></script>
+
+    <script src="app/aplicacion/components/specialTaxParametersCreateModify/specialTaxParametersCreateModify.module.js"></script>
+    <script src="app/aplicacion/components/specialTaxParametersCreateModify/specialTaxParametersCreateModify.component.js"></script>
+    <script src="app/aplicacion/components/specialTaxParametersCreateModify/specialTaxParametersCreateModify.controller.js"></script>
+    <script src="app/aplicacion/components/specialTaxParametersCreateModify/specialTaxParametersCreateModify.factory.js"></script>
+
+    <script src="app/aplicacion/components/recaudoProductsTax/recaudoProductsTax.module.js"></script>
+    <script src="app/aplicacion/components/recaudoProductsTax/recaudoProductsTax.component.js"></script>
+    <script src="app/aplicacion/components/recaudoProductsTax/recaudoProductsTax.controller.js"></script>
+    <script src="app/aplicacion/components/recaudoProductsTax/recaudoProductsTax.factory.js"></script>
+
+    <script src="app/aplicacion/components/recaudoProductsTaxConsult/recaudoProductsTaxConsult.module.js"></script>
+    <script src="app/aplicacion/components/recaudoProductsTaxConsult/recaudoProductsTaxConsult.component.js"></script>
+    <script src="app/aplicacion/components/recaudoProductsTaxConsult/recaudoProductsTaxConsult.controller.js"></script>
+
+    <script src="app/aplicacion/components/recaudoProductsTaxEdit/recaudoProductsTaxEdit.module.js"></script>
+    <script src="app/aplicacion/components/recaudoProductsTaxEdit/recaudoProductsTaxEdit.component.js"></script>
+    <script src="app/aplicacion/components/recaudoProductsTaxEdit/recaudoProductsTaxEdit.controller.js"></script>
+    <script src="app/aplicacion/components/recaudoProductsTaxEdit/recaudoProductsTaxEdit.factory.js"></script>
+
+    <script src="app/aplicacion/components/recaudoProductsTaxCreateModify/recaudoProductsTaxCreateModify.module.js"></script>
+    <script src="app/aplicacion/components/recaudoProductsTaxCreateModify/recaudoProductsTaxCreateModify.component.js"></script>
+    <script src="app/aplicacion/components/recaudoProductsTaxCreateModify/recaudoProductsTaxCreateModify.controller.js"></script>
+    <script src="app/aplicacion/components/recaudoProductsTaxCreateModify/recaudoProductsTaxCreateModify.factory.js"></script>
+
+    <script src="app/aplicacion/components/financialTerminal/financialTerminal.module.js"></script>
+    <script src="app/aplicacion/components/financialTerminal/financialTerminal.component.js"></script>
+    <script src="app/aplicacion/components/financialTerminal/financialTerminal.controller.js"></script>
+    <script src="app/aplicacion/components/financialTerminal/financialTerminal.factory.js"></script>
+
+    <script src="app/aplicacion/components/financialTerminalConsult/financialTerminalConsult.module.js"></script>
+    <script src="app/aplicacion/components/financialTerminalConsult/financialTerminalConsult.component.js"></script>
+    <script src="app/aplicacion/components/financialTerminalConsult/financialTerminalConsult.controller.js"></script>
+
+    <script src="app/aplicacion/components/financialTerminalEdit/financialTerminalEdit.module.js"></script>
+    <script src="app/aplicacion/components/financialTerminalEdit/financialTerminalEdit.component.js"></script>
+    <script src="app/aplicacion/components/financialTerminalEdit/financialTerminalEdit.controller.js"></script>
+    <script src="app/aplicacion/components/financialTerminalEdit/financialTerminalEdit.factory.js"></script>
+
+    <script src="app/aplicacion/components/financialTerminalCreateModify/financialTerminalCreateModify.module.js"></script>
+    <script src="app/aplicacion/components/financialTerminalCreateModify/financialTerminalCreateModify.component.js"></script>
+    <script src="app/aplicacion/components/financialTerminalCreateModify/financialTerminalCreateModify.controller.js"></script>
+    <script src="app/aplicacion/components/financialTerminalCreateModify/financialTerminalCreateModify.factory.js"></script>
+
+    <script src="app/aplicacion/components/bbvaNetBbvaCash/bbvaNetBbvaCash.module.js"></script>
+    <script src="app/aplicacion/components/bbvaNetBbvaCash/bbvaNetBbvaCash.component.js"></script>
+    <script src="app/aplicacion/components/bbvaNetBbvaCash/bbvaNetBbvaCash.controller.js"></script>
+    <script src="app/aplicacion/components/bbvaNetBbvaCash/bbvaNetBbvaCash.factory.js"></script>
+
+    <script src="app/aplicacion/components/bbvaNetBbvaCashConsult/bbvaNetBbvaCashConsult.module.js"></script>
+    <script src="app/aplicacion/components/bbvaNetBbvaCashConsult/bbvaNetBbvaCashConsult.component.js"></script>
+    <script src="app/aplicacion/components/bbvaNetBbvaCashConsult/bbvaNetBbvaCashConsult.controller.js"></script>
+
+    <script src="app/aplicacion/components/bbvaNetBbvaCashEdit/bbvaNetBbvaCashEdit.module.js"></script>
+    <script src="app/aplicacion/components/bbvaNetBbvaCashEdit/bbvaNetBbvaCashEdit.component.js"></script>
+    <script src="app/aplicacion/components/bbvaNetBbvaCashEdit/bbvaNetBbvaCashEdit.controller.js"></script>
+    <script src="app/aplicacion/components/bbvaNetBbvaCashEdit/bbvaNetBbvaCashEdit.factory.js"></script>
+
+    <script src="app/aplicacion/components/bbvaNetBbvaCashCreateModify/bbvaNetBbvaCashCreateModify.module.js"></script>
+    <script src="app/aplicacion/components/bbvaNetBbvaCashCreateModify/bbvaNetBbvaCashCreateModify.component.js"></script>
+    <script src="app/aplicacion/components/bbvaNetBbvaCashCreateModify/bbvaNetBbvaCashCreateModify.controller.js"></script>
+    <script src="app/aplicacion/components/bbvaNetBbvaCashCreateModify/bbvaNetBbvaCashCreateModify.factory.js"></script>
+
+    <script src="app/aplicacion/components/atm/atm.module.js"></script>
+    <script src="app/aplicacion/components/atm/atm.component.js"></script>
+    <script src="app/aplicacion/components/atm/atm.controller.js"></script>
+
+    <script src="app/aplicacion/components/atmConsult/atmConsult.module.js"></script>
+    <script src="app/aplicacion/components/atmConsult/atmConsult.component.js"></script>
+    <script src="app/aplicacion/components/atmConsult/atmConsult.controller.js"></script>
+
+    <script src="app/aplicacion/components/atmEdit/atmEdit.module.js"></script>
+    <script src="app/aplicacion/components/atmEdit/atmEdit.component.js"></script>
+    <script src="app/aplicacion/components/atmEdit/atmEdit.controller.js"></script>
+
+    <script src="app/aplicacion/components/atmCreateModify/atmCreateModify.module.js"></script>
+    <script src="app/aplicacion/components/atmCreateModify/atmCreateModify.component.js"></script>
+    <script src="app/aplicacion/components/atmCreateModify/atmCreateModify.controller.js"></script>
+
+    <script src="app/aplicacion/components/mobileBanking/mobileBanking.module.js"></script>
+    <script src="app/aplicacion/components/mobileBanking/mobileBanking.component.js"></script>
+    <script src="app/aplicacion/components/mobileBanking/mobileBanking.controller.js"></script>
+    <script src="app/aplicacion/components/mobileBanking/mobileBanking.factory.js"></script>
+
+    <script src="app/aplicacion/components/mobileBankingConsult/mobileBankingConsult.module.js"></script>
+    <script src="app/aplicacion/components/mobileBankingConsult/mobileBankingConsult.component.js"></script>
+    <script src="app/aplicacion/components/mobileBankingConsult/mobileBankingConsult.controller.js"></script>
+    <script src="app/aplicacion/components/mobileBankingConsult/mobileBankingConsult.factory.js"></script>
+
+    <script src="app/aplicacion/components/mobileBankingEdit/mobileBankingEdit.module.js"></script>
+    <script src="app/aplicacion/components/mobileBankingEdit/mobileBankingEdit.component.js"></script>
+    <script src="app/aplicacion/components/mobileBankingEdit/mobileBankingEdit.controller.js"></script>
+    <script src="app/aplicacion/components/mobileBankingEdit/mobileBankingEdit.factory.js"></script>
+
+    <script src="app/aplicacion/components/mobileBankingCreateModify/mobileBankingCreateModify.module.js"></script>
+    <script src="app/aplicacion/components/mobileBankingCreateModify/mobileBankingCreateModify.component.js"></script>
+    <script src="app/aplicacion/components/mobileBankingCreateModify/mobileBankingCreateModify.controller.js"></script>
+    <script src="app/aplicacion/components/mobileBankingCreateModify/mobileBankingCreateModify.factory.js"></script>
+
+    <script src="app/aplicacion/components/payTime/payTime.module.js"></script>
+    <script src="app/aplicacion/components/payTime/payTime.component.js"></script>
+    <script src="app/aplicacion/components/payTime/payTime.controller.js"></script>
+    <script src="app/aplicacion/components/payTime/payTime.factory.js"></script>
+
+    <script src="app/aplicacion/components/payTimeConsult/payTimeConsult.module.js"></script>
+    <script src="app/aplicacion/components/payTimeConsult/payTimeConsult.component.js"></script>
+    <script src="app/aplicacion/components/payTimeConsult/payTimeConsult.controller.js"></script>
+
+    <script src="app/aplicacion/components/payTimeEdit/payTimeEdit.module.js"></script>
+    <script src="app/aplicacion/components/payTimeEdit/payTimeEdit.component.js"></script>
+    <script src="app/aplicacion/components/payTimeEdit/payTimeEdit.controller.js"></script>
+    <script src="app/aplicacion/components/payTimeEdit/payTimeEdit.factory.js"></script>
+
+    <script src="app/aplicacion/components/payTimeCreateModify/payTimeCreateModify.module.js"></script>
+    <script src="app/aplicacion/components/payTimeCreateModify/payTimeCreateModify.component.js"></script>
+    <script src="app/aplicacion/components/payTimeCreateModify/payTimeCreateModify.controller.js"></script>
+    <script src="app/aplicacion/components/payTimeCreateModify/payTimeCreateModify.factory.js"></script>
+
+    <script src="app/aplicacion/components/bankCorrespondent/bankCorrespondent.module.js"></script>
+    <script src="app/aplicacion/components/bankCorrespondent/bankCorrespondent.component.js"></script>
+    <script src="app/aplicacion/components/bankCorrespondent/bankCorrespondent.controller.js"></script>
+
+    <script src="app/aplicacion/components/bankCorrespondentConsult/bankCorrespondentConsult.module.js"></script>
+    <script src="app/aplicacion/components/bankCorrespondentConsult/bankCorrespondentConsult.component.js"></script>
+    <script src="app/aplicacion/components/bankCorrespondentConsult/bankCorrespondentConsult.controller.js"></script>
+
+    <script src="app/aplicacion/components/bankCorrespondentEdit/bankCorrespondentEdit.module.js"></script>
+    <script src="app/aplicacion/components/bankCorrespondentEdit/bankCorrespondentEdit.component.js"></script>
+    <script src="app/aplicacion/components/bankCorrespondentEdit/bankCorrespondentEdit.controller.js"></script>
+
+    <script src="app/aplicacion/components/bankCorrespondentCreateModify/bankCorrespondentCreateModify.module.js"></script>
+    <script src="app/aplicacion/components/bankCorrespondentCreateModify/bankCorrespondentCreateModify.component.js"></script>
+    <script src="app/aplicacion/components/bankCorrespondentCreateModify/bankCorrespondentCreateModify.controller.js"></script>
+
+    <script src="app/aplicacion/components/paymentsPse/paymentsPse.module.js"></script>
+    <script src="app/aplicacion/components/paymentsPse/paymentsPse.component.js"></script>
+    <script src="app/aplicacion/components/paymentsPse/paymentsPse.controller.js"></script>
+    <script src="app/aplicacion/components/paymentsPse/paymentsPse.factory.js"></script>
+
+    <script src="app/aplicacion/components/paymentsPseConsult/paymentsPseConsult.module.js"></script>
+    <script src="app/aplicacion/components/paymentsPseConsult/paymentsPseConsult.component.js"></script>
+    <script src="app/aplicacion/components/paymentsPseConsult/paymentsPseConsult.controller.js"></script>
+
+    <script src="app/aplicacion/components/paymentsPseEdit/paymentsPseEdit.module.js"></script>
+    <script src="app/aplicacion/components/paymentsPseEdit/paymentsPseEdit.component.js"></script>
+    <script src="app/aplicacion/components/paymentsPseEdit/paymentsPseEdit.controller.js"></script>
+    <script src="app/aplicacion/components/paymentsPseEdit/paymentsPseEdit.factory.js"></script>
+
+    <script src="app/aplicacion/components/paymentsPseCreateModify/paymentsPseCreateModify.module.js"></script>
+    <script src="app/aplicacion/components/paymentsPseCreateModify/paymentsPseCreateModify.component.js"></script>
+    <script src="app/aplicacion/components/paymentsPseCreateModify/paymentsPseCreateModify.controller.js"></script>
+    <script src="app/aplicacion/components/paymentsPseCreateModify/paymentsPseCreateModify.factory.js"></script>
+
+    <script src="app/aplicacion/components/annexDocuments/annexDocuments.module.js"></script>
+    <script src="app/aplicacion/components/annexDocuments/annexDocuments.component.js"></script>
+    <script src="app/aplicacion/components/annexDocuments/annexDocuments.controller.js"></script>
+
+    <script src="app/aplicacion/components/annexDocumentsConsult/annexDocumentsConsult.module.js"></script>
+    <script src="app/aplicacion/components/annexDocumentsConsult/annexDocumentsConsult.component.js"></script>
+    <script src="app/aplicacion/components/annexDocumentsConsult/annexDocumentsConsult.controller.js"></script>
+
+    <script src="app/aplicacion/components/annexDocumentsEdit/annexDocumentsEdit.module.js"></script>
+    <script src="app/aplicacion/components/annexDocumentsEdit/annexDocumentsEdit.component.js"></script>
+    <script src="app/aplicacion/components/annexDocumentsEdit/annexDocumentsEdit.controller.js"></script>
+
+    <script src="app/aplicacion/components/annexDocumentsCreateModify/annexDocumentsCreateModify.module.js"></script>
+    <script src="app/aplicacion/components/annexDocumentsCreateModify/annexDocumentsCreateModify.component.js"></script>
+    <script src="app/aplicacion/components/annexDocumentsCreateModify/annexDocumentsCreateModify.controller.js"></script>
+
+    <!-- app -->
+    <script src="app/aplicacion/components/components.module.js"></script>
+    <script src="app/aplicacion/aplicacion.module.js"></script>
+    <script src="app/app.module.js"></script>
+    <script src="app/app.config.js"></script>
+    <script src="app/config.route.js"></script>
+    <script src="app/app.run.js"></script>
+
+</body>
+
+</html>
