@@ -1,0 +1,178 @@
+<v-accordion class="vAccordion--default" multiple>
+
+    <v-pane>
+        <v-pane-header>
+            Generación Pin
+        </v-pane-header>
+
+        <v-pane-content>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <form class="form-horizontal" name="pinGeneration" role="form">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-3 control-label">
+                                        <p class="text-left">Tipo de Pin</p>
+                                    </label>
+                                    <div class="col-md-9">
+                                        <select name="typePin" class="form-control" ng-change="vm.changeTypePin()" ng-model="vm.typePin" required>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.typePins" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                        <span class="control-label error-mensaje" ng-show="!pinGeneration.$pristine && pinGeneration.typePin.$error.required">
+                                            Debe selecionar un tipo de pin
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6" ng-hide="vm.stateNumeric">
+                                <div class="form-group">
+                                    <label for="numero_identificacion" class="col-md-4 control-label none-padding-right">
+                                        <p class="text-left">Algoritmo</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <label class="radio-inline">
+                                            <input name="algorythm" type="radio" ng-model="vm.algorythm" ng-value='04' required>Base 10
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="algorythm" type="radio" ng-model="vm.algorythm" ng-value='08' required>Base 8
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="algorythm" type="radio" ng-model="vm.algorythm" ng-value='02' required>Base 6
+                                        </label>
+                                        <span class="control-label error-mensaje" ng-show="!pinGeneration.$pristine && pinGeneration.algorythm.$error.required" required>
+                                            Debe selecionar un algoritmo
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" ng-show="vm.stateFixedData">
+                            <div ng-repeat="x in vm.fixedDatas">
+                                <ng-form name="formFixedData">
+                                    <div class="col-md-offset-1 col-md-10">
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading">
+                                                <p class="text-left">Dato Fijo {{$index + 1}}</p>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="fixedField" class="col-md-6 control-label">
+                                                                <p class="text-left">Campo Fijo</p>
+                                                            </label>
+                                                            <div class="col-md-6">
+                                                                <input name="fixedField" type="text" class="form-control" ng-model="x.fixedField" ng-required="vm.stateFixedData">
+                                                                <span class="control-label error-mensaje" ng-show="!formFixedData.$pristine && formFixedData.fixedField.$error.required">
+                                                                    Debe especificar campo fijo
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="description" class="col-md-6 control-label">
+                                                                <p class="text-left">Descripción</p>
+                                                            </label>
+                                                            <div class="col-md-6">
+                                                                <input name="description" type="text" class="form-control" ng-model="x.description" ng-required="vm.stateFixedData">
+                                                                <span class="control-label error-mensaje" ng-show="!formFixedData.$pristine && formFixedData.description.$error.required">
+                                                                    Debe especificar una descripción
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="minAmount" class="col-md-6 control-label">
+                                                                <p class="text-left">Importe Mínimo</p>
+                                                            </label>
+                                                            <div class="col-md-6">
+                                                                <input name="minAmount" type="text" class="form-control" ng-model="x.minAmount" ng-required="vm.stateFixedData">
+                                                                <span class="control-label error-mensaje" ng-show="!formFixedData.$pristine && formFixedData.minAmount.$error.required">
+                                                                    Debe especificar el importe minimo
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="maxAmount" class="col-md-6 control-label">
+                                                                <p class="text-left">Importe Máximo</p>
+                                                            </label>
+                                                            <div class="col-md-6">
+                                                                <input name="maxAmount" type="text" class="form-control" ng-model="x.maxAmount" ng-required="vm.stateFixedData">
+                                                                <span class="control-label error-mensaje" ng-show="!formFixedData.$pristine && formFixedData.maxAmount.$error.required">
+                                                                    Debe especificar el importe maximo
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="father-center">
+                                                        <button type="button" ng-click="vm.addFixedData()" class="btn btn-primary center-block son-center">
+                                                            Agregar
+                                                        </button>
+                                                        <button type="button" ng-click="vm.deleteFixedData($index)" class="btn btn-primary center-block son-center">
+                                                            Eliminar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-form>
+                            </div>
+                        </div>
+
+                        <div class="row" ng-show="vm.stateNumeric">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="numericAlphanumeric" class="col-md-6 control-label">
+                                        <p class="text-left">Numérico / Alfanumérico</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <select name="numericAlphanumeric" class="form-control" ng-model="vm.numericAlphanumeric" ng-required="vm.stateNumeric">
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.numericAlphanumerics" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                        <span class="control-label error-mensaje" ng-show="!pinGeneration.$pristine && pinGeneration.numericAlphanumeric.$error.required">
+                                            Debe especificar Numérico / Alfanumérico
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="NumberDigits" class="col-md-6 control-label">
+                                        <p class="text-left">Número de Dígitos</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <input name="NumberDigits" type="number" class="form-control" ng-model="vm.NumberDigits" ng-required="vm.stateNumeric">
+                                        <span class="control-label error-mensaje" ng-show="!pinGeneration.$pristine && pinGeneration.NumberDigits.$error.required">
+                                            Debe especificar el numero de digitos
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <button type="button" ng-click="vm.save()" ng-disabled="!pinGeneration.$valid" class="btn btn-primary center-block">Guardar</button>
+                        </div>
+
+                    </form>
+                    <div cg-busy="vm.myPromise"></div>
+                </div>
+            </div>
+        </v-pane-content>
+    </v-pane>
+
+</v-accordion>

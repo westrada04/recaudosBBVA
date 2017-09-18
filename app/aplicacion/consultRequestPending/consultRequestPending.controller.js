@@ -28,7 +28,7 @@
         }
 
         function authorize(idAgreement) {
-            $timeout(function () {
+            vm.myPromise = $timeout(function () {
                 $state.go('templateAuth.authorizeAgreement', {
                     idAgreement: idAgreement
                 });

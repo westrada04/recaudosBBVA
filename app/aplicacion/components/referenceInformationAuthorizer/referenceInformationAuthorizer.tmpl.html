@@ -1,0 +1,1004 @@
+<v-accordion class="vAccordion--default" multiple>
+
+    <v-pane>
+        <v-pane-header>
+            Información de Referencia
+        </v-pane-header>
+
+        <v-pane-content>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <form class="form-horizontal" name="generalData" role="form">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="tipo_identificacion" class="col-md-4 control-label">
+                                        <p class="text-left">Tipo de Campo {{ vm.outputFileType }}</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="type" class="form-control" ng-change="vm.changeType()" ng-model="vm.type">
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.types" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                        <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.type.$error.required">
+                                            Debe selecionar un tipo de campo
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- referencia -->
+                        <div class="row" ng-show="vm.stateReference">
+                            <div class="col-md-offset-1 col-md-10">
+                                <div ng-repeat="reference in vm.references">
+                                    <ng-form name="formReference">
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading">
+                                                <p class="text-left">Referencia {{$index + 1 }}</p>
+                                            </div>
+                                            <div class="panel-body">
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="description" class="col-md-6 control-label">
+                                                                <p class="text-left">Descripción del Campo</p>
+                                                            </label>
+                                                            <div class="col-md-6">
+                                                                <textarea name="description" class="form-control" rows="2" ng-model="reference.description" ng-required="vm.stateReference"></textarea>
+                                                                <span class="control-label error-mensaje" ng-show="!formReference.$pristine && formReference.description.$error.required">
+                                                                    Debe especificar una descripción
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="format" class="col-md-4 control-label">
+                                                                <p class="text-left">Formato</p>
+                                                            </label>
+                                                            <div class="col-md-8">
+                                                                <select name="format" class="form-control" ng-model="reference.format" ng-required="vm.stateReference">
+                                                                    <option value="">Seleccione una opción</option>
+                                                                    <option ng-repeat="x in vm.referenceFormats" value="{{x.value}}">{{x.nombre}}</option>
+                                                                </select>
+                                                                <span class="control-label error-mensaje" ng-show="!formReference.$pristine && formReference.format.$error.required">
+                                                                    Debe especificar un formato
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="fieldLength" class="col-md-7 control-label">
+                                                                <p class="text-left">Longitud Campo</p>
+                                                            </label>
+                                                            <div class="col-md-5">
+                                                                <input name="fieldLength" type="number" min="0" class="form-control" maxlength="15" ng-model="reference.fieldLength" oninput="this.value=this.value.slice(0,this.maxLength)" ng-required="vm.stateReference">
+                                                                <span class="control-label error-mensaje" ng-show="!formReference.$pristine && formReference.fieldLength.$error.required">
+                                                                    Debe especificar una longitud de campo
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="barLength" class="col-md-8 control-label">
+                                                                <p class="text-left">Longitud en Barras</p>
+                                                            </label>
+                                                            <div class="col-md-4">
+                                                                <input name="barLength" type="number" min="0" class="form-control" maxlength="15" ng-model="reference.barLength" oninput="this.value=this.value.slice(0,this.maxLength)" ng-required="vm.stateReference">
+                                                                <span class="control-label error-mensaje" ng-show="!formReference.$pristine && formReference.barLength.$error.required">
+                                                                    Debe especificar una longitud en barras
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="obligatoryField" class="col-md-6 control-label">
+                                                                <p class="text-left">Campo Obligatorio</p>
+                                                            </label>
+                                                            <div class="col-md-6">
+                                                                <select name="obligatoryField" class="form-control" ng-model="reference.obligatoryField" ng-required="vm.stateReference">
+                                                                    <option value="">Seleccione una opción</option>
+                                                                    <option ng-repeat="x in vm.referenceObligatoryFields" value="{{x.value}}">{{x.nombre}}</option>
+                                                                </select>
+                                                                <span class="control-label error-mensaje" ng-show="!formReference.$pristine && formReference.obligatoryField.$error.required">
+                                                                    Debe especificar un campo obligatorio
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="inputPosition" class="col-md-6 control-label">
+                                                                <p class="text-left">Posición de Entrada</p>
+                                                            </label>
+                                                            <div class="col-md-6">
+                                                                <input name="inputPosition" type="number" min="0" maxlength="2" class="form-control" ng-model="reference.inputPosition" oninput="this.value=this.value.slice(0,this.maxLength)" ng-required="vm.stateReference">
+                                                                <span class="control-label error-mensaje" ng-show="!formReference.$pristine && formReference.inputPosition.$error.required">
+                                                                    Debe especificar una posicion de entrada
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="outputPosition" class="col-md-6 control-label">
+                                                                <p class="text-left">Posición de Salida</p>
+                                                            </label>
+                                                            <div class="col-md-6">
+                                                                <input name="outputPosition" type="number" min="0" class="form-control" maxlength="15" ng-model="reference.outputPosition" oninput="this.value=this.value.slice(0,this.maxLength)" ng-required="vm.stateReference">
+                                                                <span class="control-label error-mensaje" ng-show="!formReference.$pristine && formReference.outputPosition.$error.required">
+                                                                    Debe especificar una posicion de salida
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="fillCharacter" class="col-md-6 control-label">
+                                                                <p class="text-left">Caracter de Relleno</p>
+                                                            </label>
+                                                            <div class="col-md-6">
+                                                                <select name="fillCharacter" class="form-control" ng-model="reference.fillCharacter" ng-required="vm.stateReference">
+                                                                    <option value="">Seleccione una opción</option>
+                                                                    <option ng-repeat="x in vm.referenceFillCharacters" value="{{x.value}}">{{x.nombre}}</option>
+                                                                </select>
+                                                                <span class="control-label error-mensaje" ng-show="!formReference.$pristine && formReference.fillCharacter.$error.required">
+                                                                    Debe especificar un campo obligatorio
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="quickHelp" class="col-md-4 control-label">
+                                                                <p class="text-left">Ayuda Rápida Campo</p>
+                                                            </label>
+                                                            <div class="col-md-8">
+                                                                <textarea name="quickHelp" class="form-control" rows="2" ng-model="reference.quickHelp" ng-required="vm.stateReference"></textarea>
+                                                                <span class="control-label error-mensaje" ng-show="!formReference.$pristine && formReference.quickHelp.$error.required">
+                                                                    Debe especificar Ayuda rapida
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="alignment" class="col-md-4 control-label">
+                                                                <p class="text-left">Alineación</p>
+                                                            </label>
+                                                            <div class="col-md-8">
+                                                                <select name="alignment" class="form-control" ng-model="reference.alignment" ng-required="vm.stateReference">
+                                                                    <option value="">Seleccione una opción</option>
+                                                                    <option ng-repeat="x in vm.referenceAlignments" value="{{x.value}}">{{x.nombre}}</option>
+                                                                </select>
+                                                                <span class="control-label error-mensaje" ng-show="!formReference.$pristine && formReference.alignment.$error.required">
+                                                                    Debe especificar una alineación
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row" ng-show="vm.isTax">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="municipalityField" class="col-md-6 control-label">
+                                                                <p class="text-left">Campo Municipio</p>
+                                                            </label>
+                                                            <div class="col-md-6">
+                                                                <label class="radio-inline">
+                                                                    <input name="municipalityField" type="radio" ng-model="reference.municipalityField" ng-value='B10' ng-required="vm.stateReference && vm.isTax">Si
+                                                                </label>
+                                                                <label class="radio-inline">
+                                                                    <input name="municipalityField" type="radio" ng-model="reference.municipalityField" ng-value='B08' ng-required="vm.stateReference && vm.isTax">No
+                                                                </label>
+                                                                <span class="control-label error-mensaje" ng-show="!formReference.$pristine && formReference.municipalityField.$error.required">
+                                                                    Debe especificar Campo de Municipio
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="taxOver" class="col-md-6 control-label">
+                                                                <p class="text-left">Impuesto Sobretasa</p>
+                                                            </label>
+                                                            <div class="col-md-6">
+                                                                <label class="radio-inline">
+                                                                    <input name="taxOver" type="radio" ng-model="reference.taxOver" ng-value='B10' ng-required="vm.stateReference && vm.isTax">Si
+                                                                </label>
+                                                                <label class="radio-inline">
+                                                                    <input name="taxOver" type="radio" ng-model="reference.taxOver" ng-value='B08' ng-required="vm.stateReference && vm.isTax">No
+                                                                </label>
+                                                                <span class="control-label error-mensaje" ng-show="!formReference.$pristine && formReference.taxOver.$error.required">
+                                                                    Debe especificar Impuesto Sobretasa
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="routineValidation" class="col-md-3 control-label">
+                                                                <p class="text-left">Rutina Validación</p>
+                                                            </label>
+                                                            <div class="col-md-9">
+                                                                <select name="routineValidation" class="form-control" ng-model="reference.routineValidation">
+                                                                    <option value="">Seleccione una opción</option>
+                                                                    <option ng-repeat="x in vm.referenceRoutineValidations" value="{{x.value}}">
+                                                                        {{x.nombre}}
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="father-center">
+                                                        <button type="button" ng-click="vm.addReference()" class="btn btn-primary center-block son-center">
+                                                            Agregar
+                                                        </button>
+                                                        <button type="button" ng-click="vm.deleteReference($index)" class="btn btn-primary center-block son-center">
+                                                            Eliminar
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </ng-form>
+                                </div>
+                                <div cg-busy="vm.myPromiseReference"></div>
+                            </div>
+                        </div>
+                        <!-- end referencia -->
+
+                        <!-- adicional -->
+                        <div class="row" ng-show="vm.stateAdditional">
+                            <div class="col-md-offset-1 col-md-10">
+                                <div ng-repeat="additional in vm.additionals">
+                                    <ng-form name="formAdditional">
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading">
+                                                <p class="text-left">Referencia Adicional {{$index + 1 }}</p>
+                                            </div>
+                                            <div class="panel-body">
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="description" class="col-md-6 control-label">
+                                                                <p class="text-left">Descripción del Campo</p>
+                                                            </label>
+                                                            <div class="col-md-6">
+                                                                <textarea name="description" class="form-control" rows="2" ng-model="additional.description" ng-required="vm.stateAdditional"></textarea>
+                                                                <span class="control-label error-mensaje" ng-show="!formAdditional.$pristine && formAdditional.description.$error.required">
+                                                                    Debe especificar una descripción
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="format" class="col-md-4 control-label">
+                                                                <p class="text-left">Formato</p>
+                                                            </label>
+                                                            <div class="col-md-8">
+                                                                <select name="format" class="form-control" ng-model="additional.format" ng-required="vm.stateAdditional">
+                                                                    <option value="">Seleccione una opción</option>
+                                                                    <option ng-repeat="x in vm.referenceFormats" value="{{x.value}}">{{x.nombre}}</option>
+                                                                </select>
+                                                                <span class="control-label error-mensaje" ng-show="!formAdditional.$pristine && formAdditional.format.$error.required">
+                                                                    Debe especificar una alineación
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="fieldLength" class="col-md-7 control-label">
+                                                                <p class="text-left">Longitud Campo</p>
+                                                            </label>
+                                                            <div class="col-md-5">
+                                                                <input name="fieldLength" type="number" min="0" class="form-control" maxlength="15" ng-model="additional.fieldLength" oninput="this.value=this.value.slice(0,this.maxLength)" ng-required="vm.stateAdditional">
+                                                                <span class="control-label error-mensaje" ng-show="!formAdditional.$pristine && formAdditional.fieldLength.$error.required">
+                                                                    Debe especificar una longitud de campo
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="obligatoryField" class="col-md-6 control-label">
+                                                                <p class="text-left">Campo Obligatorio</p>
+                                                            </label>
+                                                            <div class="col-md-6">
+                                                                <select name="obligatoryField" class="form-control" ng-model="additional.obligatoryField" ng-required="vm.stateAdditional">
+                                                                    <option value="">Seleccione una opción</option>
+                                                                    <option ng-repeat="x in vm.referenceObligatoryFields" value="{{x.value}}">{{x.nombre}}</option>
+                                                                </select>
+                                                                <span class="control-label error-mensaje" ng-show="!formAdditional.$pristine && formAdditional.obligatoryField.$error.required">
+                                                                    Debe especificar un campo obligatorio
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="inputPosition" class="col-md-6 control-label">
+                                                                <p class="text-left">Posición de Entrada</p>
+                                                            </label>
+                                                            <div class="col-md-6">
+                                                                <input name="inputPosition" type="number" min="0" maxlength="2" class="form-control" maxlength="15" ng-model="additional.inputPosition" oninput="this.value=this.value.slice(0,this.maxLength)" ng-required="vm.stateAdditional">
+                                                                <span class="control-label error-mensaje" ng-show="!formAdditional.$pristine && formAdditional.inputPosition.$error.required">
+                                                                    Debe especificar una posicion de entrada
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="outputPosition" class="col-md-6 control-label">
+                                                                <p class="text-left">Posición de Salida</p>
+                                                            </label>
+                                                            <div class="col-md-6">
+                                                                <input name="outputPosition" type="number" min="0" class="form-control" maxlength="15" ng-model="additional.outputPosition" oninput="this.value=this.value.slice(0,this.maxLength)" ng-required="vm.stateAdditional">
+                                                                <span class="control-label error-mensaje" ng-show="!formAdditional.$pristine && formAdditional.outputPosition.$error.required">
+                                                                    Debe especificar una posicion de salida
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="fillCharacter" class="col-md-6 control-label">
+                                                                <p class="text-left">Caracter de Relleno</p>
+                                                            </label>
+                                                            <div class="col-md-6">
+                                                                <select name="fillCharacter" class="form-control" ng-model="additional.fillCharacter" ng-required="vm.stateAdditional">
+                                                                    <option value="">Seleccione una opción</option>
+                                                                    <option ng-repeat="x in vm.referenceFillCharacters" value="{{x.value}}">{{x.nombre}}</option>
+                                                                </select>
+                                                                <span class="control-label error-mensaje" ng-show="!formAdditional.$pristine && formAdditional.fillCharacter.$error.required">
+                                                                    Debe especificar un campo obligatorio
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="quickHelp" class="col-md-4 control-label">
+                                                                <p class="text-left">Ayuda Rápida Campo</p>
+                                                            </label>
+                                                            <div class="col-md-8">
+                                                                <textarea name="quickHelp" class="form-control" rows="2" ng-model="additional.quickHelp" ng-required="vm.stateAdditional"></textarea>
+                                                                <span class="control-label error-mensaje" ng-show="!formAdditional.$pristine && formAdditional.quickHelp.$error.required">
+                                                                    Debe especificar una alineación
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="alignment" class="col-md-4 control-label">
+                                                                <p class="text-left">Alineación</p>
+                                                            </label>
+                                                            <div class="col-md-8">
+                                                                <select name="alignment" class="form-control" ng-model="additional.alignment" ng-required="vm.stateAdditional">
+                                                                    <option value="">Seleccione una opción</option>
+                                                                    <option ng-repeat="x in vm.referenceAlignments" value="{{x.value}}">{{x.nombre}}</option>
+                                                                </select>
+                                                                <span class="control-label error-mensaje" ng-show="!formAdditional.$pristine && formAdditional.alignment.$error.required">
+                                                                    Debe especificar una alineación
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row" ng-show="vm.isTax">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="municipalityField" class="col-md-6 control-label">
+                                                                <p class="text-left">Campo Municipio</p>
+                                                            </label>
+                                                            <div class="col-md-6">
+                                                                <label class="radio-inline">
+                                                                    <input name="municipalityField" type="radio" ng-model="additional.municipalityField" ng-value='B10' ng-required="vm.stateAdditional && vm.isTax">Si
+                                                                </label>
+                                                                <label class="radio-inline">
+                                                                    <input name="municipalityField" type="radio" ng-model="additional.municipalityField" ng-value='B08' ng-required="vm.stateAdditional && vm.isTax">No
+                                                                </label>
+                                                                <span class="control-label error-mensaje" ng-show="!formAdditional.$pristine && formAdditional.municipalityField.$error.required">
+                                                                    Debe especificar Impuesto Sobretasa
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="taxOver" class="col-md-6 control-label">
+                                                                <p class="text-left">Impuesto Sobretasa</p>
+                                                            </label>
+                                                            <div class="col-md-6">
+                                                                <label class="radio-inline">
+                                                                    <input name="taxOver" type="radio" ng-model="additional.taxOver" ng-value='B10' ng-required="vm.stateAdditional && vm.isTax">Si
+                                                                </label>
+                                                                <label class="radio-inline">
+                                                                    <input name="taxOver" type="radio" ng-model="additional.taxOver" ng-value='B08' ng-required="vm.stateAdditional && vm.isTax">No
+                                                                </label>
+                                                                <span class="control-label error-mensaje" ng-show="!formAdditional.$pristine && formAdditional.taxOver.$error.required">
+                                                                    Debe especificar Impuesto Sobretasa
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="routineValidation" class="col-md-3 control-label">
+                                                                <p class="text-left">Rutina Validación</p>
+                                                            </label>
+                                                            <div class="col-md-9">
+                                                                <select name="routineValidation" class="form-control" ng-model="additional.routineValidation">
+                                                                    <option value="">Seleccione una opción</option>
+                                                                    <option ng-repeat="x in vm.referenceRoutineValidations" value="{{x.value}}">
+                                                                        {{x.nombre}}
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="father-center">
+                                                        <button type="button" ng-click="vm.addAdditional()" class="btn btn-primary center-block son-center">
+                                                            Agregar
+                                                        </button>
+                                                        <button type="button" ng-click="vm.deleteAdditional($index)" class="btn btn-primary center-block son-center">
+                                                            Eliminar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-form>
+                                </div>
+                                <div cg-busy="vm.myPromiseAdditional"></div>
+                            </div>
+                        </div>
+                        <!-- adicional -->
+
+                        <!-- Valor Fijo -->
+                        <div class="row" ng-show="vm.stateFixedValue">
+                            <div class="col-md-offset-1 col-md-10">
+                                <div ng-repeat="fixedValue in vm.fixedValues">
+                                    <ng-form name="formFixedValue">
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading">
+                                                <p class="text-left">Valor Fijo {{$index + 1 }}</p>
+                                            </div>
+                                            <div class="panel-body">
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="description" class="col-md-3 control-label">
+                                                                <p class="text-left">Descripción del Campo</p>
+                                                            </label>
+                                                            <div class="col-md-9">
+                                                                <input name="description" type="Text" class="form-control" maxlength="30" ng-model="fixedValue.description" ng-required="vm.stateFixedValue">
+                                                                <span class="control-label error-mensaje" ng-show="!formFixedValue.$pristine && formFixedValue.description.$error.required">
+                                                                    Debe especificar una descripción
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="consecutive" class="col-md-4 control-label">
+                                                                <p class="text-left">Consecutivo</p>
+                                                            </label>
+                                                            <div class="col-md-8">
+                                                                <input name="consecutive" type="number" min="0" class="form-control" maxlength="15" ng-model="fixedValue.consecutive" oninput="this.value=this.value.slice(0,this.maxLength)" ng-required="vm.stateFixedValue">
+                                                                <span class="control-label error-mensaje" ng-show="!formFixedValue.$pristine && formFixedValue.consecutive.$error.required">
+                                                                    Debe especificar un consecutivo
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="format" class="col-md-4 control-label">
+                                                                <p class="text-left">Formato</p>
+                                                            </label>
+                                                            <div class="col-md-8">
+                                                                <select name="format" class="form-control" ng-model="fixedValue.format" ng-required="vm.stateFixedValue">
+                                                                    <option value="">Seleccione una opción</option>
+                                                                    <option ng-repeat="x in vm.fixedValueFormats" value="{{x.value}}">{{x.nombre}}</option>
+                                                                </select>
+                                                                <span class="control-label error-mensaje" ng-show="!formFixedValue.$pristine && formFixedValue.format.$error.required">
+                                                                    Debe especificar un formato
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="fieldLength" class="col-md-6 control-label">
+                                                                <p class="text-left">Longitud de Campo</p>
+                                                            </label>
+                                                            <div class="col-md-6">
+                                                                <input name="fieldLength" type="number" min="0" class="form-control" maxlength="2" ng-model="fixedValue.fieldLength" oninput="this.value=this.value.slice(0,this.maxLength)" ng-required="vm.stateFixedValue">
+                                                                <span class="control-label error-mensaje" ng-show="!formFixedValue.$pristine && formFixedValue.fieldLength.$error.required">
+                                                                    Debe especificar una longitud de campo
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="amountIndicator" class="col-md-6 control-label">
+                                                                <p class="text-left">Indicador de Importe</p>
+                                                            </label>
+                                                            <div class="col-md-6">
+                                                                <label class="radio-inline">
+                                                                    <input name="amountIndicator{{$index}}" type="radio" ng-model="fixedValue.amountIndicator" ng-value='true' ng-required="vm.stateFixedValue">Si
+                                                                </label>
+                                                                <label class="radio-inline">
+                                                                    <input name="amountIndicator{{$index}}" type="radio" ng-model="fixedValue.amountIndicator" ng-value='false' ng-required="vm.stateFixedValue">No
+                                                                </label>
+                                                                <span class="control-label error-mensaje" ng-show="!formFixedValue.$pristine && formFixedValue.amountIndicator.$error.required">
+                                                                    Debe especificar un indicador de importe
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="obligatoryField" class="col-md-6 control-label">
+                                                                <p class="text-left">Campo Obligatorio</p>
+                                                            </label>
+                                                            <div class="col-md-6">
+                                                                <label class="radio-inline">
+                                                                    <input name="obligatoryField{{$index}}" type="radio" ng-model="fixedValue.obligatoryField" ng-value='1' ng-required="vm.stateFixedValue">Si
+                                                                </label>
+                                                                <label class="radio-inline">
+                                                                    <input name="obligatoryField{{$index}}" type="radio" ng-model="fixedValue.obligatoryField" ng-value='0' ng-required="vm.stateFixedValue">No
+                                                                </label>
+                                                                <span class="control-label error-mensaje" ng-show="!formFixedValue.$pristine && formFixedValue.obligatoryField.$error.required">
+                                                                    Debe especificar campo obligatorio
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="minimumAmount" class="col-md-4 control-label">
+                                                                <p class="text-left">Importe Mínimo</p>
+                                                            </label>
+                                                            <div class="col-md-8">
+                                                                <input name="minimumAmount" type="number" min="0" class="form-control" maxlength="18" ng-model="fixedValue.minimumAmount" oninput="this.value=this.value.slice(0,this.maxLength)" ng-required="vm.stateFixedValue">
+                                                                <span class="control-label error-mensaje" ng-show="!formFixedValue.$pristine && formFixedValue.minimumAmount.$error.required">
+                                                                    Debe especificar un importe minimo
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="maximumAmount" class="col-md-4 control-label">
+                                                                <p class="text-left">Importe Máximo</p>
+                                                            </label>
+                                                            <div class="col-md-8">
+                                                                <input name="maximumAmount" type="number" min="0" class="form-control" maxlength="30" ng-model="fixedValue.maximumAmount" oninput="this.value=this.value.slice(0,this.maxLength)" ng-required="vm.stateFixedValue">
+                                                                <span class="control-label error-mensaje" ng-show="!formFixedValue.$pristine && formFixedValue.maximumAmount.$error.required">
+                                                                    Debe especificar un importe maximo
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="father-center">
+                                                        <button type="button" ng-click="vm.addFixedValue()" class="btn btn-primary center-block son-center">
+                                                            Agregar
+                                                        </button>
+                                                        <button type="button" ng-click="vm.deleteFixedValue($index)" class="btn btn-primary center-block son-center">
+                                                            Eliminar
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </ng-form>
+                                </div>
+                                <div cg-busy="vm.myPromiseFixedValue"></div>
+                            </div>
+                        </div>
+                        <!-- End Valor Fijo -->
+
+                        <!-- Fecha -->
+                        <div class="row" ng-show="vm.stateDate">
+                            <div class="col-md-offset-1 col-md-10">
+                                <div ng-repeat="date in vm.dates">
+                                    <ng-form name="formDate">
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading">
+                                                <p class="text-left">Fecha {{$index + 1 }}</p>
+                                            </div>
+                                            <div class="panel-body">
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="description" class="col-md-3 control-label">
+                                                                <p class="text-left">Descripción Campo</p>
+                                                            </label>
+                                                            <div class="col-md-9">
+                                                                <textarea name="description" maxlength="30" class="form-control" rows="2" ng-model="date.description" ng-required="vm.stateDate"></textarea>
+                                                                <span class="control-label error-mensaje" ng-show="!formDate.$pristine && formDate.description.$error.required">
+                                                                    Debe especificar una descripción
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="format" class="col-md-4 control-label">
+                                                                <p class="text-left">Formato</p>
+                                                            </label>
+                                                            <div class="col-md-8">
+                                                                <select name="format" class="form-control" ng-model="date.format" ng-required="vm.stateDate">
+                                                                    <option value="">Seleccione una opción</option>
+                                                                    <option ng-repeat="x in vm.dateFormats" value="{{x.value}}">{{x.nombre}}</option>
+                                                                </select>
+                                                                <span class="control-label error-mensaje" ng-show="!formDate.$pristine && formDate.format.$error.required">
+                                                                    Debe especificar un formato
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="inputPosition" class="col-md-4 control-label">
+                                                                <p class="text-left">Posición de Entrada</p>
+                                                            </label>
+                                                            <div class="col-md-8">
+                                                                <input name="inputPosition" type="number" min="0" maxlength="2" class="form-control" maxlength="15" ng-model="date.inputPosition" oninput="this.value=this.value.slice(0,this.maxLength)" ng-required="vm.stateDate">
+                                                                <span class="control-label error-mensaje" ng-show="!formDate.$pristine && formDate.inputPosition.$error.required">
+                                                                    Debe especificar una posicion de entrada 
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="fieldLength" class="col-md-4 control-label">
+                                                                <p class="text-left">Longitud Campo</p>
+                                                            </label>
+                                                            <div class="col-md-8">
+                                                                <input name="fieldLength" type="number" min="0" maxlength="2" class="form-control" maxlength="15" ng-model="date.fieldLength" oninput="this.value=this.value.slice(0,this.maxLength)" ng-required="vm.stateDate">
+                                                                <span class="control-label error-mensaje" ng-show="!formDate.$pristine && formDate.fieldLength.$error.required">
+                                                                    Debe especificar una longitud de campo
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="alignment" class="col-md-6 control-label">
+                                                                <p class="text-left">Alineación</p>
+                                                            </label>
+                                                            <div class="col-md-6">
+                                                                <select name="alignment" class="form-control" ng-model="date.alignment" ng-required="vm.stateDate">
+                                                                    <option value="">Seleccione una opción</option>
+                                                                    <option ng-repeat="x in vm.dateAlignments" value="{{x.value}}">{{x.nombre}}</option>
+                                                                </select>
+                                                                <span class="control-label error-mensaje" ng-show="!formDate.$pristine && formDate.alignment.$error.required">
+                                                                    Debe especificar una alineación
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="fillCharacter" class="col-md-6 control-label">
+                                                                <p class="text-left">Carácter de Relleno</p>
+                                                            </label>
+                                                            <div class="col-md-6">
+                                                                <select name="fillCharacter" class="form-control" ng-model="date.fillCharacter" ng-required="vm.stateDate">
+                                                                    <option value="">Seleccione una opción</option>
+                                                                    <option ng-repeat="x in vm.dateFillCharacters" value="{{x.value}}">{{x.nombre}}</option>
+                                                                </select>
+                                                                <span class="control-label error-mensaje" ng-show="!formDate.$pristine && formDate.fillCharacter.$error.required">
+                                                                    Debe selecionar un caracter de relleno
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="lengthBars" class="col-md-6 control-label">
+                                                                <p class="text-left">Longitud en Barras</p>
+                                                            </label>
+                                                            <div class="col-md-6">
+                                                                <input name="lengthBars" type="number" min="0" maxlength="3" class="form-control" maxlength="15" ng-model="date.lengthBars" oninput="this.value=this.value.slice(0,this.maxLength)" ng-required="vm.stateDate">
+                                                                <span class="control-label error-mensaje" ng-show="!formDate.$pristine && formDate.lengthBars.$error.required">
+                                                                    Debe selecionar una longitud en barras
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="quickHelp" class="col-md-3 control-label">
+                                                                <p class="text-left">Ayuda Rápida Campo</p>
+                                                            </label>
+                                                            <div class="col-md-9">
+                                                                <textarea name="quickHelp" maxlength="60" class="form-control" ng-model="date.quickHelp" ng-required="vm.stateDate"></textarea>
+                                                                <span class="control-label error-mensaje" ng-show="!formDate.$pristine && formDate.quickHelp.$error.required">
+                                                                    Debe especificar campo ayuda rapida
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </ng-form>
+                                </div>
+                                <div cg-busy="vm.myPromiseDate"></div>
+                            </div>
+                        </div>
+                        <!-- Fecha -->
+
+                        <!-- Valor -->
+                        <div class="row" ng-show="vm.stateValue">
+                            <div class="col-md-offset-1 col-md-10">
+                                <div ng-repeat="value in vm.values">
+                                    <ng-form name="formValue">
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading">
+                                                <p class="text-left">Valor {{$index + 1 }}</p>
+                                            </div>
+                                            <div class="panel-body">
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="description" class="col-md-3 control-label">
+                                                                <p class="text-left">Descripción Campo</p>
+                                                            </label>
+                                                            <div class="col-md-9">
+                                                                <textarea name="description" maxlength="30" class="form-control" rows="2" ng-model="value.description" ng-required="vm.stateValue"></textarea>
+                                                                <span class="control-label error-mensaje" ng-show="!formValue.$pristine && formValue.description.$error.required">
+                                                                    Debe especificar una descripción
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="format" class="col-md-4 control-label">
+                                                                <p class="text-left">Formato</p>
+                                                            </label>
+                                                            <div class="col-md-8">
+                                                                <select name="format" class="form-control" ng-model="value.format" ng-required="vm.stateValue">
+                                                                    <option value="">Seleccione una opción</option>
+                                                                    <option ng-repeat="x in vm.valueFormats" value="{{x.value}}">{{x.nombre}}</option>
+                                                                </select>
+                                                                <span class="control-label error-mensaje" ng-show="!formValue.$pristine && formValue.format.$error.required">
+                                                                    Debe especificar un formato
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="inputPosition" class="col-md-4 control-label">
+                                                                <p class="text-left">Posición de Entrada</p>
+                                                            </label>
+                                                            <div class="col-md-8">
+                                                                <input name="inputPosition" type="number" min="0" maxlength="2" class="form-control" maxlength="15" ng-model="value.inputPosition" oninput="this.value=this.value.slice(0,this.maxLength)" ng-required="vm.stateValue">
+                                                                <span class="control-label error-mensaje" ng-show="!formValue.$pristine && formValue.inputPosition.$error.required">
+                                                                    Debe especificar una posicion de entrada 
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="fieldLength" class="col-md-4 control-label">
+                                                                <p class="text-left">Longitud Campo</p>
+                                                            </label>
+                                                            <div class="col-md-8">
+                                                                <input name="fieldLength" type="number" min="0" maxlength="2" class="form-control" maxlength="15" ng-model="value.fieldLength" oninput="this.value=this.value.slice(0,this.maxLength)" ng-required="vm.stateValue">
+                                                                <span class="control-label error-mensaje" ng-show="!formValue.$pristine && formValue.fieldLength.$error.required">
+                                                                    Debe especificar una longitud de campo
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="alignment" class="col-md-6 control-label">
+                                                                <p class="text-left">Alineación</p>
+                                                            </label>
+                                                            <div class="col-md-6">
+                                                                <select name="alignment" class="form-control" ng-model="value.alignment" ng-required="vm.stateValue">
+                                                                    <option value="">Seleccione una opción</option>
+                                                                    <option ng-repeat="x in vm.valueAlignments" value="{{x.value}}">{{x.nombre}}</option>
+                                                                </select>
+                                                                <span class="control-label error-mensaje" ng-show="!formValue.$pristine && formValue.alignment.$error.required">
+                                                                    Debe especificar una alineación
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="fillCharacter" class="col-md-6 control-label">
+                                                                <p class="text-left">Carácter de Relleno</p>
+                                                            </label>
+                                                            <div class="col-md-6">
+                                                                <select name="fillCharacter" class="form-control" ng-model="value.fillCharacter" ng-required="vm.stateValue">
+                                                                    <option value="">Seleccione una opción</option>
+                                                                    <option ng-repeat="x in vm.valueFillCharacters" value="{{x.value}}">{{x.nombre}}</option>
+                                                                </select>
+                                                                <span class="control-label error-mensaje" ng-show="!formValue.$pristine && formValue.fillCharacter.$error.required">
+                                                                    Debe selecionar un caracter de relleno
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="barLength" class="col-md-6 control-label">
+                                                                <p class="text-left">Longitud en Barras</p>
+                                                            </label>
+                                                            <div class="col-md-6">
+                                                                <input name="barLength" type="number" min="0" maxlength="3" class="form-control" maxlength="15" ng-model="value.barLength" oninput="this.value=this.value.slice(0,this.maxLength)" ng-required="vm.stateValue">
+                                                                <span class="control-label error-mensaje" ng-show="!formValue.$pristine && formValue.barLength.$error.required">
+                                                                    Debe selecionar una longitud en barras
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="quickHelp" class="col-md-3 control-label">
+                                                                <p class="text-left">Ayuda Rápida Campo</p>
+                                                            </label>
+                                                            <div class="col-md-9">
+                                                                <textarea name="quickHelp" maxlength="60" class="form-control" ng-model="value.quickHelp" ng-required="vm.stateValue"></textarea>
+                                                                <span class="control-label error-mensaje" ng-show="!formValue.$pristine && formValue.quickHelp.$error.required">
+                                                                    Debe especificar ayuda rapida
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </ng-form>
+                                </div>
+                                <div cg-busy="vm.myPromiseValue"></div>
+                            </div>
+                        </div>
+                        <!-- Valor -->
+
+                        <!-- Mensaje -->
+                        <div class="row" ng-show="vm.stateInformationMessage">
+                            <div class="col-md-offset-1 col-md-10">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <p class="text-left">Mensaje Informativo</p>
+                                    </div>
+                                    <div class="panel-body">
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="informationMessage" class="col-md-3 control-label">
+                                                        <p class="text-left">Mensaje Informativo</p>
+                                                    </label>
+                                                    <div class="col-md-9">
+                                                        <textarea name="informationMessage" placeholder="Maximo 60 Caracteres" class="form-control" rows="4" ng-model="vm.informationMessage" ng-required="vm.stateInformationMessage"></textarea>
+                                                        <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.informationMessage.$error.required">
+                                                            Debe especificar un mensaje informativo
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="father-center">
+                                                <button type="button" ng-click="vm.deleteInformationMessage()" class="btn btn-primary center-block son-center">
+                                                    Borrar Mensaje
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div cg-busy="vm.myPromiseMessage"></div>
+                            </div>
+                        </div>
+                        <!-- Mensaje -->
+
+                        <div class="row">
+                            <button type="button" ng-click="vm.save()" ng-disabled="!generalData.$valid" class="btn btn-primary center-block">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </v-pane-content>
+    </v-pane>
+
+</v-accordion>
