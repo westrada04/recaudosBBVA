@@ -98,7 +98,7 @@
         }
 
         function save() {
-            var requestAgrement = GeneralDataCreateModifyControllerService.getRequestAgreement().idAgreement;
+            var requestAgrement = GeneralDataCreateModifyControllerService.getRequestAgreement();
 
             if (requestAgrement == undefined) {
                 toastr.info('Debe guardar Datos Generales para realizar este registro!', 'Informacion !');

@@ -101,7 +101,7 @@
 
         function save() {
 
-            var requestAgrement = GeneralDataService.getRequestAgreement().idAgreement;
+            var requestAgrement = GeneralDataService.getRequestAgreement();
 
             if (requestAgrement == undefined) {
                 toastr.info('Debe guardar Datos Generales para realizar este registro!', 'Informacion !');
