@@ -1,0 +1,77 @@
+<v-accordion class="vAccordion--default" multiple>
+
+    <v-pane>
+        <v-pane-header>
+            ATM
+        </v-pane-header>
+
+        <v-pane-content>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <form class="form-horizontal" name="atmForm" role="form">
+                        <div class="row">
+                            <p class="text-center titulo-atm">Referencia única</p>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="action" class="col-md-4 control-label">
+                                        <p class="text-left">Acción</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="action" class="form-control" ng-model="vm.action" required>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.actions" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                        <span class="control-label error-mensaje" ng-show="!atmForm.$pristine && atmForm.action.$error.required">
+                                            Debe selecionar una acción
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="category" class="col-md-4 control-label">
+                                        <p class="text-left">Categoría</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="category" class="form-control" ng-model="vm.category" required>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.categories" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                        <span class="control-label error-mensaje" ng-show="!atmForm.$pristine && atmForm.category.$error.required">
+                                            Debe selecionar una categoria
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="subcategory" class="col-md-4 control-label">
+                                        <p class="text-left">Subcategoría</p>
+                                    </label>
+                                    <div class="col-md-8">
+                                        <select name="subcategory" class="form-control" ng-model="vm.subcategory" required>
+                                            <option value="">Seleccione una opción</option>
+                                            <option ng-repeat="x in vm.subcategories" value="{{x.value}}">{{x.nombre}}</option>
+                                        </select>
+                                        <span class="control-label error-mensaje" ng-show="!atmForm.$pristine && atmForm.subcategory.$error.required">
+                                            Debe selecionar un tipo de campo
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <button type="button" ng-click="vm.save()" ng-disabled="!atmForm.$valid" class="btn btn-primary center-block">Guardar</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </v-pane-content>
+    </v-pane>
+
+</v-accordion>

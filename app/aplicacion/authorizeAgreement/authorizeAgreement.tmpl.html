@@ -45,14 +45,14 @@
             <output-file-authorizer></output-file-authorizer>
             <reference-information-authorizer></reference-information-authorizer>
             <capture-type-authorizer></capture-type-authorizer>
-            <pin-generation-edit></pin-generation-edit>
-            <accounts-receivable-edit></accounts-receivable-edit>
+            <pin-generation-authorizer></pin-generation-authorizer>
+            <accounts-receivable-authorizer></accounts-receivable-authorizer>
 
             <!-- impuestos -->
             <div ng-show="vm.isTax">
-                <tax-dispersion-accounts-edit></tax-dispersion-accounts-edit>
-                <special-tax-parameters-edit></special-tax-parameters-edit>
-                <recaudo-products-tax-edit></recaudo-products-tax-edit>
+                <tax-dispersion-accounts-authorizer></tax-dispersion-accounts-authorizer>
+                <special-tax-parameters-authorizer></special-tax-parameters-authorizer>
+                <recaudo-products-tax-authorizer></recaudo-products-tax-authorizer>
             </div>
 
             <div class="row" ng-hide="vm.state3">
@@ -61,14 +61,14 @@
         </div>
 
         <div ng-show="vm.state2">
-            <financial-terminal-edit></financial-terminal-edit>
-            <bbva-net-bbva-cash-edit></bbva-net-bbva-cash-edit>
-            <atm-edit></atm-edit>
-            <mobile-banking-edit></mobile-banking-edit>
-            <pay-time-edit></pay-time-edit>
-            <bank-correspondent-edit></bank-correspondent-edit>
-            <payments-pse-edit></payments-pse-edit>
-            <annex-documents-edit></annex-documents-edit>
+            <financial-terminal-authorizer></financial-terminal-authorizer>
+            <bbva-net-bbva-cash-authorizer></bbva-net-bbva-cash-authorizer>
+            <atm-authorizer></atm-authorizer>
+            <mobile-banking-authorizer></mobile-banking-authorizer>
+            <pay-time-authorizer></pay-time-authorizer>
+            <bank-correspondent-authorizer></bank-correspondent-authorizer>
+            <payments-pse-authorizer></payments-pse-authorizer>
+            <annex-documents-authorizer></annex-documents-authorizer>
             <div class="row father-center" ng-hide="vm.state3">
                 <button type="button" ng-click="vm.after1()" class="btn btn-primary son-center">Anterior</button>
                 <button type="button" ng-click="vm.next2()" class="btn btn-primary son-center">Siguiente</button>
