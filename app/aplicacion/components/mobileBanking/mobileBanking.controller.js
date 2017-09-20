@@ -293,8 +293,8 @@
 
                         angular.forEach(response, function (value, key) {
                             if (value.state == 'fulfilled') {
-                                MobileBankingService.setIdReference(value.value.data.data.referenceId);
-                                toastr.info('Referencia: ' + value.value.data.data.referenceId + ' almacenada Exitosamente.', 'Informacion!');
+                                MobileBankingService.setIdReference(value.value.data.data[key].referenceId);
+                                toastr.info('Referencia: ' + value.value.data.data[key].referenceId + ' almacenada Exitosamente.', 'Informacion!');
                             } else if (value.state == 'rejected') {
                                 toastr.error('Referencia: ' + vm.references[key].id + ' No Almacenada <br>' + value.reason.data["error-message"], 'Error !');
                             }
