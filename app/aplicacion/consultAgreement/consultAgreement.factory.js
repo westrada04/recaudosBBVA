@@ -590,6 +590,8 @@
             requestreferences.fixedValues = [];
             requestreferences.dates = [];
             requestreferences.values = [];
+            requestreferences.BNET = [];
+            requestreferences.MNET = [];
             requestreferences.messages = [];
             requestreferences.informationMessage = "";
 
@@ -739,6 +741,38 @@
                         }
 
                         break;
+                    case 'BNET':
+                        requestreferences.values.push({
+                            "id": (requestreferences.values.length + 1),
+                            "referenceId": value.referenceType.id,
+                            "field": parseInt(value.referenceType.id),
+                            "quickHelp": value.longDescription,
+                            "description": value.referenceDescription,
+                            "format": value.typeFormat.id,
+                            "alignment": value.typeAlignment.name == "RIGHT" ? "D" : "I",
+                            "fieldLength": value.length,
+                            "inputPosition": value.positionInitial,
+                            "outputPosition": value.positionOut,
+                            "barLength": value.position,
+                            "fillCharacter": value.paddingCharacters != undefined ? value.paddingCharacters.toString() :"1",
+                        });
+                        break;  
+                    case 'MNET':
+                        requestreferences.values.push({
+                            "id": (requestreferences.values.length + 1),
+                            "referenceId": value.referenceType.id,
+                            "field": parseInt(value.referenceType.id),
+                            "quickHelp": value.longDescription,
+                            "description": value.referenceDescription,
+                            "format": value.typeFormat.id,
+                            "alignment": value.typeAlignment.name == "RIGHT" ? "D" : "I",
+                            "fieldLength": value.length,
+                            "inputPosition": value.positionInitial,
+                            "outputPosition": value.positionOut,
+                            "barLength": value.position,
+                            "fillCharacter": value.paddingCharacters != undefined ? value.paddingCharacters.toString() :"1",
+                        });
+                        break;  
                 }
             });
             return requestreferences;
@@ -843,6 +877,7 @@
                     switch (value.name) {
                         case 'BNET':
                             requestChannel.BNET.push({
+                                "referenceId": value.id,
                                 "category": value.category,
                                 "subcategory": value.subCategory,
                                 "format": value.dataType,
@@ -853,6 +888,7 @@
                             break;
                         case 'MNET':
                             requestChannel.MNET.push({
+                                "referenceId": value.id,
                                 "category": value.category,
                                 "subcategory": value.subCategory,
                                 "format": value.dataType,

@@ -103,7 +103,7 @@
 
         function save() {
 
-            var requestAgrement = GeneralDataEditService.getRequestAgreement().idAgreement;
+            var requestAgrement = GeneralDataEditService.getRequestAgreement();
 
             if (requestAgrement == undefined) {
                 toastr.info('Debe guardar Datos Generales para realizar este registro!', 'Informacion !');
