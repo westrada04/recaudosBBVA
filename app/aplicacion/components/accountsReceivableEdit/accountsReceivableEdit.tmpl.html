@@ -54,7 +54,7 @@
                                                                 <p class="text-left">Porcentaje de Recaudo</p>
                                                             </label>
                                                             <div class="col-md-4">
-                                                                <input name="percentageAgrement" type="number" class="form-control" ng-model="account.percentageAgrement" required>
+                                                                <input name="percentageAgrement" type="text" maxlength ="3" class="form-control" ng-model="account.percentageAgrement" required>
                                                                 <span class="control-label error-mensaje" ng-show="!formAccount.$pristine && formAccount.percentageAgrement.$error.required">
                                                                     Debe especificar el porcentaje de recaudo
                                                                 </span>
@@ -63,7 +63,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="row">
+                                                <!--div class="row">
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label for="idType" class="col-md-6 control-label">
@@ -80,20 +80,20 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-5">
                                                         <div class="form-group">
-                                                            <label for="identificationNumber" class="col-md-8 control-label">
-                                                                <p class="text-left">Número de Identificación</p>
+                                                            <label for="identificationNumber" class="col-md-6 control-label">
+                                                                <p class="text-left">Número Identificación</p>
                                                             </label>
-                                                            <div class="col-md-4">
-                                                                <input name="identificationNumber" type="text" class="form-control" maxlength="15" ng-model="account.identificationNumber" required>
+                                                            <div class="col-md-6">
+                                                                <input name="identificationNumber" type="text"  class="form-control" maxlength="15" ng-model="account.identificationNumber" required>
                                                                 <span class="control-label error-mensaje" ng-show="!formAccount.$pristine && formAccount.identificationNumber.$error.required">
                                                                     Debe especificar el numero de identificación
                                                                 </span>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label for="identificationDigit" class="col-md-8 control-label">
                                                                 <p class="text-left">Digito de Verificación</p>
@@ -106,7 +106,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div-->
 
                                                 <div class="row">
                                                     <div class="father-center">
@@ -125,7 +125,7 @@
                             </div>
                         </div>
 
-                        <div class="row">
+                        <!--div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="percentageCollection" class="col-md-8 control-label">
@@ -139,7 +139,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div-->
                     </form>
                     <div cg-busy="vm.myPromise"></div>
                     <div class="row">

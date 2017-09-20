@@ -120,6 +120,7 @@
         function save() {
             var requestAgrement = GeneralDataEditService.getRequestAgreement();
             var requestReferences = ReferenceInformationEditService.getReferences();
+            var valfijo ='';
 
             if (requestAgrement.idAgreement == undefined) {
                 toastr.info('Debe guardar Datos Generales para realizar este registro!', 'Informacion !');
@@ -143,7 +144,7 @@
                 if (vm.status) {
                     requestAgrement.agreementConfiguration.channel.push({
                         "id": "05",
-                        "name": "BNET",
+                        "name": "MNET",
                         "category": '',
                         "subCategory": '',
                         "alignment": "D", // D => desactivar - A => Activar
@@ -200,7 +201,7 @@
                         }],
                         "parameter": [{
                             "id": "",
-                            "name": "BNET",
+                            "name": "MNET",
                             "parameterType": {
                                 "id": "",
                                 "name": ''
@@ -218,9 +219,10 @@
                     }];
 
                 } else {
+                    valfijo = vm.fixedValue==true ? "S" :"N" ;
                     requestAgrement.agreementConfiguration.channel.push({
                         "id": "05",
-                        "name": "BNET",
+                        "name": "MNET" + valfijo,
                         "category": vm.category,
                         "subCategory": vm.subcategory,
                         "alignment": !vm.status == true ? "A" : "D", // D => desactivar - A => Activar
@@ -277,7 +279,7 @@
                         }],
                         "parameter": [{
                             "id": "",
-                            "name": "BNET",
+                            "name": "MNET",
                             "parameterType": {
                                 "id": "",
                                 "name": vm.fixedValue == true ? "S" : "N"

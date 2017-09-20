@@ -131,7 +131,7 @@
                 if (vm.status) {
                     requestAgrement.agreementConfiguration.channel.push({
                         "id": "05",
-                        "name": "BNET",
+                        "name": "MNET",
                         "category": '',
                         "subCategory": '',
                         "alignment": "D", // D => desactivar - A => Activar
@@ -188,7 +188,7 @@
                         }],
                         "parameter": [{
                             "id": "",
-                            "name": "BNET",
+                            "name": "MNET",
                             "parameterType": {
                                 "id": "",
                                 "name": ''
@@ -210,7 +210,7 @@
 
                     requestAgrement.agreementConfiguration.channel.push({
                         "id": "05",
-                        "name": "BNET",
+                        "name": "MNET",
                         "category": vm.category,
                         "subCategory": vm.subcategory,
                         "alignment": !vm.status == true ? "A" : "D", // D => desactivar - A => Activar
@@ -267,7 +267,7 @@
                         }],
                         "parameter": [{
                             "id": "",
-                            "name": "BNET",
+                            "name": "MNET",
                             "parameterType": {
                                 "id": "",
                                 "name": vm.fixedValue == true ? "S" : "N"

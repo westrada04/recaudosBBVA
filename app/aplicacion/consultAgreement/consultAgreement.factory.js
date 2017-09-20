@@ -837,8 +837,8 @@
                             "accountNumber": value.number.trim(),
                             "type": value.product.id === '01' ? "CC" : value.product.id === '02' ? "AH" : value.product.id === '96' ? "CL" : "",
                             "idType": agrement.data.relatedParticipants[0].participantTypeId,
-                            "identificationNumber": agrement.data.relatedParticipants[0].participantId.substring(1, 15),
-                            "identificationDigit": agrement.data.relatedParticipants[0].participantId.substring(15, 16),
+                            "identificationNumber": agrement.data.relatedParticipants[0].participantId.substring(1, 16),
+                            "identificationDigit": agrement.data.relatedParticipants[0].participantId.substring(16, 17),
                             "percentageAgrement": value.percentage
 
                         });
