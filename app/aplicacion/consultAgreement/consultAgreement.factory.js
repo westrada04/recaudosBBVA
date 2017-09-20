@@ -842,9 +842,7 @@
                 angular.forEach(agrement.data.agreementConfiguration.channel, function (value, key) {
                     switch (value.name) {
                         case 'BNET':
-                            console.log('value', value);
                             requestChannel.BNET.push({
-                                "referenceId": value.referenceType.id,
                                 "category": value.category,
                                 "subcategory": value.subCategory,
                                 "format": value.dataType,
@@ -854,9 +852,7 @@
                             });
                             break;
                         case 'MNET':
-                            console.log('value', value);
                             requestChannel.MNET.push({
-                                "referenceId": value.referenceType.id,
                                 "category": value.category,
                                 "subcategory": value.subCategory,
                                 "format": value.dataType,
