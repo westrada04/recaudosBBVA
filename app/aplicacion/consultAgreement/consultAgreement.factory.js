@@ -764,7 +764,7 @@
                             "field": parseInt(value.referenceType.id),
                             "quickHelp": value.longDescription,
                             "description": value.referenceDescription,
-                            "format": value.typeFormat.id,
+                            "format": value.fieldType,
                             "alignment": value.typeAlignment.name == "RIGHT" ? "D" : "I",
                             "fieldLength": value.length,
                             "inputPosition": value.positionInitial,

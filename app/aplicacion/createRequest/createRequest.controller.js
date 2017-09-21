@@ -105,13 +105,14 @@
         function continuar() {
 
             if (vm.editAgreement) {
+                var num = '';
                 if (vm.agreementCode.length < 7) {
-                    var num = '';
+                    
                     for (var x = vm.agreementCode.length; x < 7; x++) {
                         num = num + '0';
                     }
-                    num = num + vm.agreementCode;
                 }
+                num = num + vm.agreementCode;
                 var idAgreement = vm.typeAgreement + num + vm.classAgreement;
 
                 $timeout(function () {

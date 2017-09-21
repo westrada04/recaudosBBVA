@@ -251,7 +251,7 @@
                         "referenceDescription": "",
                         "longDescription": requestReferences[0].longDescription,
                         "typeFormat": {
-                            "id": requestReferences[0].typeFormat.id,
+                            "id": vm.fieldType,
                             "name": ""
                         },
                         "typeAlignment": {
