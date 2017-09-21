@@ -550,7 +550,7 @@
                     "number": vm.waitingAccountNumber,
                     "product": {
                         "id": '19',
-                        "name": 'CTA Espera'
+                        "name": '9999 CTA Espera'
                     },
                     "relationType": {
                         "id": "CTA",

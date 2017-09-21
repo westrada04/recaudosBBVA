@@ -10,6 +10,8 @@
 
         //datos obtenidos
         var request = ConsultAgreementService.getChannel();
+        var referen = ConsultAgreementService.getReferencesInf();
+        var refMnet = referen.MNET;
         if (request.MNET.length > 0) {
             vm.category = request.MNET[0].category;
             vm.subcategory = request.MNET[0].subcategory;
@@ -23,6 +25,9 @@
         } else {
             vm.status = true;
         }
+        MobileBankingEditService.setIdReference(refMnet[0].referenceId);
+        vm.fieldType = refMnet[0].fieldType;
+        vm.referenceDescription= refMnet[0].referenceDescription;
 
         vm.activate = activate;
         vm.deactivate = deactivate;

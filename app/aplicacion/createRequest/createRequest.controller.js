@@ -41,7 +41,7 @@
         function changeTypeRequest() {
             if (vm.typeRequest == "I") {
                 vm.typeAgreements = [
-                    {
+                    /*{
                         nombre: "Recaudos",
                         value: "001"
                     },
@@ -52,7 +52,7 @@
                     {
                         nombre: "Impuestos",
                         value: "003"
-                    },
+                    },*/
                     {
                         nombre: "Impuestos Nuevo",
                         value: "005"

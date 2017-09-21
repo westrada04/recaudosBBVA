@@ -742,13 +742,13 @@
 
                         break;
                     case 'BNET':
-                        requestreferences.values.push({
-                            "id": (requestreferences.values.length + 1),
+                        requestreferences.BNET.push({
+                            "id": (requestreferences.BNET.length + 1),
                             "referenceId": value.referenceType.id,
                             "field": parseInt(value.referenceType.id),
                             "quickHelp": value.longDescription,
-                            "description": value.referenceDescription,
-                            "format": value.typeFormat.id,
+                            "description": value.name,
+                            "fieldType": value.typeFormat.id,
                             "alignment": value.typeAlignment.name == "RIGHT" ? "D" : "I",
                             "fieldLength": value.length,
                             "inputPosition": value.positionInitial,
@@ -758,13 +758,13 @@
                         });
                         break;  
                     case 'MNET':
-                        requestreferences.values.push({
-                            "id": (requestreferences.values.length + 1),
+                        requestreferences.MNET.push({
+                            "id": (requestreferences.MNET.length + 1),
                             "referenceId": value.referenceType.id,
                             "field": parseInt(value.referenceType.id),
                             "quickHelp": value.longDescription,
-                            "description": value.referenceDescription,
-                            "format": value.fieldType,
+                            "description": value.name,
+                            "fieldType": value.typeFormat,
                             "alignment": value.typeAlignment.name == "RIGHT" ? "D" : "I",
                             "fieldLength": value.length,
                             "inputPosition": value.positionInitial,
