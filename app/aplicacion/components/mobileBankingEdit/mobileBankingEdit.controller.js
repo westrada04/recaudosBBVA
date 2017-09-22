@@ -30,7 +30,6 @@
         if (refMnet.length != 0) {
             MobileBankingEditService.setIdReference(refMnet[0].referenceId);
             vm.fieldType = refMnet[0].fieldType.id;
-            console.log('refMnet', refMnet);
             vm.referenceDescription = refMnet[0].referenceDescription;
         }
 
