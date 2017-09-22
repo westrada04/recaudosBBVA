@@ -34,6 +34,7 @@
         vm.waitingAccountNumber = request.waitingAccountNumber;
         vm.isTaxAndAdditional = request.isTaxAndAdditional;
         vm.tax0044 = request.tax0044;
+        vm.typeTax = request.typeTax;
         vm.stateContract = request.stateContract;
         vm.paymentMethodsSelected = request.paymentMethodsSelected;
         vm.alternateCompany = request.alternateCompany;
@@ -331,11 +332,11 @@
         vm.typeTaxs = [
             {
                 nombre: "Vehiculo",
-                value: "1"
+                value: "01"
             },
             {
                 nombre: "Sobre Tasa Gasolina",
-                value: "2"
+                value: "02"
             }
         ];
 
