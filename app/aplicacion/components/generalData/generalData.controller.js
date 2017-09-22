@@ -300,11 +300,11 @@
         vm.typeTaxs = [
             {
                 nombre: "Vehiculo",
-                value: "1"
+                value: "01"
             },
             {
                 nombre: "Sobre Tasa Gasolina",
-                value: "2"
+                value: "02"
             }
         ];
 
