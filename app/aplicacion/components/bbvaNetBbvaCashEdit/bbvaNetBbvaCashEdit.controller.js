@@ -317,6 +317,7 @@
                     localReference = [];
                     angular.forEach(response, function (value, key) {
                         if (value.state == 'fulfilled') {
+                            console.log('valor',value.value.data.data );
                             localReference.push(value.value.data.data);
                             toastr.info('Referencia almacenada Exitosamente.', 'Informacion!');
                         } else if (value.state == 'rejected') {

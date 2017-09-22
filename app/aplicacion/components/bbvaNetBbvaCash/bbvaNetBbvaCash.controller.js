@@ -342,6 +342,10 @@
                     localReference = [];
                     angular.forEach(response, function (value, key) {
                         if (value.state == 'fulfilled') {
+
+                            console.log('valor => ',value.value.data.data);
+                            console.log('valor',value.value.data.data.referenceId );
+
                             vm.references[key].referenceId = value.value.data.data.referenceId;
                             console.log('vm.references[key]', vm.references[key]);
                             toastr.info('Referencia almacenada Exitosamente.', 'Informacion!');

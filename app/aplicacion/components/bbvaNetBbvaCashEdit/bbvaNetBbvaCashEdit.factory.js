@@ -20,7 +20,13 @@
             var idAgreement = EditAgreementService.getIdAgreement();
 
             var promises = requests.map(function (request) {
-                return $http.put(API_BACKEND.url + "/agreements/V01/" + idAgreement + '/references/' + request.referenceId, request, UserService.getTsec())
+                if (request.referenceId == '99000') {
+                    var listRequest = [];
+                    listRequest.push(request);
+                    return $http.post(API_BACKEND.url + "/agreements/V01/" + idAgreement + '/references', listRequest, UserService.getTsec())
+                } else {
+                    return $http.put(API_BACKEND.url + "/agreements/V01/" + idAgreement + '/references/' + request.referenceId, request, UserService.getTsec())
+                }
             });
 
             return $q.allSettled(promises);
