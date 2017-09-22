@@ -12,6 +12,7 @@
         var request = ConsultAgreementService.getChannel();
         var referen = ConsultAgreementService.getReferencesInf();
         var refMnet = referen.MNET;
+
         if (request.MNET.length > 0) {
             vm.category = request.MNET[0].category;
             vm.subcategory = request.MNET[0].subcategory;
@@ -25,9 +26,12 @@
         } else {
             vm.status = true;
         }
-        MobileBankingEditService.setIdReference(refMnet[0].referenceId);
-        vm.fieldType = refMnet[0].fieldType;
-        vm.referenceDescription= refMnet[0].referenceDescription;
+
+        if (refMnet.length != 0) {
+            MobileBankingEditService.setIdReference(refMnet[0].referenceId);
+            vm.fieldType = refMnet[0].fieldType;
+            vm.referenceDescription = refMnet[0].referenceDescription;
+        }
 
         vm.activate = activate;
         vm.deactivate = deactivate;
@@ -125,7 +129,7 @@
         function save() {
             var requestAgrement = GeneralDataEditService.getRequestAgreement();
             var requestReferences = ReferenceInformationEditService.getReferences();
-            var valfijo ='';
+            var valfijo = '';
 
             if (requestAgrement.idAgreement == undefined) {
                 toastr.info('Debe guardar Datos Generales para realizar este registro!', 'Informacion !');
@@ -224,7 +228,7 @@
                     }];
 
                 } else {
-                    valfijo = vm.fixedValue==true ? "S" :"N" ;
+                    valfijo = vm.fixedValue == true ? "S" : "N";
                     requestAgrement.agreementConfiguration.channel.push({
                         "id": "05",
                         "name": "MNET" + valfijo,
