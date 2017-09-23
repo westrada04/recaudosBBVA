@@ -38,14 +38,20 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="referencePosition" class="col-md-5 control-label">
-                                        <p class="text-left">Posición de Referencia</p>
+                                    <label for="morePayment" class="col-md-6 control-label">
+                                        <p class="text-left">Recibe más de un pago</p>
                                     </label>
-                                    <div class="col-md-7">
-                                        <input name="referencePosition" type="text" class="form-control" ng-model="vm.referencePosition" ng-disabled="vm.disable" readonly>
+                                    <div class="col-md-6">
+                                        <label class="radio-inline">
+                                            <input name="morePayment" type="radio" ng-model="vm.morePayment" ng-value=true ng-disabled="vm.disable" required>Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="morePayment" type="radio" ng-model="vm.morePayment" ng-value=false ng-disabled="vm.disable" required>No
+                                        </label>
                                     </div>
                                 </div>
                             </div>
+                            
                         </div>
 
                         <div class="row">
@@ -114,19 +120,6 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="deliveryPeriod" class="col-md-7 control-label">
-                                        <p class="text-left">Periodo de Entrega</p>
-                                    </label>
-                                    <div class="col-md-5">
-                                        <select name="deliveryPeriod" class="form-control" ng-model="vm.deliveryPeriod" ng-disabled="vm.disable" required>
-                                            <option value="">Seleccione una opción</option>
-                                            <option ng-repeat="x in vm.deliveryPeriods" value="{{x.value}}">{{x.nombre}}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
                                     <label for="numberCycles" class="col-md-6 control-label">
                                         <p class="text-left">Numero de Ciclos</p>
                                     </label>
@@ -191,21 +184,6 @@
                                         </label>
                                         <label class="radio-inline">
                                             <input name="dateEncab" type="radio" ng-model="vm.dateEncab" ng-value=false ng-disabled="vm.disable" required>No
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-5">
-                                <div class="form-group">
-                                    <label for="morePayment" class="col-md-6 control-label">
-                                        <p class="text-left">Recibe más de un pago</p>
-                                    </label>
-                                    <div class="col-md-6">
-                                        <label class="radio-inline">
-                                            <input name="morePayment" type="radio" ng-model="vm.morePayment" ng-value=true ng-disabled="vm.disable" required>Si
-                                        </label>
-                                        <label class="radio-inline">
-                                            <input name="morePayment" type="radio" ng-model="vm.morePayment" ng-value=false ng-disabled="vm.disable" required>No
                                         </label>
                                     </div>
                                 </div>

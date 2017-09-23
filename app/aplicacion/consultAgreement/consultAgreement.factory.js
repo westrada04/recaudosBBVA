@@ -35,7 +35,8 @@
             getAccountsRC: getAccountsRC,
             getPaytime: getPaytime,
             getChannel: getChannel,
-            getPse: getPse
+            getPse: getPse,
+            getPin: getPin
         };
 
         return service;
@@ -318,13 +319,6 @@
                             requestDataBase.updateCycle = "";
                         }
                         break;
-                    case 'DELIVERY_PERIOD':
-                        requestDataBase.deliveryPeriod = value.isActive ? value.value[0].name == "S" ? "Semanal" :
-                            value.value[0].name == "M" ? "Mensual" : "Diaria" : "";
-                        break;
-                    case 'REFERENCE_POSITION':
-                        requestDataBase.referencePosition = value.isActive ? value.value[0].name : "";
-                        break;
                     case 'VALIDATE_HEADER_DATE':
                         requestDataBase.dateEncab = value.isActive;
 
@@ -334,7 +328,6 @@
                         break;
                 }
             });
-
 
             return requestDataBase;
         }
@@ -874,7 +867,7 @@
 
             if (agrement.data.agreementConfiguration != undefined) {
                 angular.forEach(agrement.data.agreementConfiguration.channel, function (value, key) {
-                    switch (value.name) {
+                    switch (value.name.substring(0, 4)) {
                         case 'BNET':
                             requestChannel.BNET.push({
                                 "referenceId": value.id,
@@ -1045,6 +1038,40 @@
 
             return requestPse
         }
+        function getPin() {
+            var agrement = this.request.agreements;
+            var requestPin = {};
+            if (agrement.data.agreementConfiguration != undefined) {
+                angular.forEach(agrement.data.agreementConfiguration.pin, function (value, key) {
+                    requestPin.id = value.id;
+                    requestPin.name = value.name;
+                    requestPin.typeId = value.pinType.id;
+                           
+                    switch (value.pinType.id) {
+                        case '01': {
+                            requestPin.typePin = "TU";
+                        }break;
+                        case '02': {
+                            requestPin.typePin = "TB";
+                        }break;
+                        case '03': {
+                            requestPin.typePin = "TI";
+                        }break;
+                        case '04': {
+                            requestPin.typePin = "TA";
+                        }break;
+                        default:{requestPin.typePin = "BD";};
+                    }
 
+                    requestPin.numericAlphanumeric = value.pinType.name;
+                    requestPin.algorythm = value.algorithm==='02'?"B06":
+                    value.algorithm==='04'?"B10":
+                    value.algorithm==='08'?"B08":"";
+                    requestPin.NumberDigits = parseInt(value.value);
+                });
+            }
+
+            return requestPin
+        }
     }
 })();

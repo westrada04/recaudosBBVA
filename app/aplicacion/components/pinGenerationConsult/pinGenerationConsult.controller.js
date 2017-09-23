@@ -5,9 +5,14 @@
         .module('app.aplicacion.components.pinGenerationConsult')
         .controller('PinGenerationConsultController', PinGenerationConsultController);
 
-    function PinGenerationConsultController() {
+    function PinGenerationConsultController(ConsultAgreementService) {
         var vm = this;
-
+        var request = ConsultAgreementService.getPin();
+        vm.typePin = request.typePin;
+        vm.algorythm = request.algorythm;
+        vm.numericAlphanumeric = request.numericAlphanumeric;
+        vm.NumberDigits = request.NumberDigits;
+        
         vm.changeTypePin = changeTypePin;
         vm.addFixedData = addFixedData;
         vm.deleteFixedData = deleteFixedData;

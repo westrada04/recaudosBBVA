@@ -20,8 +20,6 @@
         vm.numberCycles = request.numberCycles;
         vm.dueDate = request.dueDate;
         vm.loadKey = request.loadKey;
-        vm.deliveryPeriod = request.deliveryPeriod;
-        vm.referencePosition = request.referencePosition;
         vm.dateEncab = request.dateEncab;
         vm.dateDet1 = request.dateEncab;
         vm.updateCycle= request.updateCycle;
@@ -99,21 +97,6 @@
         }
         ];
 
-        vm.deliveryPeriods = [
-            {
-                nombre: "Diaria",
-                value: "Diaria"
-        },
-            {
-                nombre: "Mensual",
-                value: "Mensual"
-        },
-            {
-                nombre: "Semanal",
-                value: "Semanal"
-        }
-        ];
-
         vm.loadKeys = [
             {
                 nombre: "EAN",
@@ -172,34 +155,6 @@
                 }],
             };
             if (vm.databaseType != "N") {
-
-                // Posición de Referencia
-                var requestReferencePosition = {
-                    "name": "REFERENCE_POSITION",
-                    "isActive": vm.referencePosition != "",
-                    "limits": [{
-                        "start": "",
-                        "end": ""
-                    }],
-                    "value": [{
-                        id: vm.referencePosition,
-                        name: vm.referencePosition
-                    }]
-                };
-
-                // Periodo de Entrega
-                var requestDeliveryPeriod = {
-                    "name": "DELIVERY_PERIOD",
-                    "isActive": vm.deliveryPeriod != "",
-                    "limits": [{
-                        "start": "",
-                        "end": ""
-                    }],
-                    "value": [{
-                        id: vm.deliveryPeriod,
-                        name: vm.deliveryPeriod
-                    }]
-                };
 
                 // Valida Fecha 1
                 var requestDate1 = {
@@ -373,8 +328,6 @@
                     .then(function (response) {
                         return DataBaseCreateModifyService.createIndicatorGeneral(requestLoadKey, 'KEY_LOAD');
                     }).then(function (response) {
-                        return DataBaseCreateModifyService.createIndicatorGeneral(requestDeliveryPeriod, 'DELIVERY_PERIOD');
-                    }).then(function (response) {
                         return DataBaseCreateModifyService.createIndicatorGeneral(requestDate1, 'FIRST_EXPIRATION_DAT');
                     }).then(function (response) {
                         return DataBaseCreateModifyService.createIndicatorGeneral(requestDate2, 'SECOND_EXPIRATION_DA');
@@ -396,8 +349,6 @@
                         return DataBaseCreateModifyService.createIndicatorGeneral(requestTypeTransmission, 'TYPE_TRANSMISSION');
                     }).then(function (response) {
                         return DataBaseCreateModifyService.createIndicatorGeneral(requestDueDate, 'DAYS_DELETE_EXPIRATI');
-                    }).then(function (response) {
-                        return DataBaseCreateModifyService.createIndicatorGeneral(requestReferencePosition, 'REFERENCE_POSITION');
                     }).then(function (response) {
                         toastr.info('Registros Exitosos!', 'Informacion !');
                     }).catch(function (error) {

@@ -28,8 +28,6 @@
         vm.dueDate = requestDataBase.dueDate;
         vm.loadKey = requestDataBase.loadKey;
         vm.updateCycle = requestDataBase.updateCycle;
-        vm.deliveryPeriod = requestDataBase.deliveryPeriod;
-        vm.referencePosition = requestDataBase.referencePosition;
         vm.dateEncab = requestDataBase.dateEncab;
         vm.dateDet1 = requestDataBase.dateEncab;
                
@@ -98,21 +96,6 @@
             {
                 nombre: "Parcial",
                 value: "P"
-        }
-        ];
-
-        vm.deliveryPeriods = [
-            {
-                nombre: "Diaria",
-                value: "Diaria"
-        },
-            {
-                nombre: "Mensual",
-                value: "Mensual"
-        },
-            {
-                nombre: "Semanal",
-                value: "Semanal"
         }
         ];
 

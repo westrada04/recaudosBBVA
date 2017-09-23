@@ -28,7 +28,6 @@
         vm.dateDet1 = false;
         vm.dateEncab = false;
         vm.morePayment = false;
-        vm.deliveryPeriod = 'Mensual';
         vm.loadKey = "1";
 
         if (vm.typeRequest == 'R') {
@@ -98,21 +97,6 @@
         }
         ];
 
-        vm.deliveryPeriods = [
-            {
-                nombre: "Diaria",
-                value: "Diaria"
-        },
-            {
-                nombre: "Mensual",
-                value: "Mensual"
-        },
-            {
-                nombre: "Semanal",
-                value: "Semanal"
-        }
-        ];
-
         vm.loadKeys = [
             {
                 nombre: "EAN",
@@ -170,34 +154,6 @@
                 }],
             };
             if (vm.databaseType != "N") {
-
-                // Posición de Referencia
-                var requestReferencePosition = {
-                    "name": "REFERENCE_POSITION",
-                    "isActive": vm.referencePosition != "",
-                    "limits": [{
-                        "start": "",
-                        "end": ""
-                    }],
-                    "value": [{
-                        id: vm.referencePosition,
-                        name: vm.referencePosition
-                    }]
-                };
-
-                // Periodo de Entrega
-                var requestDeliveryPeriod = {
-                    "name": "DELIVERY_PERIOD",
-                    "isActive": vm.deliveryPeriod != "",
-                    "limits": [{
-                        "start": "",
-                        "end": ""
-                    }],
-                    "value": [{
-                        id: vm.deliveryPeriod,
-                        name: vm.deliveryPeriod
-                    }]
-                };
 
                 // Valida Fecha 1
                 var requestDate1 = {
@@ -371,8 +327,6 @@
                     .then(function (response) {
                         return DataBaseService.createIndicatorGeneral(requestLoadKey, 'KEY_LOAD');
                     }).then(function (response) {
-                        return DataBaseService.createIndicatorGeneral(requestDeliveryPeriod, 'DELIVERY_PERIOD');
-                    }).then(function (response) {
                         return DataBaseService.createIndicatorGeneral(requestDate1, 'FIRST_EXPIRATION_DAT');
                     }).then(function (response) {
                         return DataBaseService.createIndicatorGeneral(requestDate2, 'SECOND_EXPIRATION_DA');
@@ -394,8 +348,6 @@
                         return DataBaseService.createIndicatorGeneral(requestTypeTransmission, 'TYPE_TRANSMISSION');
                     }).then(function (response) {
                         return DataBaseService.createIndicatorGeneral(requestDueDate, 'DAYS_DELETE_EXPIRATI');
-                    }).then(function (response) {
-                        return DataBaseService.createIndicatorGeneral(requestReferencePosition, 'REFERENCE_POSITION');
                     }).then(function (response) {
                         toastr.info('Registros Exitosos!', 'Informacion !');
                     }).catch(function (error) {

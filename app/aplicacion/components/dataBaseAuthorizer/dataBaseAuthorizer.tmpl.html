@@ -44,13 +44,18 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="referencePosition" class="col-md-5 control-label">
-                                        <p class="text-left">Posición de Referencia</p>
+                                    <label for="morePayment" class="col-md-6 control-label">
+                                        <p class="text-left">Recibe más de un pago</p>
                                     </label>
-                                    <div class="col-md-7">
-                                        <input name="referencePosition" type="text" class="form-control" ng-model="vm.referencePosition" ng-disabled="vm.disable" required>
-                                        <span class="control-label error-mensaje" ng-show="!dataBase.$pristine && dataBase.referencePosition.$error.required && !vm.success">
-                                            Debe especificar una posicion de referencia
+                                    <div class="col-md-6">
+                                        <label class="radio-inline">
+                                            <input name="morePayment" type="radio" ng-model="vm.morePayment" ng-value=true ng-disabled="vm.disable" required>Si
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input name="morePayment" type="radio" ng-model="vm.morePayment" ng-value=false ng-disabled="vm.disable" required>No
+                                        </label>
+                                        <span class="control-label error-mensaje" ng-show="!dataBase.$pristine && dataBase.morePayment.$error.required && !vm.success">
+                                            Debe selecionar si recibe mas de un pago
                                         </span>
                                     </div>
                                 </div>
@@ -135,22 +140,6 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="deliveryPeriod" class="col-md-7 control-label">
-                                        <p class="text-left">Periodo de Entrega</p>
-                                    </label>
-                                    <div class="col-md-5">
-                                        <select name="deliveryPeriod" class="form-control" ng-model="vm.deliveryPeriod" ng-disabled="vm.disable" required>
-                                            <option value="">Seleccione una opción</option>
-                                            <option ng-repeat="x in vm.deliveryPeriods" value="{{x.value}}">{{x.nombre}}</option>
-                                        </select>
-                                        <span class="control-label error-mensaje" ng-show="!dataBase.$pristine && dataBase.deliveryPeriod.$error.required && !vm.success">
-                                            Debe selecionar un Periodo de Entrega
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
                                     <label for="numberCycles" class="col-md-6 control-label">
                                         <p class="text-left">Numero de Ciclos</p>
                                     </label>
@@ -230,24 +219,6 @@
                                         </label>
                                         <span class="control-label error-mensaje" ng-show="!dataBase.$pristine && dataBase.dateEncab.$error.required && !vm.success">
                                             Debe selecionar Valida Fecha Encab 
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-5">
-                                <div class="form-group">
-                                    <label for="morePayment" class="col-md-6 control-label">
-                                        <p class="text-left">Recibe más de un pago</p>
-                                    </label>
-                                    <div class="col-md-6">
-                                        <label class="radio-inline">
-                                            <input name="morePayment" type="radio" ng-model="vm.morePayment" ng-value=true ng-disabled="vm.disable" required>Si
-                                        </label>
-                                        <label class="radio-inline">
-                                            <input name="morePayment" type="radio" ng-model="vm.morePayment" ng-value=false ng-disabled="vm.disable" required>No
-                                        </label>
-                                        <span class="control-label error-mensaje" ng-show="!dataBase.$pristine && dataBase.morePayment.$error.required && !vm.success">
-                                            Debe selecionar si recibe mas de un pago
                                         </span>
                                     </div>
                                 </div>

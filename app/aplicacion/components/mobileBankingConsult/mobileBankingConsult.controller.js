@@ -8,12 +8,20 @@
     function MobileBankingConsultController(ConsultAgreementService) {
         var vm = this;
         var requestChannel = ConsultAgreementService.getChannel();
+        var referen = ConsultAgreementService.getReferencesInf();
+        var refMnet = referen.MNET;
+        if (refMnet.length != 0) {
+            vm.category = requestChannel.MNET[0].category;
+            vm.subcategory = requestChannel.MNET[0].subcategory;
+            vm.format = requestChannel.MNET[0].format;
+            vm.imageFormat = requestChannel.MNET[0].imageFormat;
+            vm.status = requestChannel.MNET[0].status;
+        }
+        if (refMnet.length != 0) {
+            vm.fieldType = refMnet[0].fieldType.id;
+            vm.referenceDescription = refMnet[0].referenceDescription;
+        }
 
-        vm.category = requestChannel.MNET[0].category;
-        vm.subcategory = requestChannel.MNET[0].subcategory;
-        vm.format = requestChannel.MNET[0].format;
-        vm.imageFormat = requestChannel.MNET[0].imageFormat;
-        vm.status = requestChannel.MNET[0].status;
 
         vm.categories = [
             {

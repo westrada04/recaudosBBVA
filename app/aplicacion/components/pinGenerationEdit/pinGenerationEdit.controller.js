@@ -5,11 +5,15 @@
         .module('app.aplicacion.components.pinGenerationEdit')
         .controller('PinGenerationEditController', PinGenerationEditController);
 
-    function PinGenerationEditController(GeneralDataEditService, PinGenerationEditService, toastr) {
+    function PinGenerationEditController(GeneralDataEditService, PinGenerationEditService, toastr, ConsultAgreementService) {
         var vm = this;
 
         //obtener datos no se obtienen hasta el momento 
-
+        var request = ConsultAgreementService.getPin();
+        vm.typePin = request.typePin;
+        vm.algorythm = request.algorythm;
+        vm.numericAlphanumeric = request.numericAlphanumeric;
+        vm.NumberDigits = request.NumberDigits;
         vm.changeTypePin = changeTypePin;
         vm.save = save;
         vm.addFixedData = addFixedData;

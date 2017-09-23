@@ -18,7 +18,7 @@
         vm.reciprocityAssociatedAgreement = request.reciprocityAssociatedAgreement;
         vm.departmentPercentage = request.departmentPercentage;
         vm.municipalityPercentage = request.municipalityPercentage;
-        vm.PercentageAssociatedAgreement = request.PercentageAssociatedAgreement;
+        vm.percentageAssoAgreement = request.PercentageAssociatedAgreement;
         vm.departmentTypeDays = request.departmentTypeDays;
         vm.municipalityTypeDay = request.municipalityTypeDay;
         vm.associatedAgreementsTypeDays = request.associatedAgreementsTypeDays;
@@ -374,8 +374,8 @@
                     "end": ""
                 }],
                 "value": [{
-                    "id": vm.percentageAssociatedAgreement,
-                    "name": vm.percentageAssociatedAgreement
+                    "id": vm.percentageAssoAgreement,
+                    "name": vm.percentageAssoAgreement
                 }]
             };
 

@@ -278,10 +278,10 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="subscriptionFormat" class="col-md-6 control-label">
-                                        <p class="text-left">Forma de Abono del Extracto</p>
+                                    <label for="subscriptionFormat" class="col-md-5 control-label">
+                                        <p class="text-left">Forma Abono del Extracto</p>
                                     </label>
-                                    <div class="col-md-6">
+                                    <div class="col-md-7">
                                         <select name="subscriptionFormat" class="form-control" ng-change="vm.changeSubscriptionFormat()" ng-model="vm.subscriptionFormat" required>
                                             <option value="">Seleccione una opción</option>
                                             <option ng-repeat="x in vm.subscriptionFormats" value="{{x.value}}">{{x.nombre}}</option>
@@ -292,12 +292,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-5">
                                 <div class="form-group" ng-show="vm.statusSubscriptionFormat">
-                                    <label for="waitingAccountNumber" class="col-md-7 control-label">
-                                        <p class="text-left">Número de Cuenta de Espera</p>
+                                    <label for="waitingAccountNumber" class="col-md-5 control-label">
+                                        <p class="text-left">Número Cuenta de Espera</p>
                                     </label>
-                                    <div class="col-md-5">
+                                    <div class="col-md-7">
                                         <input name="waitingAccountNumber" type="text" ng-keypress="vm.validar()" class="form-control" maxlength="18" ng-model="vm.waitingAccountNumber" ng-required="vm.statusSubscriptionFormat">
                                         <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.waitingAccountNumber.$error.required">
                                             Debe especificar un numero de cuenta de espera
@@ -305,7 +305,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <!--div class="col-md-4">
                                 <div class="form-group" ng-show="vm.statusSubscriptionFormat">
                                     <label for="taxOffice" class="col-md-8 control-label">
                                         <p class="text-left">Oficina Recaudadora</p>
@@ -317,7 +317,7 @@
                                         </span>
                                     </div>
                                 </div>
-                            </div>
+                            </div-->
                         </div>
 
                         <div class="row" ng-show="vm.isTaxAndAdditional">
