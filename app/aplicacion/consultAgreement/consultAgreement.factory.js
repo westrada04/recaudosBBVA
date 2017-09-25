@@ -131,9 +131,9 @@
             requestGeneralData.startTime = agrement.data.expiration.limits.start;
             requestGeneralData.finalHour = agrement.data.expiration.limits.end;
             requestGeneralData.EANCode = parseInt(agrement.data.EANCode);
-            requestGeneralData.alternateCompany = agrement.data.RBMCode.substring(4,5);
-            requestGeneralData.codeAlternateCompany = agrement.data.RBMCode.substring(5,12);
-            requestGeneralData.classAlternateCompany = agrement.data.RBMCode.substring(12,15);
+            requestGeneralData.alternateCompany = agrement.data.RBMCode.substring(4, 5);
+            requestGeneralData.codeAlternateCompany = agrement.data.RBMCode.substring(5, 12);
+            requestGeneralData.classAlternateCompany = agrement.data.RBMCode.substring(12, 15);
 
             angular.forEach(agrement.data.notifications, function (value, key) {
                 switch (value.notificationsType.id) {
@@ -619,8 +619,8 @@
                             "inputPosition": value.positionInitial,
                             "outputPosition": value.positionOut,
                             "barLength": value.position,
-                            "fillCharacter": value.paddingCharacters != undefined ? value.paddingCharacters.toString() :"1",
-                            "taxOver": taxover, 
+                            "fillCharacter": value.paddingCharacters != undefined ? value.paddingCharacters.toString() : "1",
+                            "taxOver": taxover,
                             "municipalityField": municipalityField,
                             "obligatoryField": requiredField,
                         });
@@ -640,7 +640,7 @@
                             "inputPosition": value.positionInitial,
                             "outputPosition": value.positionOut,
                             "barLength": value.position,
-                            "fillCharacter": value.paddingCharacters != undefined ? value.paddingCharacters.toString() :"1",
+                            "fillCharacter": value.paddingCharacters != undefined ? value.paddingCharacters.toString() : "1",
                         });
                         break;
                     case 'FIJ':
@@ -681,7 +681,7 @@
                             "inputPosition": value.positionInitial,
                             "outputPosition": value.positionOut,
                             "barLength": value.position,
-                            "fillCharacter": value.paddingCharacters != undefined ? value.paddingCharacters.toString() :"1",
+                            "fillCharacter": value.paddingCharacters != undefined ? value.paddingCharacters.toString() : "1",
                             "maximumAmount": maximumAmount,
                             "minimumAmount": minimumAmount,
                             "obligatoryField": requiredField,
@@ -701,7 +701,7 @@
                             "inputPosition": value.positionInitial,
                             "outputPosition": value.positionOut,
                             "lengthBars": value.position,
-                            "fillCharacter": value.paddingCharacters != undefined ? value.paddingCharacters.toString() :"1",
+                            "fillCharacter": value.paddingCharacters != undefined ? value.paddingCharacters.toString() : "1",
                         });
                         break;
                     case 'VAL':
@@ -717,7 +717,7 @@
                             "inputPosition": value.positionInitial,
                             "outputPosition": value.positionOut,
                             "barLength": value.position,
-                            "fillCharacter": value.paddingCharacters != undefined ? value.paddingCharacters.toString() :"1",
+                            "fillCharacter": value.paddingCharacters != undefined ? value.paddingCharacters.toString() : "1",
                         });
                         break;
                     case 'MEN':
@@ -747,9 +747,9 @@
                             "inputPosition": value.positionInitial,
                             "outputPosition": value.positionOut,
                             "barLength": value.position,
-                            "fillCharacter": value.paddingCharacters != undefined ? value.paddingCharacters.toString() :"1",
+                            "fillCharacter": value.paddingCharacters != undefined ? value.paddingCharacters.toString() : "1",
                         });
-                        break;  
+                        break;
                     case 'MNET':
                         requestreferences.MNET.push({
                             "id": (requestreferences.MNET.length + 1),
@@ -763,9 +763,9 @@
                             "inputPosition": value.positionInitial,
                             "outputPosition": value.positionOut,
                             "barLength": value.position,
-                            "fillCharacter": value.paddingCharacters != undefined ? value.paddingCharacters.toString() :"1",
+                            "fillCharacter": value.paddingCharacters != undefined ? value.paddingCharacters.toString() : "1",
                         });
-                        break;  
+                        break;
                 }
             });
             return requestreferences;
@@ -1038,6 +1038,7 @@
 
             return requestPse
         }
+
         function getPin() {
             var agrement = this.request.agreements;
             var requestPin = {};
@@ -1046,27 +1047,40 @@
                     requestPin.id = value.id;
                     requestPin.name = value.name;
                     requestPin.typeId = value.pinType.id;
-                           
+
                     switch (value.pinType.id) {
-                        case '01': {
-                            requestPin.typePin = "TU";
-                        }break;
-                        case '02': {
-                            requestPin.typePin = "TB";
-                        }break;
-                        case '03': {
-                            requestPin.typePin = "TI";
-                        }break;
-                        case '04': {
-                            requestPin.typePin = "TA";
-                        }break;
-                        default:{requestPin.typePin = "BD";};
+                        case '01':
+                            {
+                                requestPin.typePin = "TU";
+                            }
+                            break;
+                        case '02':
+                            {
+                                requestPin.typePin = "TB";
+                            }
+                            break;
+                        case '03':
+                            {
+                                requestPin.typePin = "TI";
+                            }
+                            break;
+                        case '04':
+                            {
+                                requestPin.typePin = "TA";
+                            }
+                            break;
+                        default:
+                            {
+                                requestPin.typePin = "BD";
+                            };
                     }
 
+                    value.algorithm = '0' + value.algorithm;
                     requestPin.numericAlphanumeric = value.pinType.name;
-                    requestPin.algorythm = value.algorithm==='02'?"B06":
-                    value.algorithm==='04'?"B10":
-                    value.algorithm==='08'?"B08":"";
+                    requestPin.algorythm = value.algorithm === '02' ? "02" :
+                        value.algorithm === '04' ? "04" :
+                        value.algorithm === '08' ? "08" : "";
+                    requestPin.algorythm = parseInt(requestPin.algorythm);
                     requestPin.NumberDigits = parseInt(value.value);
                 });
             }

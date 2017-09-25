@@ -10,6 +10,9 @@
 
         //obtener datos no se obtienen hasta el momento 
         var request = ConsultAgreementService.getPin();
+        
+        console.log('request', request);
+        
         vm.typePin = request.typePin;
         vm.algorythm = request.algorythm;
         vm.numericAlphanumeric = request.numericAlphanumeric;
