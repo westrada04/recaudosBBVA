@@ -24,6 +24,7 @@
         vm.associatedAgreementsTypeDays = request.associatedAgreementsTypeDays;
         vm.waitingAccountsDepartment = request.waitingAccountsDepartment;
         vm.municipalityWaitingAccounts = request.municipalityWaitingAccounts;
+        vm.contributionType = request.contributionType;
 
         vm.save = save;
 

@@ -20,11 +20,12 @@
         vm.municipalityPercentage = request.municipalityPercentage;
         vm.percentageAssoAgreement = request.PercentageAssociatedAgreement;
         vm.departmentTypeDays = request.departmentTypeDays;
-        vm.municipalityTypeDay = request.municipalityTypeDay;
-        vm.associatedAgreementsTypeDays = request.associatedAgreementsTypeDays;
+        vm.municipalityTypeDay = request.departmentTypeDays;
+        vm.associatedAgreementsTypeDays = request.departmentTypeDays;
         vm.waitingAccountsDepartment = request.waitingAccountsDepartment;
         vm.municipalityWaitingAccounts = request.municipalityWaitingAccounts;
-
+        vm.contributionType = request.contributionType;
+        
         vm.save = save;
 
         vm.additionalValues = [

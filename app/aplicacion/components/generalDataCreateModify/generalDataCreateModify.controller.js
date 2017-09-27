@@ -261,42 +261,7 @@
             ];
 
             vm.descriptions = [
-                {
-                    nombre: "PAGO FACTURA POR DISTRIBUCION DE PRODUCTOS",
-                    value: "PAGO FACTURA POR DISTRIBUCION DE PRODUCTOS"
-                },
-                {
-                    nombre: "PAGO FACTURA POR PRESTACION DE SERVICIOS",
-                    value: "PAGO FACTURA POR PRESTACION DE SERVICIOS"
-                },
-                {
-                    nombre: "PAGO FACTURA SERVICIOS PUBLICOS",
-                    value: "PAGO FACTURA SERVICIOS PUBLICOS"
-                },
-                {
-                    nombre: "PAGO FACTURA CARTERA",
-                    value: "PAGO FACTURA CARTERA"
-                },
-                {
-                    nombre: "PAGO FACTURA MATRICULAS",
-                    value: "PAGO FACTURA MATRICULAS"
-                },
-                {
-                    nombre: "PAGO FACTURA CUOTAS PROYECTOS INMOBILIARIOS",
-                    value: "PAGO FACTURA CUOTAS PROYECTOS INMOBILIARIOS"
-                },
-                {
-                    nombre: "PAGO FACTURA ADMINISTRACION",
-                    value: "PAGO FACTURA ADMINISTRACION"
-                },
-                {
-                    nombre: "PAGO FACTURA TELEFONIA CELULAR",
-                    value: "PAGO FACTURA TELEFONIA CELULAR"
-                },
-                {
-                    nombre: "PAGO FACTURA TELEVISION POR CABLE",
-                    value: "PAGO FACTURA TELEVISION POR CABLE"
-                },
+                
                 {
                     nombre: "PAGO RECAUDO DE IMPUESTOS",
                     value: "PAGO RECAUDO DE IMPUESTOS"

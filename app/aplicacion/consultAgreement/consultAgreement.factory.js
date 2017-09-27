@@ -473,21 +473,21 @@
                         break;
                     case 'PERCENT_DISPERSION_DEPARTMENT':
                         if (value.isActive) {
-                            requestSpecialTax.departmentPercentage = value.value[0].name;
+                            requestSpecialTax.departmentPercentage = parseInt(value.value[0].name);
                         } else {
                             requestSpecialTax.departmentPercentage = 0;
                         }
                         break;
                     case 'PERCENT_DISPERSI_MUNICIPALITY':
                         if (value.isActive) {
-                            requestSpecialTax.municipalityPercentage = value.value[0].name;
+                            requestSpecialTax.municipalityPercentage = parseInt(value.value[0].name);
                         } else {
                             requestSpecialTax.municipalityPercentage = 0;
                         }
                         break;
                     case 'PERCENT_DISPERSION_AGREEMENT':
                         if (value.isActive) {
-                            requestSpecialTax.PercentageAssociatedAgreement = value.value[0].name;
+                            requestSpecialTax.PercentageAssociatedAgreement = parseInt(value.value[0].name);
                         } else {
                             requestSpecialTax.PercentageAssociatedAgreement = 0;
                         }

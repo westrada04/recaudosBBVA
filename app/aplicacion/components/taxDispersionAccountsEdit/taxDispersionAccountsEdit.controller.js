@@ -30,15 +30,15 @@
         vm.idTypes = [
             {
                 nombre: "Cédula",
-                value: "01"
+                value: "1"
             },
             {
                 nombre: "Cédula de Extranjería",
-                value: "02"
+                value: "2"
             },
             {
                 nombre: "NIT",
-                value: "03"
+                value: "3"
             }
         ];
 
@@ -105,12 +105,21 @@
             }
 
             angular.forEach(vm.collectionAccounts, function (value, key) {
-                while (value.identificationNumber < 15) {
-                    if (value.identificationNumber < 15) {
+                while (value.identificationNumber.length < 15) {
+                    if (value.identificationNumber.length < 15) {
                         value.identificationNumber = '0' + value.identificationNumber;
                     }
                 }
             });
+            console.log(requestAgrement.relatedContract);
+
+            angular.forEach(requestAgrement.relatedContract, function (value, key) {
+                if (value.relationType.id=="CTD"){
+                    console.log("Eliminado", requestAgrement.relatedContract[key]);
+                    requestAgrement.relatedContract.splice(key, 1);
+                }
+            });
+            console.log(requestAgrement.relatedContract);
 
             angular.forEach(vm.collectionAccounts, function (value, key) {
                 requestAgrement.relatedContract.push({

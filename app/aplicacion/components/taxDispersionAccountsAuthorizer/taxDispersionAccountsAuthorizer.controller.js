@@ -30,15 +30,15 @@
         vm.idTypes = [
             {
                 nombre: "Cédula",
-                value: "01"
+                value: "1"
             },
             {
                 nombre: "Cédula de Extranjería",
-                value: "02"
+                value: "2"
             },
             {
                 nombre: "NIT",
-                value: "03"
+                value: "3"
             }
         ];
 
