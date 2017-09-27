@@ -50,6 +50,7 @@
         vm.ucwCode = request.ucwCode;
         vm.statusSubscriptionFormat = request.statusSubscriptionFormat;
         vm.statusUcw = request.statusUcw;
+        vm.banking = request.banking;
         
         if (vm.statusSubscriptionFormat && vm.typeRequest == 'I') {
             vm.isTaxAndAdditional = true;

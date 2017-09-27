@@ -155,10 +155,8 @@
                                         <p class="text-left">Banca</p>
                                     </label>
                                     <div class="col-md-8">
-                                        <input name="banking" type="text" class="form-control" maxlength="18" ng-model="vm.banking" required>
-                                        <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.banking.$error.required">
-                                            Debe especificar una banca
-                                        </span>
+                                        <input name="banking" type="text" class="form-control" maxlength="18" ng-model="vm.banking" disabled>
+                                        
                                     </div>
                                 </div>
                             </div>

@@ -18,6 +18,9 @@
             vm.subcategory = request.MNET[0].subcategory;
             vm.format = request.MNET[0].format;
             vm.imageFormat = request.MNET[0].imageFormat;
+            vm.fixedValue = request.MNET[0].fixedValue;
+            vm.domicileIndicator = request.MNET[0].domicileIndicator;
+
             if (request.MNET[0].status != undefined) {
                 vm.status = request.MNET[0].status;
             } else {
@@ -28,7 +31,7 @@
         }
         if (refMnet.length != 0) {
             vm.fieldType = refMnet[0].fieldType.id;
-            vm.referenceDescription = refMnet[0].referenceDescription;
+            vm.referenceDescription = refMnet[0].description;
         }
 
 

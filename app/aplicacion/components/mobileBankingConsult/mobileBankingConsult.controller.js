@@ -15,11 +15,14 @@
             vm.subcategory = requestChannel.MNET[0].subcategory;
             vm.format = requestChannel.MNET[0].format;
             vm.imageFormat = requestChannel.MNET[0].imageFormat;
+            vm.fixedValue = requestChannel.MNET[0].fixedValue;
+            vm.domicileIndicator = requestChannel.MNET[0].domicileIndicator;
+
             vm.status = requestChannel.MNET[0].status;
         }
         if (refMnet.length != 0) {
             vm.fieldType = refMnet[0].fieldType.id;
-            vm.referenceDescription = refMnet[0].referenceDescription;
+            vm.referenceDescription = refMnet[0].description;
         }
 
 

@@ -250,6 +250,11 @@
                     case 'TRAFFIC_DOCUMENTS':
                         requestGeneralData.documentTraffic = value.isActive;
                         break;
+                    case 'BANK':
+                        if (value.isActive) {
+                            requestGeneralData.banking = value.value[0].name;
+                        }
+                        break;
                     case 'WS_UNIFICATION':
                         if (value.isActive) {
                             requestGeneralData.ucw = true;
@@ -508,19 +513,12 @@
                         } else {
                             requestSpecialTax.associatedAgreementsTypeDays = 0;
                         }
-
                         break;
-                    case 'REFUND_WAITING_ACCD':
-                        if (value.isActive) {
-                            requestSpecialTax.waitingAccountsDepartment = value.isActive;
-                        }
-
+                    case 'REFUND_WAITING_ACCOUNT_D':
+                        requestSpecialTax.waitingAccountsDepartment = value.isActive;
                         break;
-                    case 'REFUND_WAITING_ACCM':
-                        if (value.isActive) {
-                            requestSpecialTax.municipalityWaitingAccounts = value.isActive;
-                        }
-
+                    case 'REFUND_WAITING_ACCOUNT_M':
+                        requestSpecialTax.municipalityWaitingAccounts = value.isActive;
                         break;
 
                 }
@@ -751,20 +749,23 @@
                         });
                         break;  
                     case 'MNET':
-                        requestreferences.MNET.push({
-                            "id": (requestreferences.MNET.length + 1),
-                            "referenceId": value.referenceType.id,
-                            "field": parseInt(value.referenceType.id),
-                            "quickHelp": value.longDescription,
-                            "description": value.name,
-                            "fieldType": value.typeFormat,
-                            "alignment": value.typeAlignment.name == "RIGHT" ? "D" : "I",
-                            "fieldLength": value.length,
-                            "inputPosition": value.positionInitial,
-                            "outputPosition": value.positionOut,
-                            "barLength": value.position,
-                            "fillCharacter": value.paddingCharacters != undefined ? value.paddingCharacters.toString() :"1",
-                        });
+                        if (value.typeFormat.id != "CN") {
+                            requestreferences.MNET.push({
+                                "id": (requestreferences.MNET.length + 1),
+                                "referenceId": value.referenceType.id,
+                                "field": parseInt(value.referenceType.id),
+                                "quickHelp": value.longDescription,
+                                "description": value.name,
+                                "fieldType": value.typeFormat,
+                                "alignment": value.typeAlignment.name == "RIGHT" ? "D" : "I",
+                                "fieldLength": value.length,
+                                "inputPosition": value.positionInitial,
+                                "outputPosition": value.positionOut,
+                                "barLength": value.position,
+                                "fillCharacter": value.paddingCharacters != undefined ? value.paddingCharacters.toString() :"1",
+                            });
+
+                        }
                         break;  
                 }
             });
@@ -887,6 +888,8 @@
                                 "format": value.dataType,
                                 "imageFormat": value.descriptionChannel,
                                 "domicileIndicator": value.paddingCharacters == "S" ? true : false,
+                                "fixedValue" : value.name.substring(4, 5) =="S" ? true : false,
+                                "status": false
 
                             });
                             break;

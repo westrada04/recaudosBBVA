@@ -40,6 +40,7 @@
         vm.alternateCompany = request.alternateCompany;
         vm.codeAlternateCompany = request.codeAlternateCompany;
         vm.classAlternateCompany = request.classAlternateCompany;
+        vm.banking = request.banking;
 
         if (vm.paymentMethodsSelected.length > 0) {
             vm.statusPaymentMethod = false;
