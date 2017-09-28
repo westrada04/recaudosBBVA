@@ -65,7 +65,9 @@
             <bbva-net-bbva-cash-consult></bbva-net-bbva-cash-consult>
             <!--atm-consult></atm-consult-->
             <mobile-banking-consult></mobile-banking-consult>
-            <pay-time-consult></pay-time-consult>
+            <div ng-show= "vm.isTax == false "> 
+                <pay-time-consult></pay-time-consult>
+            </div>
             <!--bank-correspondent-consult></bank-correspondent-consult-->
             <payments-pse-consult></payments-pse-consult>
             <!--annex-documents-consult></annex-documents-consult-->

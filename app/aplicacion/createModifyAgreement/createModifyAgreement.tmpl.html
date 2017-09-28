@@ -65,7 +65,9 @@
             <bbva-net-bbva-cash-create-modify></bbva-net-bbva-cash-create-modify>
             <!--atm-create-modify></atm-create-modify-->
             <mobile-banking-create-modify></mobile-banking-create-modify>
-            <pay-time-create-modify></pay-time-create-modify>
+            <div ng-show= "vm.isTax == false "> 
+                <pay-time-create-modify></pay-time-create-modify>
+            </div>
             <!--bank-correspondent-create-modify></bank-correspondent-create-modify-->
             <payments-pse-create-modify></payments-pse-create-modify>
             <annex-documents-create-modify></annex-documents-create-modify>

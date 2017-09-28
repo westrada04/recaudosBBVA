@@ -28,35 +28,6 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="service" class="col-md-4 control-label">
-                                        <p class="text-left">Servicio</p>
-                                    </label>
-                                    <div class="col-md-8">
-                                        <input name="service" type="text" class="form-control" maxlength="2" ng-model="vm.service" required>
-                                        <span class="control-label error-mensaje" ng-show="!payTime.$pristine && payTime.service.$error.required">
-                                            Debe especificar un servicio
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="subService" class="col-md-4 control-label">
-                                        <p class="text-left">Subservicio</p>
-                                    </label>
-                                    <div class="col-md-8">
-                                        <input name="subService" type="text" class="form-control" maxlength="8" ng-model="vm.subService" required>
-                                        <span class="control-label error-mensaje" ng-show="!payTime.$pristine && payTime.subService.$error.required">
-                                            Debe especificar un Subservicio
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
                                     <label for="serviceStatus" class="col-md-4 control-label">
                                         <p class="text-left">Estado del Servicio</p>
                                     </label>
@@ -84,6 +55,11 @@
                                     </div>
                                 </div>
                             </div>
+                            
+                        </div>
+
+                        <div class="row">
+                            
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="facturationType" class="col-md-4 control-label">
@@ -100,6 +76,20 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="namePaymentReference" class="col-md-6 control-label">
+                                        <p class="text-left">Nombre de Referencia Pago</p>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <input name="namePaymentReference" type="text" class="form-control" maxlength="30" ng-model="vm.namePaymentReference" required>
+                                        <span class="control-label error-mensaje" ng-show="!payTime.$pristine && payTime.namePaymentReference.$error.required">
+                                            Debe especificar Nombre de Referencia Pago
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
 
                         <div class="row">
@@ -199,22 +189,6 @@
                                         </select>
                                         <span class="control-label error-mensaje" ng-show="!payTime.$pristine && payTime.maximumRetry.$error.required">
                                             Debe selecionar Max Reintentos
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-8">
-                                <div class="form-group">
-                                    <label for="namePaymentReference" class="col-md-6 control-label">
-                                        <p class="text-left">Nombre de Referencia Pago</p>
-                                    </label>
-                                    <div class="col-md-6">
-                                        <input name="namePaymentReference" type="text" class="form-control" maxlength="30" ng-model="vm.namePaymentReference" required>
-                                        <span class="control-label error-mensaje" ng-show="!payTime.$pristine && payTime.namePaymentReference.$error.required">
-                                            Debe especificar Nombre de Referencia Pago
                                         </span>
                                     </div>
                                 </div>

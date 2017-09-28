@@ -490,8 +490,8 @@
 
             var myPromise = PayTimeEditService.createIndicatorGeneral(requestValidationBD, requestValidationBD.name)
                 .then(function (response) {
-                    //  return PayTimeEditService.createIndicatorGeneral(requesNumbers_Billing_Day, requesNumbers_Billing_Day.name);
-                    //        }).then(function (response) {
+                      return PayTimeEditService.createIndicatorGeneral(requesNumbers_Billing_Day, requesNumbers_Billing_Day.name);
+                }).then(function (response) {
                     return PayTimeEditService.createIndicatorGeneral(requestStateService, requestStateService.name);
                 }).then(function (response) {
                     return PayTimeEditService.createIndicatorGeneral(requestStateDateService, requestStateDateService.name);
@@ -502,8 +502,8 @@
                 }).then(function (response) {
                     return PayTimeEditService.createIndicatorGeneral(requestRetries_Type, requestRetries_Type.name);
                 }).then(function (response) {
-                    //        return PayTimeEditService.createIndicatorGeneral(requestMaximum_Num_Retri, requestMaximum_Num_Retri.name);
-                    //        }).then(function (response) {
+                        return PayTimeEditService.createIndicatorGeneral(requestMaximum_Num_Retri, requestMaximum_Num_Retri.name);
+                }).then(function (response) {
                     return PayTimeEditService.createIndicatorGeneral(requestName_Ref, requestName_Ref.name);
                 }).then(function (response) {
                     return PayTimeEditService.createIndicatorGeneral(requestValidate_Date, requestValidate_Date.name);
@@ -512,13 +512,13 @@
                 }).then(function (response) {
                     return PayTimeEditService.createIndicatorGeneral(requestPartial_Payment, requestPartial_Payment.name);
                 }).then(function (response) {
-                    //      return PayTimeEditService.createIndicatorGeneral(requestMaximun_Num_Prod, requestMaximun_Num_Prod.name);
-                    //    }).then(function (response) {
+                    return PayTimeEditService.createIndicatorGeneral(requestMaximun_Num_Prod, requestMaximun_Num_Prod.name);
+                }).then(function (response) {
                     return PayTimeEditService.createIndicatorGeneral(requestLoad_Account, requestLoad_Account.name);
                 }).then(function (response) {
                     return PayTimeEditService.createIndicatorGeneral(requestEnroll_Credit_Tarj, requestEnroll_Credit_Tarj.name);
-                    //    }).then(function (response) {
-                    //          return PayTimeEditService.createIndicatorGeneral(requestMaximun_Num_Insta, requestMaximun_Num_Insta.name);
+                }).then(function (response) {
+                    return PayTimeEditService.createIndicatorGeneral(requestMaximun_Num_Insta, requestMaximun_Num_Insta.name);
                 }).then(function (response) {
                     toastr.info('Registro Exitoso!', 'Informacion !');
                 }).catch(function (error) {

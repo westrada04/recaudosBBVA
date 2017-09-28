@@ -65,10 +65,12 @@
             <bbva-net-bbva-cash-edit></bbva-net-bbva-cash-edit>
             <!--atm-edit></atm-edit-->
             <mobile-banking-edit></mobile-banking-edit>
-            <pay-time-edit></pay-time-edit>
+            <div ng-show= "vm.isTax == false "> 
+                <pay-time-edit></pay-time-edit>
+            </div>
             <!--bank-correspondent-edit></bank-correspondent-edit-->
             <payments-pse-edit></payments-pse-edit>
-            <annex-documents-edit></annex-documents-edit>
+            <!--annex-documents-edit></annex-documents-edit-->
             <div class="row father-center" ng-hide="vm.state3">
                 <button type="button" ng-click="vm.after1()" class="btn btn-primary son-center">Anterior</button>
                 <button type="button" ng-click="vm.next2()" class="btn btn-primary son-center">Siguiente</button>

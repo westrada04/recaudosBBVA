@@ -214,7 +214,7 @@
                     </form>
                     <div cg-busy="vm.myPromise"></div>
                     <div class="row">
-                        <button type="button" ng-click="vm.save()" ng-disabled="!taxDispersionAccount.$valid" class="btn btn-primary center-block">
+                        <button type="button" ng-click="vm.save()" ng-disabled="!taxDispersionAccount.$valid && document.getElementById('file').files[0] == undefined" class="btn btn-primary center-block">
                             Guardar
                         </button>
                     </div>

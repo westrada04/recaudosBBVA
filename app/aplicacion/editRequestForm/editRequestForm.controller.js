@@ -101,6 +101,14 @@
                     value: "200"
                 },
                 {
+                    nombre: "Recaudo Nacional",
+                    value: "01"
+                },
+                {
+                    nombre: "Servicos Publicos",
+                    value: "02"
+                },
+                {
                     nombre: "Recaudo de Impuestos",
                     value: "05"
                 }

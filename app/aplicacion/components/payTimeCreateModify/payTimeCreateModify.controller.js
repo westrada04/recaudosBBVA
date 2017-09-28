@@ -489,8 +489,8 @@
 
             var myPromise = PayTimeCreateModifyService.createIndicatorGeneral(requestValidationBD, requestValidationBD.name)
                 .then(function (response) {
-                    //  return PayTimeCreateModifyService.createIndicatorGeneral(requesNumbers_Billing_Day, requesNumbers_Billing_Day.name);
-                    //        }).then(function (response) {
+                      return PayTimeCreateModifyService.createIndicatorGeneral(requesNumbers_Billing_Day, requesNumbers_Billing_Day.name);
+                }).then(function (response) {
                     return PayTimeCreateModifyService.createIndicatorGeneral(requestStateService, requestStateService.name);
                 }).then(function (response) {
                     return PayTimeCreateModifyService.createIndicatorGeneral(requestStateDateService, requestStateDateService.name);
@@ -501,8 +501,8 @@
                 }).then(function (response) {
                     return PayTimeCreateModifyService.createIndicatorGeneral(requestRetries_Type, requestRetries_Type.name);
                 }).then(function (response) {
-                    //        return PayTimeCreateModifyService.createIndicatorGeneral(requestMaximum_Num_Retri, requestMaximum_Num_Retri.name);
-                    //        }).then(function (response) {
+                    return PayTimeCreateModifyService.createIndicatorGeneral(requestMaximum_Num_Retri, requestMaximum_Num_Retri.name);
+                }).then(function (response) {
                     return PayTimeCreateModifyService.createIndicatorGeneral(requestName_Ref, requestName_Ref.name);
                 }).then(function (response) {
                     return PayTimeCreateModifyService.createIndicatorGeneral(requestValidate_Date, requestValidate_Date.name);
@@ -511,13 +511,13 @@
                 }).then(function (response) {
                     return PayTimeCreateModifyService.createIndicatorGeneral(requestPartial_Payment, requestPartial_Payment.name);
                 }).then(function (response) {
-                    //      return PayTimeCreateModifyService.createIndicatorGeneral(requestMaximun_Num_Prod, requestMaximun_Num_Prod.name);
-                    //    }).then(function (response) {
+                    return PayTimeCreateModifyService.createIndicatorGeneral(requestMaximun_Num_Prod, requestMaximun_Num_Prod.name);
+                }).then(function (response) {
                     return PayTimeCreateModifyService.createIndicatorGeneral(requestLoad_Account, requestLoad_Account.name);
                 }).then(function (response) {
                     return PayTimeCreateModifyService.createIndicatorGeneral(requestEnroll_Credit_Tarj, requestEnroll_Credit_Tarj.name);
-                    //    }).then(function (response) {
-                    //          return PayTimeCreateModifyService.createIndicatorGeneral(requestMaximun_Num_Insta, requestMaximun_Num_Insta.name);
+                }).then(function (response) {
+                    return PayTimeCreateModifyService.createIndicatorGeneral(requestMaximun_Num_Insta, requestMaximun_Num_Insta.name);
                 }).then(function (response) {
                     toastr.info('Registro Exitoso!', 'Informacion !');
                 }).catch(function (error) {
