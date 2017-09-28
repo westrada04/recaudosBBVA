@@ -25,7 +25,7 @@
         vm.associatedAgreementsTypeDays = requestSpecialTax.associatedAgreementsTypeDays;
         vm.waitingAccountsDepartment = requestSpecialTax.waitingAccountsDepartment;
         vm.municipalityWaitingAccounts = requestSpecialTax.municipalityWaitingAccounts;
-        vm.contributionType = request.contributionType;
+        vm.contributionType = requestSpecialTax.contributionType;
 
 
         vm.additionalValues = [

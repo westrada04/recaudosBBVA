@@ -839,19 +839,17 @@
                         break;
                     case 'TD':
                         requestAccountsRC.CtaDIS.push({
-                            "collectType": value.relatedContractId.trim(),
+                            "code": value.relatedContractId.trim(),
                             "type": value.relationType.id.substring(2, 3),
-                            "idType": "0" + value.relationType.name.substring(0, 1),
+                            "idType": value.relationType.name.substring(0, 1),
                             "identificationNumber": value.relationType.name.substring(1, value.relationType.name.length - 1),
                             "identificationDigit": value.relationType.name.substring(value.relationType.name.length - 1, value.relationType.name.length),
-                            "bankCode": value.bankId,
-                            "percentageAgrement": value.percentage,
+                            "bankCode": value.contractId,
                             "account": value.number,
                             "accountType": value.product.id,
-                            "telephoneContact": value.product.name.split("-")[1],
+                            "telephoneContact": value.bankId,
                             "nameContact": value.product.name.split("-")[0],
                             "returnDispersion": value.percentage,
-
                         });
                         break;
                 }
