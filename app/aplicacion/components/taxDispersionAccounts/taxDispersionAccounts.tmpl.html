@@ -206,7 +206,7 @@
                                         <p class="text-left">Cargar Archivo de Municipios</p>
                                     </label>
                                     <div class="col-md-9">
-                                        <input name="file" id="file" type="file" class="form-control" ng-model="vm.file">
+                                        <input name="file" id="file" type="file" class="form-control" ng-model="vm.file" onchange="angular.element(this).scope().uploadFile()">
                                     </div>
                                 </div>
                             </div>

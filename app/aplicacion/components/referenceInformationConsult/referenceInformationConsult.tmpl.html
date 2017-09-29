@@ -171,10 +171,10 @@
                                                             </label>
                                                             <div class="col-md-6">
                                                                 <label class="radio-inline">
-                                                                    <input name="municipalityField" type="radio" ng-model="reference.municipalityField" ng-value='B10' ng-required="vm.stateReference && vm.isTax" disabled>Si
+                                                                    <input name="municipalityField{{$index}}" type="radio" ng-model="reference.municipalityField" ng-value='B10' ng-required="vm.stateReference && vm.isTax" disabled>Si
                                                                 </label>
                                                                 <label class="radio-inline">
-                                                                    <input name="municipalityField" type="radio" ng-model="reference.municipalityField" ng-value='B08' ng-required="vm.stateReference && vm.isTax" disabled>No
+                                                                    <input name="municipalityField{{$index}}" type="radio" ng-model="reference.municipalityField" ng-value='B08' ng-required="vm.stateReference && vm.isTax" disabled>No
                                                                 </label>
                                                                 <span class="control-label error-mensaje" ng-show="!formReference.$pristine && formReference.municipalityField.$error.required">
                                                                     Debe especificar Campo de Municipio
@@ -189,10 +189,10 @@
                                                             </label>
                                                             <div class="col-md-6">
                                                                 <label class="radio-inline">
-                                                                    <input name="taxOver" type="radio" ng-model="reference.taxOver" ng-value='B10' ng-required="vm.stateReference && vm.isTax" disabled>Si
+                                                                    <input name="taxOver{{$index}}" type="radio" ng-model="reference.taxOver" ng-value='B10' ng-required="vm.stateReference && vm.isTax" disabled>Si
                                                                 </label>
                                                                 <label class="radio-inline">
-                                                                    <input name="taxOver" type="radio" ng-model="reference.taxOver" ng-value='B08' ng-required="vm.stateReference && vm.isTax" disabled>No
+                                                                    <input name="taxOver{{$index}}" type="radio" ng-model="reference.taxOver" ng-value='B08' ng-required="vm.stateReference && vm.isTax" disabled>No
                                                                 </label>
 
                                                             </div>
@@ -361,10 +361,10 @@
                                                             </label>
                                                             <div class="col-md-6">
                                                                 <label class="radio-inline">
-                                                                    <input name="municipalityField" type="radio" ng-model="additional.municipalityField" ng-value='B10' ng-required="vm.stateAdditional && vm.isTax" disabled>Si
+                                                                    <input name="municipalityField{{$index}}" type="radio" ng-model="additional.municipalityField" ng-value='B10' ng-required="vm.stateAdditional && vm.isTax" disabled>Si
                                                                 </label>
                                                                 <label class="radio-inline">
-                                                                    <input name="municipalityField" type="radio" ng-model="additional.municipalityField" ng-value='B08' ng-required="vm.stateAdditional && vm.isTax" disabled>No
+                                                                    <input name="municipalityField{{$index}}" type="radio" ng-model="additional.municipalityField" ng-value='B08' ng-required="vm.stateAdditional && vm.isTax" disabled>No
                                                                 </label>
                                                             </div>
                                                         </div>
@@ -376,10 +376,10 @@
                                                             </label>
                                                             <div class="col-md-6">
                                                                 <label class="radio-inline">
-                                                                    <input name="taxOver" type="radio" ng-model="additional.taxOver" ng-value='B10' ng-required="vm.stateAdditional && vm.isTax" disabled>Si
+                                                                    <input name="taxOver{{$index}}" type="radio" ng-model="additional.taxOver" ng-value='B10' ng-required="vm.stateAdditional && vm.isTax" disabled>Si
                                                                 </label>
                                                                 <label class="radio-inline">
-                                                                    <input name="taxOver" type="radio" ng-model="additional.taxOver" ng-value='B08' ng-required="vm.stateAdditional && vm.isTax" disabled>No
+                                                                    <input name="taxOver{{$index}}" type="radio" ng-model="additional.taxOver" ng-value='B08' ng-required="vm.stateAdditional && vm.isTax" disabled>No
                                                                 </label>
                                                             </div>
                                                         </div>

@@ -201,10 +201,10 @@
                                                             </label>
                                                             <div class="col-md-6">
                                                                 <label class="radio-inline">
-                                                                    <input name="municipalityField" type="radio" ng-model="reference.municipalityField" ng-value='B10' ng-required="vm.stateReference && vm.isTax">Si
+                                                                    <input name="municipalityField{{$index}}" type="radio" ng-model="reference.municipalityField" ng-value='B10' ng-required="vm.stateReference && vm.isTax">Si
                                                                 </label>
                                                                 <label class="radio-inline">
-                                                                    <input name="municipalityField" type="radio" ng-model="reference.municipalityField" ng-value='B08' ng-required="vm.stateReference && vm.isTax">No
+                                                                    <input name="municipalityField{{$index}}" type="radio" ng-model="reference.municipalityField" ng-value='B08' ng-required="vm.stateReference && vm.isTax">No
                                                                 </label>
                                                                 <span class="control-label error-mensaje" ng-show="!formReference.$pristine && formReference.municipalityField.$error.required">
                                                                     Debe especificar Campo de Municipio
@@ -219,10 +219,10 @@
                                                             </label>
                                                             <div class="col-md-6">
                                                                 <label class="radio-inline">
-                                                                    <input name="taxOver" type="radio" ng-model="reference.taxOver" ng-value='B10' ng-required="vm.stateReference && vm.isTax">Si
+                                                                    <input name="taxOver{{$index}}" type="radio" ng-model="reference.taxOver" ng-value='B10' ng-required="vm.stateReference && vm.isTax">Si
                                                                 </label>
                                                                 <label class="radio-inline">
-                                                                    <input name="taxOver" type="radio" ng-model="reference.taxOver" ng-value='B08' ng-required="vm.stateReference && vm.isTax">No
+                                                                    <input name="taxOver{{$index}}" type="radio" ng-model="reference.taxOver" ng-value='B08' ng-required="vm.stateReference && vm.isTax">No
                                                                 </label>
                                                                 <span class="control-label error-mensaje" ng-show="!formReference.$pristine && formReference.taxOver.$error.required">
                                                                     Debe especificar Impuesto Sobretasa
@@ -431,10 +431,10 @@
                                                             </label>
                                                             <div class="col-md-6">
                                                                 <label class="radio-inline">
-                                                                    <input name="municipalityField" type="radio" ng-model="additional.municipalityField" ng-value='B10' ng-required="vm.stateAdditional && vm.isTax">Si
+                                                                    <input name="municipalityField{{$index}}" type="radio" ng-model="additional.municipalityField" ng-value='B10' ng-required="vm.stateAdditional && vm.isTax">Si
                                                                 </label>
                                                                 <label class="radio-inline">
-                                                                    <input name="municipalityField" type="radio" ng-model="additional.municipalityField" ng-value='B08' ng-required="vm.stateAdditional && vm.isTax">No
+                                                                    <input name="municipalityField{{$index}}" type="radio" ng-model="additional.municipalityField" ng-value='B08' ng-required="vm.stateAdditional && vm.isTax">No
                                                                 </label>
                                                                 <span class="control-label error-mensaje" ng-show="!formAdditional.$pristine && formAdditional.municipalityField.$error.required">
                                                                     Debe especificar Impuesto Sobretasa
@@ -449,10 +449,10 @@
                                                             </label>
                                                             <div class="col-md-6">
                                                                 <label class="radio-inline">
-                                                                    <input name="taxOver" type="radio" ng-model="additional.taxOver" ng-value='B10' ng-required="vm.stateAdditional && vm.isTax">Si
+                                                                    <input name="taxOver{{$index}}" type="radio" ng-model="additional.taxOver" ng-value='B10' ng-required="vm.stateAdditional && vm.isTax">Si
                                                                 </label>
                                                                 <label class="radio-inline">
-                                                                    <input name="taxOver" type="radio" ng-model="additional.taxOver" ng-value='B08' ng-required="vm.stateAdditional && vm.isTax">No
+                                                                    <input name="taxOver{{$index}}" type="radio" ng-model="additional.taxOver" ng-value='B08' ng-required="vm.stateAdditional && vm.isTax">No
                                                                 </label>
                                                                 <span class="control-label error-mensaje" ng-show="!formAdditional.$pristine && formAdditional.taxOver.$error.required">
                                                                     Debe especificar Impuesto Sobretasa

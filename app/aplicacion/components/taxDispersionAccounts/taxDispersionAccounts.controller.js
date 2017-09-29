@@ -5,7 +5,7 @@
         .module('app.aplicacion.components.taxDispersionAccounts')
         .controller('TaxDispersionAccountsController', TaxDispersionAccountsController);
 
-    function TaxDispersionAccountsController(TaxDispersionAccountsService, GeneralDataService, toastr) {
+    function TaxDispersionAccountsController(TaxDispersionAccountsService, GeneralDataService, toastr, $scope) {
         var vm = this;
 
         vm.collectionAccounts = [];
@@ -66,6 +66,10 @@
                 value: "02"
             }
         ];
+        
+        $scope.uploadFile = function () {
+            console.log("Changed");
+        }
 
         function addAccount() {
             var account = {
