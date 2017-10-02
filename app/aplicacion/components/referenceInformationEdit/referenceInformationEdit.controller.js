@@ -19,6 +19,7 @@
         vm.typeRequest = ConsultAgreementService.gettypeRequest();
         var request = ConsultAgreementService.getReferencesInf();
         vm.references = request.references;
+        console.log('references', vm.references);
         vm.additionals = request.additionals;
         vm.fixedValues = request.fixedValues;
         vm.dates = request.dates;

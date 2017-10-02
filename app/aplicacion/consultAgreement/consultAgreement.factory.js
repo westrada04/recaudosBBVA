@@ -618,8 +618,8 @@
                             "outputPosition": value.positionOut,
                             "barLength": value.position,
                             "fillCharacter": value.paddingCharacters != undefined ? value.paddingCharacters.toString() : "1",
-                            "taxOver": taxover,
-                            "municipalityField": municipalityField,
+                            "taxOver": taxover ? 'B10' : 'B08',
+                            "municipalityField": municipalityField ? 'B10' : 'B08',
                             "obligatoryField": requiredField,
                         });
 
