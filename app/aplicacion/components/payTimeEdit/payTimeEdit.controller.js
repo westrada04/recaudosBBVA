@@ -25,6 +25,7 @@
         vm.accountabilityIndicator = request.accountabilityIndicator;
         vm.indicatorCargoTCredit = request.indicatorCargoTCredit;
         vm.maxChargeProductsDifer = request.maxChargeProductsDifer;
+        vm.serviceType ='RC';
 
         vm.save = save;
 
@@ -280,7 +281,7 @@
             // Todas las Oficinas
             var requestValidationBD = {
                 "name": "VALIDATION_OF_DATA_B",
-                "isActive": vm.allOffices,
+                "isActive": true,
                 "limits": [{
                     start: "",
                     end: ""

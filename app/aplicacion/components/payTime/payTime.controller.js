@@ -8,6 +8,7 @@
     function PayTimeController(PayTimeService, GeneralDataService, toastr) {
         var vm = this;
         vm.save = save;
+        vm.serviceType ='RC';
 
         vm.serviceTypes = [
             {
@@ -261,7 +262,7 @@
             // Todas las Oficinas
             var requestValidationBD = {
                 "name": "VALIDATION_OF_DATA_B",
-                "isActive": vm.allOffices,
+                "isActive": true,
                 "limits": [{
                     start: "",
                     end: ""
