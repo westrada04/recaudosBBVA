@@ -3,5 +3,6 @@
 }
 
 .error-mensaje{
-    color: red;
+    color: RGB(217, 84, 148);
+    font-size: 11px;
 }

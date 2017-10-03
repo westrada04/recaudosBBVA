@@ -31,7 +31,7 @@
                                     <label for="identificationNumber" class="col-md-4 control-label">
                                         <p class="text-left">Número de Identificación</p>
                                     </label>
-                                    <div class="col-md-8">
+                                    <div class="col-md-4">
                                         <input name="identificationNumber" type="text" ng-keypress="vm.validar()" class="form-control" maxlength="15" ng-model="vm.identificationNumber" required>
                                         <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.identificationNumber.$error.required">
                                             Debe especificar un numero de identificación

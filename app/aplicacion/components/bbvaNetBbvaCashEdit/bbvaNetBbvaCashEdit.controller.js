@@ -5,7 +5,7 @@
         .module('app.aplicacion.components.bbvaNetBbvaCashEdit')
         .controller('BbvaNetBbvaCashEditController', BbvaNetBbvaCashEditController);
 
-    function BbvaNetBbvaCashEditController(GeneralDataEditService, toastr, BbvaNetBbvaCashEditService) {
+    function BbvaNetBbvaCashEditController(GeneralDataEditService, toastr, BbvaNetBbvaCashEditService, ReferenceInformationEditService) {
         var vm = this;
 
         vm.status = true;

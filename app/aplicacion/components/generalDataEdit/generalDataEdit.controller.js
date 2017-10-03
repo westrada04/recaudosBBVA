@@ -72,6 +72,7 @@
         vm.deletePaymentMethodSelected = deletePaymentMethodSelected;
         vm.changeSubscriptionFormat = changeSubscriptionFormat;
         vm.validar = validar;
+        save();
         
 
         if (vm.typeRequest == 'R') {
@@ -342,8 +343,9 @@
                 if (vm.paymentMethod == value.value) {
                     var sw = true;
                     angular.forEach(vm.paymentMethodsSelected, function (value2, key2) {
-                        if (value == value2) {
+                        if (value.value == value2.value) {
                             sw = false;
+                            toastr.error('Forma de pago ya seleccionada.', 'Error');
                         }
                     });
                     if (sw) {
@@ -417,6 +419,7 @@
             var tacta = vm.accountNumber.length;
             var ceroCta = '';
             var accountNumber;
+            var swservice = true;
 
             if (tacta < 18) {
                 for (var i = 0; i < (18 - tacta); i++) {
@@ -585,7 +588,7 @@
 
             // creacion o actualizacion!
             if (GeneralDataEditService.getRequestAgreement().idAgreement == undefined) {
-
+                swservice =false;        
                 var requestAgreement = {
                     "idAgreement": EditAgreementService.getIdAgreement(),
                     "agreementType": {
@@ -667,6 +670,7 @@
                     "horaInicio": startTime,
                     "horaFin": finalHour
                 };
+                GeneralDataEditService.setRequestAgreement(requestAgreement);        
 
             } else {
                 var requestAgreement = GeneralDataEditService.getRequestAgreement();
@@ -827,9 +831,9 @@
                     }]
             };
 
-            
+            if (swservice){
 
-            vm.myPromise = GeneralDataEditService.createAgreement(requestAgreement)
+                vm.myPromise = GeneralDataEditService.createAgreement(requestAgreement)
                 .then(function (response) {
                     //CreateAgreementService.setIdAgreement(response.data.idAgreement);
                     requestAgreement.idAgreement = response.data.idAgreement;
@@ -856,8 +860,7 @@
                 }).catch(function (error) {
                     toastr.error('Registro no Exitoso <br>' + error.data["error-message"], 'Error');
                 });
-
-
+            }
         }
     }
 })();

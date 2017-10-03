@@ -1,13 +1,13 @@
 <ol class="breadcrumb">
     <li><a ui-sref="templateAuth.home">Administrador de Solicitudes</a></li>
-    <li class="active">Alta de solicitudes</li>
+    <li class="active">Crear solicitud</li>
 </ol>
 
 <form class="form-horizontal" name="createRequest" role="form">
     <div class="row">
         <div class="col-md-8">
             <div class="form-group">
-                <label for="tipo_solicitud" class="col-md-4 control-label">Tipo de solicitud</label>
+                <label for="tipo_solicitud" class="col-md-4 control-label">Tipo de convenio</label>
                 <div class="col-md-8">
                     <select name="typeRequest" class="form-control" ng-change="vm.changeTypeRequest()" ng-model="vm.typeRequest" required>
                         <option value="">Seleccione una opción</option>
@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="solicitud_realizar" class="col-md-4 control-label">Solicitud a realizar</label>
+                <label for="solicitud_realizar" class="col-md-4 control-label">Tipo de solicitud</label>
                 <div class="col-md-8">
                     <select name="requestToMade" class="form-control" ng-change="vm.changeRequestToMade()" ng-model="vm.requestToMade" required>
                         <option value="">Seleccione una opción</option>

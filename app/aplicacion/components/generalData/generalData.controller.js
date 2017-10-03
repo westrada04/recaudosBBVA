@@ -38,6 +38,9 @@
         vm.statusUcw = false;
         vm.isTaxAndAdditional = false;
         vm.validar = validar;
+        vm.alternateCompany =0;
+        vm.codeAlternateCompany=0;
+        vm.classAlternateCompany=0;
 
         if (vm.typeRequest == 'R') {
             vm.isCollection = true;
@@ -309,8 +312,9 @@
                 if (vm.paymentMethod == value.value) {
                     var sw = true;
                     angular.forEach(vm.paymentMethodsSelected, function (value2, key2) {
-                        if (value == value2) {
+                        if (value.value == value2.value) {
                             sw = false;
+                            toastr.error('Forma de pago ya seleccionada.', 'Error');
                         }
                     });
                     if (sw) {

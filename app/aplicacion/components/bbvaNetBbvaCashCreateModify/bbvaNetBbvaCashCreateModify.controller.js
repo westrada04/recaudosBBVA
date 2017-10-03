@@ -5,7 +5,7 @@
         .module('app.aplicacion.components.bbvaNetBbvaCashCreateModify')
         .controller('BbvaNetBbvaCashCreateModifyController', BbvaNetBbvaCashCreateModifyController);
 
-    function BbvaNetBbvaCashCreateModifyController(GeneralDataCreateModifyControllerService, toastr, BbvaNetBbvaCashCreateModifyService) {
+    function BbvaNetBbvaCashCreateModifyController(GeneralDataCreateModifyControllerService, ReferenceInformationCreateModifyService, toastr, BbvaNetBbvaCashCreateModifyService) {
         var vm = this;
 
         vm.status = true;

@@ -73,6 +73,7 @@
         vm.deletePaymentMethodSelected = deletePaymentMethodSelected;
         vm.changeSubscriptionFormat = changeSubscriptionFormat;
         vm.validar = validar;
+        save();
         
 
         if (vm.typeRequest == 'R') {
@@ -344,8 +345,9 @@
                 if (vm.paymentMethod == value.value) {
                     var sw = true;
                     angular.forEach(vm.paymentMethodsSelected, function (value2, key2) {
-                        if (value == value2) {
+                        if (value.value == value2.value) {
                             sw = false;
+                            toastr.error('Forma de pago ya seleccionada.', 'Error');
                         }
                     });
                     if (sw) {
