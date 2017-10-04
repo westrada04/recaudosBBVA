@@ -54,30 +54,20 @@
                 <special-tax-parameters-authorizer></special-tax-parameters-authorizer>
                 <recaudo-products-tax-authorizer></recaudo-products-tax-authorizer>
             </div>
-
-            <div class="row" ng-hide="vm.state3">
-                <button type="button" ng-click="vm.next1()" class="btn btn-primary center-block">Siguiente</button>
-            </div>
-        </div>
-
-        <div ng-show="vm.state2">
+            
             <financial-terminal-authorizer></financial-terminal-authorizer>
             <bbva-net-bbva-cash-authorizer></bbva-net-bbva-cash-authorizer>
-            <atm-authorizer></atm-authorizer>
+            <!--atm-authorizer></atm-authorizer-->
             <mobile-banking-authorizer></mobile-banking-authorizer>
             <pay-time-authorizer></pay-time-authorizer>
-            <bank-correspondent-authorizer></bank-correspondent-authorizer>
+            <!--bank-correspondent-authorizer></bank-correspondent-authorizer-->
             <payments-pse-authorizer></payments-pse-authorizer>
-            <annex-documents-authorizer></annex-documents-authorizer>
-            <div class="row father-center" ng-hide="vm.state3">
-                <button type="button" ng-click="vm.after1()" class="btn btn-primary son-center">Anterior</button>
-                <button type="button" ng-click="vm.next2()" class="btn btn-primary son-center">Siguiente</button>
-            </div>
+            <!--annex-documents-authorizer></annex-documents-authorizer-->
         </div>
-        <div class="row father-center" ng-show="vm.state3">
-            <button type="button" ng-click="vm.after2()" class="btn btn-primary son-center">Anterior</button>
+        <div class="row father-center" ng-show="vm.state1">
+            <button type="button" ng-click="vm.save()" class="btn btn-primary son-center">Aprobar</button>
+            <button type="button" ng-click="vm.save()" class="btn btn-primary son-center">rechazar</button>
             <button type="button" ng-click="vm.print()" class="btn btn-primary son-center">Imprimir</button>
-            <button type="button" ng-click="vm.save()" class="btn btn-primary son-center">Guardar</button>
         </div>
     </div>
 </div>

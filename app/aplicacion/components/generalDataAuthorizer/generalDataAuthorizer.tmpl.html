@@ -138,13 +138,8 @@
                                         <p class="text-left">Email Gestor</p>
                                     </label>
                                     <div class="col-md-7">
-                                        <input name="managerEmail" type="email" class="form-control" ng-model="vm.managerEmail" required>
-                                        <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.managerEmail.$error.required">
-                                            Debe especificar un email de gestor
-                                        </span>
-                                        <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.managerEmail.$error.email">
-                                            Debe especificar un email valido
-                                        </span>
+                                        <input name="managerEmail" type="email" class="form-control" ng-model="vm.managerEmail" readonly>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -182,9 +177,6 @@
                                     </label>
                                     <div class="col-md-8">
                                         <input name="agreementName" type="text" class="form-control" maxlength="30" ng-model="vm.agreementName" onkeyup="this.value=this.value.toUpperCase();" required>
-                                        <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.agreementName.$error.required">
-                                            Debe especificar un nombre del convenio
-                                        </span>
                                     </div>
                                 </div>
                             </div>

@@ -19,9 +19,6 @@
                         <th class="text-center" st-sort="relatedParticipants[0].participantId">Numero de Identificación</th>
                         <th class="text-center" st-sort="name">Nombre de Convenio</th>
                         <th class="text-center" st-sort="row.status.dateState">Fecha de Envio</th>
-                        <th class="text-center" st-sort="row.status.dateState">Fecha de Rechazo</th>
-                        <th class="text-center" st-sort="row.status.dateState">Hora de Rechazo</th>
-                        <th class="text-center" st-sort="row.status.dateState">Motivo del Rechazo</th>
                         <th class="text-center">Autorizar</th>
                     </tr>
                     <tr>
@@ -41,9 +38,6 @@
                         <td>{{row.relatedParticipants[0].participantId}}</td>
                         <td>{{row.name}}</td>
                         <td>{{row.status.dateState | date }}</td>
-                        <td>{{row.status.dateState | date }}</td>
-                        <td>{{row.status.dateState | date:'mediumTime' }}</td>
-                        <td>{{row.status.name}}</td>
                         <td> <a class="see" ng-click="vm.authorize(row.idAgreement)"> ver </a> </td>
                     </tr>
                 </tbody>

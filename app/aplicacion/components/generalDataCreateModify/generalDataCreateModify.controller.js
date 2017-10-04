@@ -73,7 +73,7 @@
         vm.deletePaymentMethodSelected = deletePaymentMethodSelected;
         vm.changeSubscriptionFormat = changeSubscriptionFormat;
         vm.validar = validar;
-        save();
+        
         
 
         if (vm.typeRequest == 'R') {
