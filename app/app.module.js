@@ -16,6 +16,7 @@
             'cgBusy',
             'ngStorage',
             'ngPromiseExtras',
+            'ngFileUpload',
             'app.aplicacion'
         ]);
 })();

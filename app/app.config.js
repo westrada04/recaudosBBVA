@@ -5,11 +5,11 @@
         .module('app')
 
         .constant('API_BACKEND',{
-            url: 'https://150.250.235.70/aso-crch'
+            url: 'http://172.17.88.171:7700'
         })
     
         .constant('API_BACKEND_GT',{
-            url: 'https://150.250.235.70/gt-crch/TechArchitecture/co/grantingTicket/V02'
+            url: 'http://172.17.88.171:7500/TechArchitecture/co/grantingTicket/V02'
         })
         
         .value('cgBusyDefaults',{
