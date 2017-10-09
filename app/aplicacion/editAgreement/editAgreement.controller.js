@@ -100,7 +100,7 @@
             requestAgrement.status.statusType.id = 'E';
             requestAgrement.status.statusType.name = 'Enviado';
 
-            var myPromise = EditAgreementService.createAgreement(requestAgrement)
+            var myPromise = EditAgreementService.modifyAgreement(requestAgrement)
                 .then(function (response) {
                     toastr.info('Registro Almacenado Exitosamente!', 'Informacion !');
                     GeneralDataEditService.setRequestAgreement(requestAgrement);

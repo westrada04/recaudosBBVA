@@ -34,6 +34,7 @@
         vm.next2 = next2;
         vm.print = print;
         vm.save = save;
+        vm.rechazar=rechazar;
 
         vm.state1 = true;
         vm.state2 = false;
@@ -85,7 +86,7 @@
         }
 
         function print() {
-
+            
         }
 
         function save() {
@@ -101,6 +102,27 @@
             requestAgrement.status.statusType.name = 'Enviado';
 
             var myPromise = EditAgreementService.createAgreement(requestAgrement)
+                .then(function (response) {
+                      toastr.info('Registro Almacenado Exitosamente!', 'Informacion !');
+                    GeneralDataEditService.setRequestAgreement(requestAgrement);
+                }).catch(function (error) {
+                    toastr.error('Registro no Exitoso <br>' + error.data["error-message"], 'Error');
+                });
+        }
+        function rechazar() {
+
+            var requestAgrement = GeneralDataEditService.getRequestAgreement();
+            if (requestAgrement == undefined) {
+                toastr.info('Debe guardar Datos Generales para realizar este registro!', 'Informacion !');
+                return;
+            }
+
+            requestAgrement.status.id = 'R';
+            requestAgrement.status.name = 'Rechazado';
+            requestAgrement.status.statusType.id = 'R';
+            requestAgrement.status.statusType.name = 'Rechazado';
+
+            var myPromise = EditAgreementService.modifyAgreement(requestAgrement)
                 .then(function (response) {
                     toastr.info('Registro Almacenado Exitosamente!', 'Informacion !');
                     GeneralDataEditService.setRequestAgreement(requestAgrement);

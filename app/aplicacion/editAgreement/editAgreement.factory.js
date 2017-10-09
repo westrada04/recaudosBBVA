@@ -19,6 +19,7 @@
         var service = {
             getUser: getUser,
             createAgreement: createAgreement,
+            modifyAgreement: modifyAgreement,
             setRequest: setRequest,
             getRequest: getRequest,
             setTypeRequest: setTypeRequest,
@@ -38,11 +39,23 @@
         function getUser() {
             return $sessionStorage.user;
         }
+        function modifyAgreement(request) {
+            var deferred = $q.defer();
+
+            $http.put(API_BACKEND.url + "/agreements/V01/" + this.idAgreement, request, UserService.getTsec())
+                .then(function (response) {
+                    deferred.resolve(response.data);
+                }, function (error) {
+                    deferred.reject(error);
+                });
+
+            return deferred.promise;
+        }
 
         function createAgreement(request) {
             var deferred = $q.defer();
 
-            $http.put(API_BACKEND.url + "/agreements/V01/" + this.idAgreement, request, UserService.getTsec())
+            $http.post(API_BACKEND.url + "/agreements/V01/", request, UserService.getTsec())
                 .then(function (response) {
                     deferred.resolve(response.data);
                 }, function (error) {
