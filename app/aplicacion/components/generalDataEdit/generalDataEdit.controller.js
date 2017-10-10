@@ -18,6 +18,10 @@
         //datos traidos
         var request = ConsultAgreementService.getGeneralData();
         vm.managerEmail = request.managerEmail;
+        vm.stateemail = true;
+        if (vm.managerEmail == '')  {
+            vm.stateemail= false;
+        }
         vm.stateVer = request.stateVer;
         vm.identificationType = request.identificationType;
         vm.identificationNumber = request.identificationNumber;

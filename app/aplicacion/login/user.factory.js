@@ -131,9 +131,12 @@
             $http.get(API_BACKEND.url + "/employees/V00/employees/" + userName, getTsec())
                 .then(function (response) {
                     var email = "";
+                    var emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
                     angular.forEach(response.data.contactDetails, function (value, key) {
                         if (value.contactDetail.contactType.id == "EMAIL") {
-                            email = value.contactDetail.contact;
+                            if(emailRegex.test(value.contactDetail.contact)){ 
+                                email = value.contactDetail.contact;
+                            }
                         }
                     });
 

@@ -139,7 +139,7 @@
                                         <p class="text-left">Email Gestor</p>
                                     </label>
                                     <div class="col-md-7">
-                                        <input name="managerEmail" type="email" class="form-control" ng-model="vm.managerEmail" required>
+                                        <input name="managerEmail" type="email" class="form-control" ng-model="vm.managerEmail"  ng-disabled="vm.stateemail" required>
                                         <span class="control-label error-mensaje" ng-show="!generalData.$pristine && generalData.managerEmail.$error.required">
                                             Debe especificar un email de gestor
                                         </span>

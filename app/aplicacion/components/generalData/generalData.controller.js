@@ -13,6 +13,10 @@
         vm.user = CreateAgreementService.getUser();
         vm.manager = vm.user.nombres + ' ' + vm.user.apellidos;
         vm.managerEmail = vm.user.email;
+        vm.stateemail = true;
+        if (vm.managerEmail == '')  {
+            vm.stateemail= false;
+        }
         vm.expirationDate = '2099-12-12';
         vm.stateContract = 'A';
         vm.inhouse = false;
@@ -349,7 +353,7 @@
                     toastr.error('Error eliminando forma de pago <br>' + error.data["error-message"], 'Error');
                 });
         }
-
+        
         function changeSubscriptionFormat() {
             if (vm.subscriptionFormat == "AD") {
                 vm.statusSubscriptionFormat = true;

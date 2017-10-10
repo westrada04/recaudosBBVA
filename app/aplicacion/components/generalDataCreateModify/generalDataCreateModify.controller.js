@@ -12,6 +12,10 @@
         vm.user = ConsultAgreementService.getUser();
         vm.manager = vm.user.nombres + ' ' + vm.user.apellidos;
         vm.managerEmail = vm.user.email;
+        vm.stateemail = true;
+        if (vm.managerEmail == '')  {
+            vm.stateemail= false;
+        }
         vm.startTime = new Date(1970, 0, 1, 3, 0, 1);
         vm.finalHour = new Date(1970, 0, 1, 3, 1, 1);
         vm.paymentMethodsSelected = [];
