@@ -196,20 +196,7 @@
                         "positionInitial": requestReferences[0].positionInitial,
                         "paddingCharacters": requestReferences[0].paddingCharacters,
                         "indicator": [{
-                            "id": "",
-                            "indicatorId": "",
-                            "name": "",
-                            "isActive": false,
-                            "limits": [{
-                                "id": "",
-                                "name": "",
-                                "start": "",
-                                "end": ""
-                            }],
-                            "value": [{
-                                "id": "",
-                                "name": ""
-                            }]
+                            "id": ""
                         }],
                         "parameter": [{
                             "id": "",
@@ -222,11 +209,7 @@
                             "position": 0,
                             "constant": 0,
                             "numberParameter": "",
-                            "ubicationParameter": {
-                                "id": "",
-                                "position": 0,
-                                "lenght": 0
-                            }
+                            "ubicationParameter": {}
                         }]
                     }];
 
@@ -274,20 +257,7 @@
                         "positionInitial": requestReferences[0].positionInitial,
                         "paddingCharacters": requestReferences[0].paddingCharacters,
                         "indicator": [{
-                            "id": "",
-                            "indicatorId": "",
-                            "name": "",
-                            "isActive": false,
-                            "limits": [{
-                                "id": "",
-                                "name": "",
-                                "start": "",
-                                "end": ""
-                            }],
-                            "value": [{
-                                "id": "",
-                                "name": ""
-                            }]
+                            "id": ""
                         }],
                         "parameter": [{
                             "id": "",
@@ -300,11 +270,7 @@
                             "position": 0,
                             "constant": 0,
                             "numberParameter": "",
-                            "ubicationParameter": {
-                                "id": "",
-                                "position": 0,
-                                "lenght": 0
-                            }
+                            "ubicationParameter": {}
                         }]
                     }];
                 }

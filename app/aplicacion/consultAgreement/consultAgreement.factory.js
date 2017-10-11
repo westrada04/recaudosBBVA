@@ -733,20 +733,22 @@
 
                         break;
                     case 'BNET':
-                        requestreferences.BNET.push({
-                            "id": (requestreferences.BNET.length + 1),
-                            "referenceId": value.referenceType.id,
-                            "field": parseInt(value.referenceType.id),
-                            "quickHelp": value.longDescription,
-                            "description": value.name,
-                            "fieldType": value.typeFormat.id,
-                            "alignment": value.typeAlignment.name == "RIGHT" ? "D" : "I",
-                            "fieldLength": value.length,
-                            "inputPosition": value.positionInitial,
-                            "outputPosition": value.positionOut,
-                            "barLength": value.position,
-                            "fillCharacter": value.paddingCharacters != undefined ? value.paddingCharacters.toString() : "1",
-                        });
+                        if (value.typeFormat.id != "CN") {
+                            requestreferences.BNET.push({
+                                "id": (requestreferences.BNET.length + 1),
+                                "referenceId": value.referenceType.id,
+                                "field": parseInt(value.referenceType.id),
+                                "quickHelp": value.longDescription,
+                                "description": value.name,
+                                "fieldType": value.typeFormat.id,
+                                "alignment": value.typeAlignment.name == "RIGHT" ? "D" : "I",
+                                "fieldLength": value.length,
+                                "inputPosition": value.positionInitial,
+                                "outputPosition": value.positionOut,
+                                "barLength": value.position,
+                                "fillCharacter": value.paddingCharacters != undefined ? value.paddingCharacters.toString() : "1",
+                            });
+                        }
                         break;
                     case 'MNET':
                         if (value.typeFormat.id != "CN") {
@@ -764,7 +766,6 @@
                                 "barLength": value.position,
                                 "fillCharacter": value.paddingCharacters != undefined ? value.paddingCharacters.toString() :"1",
                             });
-
                         }
                         break;  
                 }
@@ -875,6 +876,7 @@
                                 "format": value.dataType,
                                 "imageFormat": value.descriptionChannel,
                                 "domicileIndicator": value.paddingCharacters == "S" ? true : false,
+                                "fixedValue" : value.name.substring(4, 5) =="S" ? true : false,
                                 "status": true,
                             });
                             break;
