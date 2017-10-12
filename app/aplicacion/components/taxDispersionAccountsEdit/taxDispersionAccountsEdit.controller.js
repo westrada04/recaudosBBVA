@@ -23,7 +23,12 @@
             vm.collectionAccounts.push(account);
         }
 
+        vm.success = false;
+        vm.checkSave = checkSave;
         vm.save = save;
+        vm.upload = upload;
+        vm.deleteFile = deleteFile;
+
         vm.addAccount = addAccount;
         vm.deleteAccount = deleteAccount;
 
@@ -96,6 +101,23 @@
             }
         }
 
+        function upload(file) {
+            vm.success = true;
+        }
+
+        function deleteFile() {
+            vm.file = null;
+            vm.success = false;
+        }
+
+        function checkSave(taxDispersionAccount) {
+            if (vm.success || taxDispersionAccount.$valid) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+
         function save() {
             var requestAgrement = GeneralDataEditService.getRequestAgreement();
 
@@ -111,15 +133,13 @@
                     }
                 }
             });
-            console.log(requestAgrement.relatedContract);
 
             angular.forEach(requestAgrement.relatedContract, function (value, key) {
-                if (value.relationType.id=="CTD"){
+                if (value.relationType.id == "CTD") {
                     console.log("Eliminado", requestAgrement.relatedContract[key]);
                     requestAgrement.relatedContract.splice(key, 1);
                 }
             });
-            console.log(requestAgrement.relatedContract);
 
             angular.forEach(vm.collectionAccounts, function (value, key) {
                 requestAgrement.relatedContract.push({

@@ -23,8 +23,12 @@
             vm.collectionAccounts.push(account);
         }
 
-
+        vm.success = false;
+        vm.checkSave = checkSave;
         vm.save = save;
+        vm.upload = upload;
+        vm.deleteFile = deleteFile;
+
         vm.addAccount = addAccount;
         vm.deleteAccount = deleteAccount;
 
@@ -94,6 +98,23 @@
                     minAmount: '',
                     maxAmount: ''
                 });
+            }
+        }
+
+        function upload(file) {
+            vm.success = true;
+        }
+
+        function deleteFile() {
+            vm.file = null;
+            vm.success = false;
+        }
+
+        function checkSave(taxDispersionAccount) {
+            if (vm.success || taxDispersionAccount.$valid) {
+                return false;
+            } else {
+                return true;
             }
         }
 

@@ -25,7 +25,7 @@
                                                                 <p class="text-left">Código</p>
                                                             </label>
                                                             <div class="col-md-8">
-                                                                <input name="code" type="text" class="form-control" maxlength="7" ng-model="account.code" required>
+                                                                <input name="code" type="text" class="form-control" maxlength="7" ng-model="account.code" required ng-disabled="vm.success">
                                                                 <span class="control-label error-mensaje" ng-show="!formAccount.$pristine && formAccount.code.$error.required">
                                                                     Debe selecionar un tipo de cuenta recaudo
                                                                 </span>
@@ -38,7 +38,7 @@
                                                                 <p class="text-left">Tipo</p>
                                                             </label>
                                                             <div class="col-md-9">
-                                                                <select name="type" class="form-control" ng-model="account.type" required>
+                                                                <select name="type" class="form-control" ng-model="account.type" required ng-disabled="vm.success">
                                                                     <option value="">Seleccione una opción</option>
                                                                     <option ng-repeat="x in vm.types" value="{{x.value}}">{{x.nombre}}</option>
                                                                 </select>
@@ -57,7 +57,7 @@
                                                                 <p class="text-left">Tipo de Identificación</p>
                                                             </label>
                                                             <div class="col-md-6">
-                                                                <select name="idType" class="form-control" ng-model="account.idType" required>
+                                                                <select name="idType" class="form-control" ng-model="account.idType" required ng-disabled="vm.success">
                                                                     <option value="">Seleccione una opción</option>
                                                                     <option ng-repeat="x in vm.idTypes" value="{{x.value}}">{{x.nombre}}</option>
                                                                 </select>
@@ -73,7 +73,7 @@
                                                                 <p class="text-left">Número de Identificación</p>
                                                             </label>
                                                             <div class="col-md-6">
-                                                                <input name="identificationNumber" type="text" class="form-control" maxlength="15" ng-model="account.identificationNumber" required>
+                                                                <input name="identificationNumber" type="text" class="form-control" maxlength="15" ng-model="account.identificationNumber" required ng-disabled="vm.success">
                                                                 <span class="control-label error-mensaje" ng-show="!formAccount.$pristine && formAccount.identificationNumber.$error.required">
                                                                     Debe especificar el numero de identificación
                                                                 </span>
@@ -86,7 +86,7 @@
                                                                 <p class="text-left">Digito de Verificación</p>
                                                             </label>
                                                             <div class="col-md-6">
-                                                                <input name="identificationDigit" type="text" class="form-control" maxlength="15" ng-model="account.identificationDigit" required>
+                                                                <input name="identificationDigit" type="text" class="form-control" maxlength="15" ng-model="account.identificationDigit" required ng-disabled="vm.success">
                                                                 <span class="control-label error-mensaje" ng-show="!formAccount.$pristine && formAccount.identificationDigit.$error.required">
                                                                     Debe especificar el digito de verificación
                                                                 </span>
@@ -102,7 +102,7 @@
                                                                 <p class="text-left">Código Banco</p>
                                                             </label>
                                                             <div class="col-md-6">
-                                                                <input name="bankCode" type="text" class="form-control" maxlength="4" ng-model="account.bankCode" required>
+                                                                <input name="bankCode" type="text" class="form-control" maxlength="4" ng-model="account.bankCode" required ng-disabled="vm.success">
                                                                 <span class="control-label error-mensaje" ng-show="!formAccount.$pristine && formAccount.bankCode.$error.required">
                                                                     Debe especificar un banco
                                                                 </span>
@@ -115,7 +115,7 @@
                                                                 <p class="text-left">Cuenta</p>
                                                             </label>
                                                             <div class="col-md-8">
-                                                                <input name="account" type="text" class="form-control" maxlength="16" ng-model="account.account" required>
+                                                                <input name="account" type="text" class="form-control" maxlength="16" ng-model="account.account" required ng-disabled="vm.success">
                                                                 <span class="control-label error-mensaje" ng-show="!formAccount.$pristine && formAccount.account.$error.required">
                                                                     Debe especificar el numero de identificación
                                                                 </span>
@@ -128,7 +128,7 @@
                                                                 <p class="text-left">Tipo de Cuenta</p>
                                                             </label>
                                                             <div class="col-md-6">
-                                                                <select name="accountType" class="form-control" ng-model="account.accountType" required>
+                                                                <select name="accountType" class="form-control" ng-model="account.accountType" required ng-disabled="vm.success">
                                                                     <option value="">Seleccione una opción</option>
                                                                     <option ng-repeat="x in vm.typeAccounts" value="{{x.value}}">{{x.nombre}}</option>
                                                                 </select>
@@ -147,7 +147,7 @@
                                                                 <p class="text-left">Teléfono contacto</p>
                                                             </label>
                                                             <div class="col-md-6">
-                                                                <input name="telephoneContact" type="text" maxlength="10" class="form-control" ng-model="account.telephoneContact" required>
+                                                                <input name="telephoneContact" type="text" maxlength="10" class="form-control" ng-model="account.telephoneContact" required ng-disabled="vm.success">
                                                                 <span class="control-label error-mensaje" ng-show="!formAccount.$pristine && formAccount.telephoneContact.$error.required">
                                                                     Debe especificar un Teléfono contacto
                                                                 </span>
@@ -160,7 +160,7 @@
                                                                 <p class="text-left">Nombre Contacto</p>
                                                             </label>
                                                             <div class="col-md-8">
-                                                                <input name="nameContact" type="text" class="form-control" ng-model="account.nameContact" required>
+                                                                <input name="nameContact" type="text" class="form-control" ng-model="account.nameContact" required ng-disabled="vm.success">
                                                                 <span class="control-label error-mensaje" ng-show="!formAccount.$pristine && formAccount.nameContact.$error.required">
                                                                     Debe especificar el numero de identificación
                                                                 </span>
@@ -173,7 +173,7 @@
                                                                 <p class="text-left">Devolución Dispersión</p>
                                                             </label>
                                                             <div class="col-md-6">
-                                                                <input name="returnDispersion" type="text" class="form-control" ng-model="account.returnDispersion" required>
+                                                                <input name="returnDispersion" type="text" class="form-control" ng-model="account.returnDispersion" required ng-disabled="vm.success">
                                                                 <span class="control-label error-mensaje" ng-show="!formAccount.$pristine && formAccount.returnDispersion.$error.required">
                                                                     Debe especificar un tipo de cuenta
                                                                 </span>
@@ -184,10 +184,10 @@
 
                                                 <div class="row">
                                                     <div class="father-center">
-                                                        <button type="button" ng-click="vm.addAccount()" class="btn btn-primary center-block son-center">
+                                                        <button type="button" ng-click="vm.addAccount()" class="btn btn-primary center-block son-center" ng-disabled="vm.success">
                                                             Agregar
                                                         </button>
-                                                        <button type="button" ng-click="vm.deleteAccount($index)" class="btn btn-primary center-block son-center">
+                                                        <button type="button" ng-click="vm.deleteAccount($index)" class="btn btn-primary center-block son-center" ng-disabled="vm.success">
                                                             Eliminar
                                                         </button>
                                                     </div>
@@ -206,7 +206,12 @@
                                         <p class="text-left">Cargar Archivo de Municipios</p>
                                     </label>
                                     <div class="col-md-9">
-                                        <input name="file" id="file" type="file" class="form-control" ng-model="vm.file">
+                                        <input type="file" class="form-control" id="file" ng-model="vm.file" name="file" ngf-max-size="2MB" ngf-select="vm.upload($file)" ngf-model-invalid="errorFile">
+                                        <i ng-show="taxDispersionAccount.file.$error.maxSize">Archivo excedio el tamaño
+                                          {{errorFile.size / 1000000|number:1}}MB: max 2M
+                                        </i>
+                                        <br>
+                                        <button type="button" class="btn btn-danger" ng-click="vm.deleteFile()" ng-show="vm.file">Eliminar</button>
                                     </div>
                                 </div>
                             </div>
@@ -214,7 +219,7 @@
                     </form>
                     <div cg-busy="vm.myPromise"></div>
                     <div class="row">
-                        <button type="button" ng-click="vm.save()" ng-disabled="!taxDispersionAccount.$valid" class="btn btn-primary center-block">
+                        <button type="button" ng-click="vm.save()" ng-disabled="vm.checkSave(taxDispersionAccount)" class="btn btn-primary center-block">
                             Guardar
                         </button>
                     </div>
