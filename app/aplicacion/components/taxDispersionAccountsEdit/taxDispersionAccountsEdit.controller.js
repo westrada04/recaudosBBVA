@@ -134,71 +134,86 @@
                 }
             });
 
-            angular.forEach(requestAgrement.relatedContract, function (value, key) {
-                if (value.relationType.id == "CTD") {
-                    console.log("Eliminado", requestAgrement.relatedContract[key]);
-                    requestAgrement.relatedContract.splice(key, 1);
-                }
-            });
-
-            angular.forEach(vm.collectionAccounts, function (value, key) {
-                requestAgrement.relatedContract.push({
-                    "relatedContractId": value.code,
-                    "contractId": key + 2,
-                    "relationType": {
-                        "id": "CTD",
-                        "name": value.idType + value.identificationNumber + value.identificationDigit,
-                    },
-                    "product": {
-                        "id": value.accountType,
-                        "name": value.nameContact + "-" + value.telephoneContact,
-                    },
-                    "percentage": value.type,
-                    "number": value.account,
-                    "bankId": value.bankCode
-                });
-            });
-
-            //Si archivo viene informado
-            if (document.getElementById('file').files[0] != undefined) {
-                var f = document.getElementById('file').files[0],
-                    r = new FileReader(f, "utf16le");
-                r.onloadend = function (e) {
-
-                    var data = e.target.result;
-
-                    var lines = data.split('\n');
-                    for (var i = 0; i < lines.length; i++) {
-                        var datos = lines[i].split('\t');
-                        if (datos[0] != undefined && datos[0] != "") {
-                            requestAgrement.relatedContract.push({
-                                "percentage": datos[0],
-                                "relatedContractId": datos[1],
-                                "contractId": i,
-                                "relationType": {
-                                    "id": "CTD",
-                                    "name": datos[2] + "" + datos[3] + "" + datos[4]
-                                },
-                                "bankId": datos[5],
-                                "number": datos[7],
-                                "product": {
-                                    "id": datos[6],
-                                    "name": datos[8] + "-" + datos[9]
-                                },
+            var listado = [];
+            for (var i = 0; i < vm.collectionAccounts.length; i++) {
+                for (var j = 0; j < vm.collectionAccounts.length; j++) {
+                    if (i != j) {
+                        if (vm.collectionAccounts[i].accountNumber == vm.collectionAccounts[j].accountNumber) {
+                            listado.push({
+                                inicial: i,
+                                final: j
                             });
                         }
                     }
-                };
-                r.readAsText(f);
+                }
             }
 
-            var myPromise = TaxDispersionAccountsEditService.createAgreement(requestAgrement)
-                .then(function (response) {
-                    toastr.info('Registro Exitoso!', 'Informacion !');
-                    GeneralDataEditService.setRequestAgreement(requestAgrement);
-                }).catch(function (error) {
-                    toastr.error('Registro no Exitoso <br>' + error.data["error-message"], 'Error');
+            if (listado.length <= 0) {
+                angular.forEach(vm.collectionAccounts, function (value, key) {
+                    requestAgrement.relatedContract.push({
+                        "relatedContractId": value.code,
+                        "contractId": key + 2,
+                        "relationType": {
+                            "id": "CTD",
+                            "name": value.idType + value.identificationNumber + value.identificationDigit,
+                        },
+                        "product": {
+                            "id": value.accountType,
+                            "name": value.nameContact + "-" + value.telephoneContact,
+                        },
+                        "percentage": value.type,
+                        "number": value.account,
+                        "bankId": value.bankCode
+                    });
                 });
+
+                //Si archivo viene informado
+                if (document.getElementById('file').files[0] != undefined) {
+                    var f = document.getElementById('file').files[0],
+                        r = new FileReader(f, "utf16le");
+                    r.onloadend = function (e) {
+
+                        var data = e.target.result;
+
+                        var lines = data.split('\n');
+                        for (var i = 0; i < lines.length; i++) {
+                            var datos = lines[i].split('\t');
+                            if (datos[0] != undefined && datos[0] != "") {
+                                requestAgrement.relatedContract.push({
+                                    "percentage": datos[0],
+                                    "relatedContractId": datos[1],
+                                    "contractId": i,
+                                    "relationType": {
+                                        "id": "CTD",
+                                        "name": datos[2] + "" + datos[3] + "" + datos[4]
+                                    },
+                                    "bankId": datos[5],
+                                    "number": datos[7],
+                                    "product": {
+                                        "id": datos[6],
+                                        "name": datos[8] + "-" + datos[9]
+                                    },
+                                });
+                            }
+                        }
+                    };
+                    r.readAsText(f);
+                }
+
+                var myPromise = TaxDispersionAccountsEditService.createAgreement(requestAgrement)
+                    .then(function (response) {
+                        toastr.info('Registro Exitoso!', 'Informacion !');
+                        GeneralDataEditService.setRequestAgreement(requestAgrement);
+                    }).catch(function (error) {
+                        toastr.error('Registro no Exitoso <br>' + error.data["error-message"], 'Error');
+                    });
+            } else {
+                toastr.error('Registros no Exitoso Elementos repetidos<br>');
+                angular.forEach(listado, function (value, key) {
+                    toastr.error('Cuenta repetida #' + value.inicial + ' con cuenta #' + value.final);
+                });
+            }
+
         }
     }
 })();
