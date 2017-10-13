@@ -49,13 +49,13 @@
 
         function editRequest() {
             $timeout(function () {
-                $state.go('templateAuth.editRequest');
+                $state.go('templateAuth.editRequestForm');
             });
         }
 
         function consultRequest() {
             $timeout(function () {
-                $state.go('templateAuth.consultRequest');
+                $state.go('templateAuth.consultRequestForm');
             });
         }
 

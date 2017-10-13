@@ -2,8 +2,8 @@
     'use strict';
 
     angular
-        .module('app.aplicacion.consultRequestForm')
-        .controller('ConsultRequestFormController', ConsultRequestFormController);
+    .module('app.aplicacion.consultRequestForm')
+    .controller('ConsultRequestFormController', ConsultRequestFormController);
 
     function ConsultRequestFormController($timeout, $state, typeRequest, ConsultRequestService, $scope, toastr) {
         var vm = this;
@@ -48,107 +48,71 @@
         });
 
         vm.identificationTypes = [
-            {
-                nombre: "Cédula",
-                value: "01"
-            },
-            {
-                nombre: "Cédula de Extranjería",
-                value: "02"
-            },
-            {
-                nombre: "NIT",
-                value: "03"
-            }
+        {
+            nombre: "Cédula",
+            value: "01"
+        },
+        {
+            nombre: "Cédula de Extranjería",
+            value: "02"
+        },
+        {
+            nombre: "NIT",
+            value: "03"
+        }
         ];
 
-        if (typeRequest == "I") {
-
-            vm.typeAgreements = [
-                {
-                    nombre: "Recaudos",
-                    value: "001"
-                },
-                {
-                    nombre: "Servicio Publico",
-                    value: "002"
-                },
-                {
-                    nombre: "Impuestos",
-                    value: "003"
-                },
-                {
-                    nombre: "Impuestos Nuevo",
-                    value: "005"
-                }
-            ];
-
-            vm.classAgreements = [
-                {
-                    nombre: "000",
-                    value: "000"
-                },
-                {
-                    nombre: "Departamental",
-                    value: "002"
-                }
-            ];
-
-            vm.typeRequests = [
-                {
-                    nombre: "Solicitud",
-                    value: "200"
-                },
-                {
-                    nombre: "Recaudo de Impuestos",
-                    value: "05"
-                }
-            ];
-
-        } else if (typeRequest == "R") {
-
-            vm.typeAgreements = [
-                {
-                    nombre: "Recaudos",
-                    value: "001"
-                },
-                {
-                    nombre: "Servicio Publico",
-                    value: "002"
-                },
-                {
-                    nombre: "Impuestos",
-                    value: "003"
-                }
-            ];
-
-            vm.classAgreements = [
-                {
-                    nombre: "000",
-                    value: "000"
-                }
-            ];
-
-            vm.typeRequests = [
-                {
-                    nombre: "Solicitud",
-                    value: "200"
-                },
-                {
-                    nombre: "Recaudo Nacional",
-                    value: "01"
-                },
-                {
-                    nombre: "Servicos Publicos",
-                    value: "02"
-                },
-                {
-                    nombre: "Recaudo de Impuestos",
-                    value: "05"
-                }
-            ];
-
+        
+        vm.typeAgreements = [
+        {
+            nombre: "Recaudos",
+            value: "001"
+        },
+        {
+            nombre: "Servicio Publico",
+            value: "002"
+        },
+        {
+            nombre: "Impuestos",
+            value: "003"
+        },
+        {
+            nombre: "Impuestos Nuevo",
+            value: "005"
         }
+        ];
+
+        vm.classAgreements = [
+        {
+            nombre: "000",
+            value: "000"
+        },
+        {
+            nombre: "Departamental",
+            value: "002"
+        }
+        ];
+
+        vm.typeRequests = [
+        {
+            nombre: "Solicitud",
+            value: "200"
+        },
+        {
+            nombre: "Recaudo Nacional",
+            value: "01"
+        },
+        {
+            nombre: "Servicos Publicos",
+            value: "02"
+        },
+        {
+            nombre: "Recaudo de Impuestos",
+            value: "05"
+        }
+        ];
+
+        
 
         function createRequest() {
             $timeout(function () {
@@ -158,13 +122,13 @@
 
         function editRequest() {
             $timeout(function () {
-                $state.go('templateAuth.editRequest');
+                $state.go('templateAuth.editRequestForm');
             });
         }
 
         function consultRequest() {
             $timeout(function () {
-                $state.go('templateAuth.consultRequest');
+                $state.go('templateAuth.consultRequestForm');
             });
         }
 
@@ -197,10 +161,10 @@
 
                 if (vm.typeAgreement == '005') {
                     vm.classAgreements = [
-                        {
-                            nombre: "Departamental",
-                            value: "002"
-                        }
+                    {
+                        nombre: "Departamental",
+                        value: "002"
+                    }
                     ];
                 }
             } else {
@@ -208,14 +172,14 @@
                 vm.stateTypeRequest = false;
                 vm.stateDescription = false;
                 vm.classAgreements = [
-                    {
-                        nombre: "000",
-                        value: "000"
-                    },
-                    {
-                        nombre: "Departamental",
-                        value: "002"
-                    }
+                {
+                    nombre: "000",
+                    value: "000"
+                },
+                {
+                    nombre: "Departamental",
+                    value: "002"
+                }
                 ];
             }
 
@@ -241,15 +205,15 @@
                     classAgreement: vm.classAgreement
                 }
                 vm.myPromise = ConsultRequestService.getRequestTypeAgreement(form)
-                    .then(function (response) {
-                            vm.rowCollection = response.data;
-                            vm.tableData = true;
-                            toastr.info('Consulta realizada con exito. <br> Numero de registros: 1', 'Informacion !');
-                        },
-                        function (error) {
-                            vm.tableData = false;
-                            toastr.error('Consulta no realizada exitosamente <br>' + error.data["error-message"], 'Error !');
-                        });
+                .then(function (response) {
+                    vm.rowCollection = response.data;
+                    vm.tableData = true;
+                    toastr.info('Consulta realizada con exito. <br> Numero de registros: 1', 'Informacion !');
+                },
+                function (error) {
+                    vm.tableData = false;
+                    toastr.error('Consulta no realizada exitosamente <br>' + error.data["error-message"], 'Error !');
+                });
             } else if (!vm.stateIdentificacion) {
                 var form = {
                     identificationType: vm.identificationType,
@@ -257,61 +221,61 @@
                     ver: vm.ver
                 }
                 vm.myPromise = ConsultRequestService.getRequestIdentificacion(form)
-                    .then(function (response) {
-                            vm.rowCollection = response.data;
-                            vm.tableData = true;
-                            var items = Object.keys(vm.rowCollection).length;
+                .then(function (response) {
+                    vm.rowCollection = response.data;
+                    vm.tableData = true;
+                    var items = Object.keys(vm.rowCollection).length;
 
-                            if (items != 0) {
-                                var numberPages = (items / vm.itemsByPage);
+                    if (items != 0) {
+                        var numberPages = (items / vm.itemsByPage);
 
-                                if (numberPages - Math.trunc(numberPages) > 0) {
-                                    vm.numberPages = Math.trunc(numberPages) + 1;
-                                }
-                            }
-                            toastr.info('Consulta realizada con exito. <br> Numero de registros: ' + items, 'Informacion !');
-                        },
-                        function (error) {
-                            vm.tableData = false;
-                            toastr.error('Consulta no realizada exitosamente <br>' + error.data["error-message"], 'Error !');
-                        });
+                        if (numberPages - Math.trunc(numberPages) > 0) {
+                            vm.numberPages = Math.trunc(numberPages) + 1;
+                        }
+                    }
+                    toastr.info('Consulta realizada con exito. <br> Numero de registros: ' + items, 'Informacion !');
+                },
+                function (error) {
+                    vm.tableData = false;
+                    toastr.error('Consulta no realizada exitosamente <br>' + error.data["error-message"], 'Error !');
+                });
             } else if (!vm.stateTypeRequest) {
                 var form = {
                     typeRequest: vm.typeRequest,
                     requestNumber: vm.requestNumber
                 }
                 vm.myPromise = ConsultRequestService.getRequestTypeRequest(form)
-                    .then(function (response) {
-                        vm.rowCollection = response.data;
-                        vm.tableData = true;
+                .then(function (response) {
+                    vm.rowCollection = response.data;
+                    vm.tableData = true;
 
-                        toastr.info('Consulta realizada con exito. <br> Numero de registros: 1', 'Informacion !');
-                    }, function (error) {
-                        vm.tableData = false;
-                        toastr.error('Consulta no realizada exitosamente <br>' + error.data["error-message"], 'Error !');
-                    });
+                    toastr.info('Consulta realizada con exito. <br> Numero de registros: 1', 'Informacion !');
+                }, function (error) {
+                    vm.tableData = false;
+                    toastr.error('Consulta no realizada exitosamente <br>' + error.data["error-message"], 'Error !');
+                });
             } else if (!vm.stateDescription) {
                 var form = {
                     agreementDescription: vm.agreementDescription
                 }
                 vm.myPromise = ConsultRequestService.getRequestDescription(form)
-                    .then(function (response) {
-                        vm.rowCollection = response.data;
-                        vm.tableData = true;
-                        var items = Object.keys(vm.rowCollection).length;
+                .then(function (response) {
+                    vm.rowCollection = response.data;
+                    vm.tableData = true;
+                    var items = Object.keys(vm.rowCollection).length;
 
-                        if (items != 0) {
-                            var numberPages = (items / vm.itemsByPage);
-                            if (numberPages - Math.trunc(numberPages) > 0) {
-                                vm.numberPages = Math.trunc(numberPages) + 1;
-                            }
+                    if (items != 0) {
+                        var numberPages = (items / vm.itemsByPage);
+                        if (numberPages - Math.trunc(numberPages) > 0) {
+                            vm.numberPages = Math.trunc(numberPages) + 1;
                         }
-                        toastr.info('Consulta realizada con exito. <br> Numero de registros: ' + items, 'Informacion !');
+                    }
+                    toastr.info('Consulta realizada con exito. <br> Numero de registros: ' + items, 'Informacion !');
 
-                    }, function (error) {
-                        vm.tableData = false;
-                        toastr.error('Consulta no realizada exitosamente <br>' + error.data["error-message"], 'Error !');
-                    });
+                }, function (error) {
+                    vm.tableData = false;
+                    toastr.error('Consulta no realizada exitosamente <br>' + error.data["error-message"], 'Error !');
+                });
             }
         }
 

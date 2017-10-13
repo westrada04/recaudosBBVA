@@ -37,13 +37,13 @@
                                 }).catch(function (error) {
                                     toastr.error(error.data["error-message"], 'Error');
                                     $timeout(function () {
-                                        $state.go('templateAuth.consultRequest');
+                                        $state.go('templateAuth.consultRequestForm');
                                     });
                                 });
 
                         } else {
                             $timeout(function () {
-                                $state.go('templateAuth.consultRequest');
+                                $state.go('templateAuth.consultRequestForm');
                             });
                         }
                     }

@@ -17,10 +17,6 @@
                     typeRequest: function ($stateParams,$timeout,$state) {
                         if ($stateParams.typeRequest != null) {
                             return $stateParams.typeRequest;
-                        } else {
-                            $timeout(function () {
-                                $state.go('templateAuth.consultRequest');
-                            });
                         }
                     }
                 },

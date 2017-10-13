@@ -40,13 +40,13 @@
                                 }).catch(function (error) {
                                     toastr.error(error.data["error-message"], 'Error');
                                     $timeout(function () {
-                                        $state.go('templateAuth.editRequest');
+                                        $state.go('templateAuth.editRequestForm');
                                     });
                                 });
 
                         } else {
                             $timeout(function () {
-                                $state.go('templateAuth.editRequest');
+                                $state.go('templateAuth.editRequestForm');
                             });
                         }
                     }
