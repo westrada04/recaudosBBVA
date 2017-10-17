@@ -11,17 +11,37 @@
         vm.status = true;
 
         var localReference = [];
+        var request = ConsultAgreementService.getChannel();
+        var referen = ConsultAgreementService.getReferencesInf();
+        localReference = referen.BNET;
+        if (request.BNET.length > 0) {
+            vm.category = request.BNET[0].category;
+            vm.subcategory = request.BNET[0].subcategory;
+            vm.format = request.BNET[0].format;
+            vm.imageFormat = request.BNET[0].imageFormat;
+            vm.fixedValue = request.BNET[0].fixedValue;
+            vm.domicileIndicator = request.BNET[0].domicileIndicator;
+
+            if (request.BNET[0].status != undefined) {
+                vm.status = request.BNET[0].status;
+            } else {
+                vm.status = true;
+            }
+        } else {
+            vm.status = true;
+        }
+        vm.references =referen.BNET;
 
         vm.activate = activate;
         vm.deactivate = deactivate;
         vm.save = save;
 
-        vm.references = [];
+        /*vm.references = [];
         var reference = {
             fieldType: '',
             referenceDescription: ''
         };
-        vm.references.push(reference);
+        vm.references.push(reference);*/
 
         vm.addReference = addReference;
         vm.deleteReference = deleteReference;
@@ -133,6 +153,7 @@
         function save() {
             var requestAgrement = GeneralDataEditService.getRequestAgreement().idAgreement;
             var requestReferences = ReferenceInformationEditService.getReferences();
+            var sw = true;
 
             if (requestAgrement == undefined) {
                 toastr.info('Debe guardar Datos Generales para realizar este registro!', 'Informacion !');
@@ -147,93 +168,21 @@
             if (vm.references.length > requestReferences.length) {
                 toastr.info('El numero de referencias no puede ser mayor a las referencias tipo references registradas en el modulo Informacion de Referencia!', 'Informacion !');
                 return;
-            }
-
-            //preguntar si esta desactivado todo 
-            if (vm.status) {
-                requestAgrement.agreementConfiguration.channel.push({
-                    "id": "05",
-                    "name": "MNET",
-                    "category": '',
-                    "subCategory": '',
-                    "alignment": "D", // D => desactivar - A => Activar
-                    "longDescription": "",
-                    "descriptionChannel": '',
-                    "paddingCharacters": '',
-                    "dataType": '',
-                });
-
-                var sw = true;
-                // si ya existen referencias
-                if (localReference.length > 0) {
-                    sw = true;
-                } else {
+            }   
+            angular.forEach(requestAgrement.agreementConfiguration.channel, function (value, key) {
+                if (value.name=='BNET'){
                     sw = false;
+                    value.category=vm.category;
+                    value.subCategory=vm.subcategory;
+                    value.alignment=!vm.status == true ? "A" : "D";
+                    value.paddingCharacters=vm.domicileIndicator == true ? "S" : "N";
+                    value.dataType=vm.format;
                 }
-
-                var referencesRequest = [];
-                angular.forEach(vm.references, function (value, key) {
-                    referencesRequest.push({
-                        "referenceId": sw == true ? localReference[key].referenceId : '99000',
-                        "identifierReference": sw == true ? localReference[key].referenceId : '99000',
-                        "name": requestReferences[key].referenceDescription,
-                        "referenceType": {
-                            "id": "99",
-                            "name": "99"
-                        },
-                        "referenceDescription": "",
-                        "longDescription": requestReferences[key].longDescription,
-                        "typeFormat": {
-                            "id": requestReferences[key].typeFormat.id,
-                            "name": ""
-                        },
-                        "typeAlignment": {
-                            "id": requestReferences[key].typeAlignment.id,
-                            "name": ''
-                        },
-                        "length": requestReferences[key].length,
-                        "positionInitial": requestReferences[key].positionInitial,
-                        "paddingCharacters": requestReferences[key].paddingCharacters,
-                        "indicator": [{
-                            "id": "",
-                            "indicatorId": "",
-                            "name": "",
-                            "isActive": false,
-                            "limits": [{
-                                "id": "",
-                                "name": "",
-                                "start": "",
-                                "end": ""
-                                }],
-                            "value": [{
-                                "id": "",
-                                "name": ""
-                                }]
-                            }],
-                        "parameter": [{
-                            "id": "",
-                            "name": "MNET",
-                            "parameterType": {
-                                "id": "",
-                                "name": ''
-                            },
-                            "length": 0,
-                            "position": 0,
-                            "constant": 0,
-                            "numberParameter": "",
-                            "ubicationParameter": {
-                                "id": "",
-                                "position": 0,
-                                "lenght": 0
-                            }
-                            }]
-                    });
-                });
-
-            } else {
+            });
+            if (sw){
                 requestAgrement.agreementConfiguration.channel.push({
                     "id": "05",
-                    "name": "MNET",
+                    "name": "BNET",
                     "category": vm.category,
                     "subCategory": vm.subcategory,
                     "alignment": !vm.status == true ? "A" : "D", // D => desactivar - A => Activar
@@ -242,72 +191,55 @@
                     "paddingCharacters": vm.domicileIndicator == true ? "S" : "N",
                     "dataType": vm.format,
                 });
-
-                var referencesRequest = [];
-                angular.forEach(vm.references, function (value, key) {
-                    if (key <= localReference.length) {
-                        var referenceId = localReference[key].referenceId;
-                    } else {
-                        var referenceId = '99000';
-                    }
-                    referencesRequest.push({
-                        "referenceId": referenceId,
-                        "identifierReference": referenceId,
-                        "name": requestReferences[key].referenceDescription,
-                        "referenceType": {
-                            "id": "99",
-                            "name": "99"
-                        },
-                        "referenceDescription": "",
-                        "longDescription": requestReferences[key].longDescription,
-                        "typeFormat": {
-                            "id": requestReferences[key].typeFormat.id,
-                            "name": ""
-                        },
-                        "typeAlignment": {
-                            "id": requestReferences[key].typeAlignment.id,
-                            "name": value.fieldType
-                        },
-                        "length": requestReferences[key].length,
-                        "positionInitial": requestReferences[key].positionInitial,
-                        "paddingCharacters": requestReferences[key].paddingCharacters,
-                        "indicator": [{
-                            "id": "",
-                            "indicatorId": "",
-                            "name": "",
-                            "isActive": false,
-                            "limits": [{
-                                "id": "",
-                                "name": "",
-                                "start": "",
-                                "end": ""
-                                }],
-                            "value": [{
-                                "id": "",
-                                "name": ""
-                                }]
-                            }],
-                        "parameter": [{
-                            "id": "",
-                            "name": "MNET",
-                            "parameterType": {
-                                "id": "",
-                                "name": value.fixedValue == true ? "S" : "N"
-                            },
-                            "length": 0,
-                            "position": 0,
-                            "constant": 0,
-                            "numberParameter": "",
-                            "ubicationParameter": {
-                                "id": "",
-                                "position": 0,
-                                "lenght": 0
-                            }
-                            }]
-                    });
-                });
             }
 
+            var referencesRequest = [];
+            angular.forEach(vm.references, function (value, key) {
+                if (key < localReference.length &&(localReference[key].referenceId != undefined)) {
+                    var referenceId = localReference[key].referenceId;
+                } else {
+                    var referenceId = '99000';
+                }
+                referencesRequest.push({
+                    "referenceId": referenceId,
+                    "identifierReference": referenceId,
+                    "name": value.referenceDescription,
+                    "referenceType": {
+                        "id": "99",
+                        "name": "99"
+                    },
+                    "referenceDescription": "",
+                    "longDescription": requestReferences[key].longDescription,
+                    "typeFormat": {
+                        "id": value.fieldType,
+                        "name": ""
+                    },
+                    "typeAlignment": {
+                        "id": requestReferences[key].typeAlignment.id,
+                        "name": value.fieldType
+                    },
+                    "length": requestReferences[key].length,
+                    "positionInitial": requestReferences[key].positionInitial,
+                    "paddingCharacters": requestReferences[key].paddingCharacters,
+                    "indicator": [{
+                        "id": ""
+                    }],
+                    "parameter": [{
+                        "id": "",
+                        "name": "BNET",
+                        "parameterType": {
+                            "id": "",
+                            "name": value.fixedValue == true ? "S" : "N"
+                        },
+                        "length": 0,
+                        "position": 0,
+                        "constant": 0,
+                        "numberParameter": "",
+                        "ubicationParameter": {}
+                    }]
+                });
+            });
+            
             var myPromise = BbvaNetBbvaCashEditService.createAgreement(requestAgrement)
                 .then(function (response) {
                     toastr.info('Registro Exitoso!', 'Informacion !');

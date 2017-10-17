@@ -868,11 +868,7 @@
                                 "position": 0,
                                 "constant": 0,
                                 "numberParameter": "",
-                                "ubicationParameter": {
-                                    "id": "",
-                                    "position": 0,
-                                    "lenght": 0
-                                }
+                                "ubicationParameter": {}
                             }]
                         });
                     });

@@ -10,7 +10,8 @@
             getRequestTypeAgreement: getRequestTypeAgreement,
             getRequestIdentificacion: getRequestIdentificacion,
             getRequestTypeRequest: getRequestTypeRequest,
-            getRequestDescription: getRequestDescription
+            getRequestDescription: getRequestDescription,
+            getRequestcode: getRequestcode
         };
 
         return service;
@@ -92,6 +93,27 @@
             var agrementId = form.requestNumber;
 
             $http.get(API_BACKEND.url + "/agreements/V01/" + agrementId, UserService.getTsec())
+                .then(function (response) {
+                    deferred.resolve(response.data);
+                }, function (error) {
+                    deferred.reject(error);
+                });
+
+            return deferred.promise;
+        }
+         function getRequestcode(form) {
+            var deferred = $q.defer();
+            var n = form.agreementCode.length;
+            var t = 7 - n;
+            var agreementCode = '';
+
+            for (var i = 0; i < t; i++) {
+                agreementCode += '0';
+            }
+            agreementCode += form.agreementCode;
+            var url = 'agreementId=' + agreementCode;
+
+            $http.get(API_BACKEND.url + "/agreements/V01?" + url, UserService.getTsec())
                 .then(function (response) {
                     deferred.resolve(response.data);
                 }, function (error) {

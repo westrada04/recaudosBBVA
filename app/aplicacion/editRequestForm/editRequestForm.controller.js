@@ -12,7 +12,7 @@
         vm.consultRequest = consultRequest;
         vm.myPromise;
         vm.rowCollection = [];
-        vm.itemsByPage = 5;
+        vm.itemsByPage = 10;
         vm.numberPages = 0;
         vm.tableData = false;
 
@@ -45,6 +45,24 @@
                 vm.stateIdentificacion = true;
                 vm.stateTypeAgreement = true;
                 vm.stateTypeRequest = true;
+            }
+        });
+        $scope.$watch("vm.requestNumber", function (newValue, oldValue) {
+
+            if (newValue === oldValue) {
+                return;
+            }
+
+            if (newValue == undefined) {
+                vm.stateIdentificacion = false;
+                vm.stateTypeAgreement = false;
+                vm.stateDescription = false;
+            }
+
+            if (newValue != '' && newValue != undefined) {
+                vm.stateIdentificacion = true;
+                vm.stateTypeAgreement = true;
+                vm.stateDescription = true;
             }
         });
 
@@ -202,11 +220,18 @@
                     agreementCode: vm.agreementCode,
                     classAgreement: vm.classAgreement
                 }
-                vm.myPromise = RequestFormService.getRequestTypeAgreement(form)
+                //vm.myPromise = RequestFormService.getRequestTypeAgreement(form)
+                vm.myPromise = RequestFormService.getRequestcode(form)
                 .then(function (response) {
-                    vm.rowCollection = response.data;
+                    angular.forEach(response.data, function (value, key) {
+                        if(value.idAgreement.substring(0, 3)=="200"||value.idAgreement.substring(0, 3)=="300"){
+                            vm.rowCollection.push(value);   
+                        }
+                    });
+                    //vm.rowCollection = response.data;
                     vm.tableData = true;
-                    toastr.info('Consulta realizada con exito. <br> Numero de registros: 1', 'Informacion !');
+                    var items = Object.keys(vm.rowCollection).length;
+                    toastr.info('Consulta realizada con exito. <br> Numero de registros: ' + items, 'Informacion !');
                 },
                 function (error) {
                     vm.tableData = false;
@@ -220,7 +245,12 @@
                 }
                 vm.myPromise = RequestFormService.getRequestIdentificacion(form)
                 .then(function (response) {
-                    vm.rowCollection = response.data;
+                    angular.forEach(response.data, function (value, key) {
+                        if(value.idAgreement.substring(0, 3)=="200"||value.idAgreement.substring(0, 3)=="300"){
+                            vm.rowCollection.push(value);   
+                        }
+                    });
+                    //vm.rowCollection = response.data;
                     vm.tableData = true;
                     var items = Object.keys(vm.rowCollection).length;
 
@@ -244,10 +274,18 @@
                 }
                 vm.myPromise = RequestFormService.getRequestTypeRequest(form)
                 .then(function (response) {
-                    vm.rowCollection = response.data;
-                    vm.tableData = true;
 
-                    toastr.info('Consulta realizada con exito. <br> Numero de registros: 1', 'Informacion !');
+                    if(response.data.idAgreement.substring(0, 3)=="200"||response.data.idAgreement.substring(0, 3)=="300"){
+                        vm.rowCollection.push(response.data);  
+                        vm.tableData = true;
+                        toastr.info('Consulta realizada con exito. <br> Numero de registros: 1', 'Informacion !'); 
+
+                    }else{
+                        toastr.info('No hay solicitudes por el criterio <br> de busqueda seleccionado', 'Informacion !');  
+                    }
+                    
+
+                    
                 }, function (error) {
                     vm.tableData = false;
                     toastr.error('Consulta no realizada exitosamente <br>' + error.data["error-message"], 'Error !');
@@ -258,7 +296,12 @@
                 }
                 vm.myPromise = RequestFormService.getRequestDescription(form)
                 .then(function (response) {
-                    vm.rowCollection = response.data;
+                    angular.forEach(response.data, function (value, key) {
+                        if(value.idAgreement.substring(0, 3)=="200"||value.idAgreement.substring(0, 3)=="300"){
+                            vm.rowCollection.push(value);   
+                        }
+                    });
+                    //vm.rowCollection = response.data;
                     vm.tableData = true;
                     var items = Object.keys(vm.rowCollection).length;
 

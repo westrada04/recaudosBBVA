@@ -172,7 +172,6 @@
                 return;
             }
 
-            //preguntar si esta desactivado todo 
             angular.forEach(requestAgrement.agreementConfiguration.channel, function (value, key) {
                 if (value.name=='BNET'){
                     sw = false;

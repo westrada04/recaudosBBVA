@@ -28,6 +28,18 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
+                                <label for="numero_solicitud" class="col-md-4 control-label"><p class="text-left">Número de Solicitud</p></label>
+                                <div class="col-md-8">
+                                    <input name="requestNumber" type="text" class="form-control" maxlength="13" ng-model="vm.requestNumber" ng-disabled="vm.stateTypeRequest" ng-required="!vm.stateTypeRequest">
+                                    <span class="control-label error-mensaje" ng-show="!editRequestForm.$pristine && editRequestForm.requestNumber.$error.required">Debe especificar un numero de solicitud</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
                                 <label for="tipo_convenio" class="col-md-4 control-label"><p class="text-left">Tipo de Convenio</p></label>
                                 <div class="col-md-8">
                                     <select name="typeAgreement" class="form-control" ng-model="vm.typeAgreement" ng-change="vm.changeTypeAgreement()" ng-disabled="vm.stateTypeAgreement">
@@ -51,7 +63,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
+                            <!--div class="form-group">
                                 <label for="tipo_solicitud" class="col-md-4 control-label"><p class="text-left">Tipo de Solicitud</p></label>
                                 <div class="col-md-8">
                                     <select name="typeRequest" class="form-control" ng-model="vm.typeRequest" ng-change="vm.changeTypeRequest()" ng-disabled="vm.stateTypeRequest">
@@ -60,7 +72,7 @@
                                     </select>
                                     <span class="control-label error-mensaje" ng-show="!editRequestForm.$pristine && editRequestForm.typeRequest.$error.required">Debe selecionar una tipo de solicitud</span>
                                 </div>
-                            </div>
+                            </div-->
                         </div>
 
                         <div class="col-md-4">
@@ -76,14 +88,6 @@
                                 <div class="col-md-8">
                                     <input name="identificationNumber" type="text" class="form-control" maxlength="15" ng-model="vm.identificationNumber" ng-disabled="vm.stateIdentificacion" ng-required="!vm.stateIdentificacion">
                                     <span class="control-label error-mensaje" ng-show="!editRequestForm.$pristine && editRequestForm.identificationNumber.$error.required">Debe especificar un numero de Identificación</span>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="numero_solicitud" class="col-md-4 control-label"><p class="text-left">Número de Solicitud</p></label>
-                                <div class="col-md-8">
-                                    <input name="requestNumber" type="text" class="form-control" maxlength="13" ng-model="vm.requestNumber" ng-disabled="vm.stateTypeRequest" ng-required="!vm.stateTypeRequest">
-                                    <span class="control-label error-mensaje" ng-show="!editRequestForm.$pristine && editRequestForm.requestNumber.$error.required">Debe especificar un numero de solicitud</span>
                                 </div>
                             </div>
                         </div>
@@ -159,13 +163,14 @@
                                     <th class="text-center" st-sort="agreementClass.name">Numero de convenio</th>
                                     <th class="text-center" st-sort="relatedParticipants[0].participantId">Numero de Identificación</th>
                                     <th class="text-center" st-sort="agreementDescription">Descripción</th>
+                                    <th class="text-center" st-sort="agreementDescription">Estado</th>
                                     <th class="text-center">Detalles</th>
                                 </tr>
                                 <tr>
                                     <th>
                                         <input st-search="idAgreement" placeholder="" class="input-sm form-control" type="search" />
                                     </th>
-                                    <th colspan="4">
+                                    <th colspan="5">
                                         <input st-search placeholder="Busquedad General" class="input-sm form-control" type="search" />
                                     </th>
                                 </tr>
@@ -173,10 +178,11 @@
                             <tbody>
                                 <tr class="text-center" ng-repeat="row in vm.requests">
                                     <td>{{row.idAgreement}}</td>
-                                    <td>{{row.agreementClass.name | limitTo : 3}}</td>
+                                    <td>{{row.agreementClass.name | limitTo : 3}}</td>  
                                     <td>{{row.agreementClass.name | limitTo : 7 : 3}}</td>
                                     <td>{{row.relatedParticipants[0].participantId}}</td>
                                     <td>{{row.agreementDescription}}</td>
+                                    <td>{{row.status.id}}</td>
                                     <td> <a class="see" ng-click="vm.detail(row.idAgreement)"> ver </a> </td>
                                 </tr>
                             </tbody>
