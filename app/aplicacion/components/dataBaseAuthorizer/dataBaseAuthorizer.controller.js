@@ -5,25 +5,28 @@
         .module('app.aplicacion.components.dataBaseAuthorizer')
         .controller('DataBaseAuthorizerController', DataBaseAuthorizerController);
 
-    function DataBaseAuthorizerController(ConsultAgreementService, DataBaseEditService, toastr) {
+    function DataBaseAuthorizerController(ConsultAgreementService, DataBaseEditService, toastr, $scope, AuthorizeAgreementService) {
         var vm = this;
 
         vm.typeRequest = ConsultAgreementService.gettypeRequest();
 
+
         //datos traidos
         var request = ConsultAgreementService.getDataBase();
-        vm.date1 = request.date1;
+        AuthorizeAgreementService.setBd(request);
+        /*vm.date1 = request.date1;
         vm.date2 = request.date2;
         vm.morePayment = request.morePayment;
-        vm.databaseType = request.databaseType;
-        vm.valor1 = request.valor1;
+        vm.databaseType = request.databaseType; 
+        vm.valor1 = request.valor1; Prueba pasar valor en servicio
         vm.valor2 = request.valor2;
         vm.numberCycles = request.numberCycles;
         vm.dueDate = request.dueDate;
         vm.loadKey = request.loadKey;
         vm.dateEncab = request.dateEncab;
         vm.dateDet1 = request.dateEncab;
-        vm.updateCycle= request.updateCycle;
+        vm.updateCycle= request.updateCycle;*/
+        vm.db1 = AuthorizeAgreementService.getBd();
 
         vm.checkSave = checkSave;
         vm.save = save;
@@ -110,11 +113,11 @@
         ];
 
         function changeDatabaseType() {
-            if (vm.databaseType == 'N') {
+            if (vm.db1.databaseType == 'N') {
                 vm.disable = true;
                 vm.statusNetworkCode = false;
                 vm.success = true;
-            } else if (vm.databaseType == "R") {
+            } else if (vm.db1.databaseType == "R") {
                 vm.statusNetworkCode = true;
                 vm.disable = false;
                 vm.success = false;
@@ -137,22 +140,22 @@
             // Tipo de Base de Datos
             var requestDatabaseType = {
                 "name": "TYPE_VALIDATION_DATA",
-                "isActive": vm.databaseType != "",
+                "isActive": vm.db1.databaseType != "",
                 "limits": [{
                     start: "",
                     end: ""
                 }],
                 "value": [{
-                    id: vm.databaseType,
-                    name: vm.databaseType
+                    id: vm.db1.databaseType,
+                    name: vm.db1.databaseType
                 }],
             };
-            if (vm.databaseType != "N") {
+            if (vm.db1.databaseType != "N") {
 
                 // Valida Fecha 1
                 var requestDate1 = {
                     "name": "FIRST_EXPIRATION_DAT",
-                    "isActive": vm.date1,
+                    "isActive": vm.db1.date1,
                     "limits": [{
                         "start": "",
                         "end": ""
@@ -166,7 +169,7 @@
                 // valida fecha 2
                 var requestDate2 = {
                     "name": "SECOND_EXPIRATION_DA",
-                    "isActive": vm.date2,
+                    "isActive": vm.db1.date2,
                     "limits": [{
                         "start": "",
                         "end": ""
@@ -180,7 +183,7 @@
                 // Valida Fecha Encab
                 var requestDateEncab = {
                     "name": "VALIDATE_HEADER_DATE",
-                    "isActive": vm.dateEncab,
+                    "isActive": vm.db1.dateEncab,
                     "limits": [{
                         "start": "",
                         "end": ""
@@ -194,7 +197,7 @@
                 // Valida Fecha Det 1
                 var requestDateDet1 = {
                     "name": "VALIDATE_DETAIL_DATE",
-                    "isActive": vm.dateDet1,
+                    "isActive": vm.db1.dateDet1,
                     "limits": [{
                         "start": "",
                         "end": ""
@@ -208,7 +211,7 @@
                 // Recibe más de un pago
                 var requestMorePayment = {
                     "name": "RECEIVES_MORE_ONE_PA",
-                    "isActive": vm.morePayment,
+                    "isActive": vm.db1.morePayment,
                     "limits": [{
                         "start": "",
                         "end": ""
@@ -222,7 +225,7 @@
                 // Valida Valor 1
                 var requestValor1 = {
                     "name": 'VALUE_1',
-                    "isActive": vm.valor1,
+                    "isActive": vm.db1.valor1,
                     "limits": [{
                         "start": "",
                         "end": ""
@@ -236,7 +239,7 @@
                 // Valida Valor 2
                 var requestValor2 = {
                     "name": 'VALUE_2',
-                    "isActive": vm.valor2,
+                    "isActive": vm.db1.valor2,
                     "limits": [{
                         "start": "",
                         "end": ""
@@ -256,22 +259,22 @@
                         "end": ""
                     }],
                     "value": [{
-                        "id": vm.numberCycles,
-                        "name": vm.numberCycles
+                        "id": vm.db1.numberCycles,
+                        "name": vm.db1.numberCycles
                     }]
                 };
 
                 // Ciclos de Actualización
                 var requestUpdateCycle = {
                     "name": "CHARGE_DATABASE",
-                    "isActive": vm.updateCycle != "",
+                    "isActive": vm.db1.updateCycle != "",
                     "limits": [{
                         "start": "",
                         "end": ""
                     }],
                     "value": [{
-                        "id": vm.updateCycle,
-                        "name": vm.updateCycle
+                        "id": vm.db1.updateCycle,
+                        "name": vm.db1.updateCycle
                     }]
                 };
 
@@ -292,28 +295,28 @@
                 // Días de Borrado Fecha de Vencimient
                 var requestDueDate = {
                     "name": "DAYS_DELETE_EXPIRATI",
-                    "isActive": vm.dueDate != "",
+                    "isActive": vm.db1.dueDate != "",
                     "limits": [{
                         "start": "",
                         "end": ""
                     }],
                     "value": [{
-                        "id": vm.dueDate,
-                        "name": vm.dueDate
+                        "id": vm.db1.dueDate,
+                        "name": vm.db1.dueDate
                     }]
                 };
 
                 // Llave de Carga
                 var requestLoadKey = {
                     "name": "KEY_LOAD",
-                    "isActive": vm.loadKeys != "",
+                    "isActive": vm.db1.loadKeys != "",
                     "limits": [{
                         "start": "",
                         "end": ""
                     }],
                     "value": [{
-                        "id": vm.loadKey,
-                        "name": vm.loadKey
+                        "id": vm.db1.loadKey,
+                        "name": vm.db1.loadKey
                     }]
                 };
 

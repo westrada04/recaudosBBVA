@@ -72,6 +72,8 @@
         vm.deletePaymentMethodSelected = deletePaymentMethodSelected;
         vm.changeSubscriptionFormat = changeSubscriptionFormat;
         vm.validar = validar;
+
+        save();
         
 
         if (vm.typeRequest == 'R') {
@@ -827,10 +829,9 @@
                     "name": vm.ucw ? vm.ucwCode : ""
                     }]
             };
-
             
-
-            vm.myPromise = GeneralDataEditService.createAgreement(requestAgreement)
+            GeneralDataEditService.setRequestAgreement(requestAgreement);
+            /*vm.myPromise = GeneralDataEditService.createAgreement(requestAgreement)
                 .then(function (response) {
                     //CreateAgreementService.setIdAgreement(response.data.idAgreement);
                     requestAgreement.idAgreement = response.data.idAgreement;
@@ -856,7 +857,7 @@
                     toastr.info('Registros Exitosos!', 'Informacion !');
                 }).catch(function (error) {
                     toastr.error('Registro no Exitoso <br>' + error.data["error-message"], 'Error');
-                });
+                });*/
 
 
         }

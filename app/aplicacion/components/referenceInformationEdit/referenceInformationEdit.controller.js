@@ -19,6 +19,7 @@
         vm.typeRequest = ConsultAgreementService.gettypeRequest();
         var request = ConsultAgreementService.getReferencesInf();
         vm.references = request.references;
+
         vm.additionals = request.additionals;
         vm.fixedValues = request.fixedValues;
         vm.dates = request.dates;
@@ -134,7 +135,7 @@
         vm.deleteValue = deleteValue;
         vm.deleteInformationMessage = deleteInformationMessage;
 
-        vm.stateReference = false;
+        vm.stateReference = true;
         vm.stateAdditional = false;
         vm.stateFixedValue = false;
         vm.stateDate = false;

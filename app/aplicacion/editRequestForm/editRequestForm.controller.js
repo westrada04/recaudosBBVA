@@ -223,9 +223,10 @@
                 //vm.myPromise = RequestFormService.getRequestTypeAgreement(form)
                 vm.myPromise = RequestFormService.getRequestcode(form)
                 .then(function (response) {
+                    vm.rowCollection=[];
                     angular.forEach(response.data, function (value, key) {
                         if(value.idAgreement.substring(0, 3)=="200"||value.idAgreement.substring(0, 3)=="300"){
-                            vm.rowCollection.push(value);   
+                            vm.rowColleicton.push(value);   
                         }
                     });
                     //vm.rowCollection = response.data;
@@ -245,6 +246,7 @@
                 }
                 vm.myPromise = RequestFormService.getRequestIdentificacion(form)
                 .then(function (response) {
+                    vm.rowCollection=[];
                     angular.forEach(response.data, function (value, key) {
                         if(value.idAgreement.substring(0, 3)=="200"||value.idAgreement.substring(0, 3)=="300"){
                             vm.rowCollection.push(value);   
@@ -274,7 +276,7 @@
                 }
                 vm.myPromise = RequestFormService.getRequestTypeRequest(form)
                 .then(function (response) {
-
+                    vm.rowCollection=[];
                     if(response.data.idAgreement.substring(0, 3)=="200"||response.data.idAgreement.substring(0, 3)=="300"){
                         vm.rowCollection.push(response.data);  
                         vm.tableData = true;
@@ -296,6 +298,7 @@
                 }
                 vm.myPromise = RequestFormService.getRequestDescription(form)
                 .then(function (response) {
+                    vm.rowCollection=[];
                     angular.forEach(response.data, function (value, key) {
                         if(value.idAgreement.substring(0, 3)=="200"||value.idAgreement.substring(0, 3)=="300"){
                             vm.rowCollection.push(value);   

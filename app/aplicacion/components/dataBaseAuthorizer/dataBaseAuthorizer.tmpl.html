@@ -16,7 +16,7 @@
                                         <p class="text-left">Tipo de Base de Datos</p>
                                     </label>
                                     <div class="col-md-6">
-                                        <select name="databaseType" class="form-control" ng-change="vm.changeDatabaseType()" ng-model="vm.databaseType" required>
+                                        <select name="databaseType" class="form-control" ng-change="vm.changeDatabaseType()" ng-model="vm.db1.databaseType" required>
                                             <option value="">Seleccione una opción</option>
                                             <option ng-repeat="x in vm.databaseTypes" value="{{x.value}}">{{x.nombre}}</option>
                                         </select>
@@ -32,7 +32,7 @@
                                         <p class="text-left">Tipo Actualización BD</p>
                                     </label>
                                     <div class="col-md-6">
-                                        <select name="updateCycle" class="form-control" ng-model="vm.updateCycle" ng-disabled="vm.disable" required>
+                                        <select name="updateCycle" class="form-control" ng-model="vm.db1.updateCycle" ng-disabled="vm.disable" required>
                                             <option value="">Seleccione una opción</option>
                                             <option ng-repeat="x in vm.updateCycles" value="{{x.value}}">{{x.nombre}}</option>
                                         </select>
@@ -49,10 +49,10 @@
                                     </label>
                                     <div class="col-md-6">
                                         <label class="radio-inline">
-                                            <input name="morePayment" type="radio" ng-model="vm.morePayment" ng-value=true ng-disabled="vm.disable" required>Si
+                                            <input name="morePayment" type="radio" ng-model="vm.db1.morePayment" ng-value=true ng-disabled="vm.disable" required>Si
                                         </label>
                                         <label class="radio-inline">
-                                            <input name="morePayment" type="radio" ng-model="vm.morePayment" ng-value=false ng-disabled="vm.disable" required>No
+                                            <input name="morePayment" type="radio" ng-model="vm.db1.morePayment" ng-value=false ng-disabled="vm.disable" required>No
                                         </label>
                                         <span class="control-label error-mensaje" ng-show="!dataBase.$pristine && dataBase.morePayment.$error.required && !vm.success">
                                             Debe selecionar si recibe mas de un pago
@@ -70,10 +70,10 @@
                                     </label>
                                     <div class="col-md-6">
                                         <label class="radio-inline">
-                                            <input name="valor1" type="radio" ng-model="vm.valor1" ng-value=true ng-disabled="vm.disable" required>Si
+                                            <input name="valor1" type="radio" ng-model="vm.db1.valor1" ng-value=true ng-disabled="vm.disable" required>Si
                                         </label>
                                         <label class="radio-inline">
-                                            <input name="valor1" type="radio" ng-model="vm.valor1" ng-value=false ng-disabled="vm.disable" required>No
+                                            <input name="valor1" type="radio" ng-model="vm.db1.valor1" ng-value=false ng-disabled="vm.disable" required>No
                                         </label>
                                         <span class="control-label error-mensaje" ng-show="!dataBase.$pristine && dataBase.valor1.$error.required && !vm.success">
                                             Debe selecionar Valida Valor 1
@@ -88,10 +88,10 @@
                                     </label>
                                     <div class="col-md-6">
                                         <label class="radio-inline">
-                                            <input name="date1" type="radio" ng-model="vm.date1" ng-value=true ng-disabled="vm.disable" required>Si
+                                            <input name="date1" type="radio" ng-model="vm.db1.date1" ng-value=true ng-disabled="vm.disable" required>Si
                                         </label>
                                         <label class="radio-inline">
-                                            <input name="date1" type="radio" ng-model="vm.date1" ng-value=false ng-disabled="vm.disable" required>No
+                                            <input name="date1" type="radio" ng-model="vm.db1.date1" ng-value=false ng-disabled="vm.disable" required>No
                                         </label>
                                         <span class="control-label error-mensaje" ng-show="!dataBase.$pristine && dataBase.date1.$error.required && !vm.success">
                                             Debe selecionar Valida Fecha 1
@@ -106,10 +106,10 @@
                                     </label>
                                     <div class="col-md-6">
                                         <label class="radio-inline">
-                                            <input name="valor2" type="radio" ng-model="vm.valor2" ng-value=true ng-disabled="vm.disable" required>Si
+                                            <input name="valor2" type="radio" ng-model="vm.db1.valor2" ng-value=true ng-disabled="vm.disable" required>Si
                                         </label>
                                         <label class="radio-inline">
-                                            <input name="valor2" type="radio" ng-model="vm.valor2" ng-value=false ng-disabled="vm.disable" required>No
+                                            <input name="valor2" type="radio" ng-model="vm.db1.valor2" ng-value=false ng-disabled="vm.disable" required>No
                                         </label>
                                         <span class="control-label error-mensaje" ng-show="!dataBase.$pristine && dataBase.valor2.$error.required && !vm.success">
                                             Debe selecionar Valida Valor 2
@@ -124,10 +124,10 @@
                                     </label>
                                     <div class="col-md-6">
                                         <label class="radio-inline">
-                                            <input name="date2" type="radio" ng-model="vm.date2" ng-value=true ng-disabled="vm.disable" required>Si
+                                            <input name="date2" type="radio" ng-model="vm.db1.date2" ng-value=true ng-disabled="vm.disable" required>Si
                                         </label>
                                         <label class="radio-inline">
-                                            <input name="date2" type="radio" ng-model="vm.date2" ng-value=false ng-disabled="vm.disable" required>No
+                                            <input name="date2" type="radio" ng-model="vm.db1.date2" ng-value=false ng-disabled="vm.disable" required>No
                                         </label>
                                         <span class="control-label error-mensaje" ng-show="!dataBase.$pristine && dataBase.date2.$error.required && !vm.success">
                                             Debe selecionar Valida Fecha 1
@@ -144,7 +144,7 @@
                                         <p class="text-left">Numero de Ciclos</p>
                                     </label>
                                     <div class="col-md-6">
-                                        <input name="numberCycles" type="text" maxlength="5" class="form-control" ng-model="vm.numberCycles" ng-disabled="vm.disable" required>
+                                        <input name="numberCycles" type="text" maxlength="5" class="form-control" ng-model="vm.db1.numberCycles" ng-disabled="vm.disable" required>
                                         <span class="control-label error-mensaje" ng-show="!dataBase.$pristine && dataBase.numberCycles.$error.required && !vm.success">
                                             Debe especificar un numero de ciclos
                                         </span>
@@ -158,7 +158,7 @@
                                         <p class="text-left">Llave de Carga</p>
                                     </label>
                                     <div class="col-md-7">
-                                        <select name="loadKey" class="form-control" ng-model="vm.loadKey" ng-disabled="vm.disable" required>
+                                        <select name="loadKey" class="form-control" ng-model="vm.db1.loadKey" ng-disabled="vm.disable" required>
                                             <option value="">Seleccione una opción</option>
                                             <option ng-repeat="x in vm.loadKeys" value="{{x.value}}">{{x.nombre}}</option>
                                         </select>
@@ -177,7 +177,7 @@
                                         <p class="text-left">Días de Borrado Fecha de Vencimiento</p>
                                     </label>
                                     <div class="col-md-6">
-                                        <input name="dueDate" type="text" maxlength="3" class="form-control" ng-model="vm.dueDate" ng-disabled="vm.disable" required>
+                                        <input name="dueDate" type="text" maxlength="3" class="form-control" ng-model="vm.db1.dueDate" ng-disabled="vm.disable" required>
                                         <span class="control-label error-mensaje" ng-show="!dataBase.$pristine && dataBase.dueDate.$error.required && !vm.success">
                                             Debe especificar los dias de borrado
                                         </span>
@@ -191,10 +191,10 @@
                                     </label>
                                     <div class="col-md-7">
                                         <label class="radio-inline">
-                                            <input name="dateDet1" type="radio" ng-model="vm.dateDet1" ng-value=true ng-disabled="vm.disable" required>Si
+                                            <input name="dateDet1" type="radio" ng-model="vm.db1.dateDet1" ng-value=true ng-disabled="vm.disable" required>Si
                                         </label>
                                         <label class="radio-inline">
-                                            <input name="dateDet1" type="radio" ng-model="vm.dateDet1" ng-value=false ng-disabled="vm.disable" required>No
+                                            <input name="dateDet1" type="radio" ng-model="vm.db1.dateDet1" ng-value=false ng-disabled="vm.disable" required>No
                                         </label>
                                         <span class="control-label error-mensaje" ng-show="!dataBase.$pristine && dataBase.dateDet1.$error.required && !vm.success">
                                             Debe selecionar Valida Fecha Det 1
@@ -212,10 +212,10 @@
                                     </label>
                                     <div class="col-md-5">
                                         <label class="radio-inline">
-                                            <input name="dateEncab" type="radio" ng-model="vm.dateEncab" ng-value=true ng-disabled="vm.disable" required>Si
+                                            <input name="dateEncab" type="radio" ng-model="vm.db1.dateEncab" ng-value=true ng-disabled="vm.disable" required>Si
                                         </label>
                                         <label class="radio-inline">
-                                            <input name="dateEncab" type="radio" ng-model="vm.dateEncab" ng-value=false ng-disabled="vm.disable" required>No
+                                            <input name="dateEncab" type="radio" ng-model="vm.db1.dateEncab" ng-value=false ng-disabled="vm.disable" required>No
                                         </label>
                                         <span class="control-label error-mensaje" ng-show="!dataBase.$pristine && dataBase.dateEncab.$error.required && !vm.success">
                                             Debe selecionar Valida Fecha Encab 
@@ -229,7 +229,7 @@
                                         <p class="text-left">Código de Red</p>
                                     </label>
                                     <div class="col-md-5">
-                                        <input name="networkCode" type="text" class="form-control" ng-model="vm.networkCode" ng-disabled="vm.disable" ng-required="vm.statusNetworkCode">
+                                        <input name="networkCode" type="text" class="form-control" ng-model="vm.db1.networkCode" ng-disabled="vm.disable" ng-required="vm.statusNetworkCode">
                                         <span class="control-label error-mensaje" ng-show="!dataBase.$pristine && dataBase.networkCode.$error.required && !vm.success">
                                             Debe especificar el codigo de Red
                                         </span>

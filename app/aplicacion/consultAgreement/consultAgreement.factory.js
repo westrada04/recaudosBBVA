@@ -8,7 +8,6 @@
     function ConsultAgreementService($q, $http, API_BACKEND, UserService, $sessionStorage) {
 
         var idAgreement;
-
         var request = {
             agreements: '',
             indicators: '',
@@ -333,6 +332,7 @@
                         break;
                 }
             });
+            this.db= requestDataBase.valor1;
 
             return requestDataBase;
         }
