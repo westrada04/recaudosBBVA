@@ -13,10 +13,10 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="btn-group pull-right">
-                                    <button type="button" ng-click="vm.activate()" class="btn btn-primary" ng-disabled="!vm.status">
+                                    <button type="button" ng-click="vm.activate()" class="btn btn-primary" ng-disabled="!vm.status || vm.lock">
                                         Activar
                                     </button>
-                                    <button type="button" ng-click="vm.deactivate()" class="btn btn-primary" ng-disabled="vm.status">
+                                    <button type="button" ng-click="vm.deactivate()" class="btn btn-primary" ng-disabled="vm.status || vm.lock">
                                         Inactivar
                                     </button>
                                 </div>
@@ -167,7 +167,7 @@
                         </div>
 
                         <div class="row">
-                            <button type="button" ng-click="vm.save()" ng-disabled="!mobileBanking.$valid" class="btn btn-primary center-block">Guardar</button>
+                            <button type="button" ng-click="vm.save()" ng-disabled="!mobileBanking.$valid || vm.lock" class="btn btn-primary center-block">Guardar</button>
                         </div>
                     </form>
                     <div cg-busy="vm.myPromise"></div>

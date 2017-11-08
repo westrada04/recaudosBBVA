@@ -5,7 +5,7 @@
         .module('app.aplicacion.components.referenceInformationEdit')
         .controller('ReferenceInformationEditController', ReferenceInformationEditController);
 
-    function ReferenceInformationEditController(ConsultAgreementService, toastr, ReferenceInformationEditService, OutputFileEditService, $scope) {
+    function ReferenceInformationEditController(ConsultAgreementService, toastr, ReferenceInformationEditService, OutputFileEditService, $scope, $rootScope, $timeout) {
         var vm = this;
 
         vm.references = [];
@@ -401,24 +401,40 @@
         function addReference() {
 
             if (vm.references.length <= 6) {
-                var reference = {
-                    id: (vm.references.length + 1),
-                    referenceId: '01000',
-                    description: '',
-                    format: '',
-                    fieldLength: '',
-                    barLength: '',
-                    obligatoryField: '',
-                    inputPosition: 0,
-                    outputPosition: '',
-                    fillCharacter: '',
-                    quickHelp: '',
-                    alignment: '',
-                    municipalityField: '',
-                    taxOver: '',
-                    routineValidation: ''
-                };
-                vm.references.push(reference);
+                var requestChannel = ConsultAgreementService.getChannel();
+                var statusMobileBanking = false;
+                var addReference_ = true;
+                if (requestChannel.MNET.length > 0) {
+                    if (requestChannel.MNET[0].status != undefined) {
+                        statusMobileBanking = requestChannel.MNET[0].status;
+                    }
+                }
+                if (statusMobileBanking) {
+                    toastr.error('No se puede agregar referencia porque modulo banca movil esta activo', 'Error');
+                    addReference_ = false;
+                } else {
+                    toastr.warning('Si añade más de una referencia, el modulo de banca móvil no se habilitara', 'Precaución');
+                }
+                if (addReference_) {
+                    var reference = {
+                        id: (vm.references.length + 1),
+                        referenceId: '01000',
+                        description: '',
+                        format: '',
+                        fieldLength: '',
+                        barLength: '',
+                        obligatoryField: '',
+                        inputPosition: 0,
+                        outputPosition: '',
+                        fillCharacter: '',
+                        quickHelp: '',
+                        alignment: '',
+                        municipalityField: '',
+                        taxOver: '',
+                        routineValidation: ''
+                    };
+                    vm.references.push(reference);
+                }
             } else {
                 toastr.error('Limite de referencias excedido', 'Error');
             }
@@ -454,6 +470,16 @@
                             });
                         }
                         toastr.info('Referencia eliminada Exitosamente.', 'Informacion!');
+                        $timeout(function () {
+                            //consultar datos
+                            ConsultAgreementService.getReference()
+                                .then(function (response) {
+                                    var referen = ConsultAgreementService.getRequest();
+                                    referen.references = response.data;
+                                    ConsultAgreementService.setRequest(referen);
+                                    $rootScope.initMobileBankingEdit();
+                                });
+                        }, 3000);
                     }, function (error) {
                         toastr.error('Referencia No Eliminada <br> ' + error.data["error-message"], 'Error !');
                     });
@@ -777,6 +803,7 @@
                     }
                 }
             }
+
             eliminarReferencia(0);
             if (vm.messages.length == 0) {
                 vm.informationMessage = '';
@@ -889,6 +916,16 @@
                                     toastr.error('Referencia: ' + vm.references[key].id + ' No Almacenada <br>' + value.reason.data["error-message"], 'Error !');
                                 }
                             });
+                            $timeout(function () {
+                                //consultar datos
+                                ConsultAgreementService.getReference()
+                                    .then(function (response) {
+                                        var referen = ConsultAgreementService.getRequest();
+                                        referen.references = response.data;
+                                        ConsultAgreementService.setRequest(referen);
+                                        $rootScope.initMobileBankingEdit();
+                                    });
+                            }, 3000);
                         });
                 }
 
@@ -940,9 +977,9 @@
                                 "end": ""
                             }],
                             "value": [{
-                                    "id": "OBLIGATORY_FIELD",
-                                    "name": ""
-                                },
+                                "id": "OBLIGATORY_FIELD",
+                                "name": ""
+                            },
                                 {
                                     "id": "OBLIGATORY_FIELD",
                                     "name": ""
@@ -1260,9 +1297,11 @@
                             vm.myPromiseMessage = ReferenceInformationEditService.deleteMessage(requestDeleteMessage[indice])
                                 .then(function (response) {
                                     eliminarReferencia(indice + 1);
-                                }, function (error) {});
+                                }, function (error) {
+                                });
                         }
                     }
+
                     eliminarReferencia(0);
                 }
 
@@ -1324,6 +1363,7 @@
                             });
                     }
                 }
+
                 crearReferencia(0);
 
             }

@@ -5,37 +5,12 @@
         .module('app.aplicacion.components.mobileBankingEdit')
         .controller('MobileBankingEditController', MobileBankingEditController);
 
-    function MobileBankingEditController(MobileBankingEditService, ReferenceInformationEditService, toastr, GeneralDataEditService, ConsultAgreementService, $scope) {
+    function MobileBankingEditController(MobileBankingEditService, ReferenceInformationEditService, toastr, GeneralDataEditService, ConsultAgreementService, $scope, $rootScope) {
         var vm = this;
 
-        //datos obtenidos
-        var request = ConsultAgreementService.getChannel();
-        var referen = ConsultAgreementService.getReferencesInf();
-        var refMnet = referen.MNET;
+        initMobileBankingEdit();
 
-        if (request.MNET.length > 0) {
-            vm.category = request.MNET[0].category;
-            vm.subcategory = request.MNET[0].subcategory;
-            vm.format = request.MNET[0].format;
-            vm.imageFormat = request.MNET[0].imageFormat;
-            vm.fixedValue = request.MNET[0].fixedValue;
-            vm.domicileIndicator = request.MNET[0].domicileIndicator;
-
-            if (request.MNET[0].status != undefined) {
-                vm.status = request.MNET[0].status;
-            } else {
-                vm.status = true;
-            }
-        } else {
-            vm.status = true;
-        }
-
-        if (refMnet.length != 0) {
-            MobileBankingEditService.setIdReference(refMnet[0].referenceId);
-            vm.fieldType = refMnet[0].fieldType.id;
-            vm.referenceDescription = refMnet[0].description;
-        }
-
+        $rootScope.initMobileBankingEdit = initMobileBankingEdit;
         vm.activate = activate;
         vm.deactivate = deactivate;
         vm.save = save;
@@ -120,6 +95,42 @@
                 value: 'NS'
             }
         ];
+
+        function initMobileBankingEdit() {
+
+            //datos obtenidos
+            var request = ConsultAgreementService.getChannel();
+            var referen = ConsultAgreementService.getReferencesInf();
+            var refMnet = referen.MNET;
+
+            vm.lock = false;
+            if (referen.references.length > 1) {
+                vm.lock = true;
+            }
+
+            if (request.MNET.length > 0) {
+                vm.category = request.MNET[0].category;
+                vm.subcategory = request.MNET[0].subcategory;
+                vm.format = request.MNET[0].format;
+                vm.imageFormat = request.MNET[0].imageFormat;
+                vm.fixedValue = request.MNET[0].fixedValue;
+                vm.domicileIndicator = request.MNET[0].domicileIndicator;
+
+                if (request.MNET[0].status != undefined) {
+                    vm.status = request.MNET[0].status;
+                } else {
+                    vm.status = true;
+                }
+            } else {
+                vm.status = true;
+            }
+
+            if (refMnet.length != 0) {
+                MobileBankingEditService.setIdReference(refMnet[0].referenceId);
+                vm.fieldType = refMnet[0].fieldType.id;
+                vm.referenceDescription = refMnet[0].description;
+            }
+        }
 
         function activate() {
             vm.status = false;
