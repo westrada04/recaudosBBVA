@@ -889,8 +889,7 @@
                                 "imageFormat": value.descriptionChannel,
                                 "domicileIndicator": value.paddingCharacters == "S" ? true : false,
                                 "fixedValue" : value.name.substring(4, 5) =="S" ? true : false,
-                                "status": false
-
+                                "status": true
                             });
                             break;
                     }

@@ -119,10 +119,10 @@
                 if (request.MNET[0].status != undefined) {
                     vm.status = request.MNET[0].status;
                 } else {
-                    vm.status = true;
+                    vm.status = false;
                 }
             } else {
-                vm.status = true;
+                vm.status = false;
             }
 
             if (refMnet.length != 0) {
@@ -133,11 +133,11 @@
         }
 
         function activate() {
-            vm.status = false;
+            vm.status = true;
         }
 
         function deactivate() {
-            vm.status = true;
+            vm.status = false;
         }
 
         function save() {
@@ -159,12 +159,12 @@
                 toastr.error('Existe mas de una referencia tipo reference', 'Error');
             } else {
 
-                if (requestAgrement.agreementConfiguration.channel == undefined) {
+                //if (requestAgrement.agreementConfiguration.channel == undefined) {
                     requestAgrement.agreementConfiguration.channel = [];
-                }
+                //}
 
                 //preguntar si esta desactivado todo 
-                if (vm.status) {
+                if (!vm.status) {
                     requestAgrement.agreementConfiguration.channel.push({
                         "id": "05",
                         "name": "MNET",
@@ -231,7 +231,7 @@
                         "name": "MNET" + valfijo,
                         "category": vm.category,
                         "subCategory": vm.subcategory,
-                        "alignment": !vm.status == true ? "A" : "D", // D => desactivar - A => Activar
+                        "alignment": vm.status == true ? "A" : "D", // D => desactivar - A => Activar
                         "longDescription": "",
                         "descriptionChannel": vm.imageFormat,
                         "paddingCharacters": vm.domicileIndicator == true ? "S" : "N",
@@ -294,12 +294,22 @@
 
                         angular.forEach(response, function (value, key) {
                             if (value.state == 'fulfilled') {
-                                MobileBankingEditService.setIdReference(value.value.data.data[key].referenceId);
-                                toastr.info('Referencia: ' + value.value.data.data[key].referenceId + ' almacenada Exitosamente.', 'Informacion!');
+                                /*MobileBankingEditService.setIdReference(value.value.data.data[key].referenceId);
+                                 toastr.info('Referencia: ' + value.convalue.data.data[key].referenceId + ' almacenada Exitosamente.', 'Informacion!');*/
+                                MobileBankingEditService.setIdReference(value.value.data.data.referenceId);
+                                toastr.info('Referencia: ' + value.value.data.data.referenceId + ' almacenada Exitosamente.', 'Informacion!');
                             } else if (value.state == 'rejected') {
                                 toastr.error('Referencia: ' + vm.references[key].id + ' No Almacenada <br>' + value.reason.data["error-message"], 'Error !');
                             }
                         });
+
+                        //actualizar agreement
+                        ConsultAgreementService.getAgreement()
+                            .then(function (response) {
+                                var referen = ConsultAgreementService.getRequest();
+                                referen.agreements = response.data;
+                                ConsultAgreementService.setRequest(referen);
+                            });
 
                     }).catch(function (error) {
                         toastr.error('Registro no Exitoso <br>' + error.data["error-message"], 'Error');

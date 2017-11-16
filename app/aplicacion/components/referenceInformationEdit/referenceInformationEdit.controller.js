@@ -19,7 +19,6 @@
         vm.typeRequest = ConsultAgreementService.gettypeRequest();
         var request = ConsultAgreementService.getReferencesInf();
         vm.references = request.references;
-
         vm.additionals = request.additionals;
         vm.fixedValues = request.fixedValues;
         vm.dates = request.dates;
@@ -114,15 +113,17 @@
             vm.values.push(value);
         }
 
-        vm.changeType = changeType;
-        vm.save = save;
-
         if (vm.typeRequest == 'R') {
             vm.isTax = false;
         } else if (vm.typeRequest == 'I') {
             vm.isTax = true;
         }
 
+        var requestReferences = generateReferences();
+        ReferenceInformationEditService.setReferences(requestReferences);
+
+        vm.changeType = changeType;
+        vm.save = save;
         vm.addReference = addReference;
         vm.deleteReference = deleteReference;
         vm.addAdditional = addAdditional;
@@ -469,17 +470,19 @@
                                 routineValidation: ''
                             });
                         }
+
+                        //actualizar referencias
+                        var requestReferences=generateReferences();
+                        ReferenceInformationEditService.setReferences(requestReferences);
+                        ConsultAgreementService.getReference()
+                            .then(function (response) {
+                                var referen = ConsultAgreementService.getRequest();
+                                referen.references = response.data;
+                                ConsultAgreementService.setRequest(referen);
+                                $rootScope.initMobileBankingEdit();
+                            });
+
                         toastr.info('Referencia eliminada Exitosamente.', 'Informacion!');
-                        $timeout(function () {
-                            //consultar datos
-                            ConsultAgreementService.getReference()
-                                .then(function (response) {
-                                    var referen = ConsultAgreementService.getRequest();
-                                    referen.references = response.data;
-                                    ConsultAgreementService.setRequest(referen);
-                                    $rootScope.initMobileBankingEdit();
-                                });
-                        }, 3000);
                     }, function (error) {
                         toastr.error('Referencia No Eliminada <br> ' + error.data["error-message"], 'Error !');
                     });
@@ -837,69 +840,72 @@
                 }
 
                 if (sw) {
-                    angular.forEach(vm.references, function (value, key) {
-                        var nameFormat = '';
-                        angular.forEach(vm.referenceFormats, function (data, key) {
-                            if (value.format == data.value) {
-                                nameFormat = data.nombre;
-                            }
-                        });
 
-                        requestReferences.push({
-                            "referenceId": value.referenceId,
-                            "identifierReference": "01",
-                            "name": value.description,
-                            "referenceType": {
-                                "id": "01",
-                                "name": "RE"
-                            },
-                            "referenceDescription": value.description,
-                            "longDescription": value.quickHelp,
-                            "typeFormat": {
-                                "id": value.format,
-                                "name": nameFormat
-                            },
-                            "typeAlignment": {
-                                "id": value.alignment,
-                                "name": value.alignment == 'D' ? 'A la derecha' : 'A la izquierda'
-                            },
-                            "length": value.fieldLength,
-                            "position": value.barLength,
-                            "positionInitial": value.inputPosition,
-                            "positionOut": value.outputPosition,
-                            "paddingCharacters": value.fillCharacter,
-                            "indicator": [{
-                                "id": "",
-                                "indicatorId": "",
-                                "name": "",
-                                "isActive": false,
-                                "limits": [{
-                                    "id": "",
-                                    "name": "",
-                                    "value": 0,
-                                    "start": "",
-                                    "end": ""
-                                }],
-                                "value": [{
-                                    "id": "OBLIGATORY_FIELD",
-                                    "name": ""
-                                }]
-                            }],
-                            "parameter": [{
-                                "id": "0000003",
-                                "name": "indicadores",
-                                "parameterType": {
-                                    "id": "N",
-                                    "name": ""
-                                },
-                                "length": value.obligatoryField,
-                                "position": 0,
-                                "constant": 0,
-                                "numberParameter": "",
-                                "ubicationParameter": {}
-                            }]
-                        });
-                    });
+                    requestReferences = generateReferences();
+
+                    /*angular.forEach(vm.references, function (value, key) {
+                     var nameFormat = '';
+                     angular.forEach(vm.referenceFormats, function (data, key) {
+                     if (value.format == data.value) {
+                     nameFormat = data.nombre;
+                     }
+                     });
+
+                     requestReferences.push({
+                     "referenceId": value.referenceId,
+                     "identifierReference": "01",
+                     "name": value.description,
+                     "referenceType": {
+                     "id": "01",
+                     "name": "RE"
+                     },
+                     "referenceDescription": value.description,
+                     "longDescription": value.quickHelp,
+                     "typeFormat": {
+                     "id": value.format,
+                     "name": nameFormat
+                     },
+                     "typeAlignment": {
+                     "id": value.alignment,
+                     "name": value.alignment == 'D' ? 'A la derecha' : 'A la izquierda'
+                     },
+                     "length": value.fieldLength,
+                     "position": value.barLength,
+                     "positionInitial": value.inputPosition,
+                     "positionOut": value.outputPosition,
+                     "paddingCharacters": value.fillCharacter,
+                     "indicator": [{
+                     "id": "",
+                     "indicatorId": "",
+                     "name": "",
+                     "isActive": false,
+                     "limits": [{
+                     "id": "",
+                     "name": "",
+                     "value": 0,
+                     "start": "",
+                     "end": ""
+                     }],
+                     "value": [{
+                     "id": "OBLIGATORY_FIELD",
+                     "name": ""
+                     }]
+                     }],
+                     "parameter": [{
+                     "id": "0000003",
+                     "name": "indicadores",
+                     "parameterType": {
+                     "id": "N",
+                     "name": ""
+                     },
+                     "length": value.obligatoryField,
+                     "position": 0,
+                     "constant": 0,
+                     "numberParameter": "",
+                     "ubicationParameter": {}
+                     }]
+                     });
+                     });*/
 
 
                     vm.myPromiseReference = ReferenceInformationEditService.createReferences(requestReferences)
@@ -912,20 +918,18 @@
                                     $scope.$parent.$broadcast('referencesEdit', requestReferences);
 
                                     toastr.info('Referencia: ' + vm.references[key].id + ' almacenada Exitosamente.', 'Informacion!');
+                                    //actualizar referencias
+                                    ConsultAgreementService.getReference()
+                                        .then(function (response) {
+                                            var referen = ConsultAgreementService.getRequest();
+                                            referen.references = response.data;
+                                            ConsultAgreementService.setRequest(referen);
+                                            $rootScope.initMobileBankingEdit();
+                                        });
                                 } else if (value.state == 'rejected') {
                                     toastr.error('Referencia: ' + vm.references[key].id + ' No Almacenada <br>' + value.reason.data["error-message"], 'Error !');
                                 }
                             });
-                            $timeout(function () {
-                                //consultar datos
-                                ConsultAgreementService.getReference()
-                                    .then(function (response) {
-                                        var referen = ConsultAgreementService.getRequest();
-                                        referen.references = response.data;
-                                        ConsultAgreementService.setRequest(referen);
-                                        $rootScope.initMobileBankingEdit();
-                                    });
-                            }, 3000);
                         });
                 }
 
@@ -1368,6 +1372,75 @@
 
             }
 
+        }
+
+        function generateReferences() {
+            var requestReferences = [];
+            angular.forEach(vm.references, function (value, key) {
+                var nameFormat = '';
+                angular.forEach(vm.referenceFormats, function (data, key) {
+                    if (value.format == data.value) {
+                        nameFormat = data.nombre;
+                    }
+                });
+
+                requestReferences.push({
+                    "referenceId": value.referenceId,
+                    "identifierReference": "01",
+                    "name": value.description,
+                    "referenceType": {
+                        "id": "01",
+                        "name": "RE"
+                    },
+                    "referenceDescription": value.description,
+                    "longDescription": value.quickHelp,
+                    "typeFormat": {
+                        "id": value.format,
+                        "name": nameFormat
+                    },
+                    "typeAlignment": {
+                        "id": value.alignment,
+                        "name": value.alignment == 'D' ? 'A la derecha' : 'A la izquierda'
+                    },
+                    "length": value.fieldLength,
+                    "position": value.barLength,
+                    "positionInitial": value.inputPosition,
+                    "positionOut": value.outputPosition,
+                    "paddingCharacters": value.fillCharacter,
+                    "indicator": [{
+                        "id": "",
+                        "indicatorId": "",
+                        "name": "",
+                        "isActive": false,
+                        "limits": [{
+                            "id": "",
+                            "name": "",
+                            "value": 0,
+                            "start": "",
+                            "end": ""
+                        }],
+                        "value": [{
+                            "id": "OBLIGATORY_FIELD",
+                            "name": ""
+                        }]
+                    }],
+                    "parameter": [{
+                        "id": "0000003",
+                        "name": "indicadores",
+                        "parameterType": {
+                            "id": "N",
+                            "name": ""
+                        },
+                        "length": value.obligatoryField,
+                        "position": 0,
+                        "constant": 0,
+                        "numberParameter": "",
+                        "ubicationParameter": {}
+                    }]
+                });
+            });
+
+            return requestReferences;
         }
     }
 })();

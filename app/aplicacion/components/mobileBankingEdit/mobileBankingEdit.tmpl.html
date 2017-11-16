@@ -13,10 +13,10 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="btn-group pull-right">
-                                    <button type="button" ng-click="vm.activate()" class="btn btn-primary" ng-disabled="!vm.status || vm.lock">
+                                    <button type="button" ng-click="vm.activate()" class="btn btn-primary" ng-disabled="vm.status || vm.lock">
                                         Activar
                                     </button>
-                                    <button type="button" ng-click="vm.deactivate()" class="btn btn-primary" ng-disabled="vm.status || vm.lock">
+                                    <button type="button" ng-click="vm.deactivate()" class="btn btn-primary" ng-disabled="!vm.status || vm.lock">
                                         Inactivar
                                     </button>
                                 </div>
@@ -32,7 +32,7 @@
                                         <p class="text-left">Categoría</p>
                                     </label>
                                     <div class="col-md-6">
-                                        <select name="category" class="form-control" ng-model="vm.category" ng-disabled="vm.status" ng-required="!vm.status">
+                                        <select name="category" class="form-control" ng-model="vm.category" ng-disabled="!vm.status" ng-required="vm.status">
                                             <option value="">Seleccione una opción</option>
                                             <option ng-repeat="x in vm.categories" value="{{x.value}}">{{x.nombre}}</option>
                                         </select>
@@ -48,7 +48,7 @@
                                         <p class="text-left">Subcategoría</p>
                                     </label>
                                     <div class="col-md-6">
-                                        <select name="subcategory" class="form-control" ng-model="vm.subcategory" ng-disabled="vm.status" ng-required="!vm.status">
+                                        <select name="subcategory" class="form-control" ng-model="vm.subcategory" ng-disabled="!vm.status" ng-required="vm.status">
                                             <option value="">Seleccione una opción</option>
                                             <option ng-repeat="x in vm.subcategories" value="{{x.value}}">{{x.nombre}}</option>
                                         </select>
@@ -64,7 +64,7 @@
                                         <p class="text-left">Formato</p>
                                     </label>
                                     <div class="col-md-6">
-                                        <select name="format" class="form-control" ng-model="vm.format" ng-disabled="vm.status" ng-required="!vm.status">
+                                        <select name="format" class="form-control" ng-model="vm.format" ng-disabled="!vm.status" ng-required="vm.status">
                                             <option value="">Seleccione una opción</option>
                                             <option ng-repeat="x in vm.formats" value="{{x.value}}">{{x.nombre}}</option>
                                         </select>
@@ -99,10 +99,10 @@
                                     </label>
                                     <div class="col-md-8">
                                         <label class="radio-inline">
-                                            <input name="fixedValue" type="radio" ng-model="vm.fixedValue" ng-value=true ng-disabled="vm.status" ng-required="!vm.status">Si
+                                            <input name="fixedValue" type="radio" ng-model="vm.fixedValue" ng-value=true ng-disabled="!vm.status" ng-required="vm.status">Si
                                         </label>
                                         <label class="radio-inline">
-                                            <input name="fixedValue" type="radio" ng-model="vm.fixedValue" ng-value=false ng-disabled="vm.status" ng-required="!vm.status">no
+                                            <input name="fixedValue" type="radio" ng-model="vm.fixedValue" ng-value=false ng-disabled="!vm.status" ng-required="vm.status">no
                                         </label>
                                         <span class="control-label error-mensaje" ng-show="!mobileBanking.$pristine && mobileBanking.fixedValue.$error.required">
                                             Debe especificar valor fijo
@@ -117,10 +117,10 @@
                                     </label>
                                     <div class="col-md-6">
                                         <label class="radio-inline">
-                                            <input name="domicileIndicator" type="radio" ng-model="vm.domicileIndicator" ng-value=true ng-disabled="vm.status" ng-required="!vm.status">Si
+                                            <input name="domicileIndicator" type="radio" ng-model="vm.domicileIndicator" ng-value=true ng-disabled="!vm.status" ng-required="vm.status">Si
                                         </label>
                                         <label class="radio-inline">
-                                            <input name="domicileIndicator" type="radio" ng-model="vm.domicileIndicator" ng-value=false ng-disabled="vm.status" ng-required="!vm.status">no
+                                            <input name="domicileIndicator" type="radio" ng-model="vm.domicileIndicator" ng-value=false ng-disabled="!vm.status" ng-required="vm.status">no
                                         </label>
                                         <span class="control-label error-mensaje" ng-show="!mobileBanking.$pristine && mobileBanking.domicileIndicator.$error.required">
                                             Debe especificar Indicador de Domiciliación
@@ -141,7 +141,7 @@
                                         <p class="text-left">Tipo de Campo</p>
                                     </label>
                                     <div class="col-md-6">
-                                        <select name="fieldType" class="form-control" ng-model="vm.fieldType" ng-disabled="vm.status" ng-required="!vm.status">
+                                        <select name="fieldType" class="form-control" ng-model="vm.fieldType" ng-disabled="!vm.status" ng-required="vm.status">
                                             <option value="">Seleccione una opción</option>
                                             <option ng-repeat="x in vm.fieldTypes" value="{{x.value}}">{{x.nombre}}</option>
                                         </select>
@@ -157,7 +157,7 @@
                                         <p class="text-left">Descripción de Referencia</p>
                                     </label>
                                     <div class="col-md-8">
-                                        <textarea class="form-control" name="referenceDescription" rows="3" ng-model="vm.referenceDescription" ng-disabled="vm.status" ng-required="!vm.status"></textarea>
+                                        <textarea class="form-control" name="referenceDescription" rows="3" ng-model="vm.referenceDescription" ng-disabled="!vm.status" ng-required="vm.status"></textarea>
                                         <span class="control-label error-mensaje" ng-show="!mobileBanking.$pristine && mobileBanking.referenceDescription.$error.required">
                                             Debe especificar una descripcion de referencia
                                         </span>
