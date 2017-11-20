@@ -63,28 +63,38 @@
         function save() {
 
             var requestAgrement = GeneralDataEditService.getRequestAgreement();
-            if (requestAgrement == undefined) {
+            var indBd;
+            vm.state3=false;
+            requestAgrement.status.id = 'F';
+            requestAgrement.status.name = 'Finalizado';
+            requestAgrement.status.statusType.id = 'F';
+            requestAgrement.status.statusType.name = 'Finalizado';
+            indBd = AuthorizeAgreementService.getJsonBd();
+            
+            var myPromise = EditAgreementService.createAgreement(requestAgrement)
+                .then(function (response) {
+                      toastr.info('Solicitud Aprobada!', 'Informacion !');
+                    GeneralDataEditService.setRequestAgreement(requestAgrement);
+                }).catch(function (error) {
+                    toastr.error('Error al Autorizar la Solicitud <br>' + error.data["error-message"], 'Error');
+                });
+
+            if (requestAgrement.idAgreement.substring(1, 3) == '300') {
+                var myPromise = GeneralDataEditService.createIndicatorList(indBd).
+                then(function(response){
+                    toastr.info('Indicadores ok!', 'Informacion !');
+                }).catch(function(error){
+                    toastr.info('Fallo!', 'Informacion !'); 
+                });
+            
                 toastr.info('Debe guardar Datos Generales para realizar este registro!', 'Informacion !');
                 return;
             }
-            vm.state3=false;
-            requestAgrement.status.id = 'E';
-            requestAgrement.status.name = 'Enviado';
-            requestAgrement.status.statusType.id = 'E';
-            requestAgrement.status.statusType.name = 'Enviado';
-
-            var myPromise = EditAgreementService.createAgreement(requestAgrement)
-                .then(function (response) {
-                      toastr.info('Registro Almacenado Exitosamente!', 'Informacion !');
-                    GeneralDataEditService.setRequestAgreement(requestAgrement);
-                }).catch(function (error) {
-                    toastr.error('Registro no Exitoso <br>' + error.data["error-message"], 'Error');
-                });
         }
         function rechazar() {
 
             var requestAgrement = GeneralDataEditService.getRequestAgreement();
-            if (requestAgrement == undefined) {
+            if (requestAgrement.idAgreement == undefined) {
                 toastr.info('Debe guardar Datos Generales para realizar este registro!', 'Informacion !');
                 return;
             }

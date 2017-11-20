@@ -14,7 +14,8 @@
             createAgreement: createAgreement,
             createIndicatorListGneral: createIndicatorListGneral,
             createIndicatorGeneral: createIndicatorGeneral,
-            reset: reset
+            reset: reset,
+            createIndicatorList: createIndicatorList
         };
 
         return service;
@@ -38,6 +39,15 @@
         function createIndicatorListGneral(requests, indicator) {
             var idAgreement = EditAgreementService.getIdAgreement();
             var promises = requests.map(function (request) {
+                return $http.put(API_BACKEND.url + "/agreements/V01/" + idAgreement + '/indicators/' + indicator, request, UserService.getTsec())
+            });
+
+            return $q.all(promises);
+        }
+        function createIndicatorList(requests) {
+            var idAgreement = EditAgreementService.getIdAgreement();
+            var promises = requests.map(function (request) {
+                var indicator = request.name;
                 return $http.put(API_BACKEND.url + "/agreements/V01/" + idAgreement + '/indicators/' + indicator, request, UserService.getTsec())
             });
 
