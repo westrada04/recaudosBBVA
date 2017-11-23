@@ -5,10 +5,12 @@
         .module('app.aplicacion.components.mobileBanking')
         .controller('MobileBankingController', MobileBankingController);
 
-    function MobileBankingController(MobileBankingService, ReferenceInformationService, toastr, GeneralDataService, $scope) {
+    function MobileBankingController(MobileBankingService, ReferenceInformationService, toastr, GeneralDataService, ConsultAgreementService, $scope, $rootScope) {
         var vm = this;
 
-        vm.status = true;
+        initMobileBanking();
+
+        $rootScope.initMobileBanking = initMobileBanking;
 
         vm.activate = activate;
         vm.deactivate = deactivate;
@@ -96,12 +98,48 @@
             }
         ];
 
+        function initMobileBanking() {
+
+            //datos obtenidos
+            var request = ConsultAgreementService.getChannel();
+            var referen = ConsultAgreementService.getReferencesInf();
+            var refMnet = referen.MNET;
+
+            vm.lock = false;
+            if (referen.references.length > 1) {
+                vm.lock = true;
+            }
+
+            if (request.MNET.length > 0) {
+                vm.category = request.MNET[0].category;
+                vm.subcategory = request.MNET[0].subcategory;
+                vm.format = request.MNET[0].format;
+                vm.imageFormat = request.MNET[0].imageFormat;
+                vm.fixedValue = request.MNET[0].fixedValue;
+                vm.domicileIndicator = request.MNET[0].domicileIndicator;
+
+                if (request.MNET[0].status != undefined) {
+                    vm.status = request.MNET[0].status;
+                } else {
+                    vm.status = false;
+                }
+            } else {
+                vm.status = false;
+            }
+
+            if (refMnet.length != 0) {
+                MobileBankingService.setIdReference(refMnet[0].referenceId);
+                vm.fieldType = refMnet[0].fieldType.id;
+                vm.referenceDescription = refMnet[0].description;
+            }
+        }
+
         function activate() {
-            vm.status = false;
+            vm.status = true;
         }
 
         function deactivate() {
-            vm.status = true;
+            vm.status = false;
         }
 
         function save() {
@@ -123,12 +161,12 @@
                 toastr.error('Existe mas de una referencia tipo reference', 'Error');
             } else {
 
-                if (requestAgrement.agreementConfiguration.channel == undefined) {
-                    requestAgrement.agreementConfiguration.channel = [];
-                }
+                //if (requestAgrement.agreementConfiguration.channel == undefined) {
+                requestAgrement.agreementConfiguration.channel = [];
+                //}
 
                 //preguntar si esta desactivado todo 
-                if (vm.status) {
+                if (!vm.status) {
                     requestAgrement.agreementConfiguration.channel.push({
                         "id": "05",
                         "name": "MNET",
@@ -213,7 +251,7 @@
                         "name": "MNET",
                         "category": vm.category,
                         "subCategory": vm.subcategory,
-                        "alignment": !vm.status == true ? "A" : "D", // D => desactivar - A => Activar
+                        "alignment": vm.status == true ? "A" : "D", // D => desactivar - A => Activar
                         "longDescription": "",
                         "descriptionChannel": vm.imageFormat,
                         "paddingCharacters": vm.domicileIndicator == true ? "S" : "N",
@@ -293,12 +331,26 @@
 
                         angular.forEach(response, function (value, key) {
                             if (value.state == 'fulfilled') {
-                                MobileBankingService.setIdReference(value.value.data.data[key].referenceId);
-                                toastr.info('Referencia: ' + value.value.data.data[key].referenceId + ' almacenada Exitosamente.', 'Informacion!');
+                                var referenceId;
+                                if (angular.isArray(value.value.data.data)) {
+                                    referenceId = value.value.data.data[key].referenceId;
+                                } else {
+                                    referenceId = value.value.data.data.referenceId;
+                                }
+                                MobileBankingService.setIdReference(referenceId);
+                                toastr.info('Referencia: ' + referenceId + ' almacenada Exitosamente.', 'Informacion!');
                             } else if (value.state == 'rejected') {
                                 toastr.error('Referencia: ' + vm.references[key].id + ' No Almacenada <br>' + value.reason.data["error-message"], 'Error !');
                             }
                         });
+
+                        //actualizar agreement
+                        ConsultAgreementService.getAgreement()
+                            .then(function (response) {
+                                var referen = ConsultAgreementService.getRequest();
+                                referen.agreements = response.data;
+                                ConsultAgreementService.setRequest(referen);
+                            });
 
                     }).catch(function (error) {
                         toastr.error('Registro no Exitoso <br>' + error.data["error-message"], 'Error');

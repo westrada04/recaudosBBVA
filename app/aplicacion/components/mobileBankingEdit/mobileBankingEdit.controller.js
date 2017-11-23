@@ -160,7 +160,7 @@
             } else {
 
                 //if (requestAgrement.agreementConfiguration.channel == undefined) {
-                    requestAgrement.agreementConfiguration.channel = [];
+                requestAgrement.agreementConfiguration.channel = [];
                 //}
 
                 //preguntar si esta desactivado todo 
@@ -294,10 +294,14 @@
 
                         angular.forEach(response, function (value, key) {
                             if (value.state == 'fulfilled') {
-                                /*MobileBankingEditService.setIdReference(value.value.data.data[key].referenceId);
-                                 toastr.info('Referencia: ' + value.convalue.data.data[key].referenceId + ' almacenada Exitosamente.', 'Informacion!');*/
-                                MobileBankingEditService.setIdReference(value.value.data.data.referenceId);
-                                toastr.info('Referencia: ' + value.value.data.data.referenceId + ' almacenada Exitosamente.', 'Informacion!');
+                                var referenceId;
+                                if (angular.isArray(value.value.data.data)) {
+                                    referenceId = value.value.data.data[key].referenceId;
+                                } else {
+                                    referenceId = value.value.data.data.referenceId;
+                                }
+                                MobileBankingEditService.setIdReference(referenceId);
+                                toastr.info('Referencia: ' + referenceId + ' almacenada Exitosamente.', 'Informacion!');
                             } else if (value.state == 'rejected') {
                                 toastr.error('Referencia: ' + vm.references[key].id + ' No Almacenada <br>' + value.reason.data["error-message"], 'Error !');
                             }

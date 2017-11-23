@@ -102,6 +102,13 @@
         }
 
         function getRequest() {
+            if (this.request == undefined) {
+                this.request = {
+                    agreements: '',
+                    indicators: '',
+                    references: ''
+                };
+            }
             return this.request;
         }
 
@@ -332,7 +339,7 @@
                         break;
                 }
             });
-            this.db= requestDataBase.valor1;
+            this.db = requestDataBase.valor1;
 
             return requestDataBase;
         }
@@ -570,7 +577,10 @@
         }
 
         function getReferencesInf() {
-            var listReferences = this.request.references;
+            var listReferences;
+            if (this.request != undefined) {
+                listReferences = this.request.references;
+            }
             var requestreferences = [];
             var taxover = false;
             var municipalityField = false;
@@ -586,161 +596,54 @@
             requestreferences.messages = [];
             requestreferences.informationMessage = "";
 
-            angular.forEach(listReferences.data, function (value, key) {
-                switch (value.referenceType.name) {
-                    case 'REF':
-                        angular.forEach(value.indicator, function (data, key) {
-                            switch (data.name) {
-                                case 'TAX_SURCHARGE':
-                                    taxover = data.isActive;
-                                    break;
-                                case 'FIELD_MUNICIPALITY':
-                                    municipalityField = data.isActive;
-                                    break;
-                                case 'VALIDATION_ROUTINE':
-                                    validationRutine = data.isActive;
-                                    break;
-                                case 'OBLIGATORY_FIELD':
-                                    requiredField = data.isActive ? "1" : "0";
-                                    break;
-                            }
-                        });
-                        requestreferences.references.push({
-                            "id": (requestreferences.references.length + 1),
-                            "referenceId": value.referenceType.id,
-                            "field": value.referenceType.id,
-                            "quickHelp": value.longDescription,
-                            "description": value.referenceDescription,
-                            "format": value.typeFormat.id,
-                            "alignment": value.typeAlignment.name == "RIGHT" ? "D" : "I",
-                            "fieldLength": value.length,
-                            "inputPosition": value.positionInitial,
-                            "outputPosition": value.positionOut,
-                            "barLength": value.position,
-                            "fillCharacter": value.paddingCharacters != undefined ? value.paddingCharacters.toString() : "1",
-                            "taxOver": taxover ? 'B10' : 'B08',
-                            "municipalityField": municipalityField ? 'B10' : 'B08',
-                            "obligatoryField": requiredField,
-                        });
+            if (listReferences != undefined && listReferences.data != undefined) {
+                angular.forEach(listReferences.data, function (value, key) {
+                    switch (value.referenceType.name) {
+                        case 'REF':
+                            angular.forEach(value.indicator, function (data, key) {
+                                switch (data.name) {
+                                    case 'TAX_SURCHARGE':
+                                        taxover = data.isActive;
+                                        break;
+                                    case 'FIELD_MUNICIPALITY':
+                                        municipalityField = data.isActive;
+                                        break;
+                                    case 'VALIDATION_ROUTINE':
+                                        validationRutine = data.isActive;
+                                        break;
+                                    case 'OBLIGATORY_FIELD':
+                                        requiredField = data.isActive ? "1" : "0";
+                                        break;
+                                }
+                            });
+                            requestreferences.references.push({
+                                "id": (requestreferences.references.length + 1),
+                                "referenceId": value.referenceType.id,
+                                "field": value.referenceType.id,
+                                "quickHelp": value.longDescription,
+                                "description": value.referenceDescription,
+                                "format": value.typeFormat.id,
+                                "alignment": value.typeAlignment.name == "RIGHT" ? "D" : "I",
+                                "fieldLength": value.length,
+                                "inputPosition": value.positionInitial,
+                                "outputPosition": value.positionOut,
+                                "barLength": value.position,
+                                "fillCharacter": value.paddingCharacters != undefined ? value.paddingCharacters.toString() : "1",
+                                "taxOver": taxover ? 'B10' : 'B08',
+                                "municipalityField": municipalityField ? 'B10' : 'B08',
+                                "obligatoryField": requiredField,
+                            });
 
-                        break;
-                    case 'ADI':
+                            break;
+                        case 'ADI':
 
-                        requestreferences.additionals.push({
-                            "id": (requestreferences.additionals.length + 1),
-                            "referenceId": value.referenceType.id,
-                            "field": parseInt(value.referenceType.id),
-                            "quickHelp": value.longDescription,
-                            "description": value.referenceDescription,
-                            "format": value.typeFormat.id,
-                            "alignment": value.typeAlignment.name == "RIGHT" ? "D" : "I",
-                            "fieldLength": value.length,
-                            "inputPosition": value.positionInitial,
-                            "outputPosition": value.positionOut,
-                            "barLength": value.position,
-                            "fillCharacter": value.paddingCharacters != undefined ? value.paddingCharacters.toString() : "1",
-                        });
-                        break;
-                    case 'FIJ':
-                        var maximumAmount = 0;
-                        var minimumAmount = 0;
-                        var amountIndicator = false;
-
-                        angular.forEach(value.indicator, function (data, key) {
-                            switch (data.name) {
-                                case 'INDICATOR_AMOUNT':
-                                    amountIndicator = data.isActive;
-                                    angular.forEach(data.limits, function (limit, key) {
-                                        switch (limit.name) {
-                                            case 'MAXIMUM_AMOUNT':
-                                                maximumAmount = limit.value;
-                                                break;
-                                            case 'MINIMUM_AMOUNT':
-                                                minimumAmount = limit.value;
-                                                break;
-                                        }
-                                    });
-
-                                    break;
-                                case 'OBLIGATORY_FIELD':
-                                    requiredField = data.isActive;
-                                    break;
-                            }
-                        });
-                        requestreferences.fixedValues.push({
-                            "id": (requestreferences.fixedValues.length + 1),
-                            "referenceId": value.referenceType.id,
-                            "consecutive": parseInt(value.referenceType.id),
-                            "quickHelp": value.longDescription,
-                            "description": value.referenceDescription,
-                            "format": value.typeFormat.id,
-                            "alignment": value.typeAlignment.name == "RIGHT" ? "D" : "I",
-                            "fieldLength": value.length,
-                            "inputPosition": value.positionInitial,
-                            "outputPosition": value.positionOut,
-                            "barLength": value.position,
-                            "fillCharacter": value.paddingCharacters != undefined ? value.paddingCharacters.toString() : "1",
-                            "maximumAmount": maximumAmount,
-                            "minimumAmount": minimumAmount,
-                            "obligatoryField": requiredField,
-                            "amountIndicator": amountIndicator,
-                        });
-                        break;
-                    case 'FEC':
-                        requestreferences.dates.push({
-                            "id": (requestreferences.dates.length + 1),
-                            "referenceId": value.referenceType.id,
-                            "field": parseInt(value.referenceType.id),
-                            "quickHelp": value.longDescription,
-                            "description": value.referenceDescription,
-                            "format": value.typeFormat.id,
-                            "alignment": value.typeAlignment.name == "RIGHT" ? "D" : "I",
-                            "fieldLength": value.length,
-                            "inputPosition": value.positionInitial,
-                            "outputPosition": value.positionOut,
-                            "lengthBars": value.position,
-                            "fillCharacter": value.paddingCharacters != undefined ? value.paddingCharacters.toString() : "1",
-                        });
-                        break;
-                    case 'VAL':
-                        requestreferences.values.push({
-                            "id": (requestreferences.values.length + 1),
-                            "referenceId": value.referenceType.id,
-                            "field": parseInt(value.referenceType.id),
-                            "quickHelp": value.longDescription,
-                            "description": value.referenceDescription,
-                            "format": value.typeFormat.id,
-                            "alignment": value.typeAlignment.name == "RIGHT" ? "D" : "I",
-                            "fieldLength": value.length,
-                            "inputPosition": value.positionInitial,
-                            "outputPosition": value.positionOut,
-                            "barLength": value.position,
-                            "fillCharacter": value.paddingCharacters != undefined ? value.paddingCharacters.toString() : "1",
-                        });
-                        break;
-                    case 'MEN':
-
-                        requestreferences.messages.push({
-                            id: (requestreferences.values.length + 1),
-                            "referenceId": value.referenceType.id
-                        });
-
-                        if (value.longDescription != undefined) {
-                            requestreferences.informationMessage += value.referenceDescription + value.longDescription;
-                        } else {
-                            requestreferences.informationMessage += value.referenceDescription;
-                        }
-
-                        break;
-                    case 'BNET':
-                        if (value.typeFormat.id != "CN") {
-                            requestreferences.BNET.push({
-                                "id": (requestreferences.BNET.length + 1),
+                            requestreferences.additionals.push({
+                                "id": (requestreferences.additionals.length + 1),
                                 "referenceId": value.referenceType.id,
                                 "field": parseInt(value.referenceType.id),
                                 "quickHelp": value.longDescription,
-                                "description": value.name,
-                                "fieldType": value.typeFormat.id,
+                                "description": value.referenceDescription,
+                                "format": value.typeFormat.id,
                                 "alignment": value.typeAlignment.name == "RIGHT" ? "D" : "I",
                                 "fieldLength": value.length,
                                 "inputPosition": value.positionInitial,
@@ -748,28 +651,137 @@
                                 "barLength": value.position,
                                 "fillCharacter": value.paddingCharacters != undefined ? value.paddingCharacters.toString() : "1",
                             });
-                        }
-                        break;
-                    case 'MNET':
-                        if (value.typeFormat.id != "CN") {
-                            requestreferences.MNET.push({
-                                "id": (requestreferences.MNET.length + 1),
+                            break;
+                        case 'FIJ':
+                            var maximumAmount = 0;
+                            var minimumAmount = 0;
+                            var amountIndicator = false;
+
+                            angular.forEach(value.indicator, function (data, key) {
+                                switch (data.name) {
+                                    case 'INDICATOR_AMOUNT':
+                                        amountIndicator = data.isActive;
+                                        angular.forEach(data.limits, function (limit, key) {
+                                            switch (limit.name) {
+                                                case 'MAXIMUM_AMOUNT':
+                                                    maximumAmount = limit.value;
+                                                    break;
+                                                case 'MINIMUM_AMOUNT':
+                                                    minimumAmount = limit.value;
+                                                    break;
+                                            }
+                                        });
+
+                                        break;
+                                    case 'OBLIGATORY_FIELD':
+                                        requiredField = data.isActive;
+                                        break;
+                                }
+                            });
+                            requestreferences.fixedValues.push({
+                                "id": (requestreferences.fixedValues.length + 1),
                                 "referenceId": value.referenceType.id,
-                                "field": parseInt(value.referenceType.id),
+                                "consecutive": parseInt(value.referenceType.id),
                                 "quickHelp": value.longDescription,
-                                "description": value.name,
-                                "fieldType": value.typeFormat,
+                                "description": value.referenceDescription,
+                                "format": value.typeFormat.id,
                                 "alignment": value.typeAlignment.name == "RIGHT" ? "D" : "I",
                                 "fieldLength": value.length,
                                 "inputPosition": value.positionInitial,
                                 "outputPosition": value.positionOut,
                                 "barLength": value.position,
-                                "fillCharacter": value.paddingCharacters != undefined ? value.paddingCharacters.toString() :"1",
+                                "fillCharacter": value.paddingCharacters != undefined ? value.paddingCharacters.toString() : "1",
+                                "maximumAmount": maximumAmount,
+                                "minimumAmount": minimumAmount,
+                                "obligatoryField": requiredField,
+                                "amountIndicator": amountIndicator,
                             });
-                        }
-                        break;  
-                }
-            });
+                            break;
+                        case 'FEC':
+                            requestreferences.dates.push({
+                                "id": (requestreferences.dates.length + 1),
+                                "referenceId": value.referenceType.id,
+                                "field": parseInt(value.referenceType.id),
+                                "quickHelp": value.longDescription,
+                                "description": value.referenceDescription,
+                                "format": value.typeFormat.id,
+                                "alignment": value.typeAlignment.name == "RIGHT" ? "D" : "I",
+                                "fieldLength": value.length,
+                                "inputPosition": value.positionInitial,
+                                "outputPosition": value.positionOut,
+                                "lengthBars": value.position,
+                                "fillCharacter": value.paddingCharacters != undefined ? value.paddingCharacters.toString() : "1",
+                            });
+                            break;
+                        case 'VAL':
+                            requestreferences.values.push({
+                                "id": (requestreferences.values.length + 1),
+                                "referenceId": value.referenceType.id,
+                                "field": parseInt(value.referenceType.id),
+                                "quickHelp": value.longDescription,
+                                "description": value.referenceDescription,
+                                "format": value.typeFormat.id,
+                                "alignment": value.typeAlignment.name == "RIGHT" ? "D" : "I",
+                                "fieldLength": value.length,
+                                "inputPosition": value.positionInitial,
+                                "outputPosition": value.positionOut,
+                                "barLength": value.position,
+                                "fillCharacter": value.paddingCharacters != undefined ? value.paddingCharacters.toString() : "1",
+                            });
+                            break;
+                        case 'MEN':
+
+                            requestreferences.messages.push({
+                                id: (requestreferences.values.length + 1),
+                                "referenceId": value.referenceType.id
+                            });
+
+                            if (value.longDescription != undefined) {
+                                requestreferences.informationMessage += value.referenceDescription + value.longDescription;
+                            } else {
+                                requestreferences.informationMessage += value.referenceDescription;
+                            }
+
+                            break;
+                        case 'BNET':
+                            if (value.typeFormat.id != "CN") {
+                                requestreferences.BNET.push({
+                                    "id": (requestreferences.BNET.length + 1),
+                                    "referenceId": value.referenceType.id,
+                                    "field": parseInt(value.referenceType.id),
+                                    "quickHelp": value.longDescription,
+                                    "description": value.name,
+                                    "fieldType": value.typeFormat.id,
+                                    "alignment": value.typeAlignment.name == "RIGHT" ? "D" : "I",
+                                    "fieldLength": value.length,
+                                    "inputPosition": value.positionInitial,
+                                    "outputPosition": value.positionOut,
+                                    "barLength": value.position,
+                                    "fillCharacter": value.paddingCharacters != undefined ? value.paddingCharacters.toString() : "1",
+                                });
+                            }
+                            break;
+                        case 'MNET':
+                            if (value.typeFormat.id != "CN") {
+                                requestreferences.MNET.push({
+                                    "id": (requestreferences.MNET.length + 1),
+                                    "referenceId": value.referenceType.id,
+                                    "field": parseInt(value.referenceType.id),
+                                    "quickHelp": value.longDescription,
+                                    "description": value.name,
+                                    "fieldType": value.typeFormat,
+                                    "alignment": value.typeAlignment.name == "RIGHT" ? "D" : "I",
+                                    "fieldLength": value.length,
+                                    "inputPosition": value.positionInitial,
+                                    "outputPosition": value.positionOut,
+                                    "barLength": value.position,
+                                    "fillCharacter": value.paddingCharacters != undefined ? value.paddingCharacters.toString() : "1",
+                                });
+                            }
+                            break;
+                    }
+                });
+            }
             return requestreferences;
         }
 
@@ -860,12 +872,15 @@
         }
 
         function getChannel() {
-            var agrement = this.request.agreements;
+            var agrement;
+            if (this.request != undefined) {
+                agrement = this.request.agreements;
+            }
             var requestChannel = {};
             requestChannel.BNET = [];
             requestChannel.MNET = [];
 
-            if (agrement.data.agreementConfiguration != undefined) {
+            if (agrement != undefined && agrement.data != undefined && agrement.data.agreementConfiguration != undefined) {
                 angular.forEach(agrement.data.agreementConfiguration.channel, function (value, key) {
                     switch (value.name.substring(0, 4)) {
                         case 'BNET':
@@ -876,7 +891,7 @@
                                 "format": value.dataType,
                                 "imageFormat": value.descriptionChannel,
                                 "domicileIndicator": value.paddingCharacters == "S" ? true : false,
-                                "fixedValue" : value.name.substring(4, 5) =="S" ? true : false,
+                                "fixedValue": value.name.substring(4, 5) == "S" ? true : false,
                                 "status": true,
                             });
                             break;
@@ -888,7 +903,7 @@
                                 "format": value.dataType,
                                 "imageFormat": value.descriptionChannel,
                                 "domicileIndicator": value.paddingCharacters == "S" ? true : false,
-                                "fixedValue" : value.name.substring(4, 5) =="S" ? true : false,
+                                "fixedValue": value.name.substring(4, 5) == "S" ? true : false,
                                 "status": true
                             });
                             break;
@@ -1051,37 +1066,33 @@
                     requestPin.typeId = value.pinType.id;
 
                     switch (value.pinType.id) {
-                        case '01':
-                            {
-                                requestPin.typePin = "TU";
-                            }
+                        case '01': {
+                            requestPin.typePin = "TU";
+                        }
                             break;
-                        case '02':
-                            {
-                                requestPin.typePin = "TB";
-                            }
+                        case '02': {
+                            requestPin.typePin = "TB";
+                        }
                             break;
-                        case '03':
-                            {
-                                requestPin.typePin = "TI";
-                            }
+                        case '03': {
+                            requestPin.typePin = "TI";
+                        }
                             break;
-                        case '04':
-                            {
-                                requestPin.typePin = "TA";
-                            }
+                        case '04': {
+                            requestPin.typePin = "TA";
+                        }
                             break;
-                        default:
-                            {
-                                requestPin.typePin = "BD";
-                            };
+                        default: {
+                            requestPin.typePin = "BD";
+                        }
+                            ;
                     }
 
                     value.algorithm = '0' + value.algorithm;
                     requestPin.numericAlphanumeric = value.pinType.name;
                     requestPin.algorythm = value.algorithm === '02' ? "02" :
                         value.algorithm === '04' ? "04" :
-                        value.algorithm === '08' ? "08" : "";
+                            value.algorithm === '08' ? "08" : "";
                     requestPin.algorythm = parseInt(requestPin.algorythm);
                     requestPin.NumberDigits = parseInt(value.value);
                 });

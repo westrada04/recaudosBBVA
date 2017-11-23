@@ -5,13 +5,10 @@
         .module('app.aplicacion.components.referenceInformation')
         .controller('ReferenceInformationController', ReferenceInformationController);
 
-    function ReferenceInformationController(CreateAgreementService, toastr, ReferenceInformationService, OutputFileService, GeneralDataService, $scope) {
+    function ReferenceInformationController(CreateAgreementService, ConsultAgreementService, toastr, ReferenceInformationService, OutputFileService, GeneralDataService, $scope, $rootScope) {
         var vm = this;
 
         vm.typeRequest = CreateAgreementService.getTypeRequest();
-
-        vm.changeType = changeType;
-        vm.save = save;
 
         vm.references = [];
         vm.additionals = [];
@@ -112,6 +109,8 @@
         vm.values.push(value);
         vm.messages.push(message);
 
+        vm.changeType = changeType;
+        vm.save = save;
         vm.addReference = addReference;
         vm.deleteReference = deleteReference;
         vm.addAdditional = addAdditional;
@@ -390,24 +389,40 @@
         function addReference() {
 
             if (vm.references.length <= 6) {
-                var reference = {
-                    id: (vm.references.length + 1),
-                    referenceId: '01000',
-                    description: '',
-                    format: '',
-                    fieldLength: '',
-                    barLength: '',
-                    obligatoryField: '',
-                    inputPosition: 0,
-                    outputPosition: '',
-                    fillCharacter: '',
-                    quickHelp: '',
-                    alignment: '',
-                    municipalityField: '',
-                    taxOver: '',
-                    routineValidation: ''
-                };
-                vm.references.push(reference);
+                var requestChannel = ConsultAgreementService.getChannel();
+                var statusMobileBanking = false;
+                var addReference_ = true;
+                if (requestChannel.MNET.length > 0) {
+                    if (requestChannel.MNET[0].status != undefined) {
+                        statusMobileBanking = requestChannel.MNET[0].status;
+                    }
+                }
+                if (statusMobileBanking) {
+                    toastr.error('No se puede agregar referencia porque modulo banca movil esta activo', 'Error');
+                    addReference_ = false;
+                } else {
+                    toastr.warning('Si añade más de una referencia, el modulo de banca móvil no se habilitara', 'Precaución');
+                }
+                if (addReference_) {
+                    var reference = {
+                        id: (vm.references.length + 1),
+                        referenceId: '01000',
+                        description: '',
+                        format: '',
+                        fieldLength: '',
+                        barLength: '',
+                        obligatoryField: '',
+                        inputPosition: 0,
+                        outputPosition: '',
+                        fillCharacter: '',
+                        quickHelp: '',
+                        alignment: '',
+                        municipalityField: '',
+                        taxOver: '',
+                        routineValidation: ''
+                    };
+                    vm.references.push(reference);
+                }
             } else {
                 toastr.error('Limite de referencias excedido', 'Error');
             }
@@ -442,6 +457,18 @@
                                 routineValidation: ''
                             });
                         }
+
+                        //actualizar referencias
+                        var requestReferences = generateReferences();
+                        ReferenceInformationService.setReferences(requestReferences);
+                        ConsultAgreementService.getReference()
+                            .then(function (response) {
+                                var referen = ConsultAgreementService.getRequest();
+                                referen.references = response.data;
+                                ConsultAgreementService.setRequest(referen);
+                                $rootScope.initMobileBanking();
+                            });
+
                         toastr.info('Referencia eliminada Exitosamente.', 'Informacion!');
                     }, function (error) {
                         toastr.error('Referencia No Eliminada <br> ' + error.data["error-message"], 'Error !');
@@ -763,6 +790,7 @@
                     }
                 }
             }
+
             eliminarReferencia(0);
             if (vm.messages.length == 0) {
                 vm.informationMessage = '';
@@ -803,73 +831,75 @@
                 }
 
                 if (sw) {
-                    angular.forEach(vm.references, function (value, key) {
-                        var nameFormat = '';
-                        angular.forEach(vm.referenceFormats, function (data, key) {
-                            if (value.format == data.value) {
-                                nameFormat = data.nombre;
-                            }
-                        });
+                    /*angular.forEach(vm.references, function (value, key) {
+                     var nameFormat = '';
+                     angular.forEach(vm.referenceFormats, function (data, key) {
+                     if (value.format == data.value) {
+                     nameFormat = data.nombre;
+                     }
+                     });
 
-                        requestReferences.push({
-                            "referenceId": value.referenceId,
-                            "identifierReference": "01",
-                            "name": value.description,
-                            "referenceType": {
-                                "id": "01",
-                                "name": "RE"
-                            },
-                            "referenceDescription": value.description,
-                            "longDescription": value.quickHelp,
-                            "typeFormat": {
-                                "id": value.format,
-                                "name": nameFormat
-                            },
-                            "typeAlignment": {
-                                "id": value.alignment,
-                                "name": value.alignment == 'D' ? 'A la derecha' : 'A la izquierda'
-                            },
-                            "length": value.fieldLength,
-                            "position": value.barLength,
-                            "positionInitial": value.inputPosition,
-                            "positionOut": value.outputPosition,
-                            "paddingCharacters": value.fillCharacter,
-                            "indicator": [{
-                                "id": "",
-                                "indicatorId": "",
-                                "name": "",
-                                "isActive": false,
-                                "limits": [{
-                                    "id": "",
-                                    "name": "",
-                                    "value": 0,
-                                    "start": "",
-                                    "end": ""
-                                }],
-                                "value": [{
-                                    "id": "OBLIGATORY_FIELD",
-                                    "name": ""
-                                }]
-                            }],
-                            "parameter": [{
-                                "id": "0000003",
-                                "name": "indicadores",
-                                "parameterType": {
-                                    "id": "N",
-                                    "name": ""
-                                },
-                                "length": value.obligatoryField,
-                                "position": 0,
-                                "constant": 0,
-                                "numberParameter": "",
-                                "ubicationParameter": {
-                                    "id": "",
-                                    "position": 0,
-                                    "lenght": 0
-                                }
-                            }]
-                        });
-                    });
+                     requestReferences.push({
+                     "referenceId": value.referenceId,
+                     "identifierReference": "01",
+                     "name": value.description,
+                     "referenceType": {
+                     "id": "01",
+                     "name": "RE"
+                     },
+                     "referenceDescription": value.description,
+                     "longDescription": value.quickHelp,
+                     "typeFormat": {
+                     "id": value.format,
+                     "name": nameFormat
+                     },
+                     "typeAlignment": {
+                     "id": value.alignment,
+                     "name": value.alignment == 'D' ? 'A la derecha' : 'A la izquierda'
+                     },
+                     "length": value.fieldLength,
+                     "position": value.barLength,
+                     "positionInitial": value.inputPosition,
+                     "positionOut": value.outputPosition,
+                     "paddingCharacters": value.fillCharacter,
+                     "indicator": [{
+                     "id": "",
+                     "indicatorId": "",
+                     "name": "",
+                     "isActive": false,
+                     "limits": [{
+                     "id": "",
+                     "name": "",
+                     "value": 0,
+                     "start": "",
+                     "end": ""
+                     }],
+                     "value": [{
+                     "id": "OBLIGATORY_FIELD",
+                     "name": ""
+                     }]
+                     }],
+                     "parameter": [{
+                     "id": "0000003",
+                     "name": "indicadores",
+                     "parameterType": {
+                     "id": "N",
+                     "name": ""
+                     },
+                     "length": value.obligatoryField,
+                     "position": 0,
+                     "constant": 0,
+                     "numberParameter": "",
+                     "ubicationParameter": {
+                     "id": "",
+                     "position": 0,
+                     "lenght": 0
+                     }
+                     }]
+                     });
+                     });*/
+
+                    requestReferences = generateReferences();
 
                     vm.myPromiseReference = ReferenceInformationService.createReferences(requestReferences)
                         .then(function (response) {
@@ -882,6 +912,17 @@
 
                                     $scope.$parent.$broadcast('references', requestReferences);
                                     toastr.info('Referencia: ' + vm.references[key].id + ' almacenada Exitosamente.', 'Informacion!');
+
+                                    //actualizar referencias
+                                    ConsultAgreementService.setIdAgreement(requestAgrement);
+                                    ConsultAgreementService.getReference()
+                                        .then(function (response) {
+                                            var referen = ConsultAgreementService.getRequest();
+                                            referen.references = response.data;
+                                            ConsultAgreementService.setRequest(referen);
+                                            $rootScope.initMobileBanking();
+                                        });
+
                                 } else if (value.state == 'rejected') {
                                     toastr.error('Referencia: ' + vm.references[key].id + ' No Almacenada <br>' + value.reason.data["error-message"], 'Error !');
                                 }
@@ -937,9 +978,9 @@
                                 "end": ""
                             }],
                             "value": [{
-                                    "id": "OBLIGATORY_FIELD",
-                                    "name": ""
-                                },
+                                "id": "OBLIGATORY_FIELD",
+                                "name": ""
+                            },
                                 {
                                     "id": "OBLIGATORY_FIELD",
                                     "name": ""
@@ -1257,9 +1298,11 @@
                             vm.myPromiseMessage = ReferenceInformationService.deleteMessage(requestDeleteMessage[indice])
                                 .then(function (response) {
                                     eliminarReferencia(indice + 1);
-                                }, function (error) {});
+                                }, function (error) {
+                                });
                         }
                     }
+
                     eliminarReferencia(0);
                 }
 
@@ -1320,10 +1363,80 @@
                             });
                     }
                 }
+
                 crearReferencia(0);
 
             }
 
+        }
+
+        function generateReferences() {
+            var requestReferences = [];
+            angular.forEach(vm.references, function (value, key) {
+                var nameFormat = '';
+                angular.forEach(vm.referenceFormats, function (data, key) {
+                    if (value.format == data.value) {
+                        nameFormat = data.nombre;
+                    }
+                });
+
+                requestReferences.push({
+                    "referenceId": value.referenceId,
+                    "identifierReference": "01",
+                    "name": value.description,
+                    "referenceType": {
+                        "id": "01",
+                        "name": "RE"
+                    },
+                    "referenceDescription": value.description,
+                    "longDescription": value.quickHelp,
+                    "typeFormat": {
+                        "id": value.format,
+                        "name": nameFormat
+                    },
+                    "typeAlignment": {
+                        "id": value.alignment,
+                        "name": value.alignment == 'D' ? 'A la derecha' : 'A la izquierda'
+                    },
+                    "length": value.fieldLength,
+                    "position": value.barLength,
+                    "positionInitial": value.inputPosition,
+                    "positionOut": value.outputPosition,
+                    "paddingCharacters": value.fillCharacter,
+                    "indicator": [{
+                        "id": "",
+                        "indicatorId": "",
+                        "name": "",
+                        "isActive": false,
+                        "limits": [{
+                            "id": "",
+                            "name": "",
+                            "value": 0,
+                            "start": "",
+                            "end": ""
+                        }],
+                        "value": [{
+                            "id": "OBLIGATORY_FIELD",
+                            "name": ""
+                        }]
+                    }],
+                    "parameter": [{
+                        "id": "0000003",
+                        "name": "indicadores",
+                        "parameterType": {
+                            "id": "N",
+                            "name": ""
+                        },
+                        "length": value.obligatoryField,
+                        "position": 0,
+                        "constant": 0,
+                        "numberParameter": "",
+                        "ubicationParameter": {}
+                    }]
+                });
+            });
+
+            return requestReferences;
         }
     }
 })();

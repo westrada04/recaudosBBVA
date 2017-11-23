@@ -36,7 +36,7 @@
         }
 
         function deleteReference(referenceId) {
-            var idAgreement = EditAgreementService.getIdAgreement();
+            var idAgreement = CreateModifyAgreementService.getIdAgreement();
             var deferred = $q.defer();
 
             $http.delete(API_BACKEND.url + "/agreements/V01/" + idAgreement + '/references/' + referenceId, UserService.getTsec())
